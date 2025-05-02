@@ -1,0 +1,18 @@
+# General
+
+- Routes go in routes/ directory - use _app.tsx for root layout and _404.tsx for not found page
+- Interactive components (with client-side JS) go in islands/ directory, static components in components/
+- Use TypeScript interfaces for component props (e.g., interface IButtonProps)
+- Follow Fresh.js conventions: handlers.ts for API routes, page components as default exports
+- Use Tailwind utility classes directly in components, customize in tailwind.config.ts
+- PascalCase for component names (Button.tsx), kebab-case for routes (blog-post.tsx)
+- Import Fresh modules using $fresh/ prefix, follow import map in deno.json
+- Keep components pure and functional, use Preact signals for state management
+- Place API routes in routes/api/ directory with .ts extension
+- Follow Deno's built-in formatter rules (deno fmt) and linting rules (deno lint)
+
+# Design style
+
+- black, minimalistic Vercel/ShadCN style design
+- dark mode by default, light switch provided
+- no scroll, everything should fit on one screen
