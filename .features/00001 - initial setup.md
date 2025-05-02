@@ -1,4 +1,4 @@
 - [x] black background, no scroll
-- [x] general website title "Hrvoje Pavlinović"
-- [x] write "Hrvoje Pavlinović" using white color on center of the screen, large font
+- [x] general website title "Hrvoje Pavlinovic"
+- [x] write "Hrvoje Pavlinovic" using white color on center of the screen, large font
 - [x] Remove unused code

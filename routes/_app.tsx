@@ -1,4 +1,5 @@
 import { AppProps } from "$fresh/server.ts";
+import Header from "../components/Header.tsx";
 
 export default function App({ Component }: AppProps) {
   return (
@@ -6,10 +7,14 @@ export default function App({ Component }: AppProps) {
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Hrvoje Pavlinović</title>
+        <title>Hrvoje Pavlinovic</title>
         <link rel="stylesheet" href="/styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
       </head>
-      <body class="bg-black min-h-screen overflow-hidden">
+      <body class="dark:bg-black bg-white dark:text-white/80 text-black/80 min-h-screen overflow-hidden font-mono transition-colors">
+        <Header />
         <Component />
       </body>
     </html>

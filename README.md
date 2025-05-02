@@ -53,7 +53,7 @@ This will watch the project directory and restart as necessary.
 
 MIT License
 
-Copyright (c) 2025 Hrvoje Pavlinović
+Copyright (c) 2025 Hrvoje Pavlinovic
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
