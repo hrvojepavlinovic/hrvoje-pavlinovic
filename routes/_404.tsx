@@ -2,26 +2,19 @@ import { Head } from "$fresh/runtime.ts";
 
 export default function Error404() {
   return (
-    <>
-      <Head>
-        <title>404 - Page not found</title>
-      </Head>
-      <div class="px-4 py-8 mx-auto bg-[#86efac]">
-        <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-          <img
-            class="my-6"
-            src="/logo.svg"
-            width="128"
-            height="128"
-            alt="the Fresh logo: a sliced lemon dripping with juice"
-          />
-          <h1 class="text-4xl font-bold">404 - Page not found</h1>
-          <p class="my-4">
-            The page you were looking for doesn't exist.
-          </p>
-          <a href="/" class="underline">Go back home</a>
-        </div>
-      </div>
-    </>
+    <div class="flex flex-col items-center justify-center min-h-screen p-4 pt-24">
+      <h1 class="text-5xl md:text-6xl font-mono tracking-tight mb-4 dark:text-white text-black transition-colors duration-1000">
+        404
+      </h1>
+      <p class="dark:text-white/60 text-black/60 text-lg tracking-wide transition-colors duration-1000">
+        page not found
+      </p>
+      <a 
+        href="/" 
+        class="mt-8 dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black text-base transition-colors duration-1000"
+      >
+        go back
+      </a>
+    </div>
   );
 }

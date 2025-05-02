@@ -50,7 +50,6 @@ export default function MobileMenu() {
     <>
       {/* Menu toggle button */}
       <div class="flex items-center md:hidden">
-        <ThemeToggle />
         <button 
           onClick={toggleMenu}
           class="dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black text-base px-5 py-5 relative z-50"
@@ -70,6 +69,9 @@ export default function MobileMenu() {
           <NavLink href="/cv" onClick={toggleMenu}>cv</NavLink>
           <NavLink href="/blog" onClick={toggleMenu}>blog</NavLink>
           <NavLink href="/contact" onClick={toggleMenu}>contact</NavLink>
+          <div class="flex justify-center">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </>

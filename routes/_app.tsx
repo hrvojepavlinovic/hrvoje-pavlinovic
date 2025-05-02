@@ -12,8 +12,20 @@ export default function App({ Component }: AppProps) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+              document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+            } else {
+              const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+              document.documentElement.classList.toggle('dark', prefersDark);
+              localStorage.setItem('theme', prefersDark ? 'dark' : 'light');
+            }
+          })();
+        `}} />
       </head>
-      <body class="dark:bg-black bg-white dark:text-white/80 text-black/80 min-h-screen overflow-hidden font-mono transition-colors">
+      <body class="dark:bg-black bg-white dark:text-white/80 text-black/80 min-h-screen overflow-hidden font-mono transition-all duration-1000">
         <Header />
         <Component />
       </body>

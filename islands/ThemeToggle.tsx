@@ -39,7 +39,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={() => isDark.value = !isDark.value}
-      class="dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black text-base px-5 py-5 inline-block"
+      class="dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black text-base px-5 py-5 inline-block transition-colors duration-1000 w-[70px] text-center"
       aria-label={`Switch to ${isDark.value ? 'light' : 'dark'} mode`}
     >
       {isDark.value ? "light" : "dark"}
