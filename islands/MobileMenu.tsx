@@ -6,14 +6,16 @@ interface NavLinkProps {
   href: string;
   children: string;
   onClick?: () => void;
+  external?: boolean;
 }
 
-function NavLink({ href, children, onClick }: NavLinkProps) {
+function NavLink({ href, children, onClick, external }: NavLinkProps) {
   return (
     <a
       href={href}
       onClick={onClick}
       class="dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black text-xl w-full text-center px-5 py-6"
+      {...(external && { target: "_blank", rel: "noopener noreferrer" })}
     >
       {children}
     </a>
@@ -70,6 +72,7 @@ export default function MobileMenu() {
           <NavLink href="/cv" onClick={toggleMenu}>cv</NavLink>
           <NavLink href="/blog" onClick={toggleMenu}>blog</NavLink>
           <NavLink href="/contact" onClick={toggleMenu}>contact</NavLink>
+          <NavLink href="https://github.com/hrvojepavlinovic/hrvoje-pavlinovic" onClick={toggleMenu} external>source</NavLink>
           <div class="flex justify-center">
             <ThemeToggle />
           </div>

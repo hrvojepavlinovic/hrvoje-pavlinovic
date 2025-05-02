@@ -4,13 +4,15 @@ import ThemeToggle from "../islands/ThemeToggle.tsx";
 interface NavLinkProps {
   href: string;
   children: string;
+  external?: boolean;
 }
 
-function NavLink({ href, children }: NavLinkProps) {
+function NavLink({ href, children, external }: NavLinkProps) {
   return (
     <a
       href={href}
       class="dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black text-base px-4 py-5 inline-block transition-colors duration-1000"
+      {...(external && { target: "_blank", rel: "noopener noreferrer" })}
     >
       {children}
     </a>
@@ -30,6 +32,7 @@ export default function Header() {
           <NavLink href="/cv">cv</NavLink>
           <NavLink href="/blog">blog</NavLink>
           <NavLink href="/contact">contact</NavLink>
+          <NavLink href="https://github.com/hrvojepavlinovic/hrvoje-pavlinovic" external>source</NavLink>
           <div class="hidden md:block">
             <ThemeToggle />
           </div>
