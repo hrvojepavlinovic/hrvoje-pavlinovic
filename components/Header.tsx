@@ -22,7 +22,7 @@ export default function Header() {
     <header class="fixed top-0 left-0 right-0 z-50">
       <nav class="max-w-screen-xl mx-auto flex justify-between items-stretch">
         <a href="/" class="dark:text-white/80 dark:hover:text-white text-black/80 hover:text-black text-lg px-5 py-5 inline-block relative z-50 transition-colors duration-1000">
-          hrvoje.pavlinovic
+          hrvoje<span class="text-[#F7931A]">.</span>pavlinovic
         </a>
         
         <div class="hidden md:flex items-center">
