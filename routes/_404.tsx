@@ -1,5 +1,3 @@
-import { Head } from "$fresh/runtime.ts";
-
 export default function Error404() {
   return (
     <div class="flex flex-col items-center justify-center min-h-screen p-4 pt-24">

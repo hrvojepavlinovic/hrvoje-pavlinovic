@@ -28,8 +28,8 @@ export default function MobileMenu() {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") isOpen.value = false;
     };
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
+    globalThis.addEventListener("keydown", handleEscape);
+    return () => globalThis.removeEventListener("keydown", handleEscape);
   }, []);
 
   // Prevent scroll when menu is open
@@ -50,7 +50,8 @@ export default function MobileMenu() {
     <>
       {/* Menu toggle button */}
       <div class="flex items-center md:hidden">
-        <button 
+        <button
+          type="button"
           onClick={toggleMenu}
           class="dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black text-base px-5 py-5 relative z-50"
         >

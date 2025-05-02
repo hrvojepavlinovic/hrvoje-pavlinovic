@@ -11,7 +11,7 @@ export default function ThemeToggle() {
     if (savedTheme) {
       isDark.value = savedTheme === "dark";
     } else {
-      isDark.value = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      isDark.value = globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
     // Initial theme setup
@@ -38,6 +38,7 @@ export default function ThemeToggle() {
 
   return (
     <button
+      type="button"
       onClick={() => isDark.value = !isDark.value}
       class="dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black text-base px-5 py-5 inline-block transition-colors duration-1000 w-[70px] text-center"
       aria-label={`Switch to ${isDark.value ? 'light' : 'dark'} mode`}
