@@ -12,7 +12,7 @@ function NavLink({ href, children, external }: NavLinkProps) {
     <a
       href={href}
       class="dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black text-base px-4 py-5 inline-block transition-colors duration-1000"
-      {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : { "data-internal": "true" })}
     >
       {children}
     </a>
@@ -23,7 +23,11 @@ export default function Header() {
   return (
     <header class="fixed top-0 left-0 right-0 z-50">
       <nav class="max-w-screen-xl mx-auto flex justify-between items-stretch">
-        <a href="/" class="dark:text-white/80 dark:hover:text-white text-black/80 hover:text-black text-lg px-5 py-5 inline-block relative z-50 transition-colors duration-1000">
+        <a 
+          href="/" 
+          class="dark:text-white/80 dark:hover:text-white text-black/80 hover:text-black text-lg px-5 py-5 inline-block relative z-50 transition-colors duration-1000"
+          data-internal="true"
+        >
           hrvoje<span class="text-[#F7931A]">.</span>pavlinovic
         </a>
         

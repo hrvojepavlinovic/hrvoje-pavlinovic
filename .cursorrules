@@ -10,6 +10,7 @@
 - Keep components pure and functional, use Preact signals for state management
 - Place API routes in routes/api/ directory with .ts extension
 - Follow Deno's built-in formatter rules (deno fmt) and linting rules (deno lint)
+- Use globalThis instead of window
 
 # Design style
 

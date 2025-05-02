@@ -29,7 +29,9 @@ export default function App({ Component }: AppProps) {
       </head>
       <body class="dark:bg-black bg-white dark:text-white/80 text-black/80 min-h-screen overflow-hidden font-mono transition-all duration-1000">
         <Header />
-        <Component />
+        <main style="opacity: 1; transition: opacity 150ms ease">
+          <Component />
+        </main>
       </body>
     </html>
   );

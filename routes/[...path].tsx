@@ -1,5 +1,5 @@
 import Router from "../islands/Router.tsx";
 
-export default function Home() {
+export default function CatchAllRoute() {
   return <Router />;
-}
+} 
