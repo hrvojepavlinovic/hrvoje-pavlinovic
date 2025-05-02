@@ -5,7 +5,7 @@ This is my personal website built with Fresh, a next-gen web framework for Deno.
 ## Features
 
 - 📝 About Me
-- 📄 Curriculum Vitae
+- 📄 CV
 - 📬 Contact Information
 - 📚 Blog
 - 📊 Personal Statistics
