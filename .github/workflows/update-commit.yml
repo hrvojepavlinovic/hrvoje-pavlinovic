@@ -1,4 +1,4 @@
-name: Update Commit Hash
+name: Update Commit Info
 
 on:
   push:
@@ -6,19 +6,17 @@ on:
       - main
 
 jobs:
-  update-hash:
+  update-commit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Update commit hash
-        env:
-          KV_ACCESS_TOKEN: ${{ secrets.KV_ACCESS_TOKEN }}
+      - uses: actions/checkout@v4
+      
+      - name: Update KV with commit info
         run: |
-          COMMIT_HASH=$(git rev-parse --short HEAD)
-          curl -X POST \
+          COMMIT_HASH=$(git rev-parse HEAD)
+          COMMIT_TIME=$(git log -1 --format=%cI)
+          
+          curl -X POST "https://hrvoje-pavlinovic.deno.dev/api/commit" \
             -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $KV_ACCESS_TOKEN" \
-            -d "{\"hash\":\"$COMMIT_HASH\"}" \
-            ${{ secrets.DENO_DEPLOY_URL }}/api/commit 
+            -H "Authorization: Bearer ${{ secrets.KV_ACCESS_TOKEN }}" \
+            -d "{\"hash\":\"$COMMIT_HASH\",\"timestamp\":\"$COMMIT_TIME\"}" 

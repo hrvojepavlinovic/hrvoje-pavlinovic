@@ -4,7 +4,44 @@ import { Handlers } from "$fresh/server.ts";
 // Only try to open KV if we have the required token
 const kv = Deno.env.get("KV_ACCESS_TOKEN") ? await Deno.openKv() : null;
 
+// Check if we're running on Deno Deploy
+const isDenoDeployment = Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined;
+
 export const handler: Handlers = {
+  async POST(req) {
+    // Only allow updates if we have KV access
+    if (!kv) {
+      return new Response("KV store not available", { status: 503 });
+    }
+
+    // Verify authorization token
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return new Response("Unauthorized", { status: 401 });
+    }
+    const token = authHeader.slice(7); // Remove "Bearer " prefix
+    if (token !== Deno.env.get("KV_ACCESS_TOKEN")) {
+      return new Response("Unauthorized", { status: 401 });
+    }
+
+    try {
+      const { hash, timestamp } = await req.json();
+      if (!hash || !timestamp) {
+        return new Response("Hash and timestamp are required", { status: 400 });
+      }
+      
+      // Store the commit info in KV
+      await kv.set(["commit_hash"], { hash, timestamp });
+      
+      return new Response(JSON.stringify({ hash, timestamp }), {
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (error) {
+      console.error("Failed to update commit info:", error);
+      return new Response("Invalid request", { status: 400 });
+    }
+  },
+
   async GET(_req) {
     try {
       // If we have KV access, try to get from there first
@@ -17,7 +54,17 @@ export const handler: Handlers = {
         }
       }
 
-      // Fallback to git command
+      // If we're on Deno Deploy and don't have KV data, return a fallback
+      if (isDenoDeployment) {
+        return new Response(JSON.stringify({ 
+          hash: "HEAD",
+          timestamp: new Date().toISOString()
+        }), {
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+
+      // Only try git commands in local development
       try {
         const hashProcess = new Deno.Command("git", {
           args: ["rev-parse", "HEAD"],
