@@ -24,6 +24,9 @@ const currentPath = signal(
 
 export default function Router() {
   useEffect(() => {
+    // Only run on client side
+    if (typeof globalThis === "undefined" || !globalThis.location) return;
+
     // Handle popstate events
     const handlePopState = () => {
       currentPath.value = globalThis.location.pathname;
@@ -34,6 +37,9 @@ export default function Router() {
   }, []);
 
   useEffect(() => {
+    // Only run on client side
+    if (typeof globalThis === "undefined" || !globalThis.location || !globalThis.history) return;
+
     // Handle click events for internal navigation
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;

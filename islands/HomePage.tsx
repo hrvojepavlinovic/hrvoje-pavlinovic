@@ -2,7 +2,7 @@ export default function HomePage() {
   return (
     <div class="flex flex-col items-center justify-center min-h-screen p-4">
       <img 
-        src="/pfp.png" 
+        src="/pfptbs.png" 
         alt="Hrvoje Pavlinovic"
         class="w-64 h-64 rounded-full mb-8 transition-all duration-1000"
       />

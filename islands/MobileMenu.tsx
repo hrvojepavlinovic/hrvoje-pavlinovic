@@ -15,7 +15,7 @@ function NavLink({ href, children, onClick, external }: NavLinkProps) {
       href={href}
       onClick={onClick}
       class="dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black text-xl w-full text-center px-5 py-6"
-      {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : { "data-internal": "true" })}
     >
       {children}
     </a>
