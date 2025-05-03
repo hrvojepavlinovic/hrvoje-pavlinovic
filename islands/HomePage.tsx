@@ -11,7 +11,7 @@ export default function HomePage() {
       </p>
       <div class="flex gap-6">
         <a 
-          href="https://twitter.com/hrvoje_eth" 
+          href="https://x.com/0xhp10" 
           target="_blank" 
           rel="noopener noreferrer"
           class="dark:text-white/60 dark:hover:text-[#F7931A] text-black/60 hover:text-[#F7931A]"
@@ -21,7 +21,7 @@ export default function HomePage() {
           </svg>
         </a>
         <a 
-          href="https://www.linkedin.com/in/hrvojepavlinovic" 
+          href="https://www.linkedin.com/in/hpavlino" 
           target="_blank" 
           rel="noopener noreferrer"
           class="dark:text-white/60 dark:hover:text-[#F7931A] text-black/60 hover:text-[#F7931A]"
