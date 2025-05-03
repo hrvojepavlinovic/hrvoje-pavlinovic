@@ -44,27 +44,21 @@ export const handler: Handlers = {
 
   async GET(_req) {
     try {
-      // If we have KV access, try to get from there first
-      if (kv) {
-        const result = await kv.get(["commit_hash"]);
-        if (result.value) {
-          return new Response(JSON.stringify(result.value), {
+      // If on Deno Deploy, only use KV
+      if (isDenoDeployment) {
+        if (!kv) {
+          return new Response(JSON.stringify(null), {
             headers: { "Content-Type": "application/json" },
           });
         }
-      }
 
-      // If we're on Deno Deploy and don't have KV data, return a fallback
-      if (isDenoDeployment) {
-        return new Response(JSON.stringify({ 
-          hash: "HEAD",
-          timestamp: new Date().toISOString()
-        }), {
+        const result = await kv.get(["commit_hash"]);
+        return new Response(JSON.stringify(result.value || null), {
           headers: { "Content-Type": "application/json" },
         });
       }
 
-      // Only try git commands in local development
+      // If not on Deno Deploy, use git commands
       try {
         const hashProcess = new Deno.Command("git", {
           args: ["rev-parse", "HEAD"],
@@ -78,22 +72,18 @@ export const handler: Handlers = {
         const { stdout: timestampStdout } = await timestampProcess.output();
         const timestamp = new TextDecoder().decode(timestampStdout).trim();
         
-        // Store in KV if available
-        if (kv) {
-          await kv.set(["commit_hash"], { hash, timestamp });
-        }
-        
         return new Response(JSON.stringify({ hash, timestamp }), {
           headers: { "Content-Type": "application/json" },
         });
       } catch (error) {
         console.error("Failed to get git info:", error);
-        throw error;
+        return new Response(JSON.stringify(null), {
+          headers: { "Content-Type": "application/json" },
+        });
       }
     } catch (error) {
       console.error("Failed to get commit info:", error);
-      return new Response(JSON.stringify({ error: "Failed to get commit info" }), {
-        status: 500,
+      return new Response(JSON.stringify(null), {
         headers: { "Content-Type": "application/json" },
       });
     }

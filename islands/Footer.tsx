@@ -45,6 +45,7 @@ export default function Footer() {
         if (data.error) {
           throw new Error(data.error);
         }
+
         if (data.hash && data.timestamp) {
           commitHash.value = data.hash;
           commitTime.value = data.timestamp;
