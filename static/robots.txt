@@ -1,0 +1,13 @@
+# Allow all web crawlers to access the site
+User-agent: *
+Allow: /
+
+# Specify sitemap location
+Sitemap: https://hrvoje.pavlinovic.com/sitemap.xml
+
+# Crawl-delay to be nice to servers
+Crawl-delay: 10
+
+# Disallow access to specific folders that shouldn't be indexed
+Disallow: /api/
+Disallow: /_fresh/ 
