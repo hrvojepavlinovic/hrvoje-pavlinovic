@@ -33,13 +33,17 @@ export default function App({ Component }: AppProps) {
         <meta property="og:url" content="https://hrvoje.pavlinovic.com" />
         <meta property="og:title" content="Hrvoje Pavlinovic" />
         <meta property="og:description" content="Software engineer passionate about blockchain innovation and AI. When not coding, you'll find me on the football pitch." />
-        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:image" content="https://hrvoje.pavlinovic.com/pfp.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Hrvoje Pavlinovic - Software Engineer" />
         
         {/* Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Hrvoje Pavlinovic ⚽" />
         <meta name="twitter:description" content="Software engineer passionate about blockchain innovation and AI. When not coding, you'll find me on the football pitch." />
-        <meta name="twitter:image" content="/og-image.png" />
+        <meta name="twitter:image" content="https://hrvoje.pavlinovic.com/pfp.png" />
+        <meta name="twitter:image:alt" content="Hrvoje Pavlinovic - Software Engineer" />
         
         {/* Icons */}
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
