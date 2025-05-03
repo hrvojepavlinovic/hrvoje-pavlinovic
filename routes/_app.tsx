@@ -31,19 +31,22 @@ export default function App({ Component }: AppProps) {
         {/* Open Graph Meta Tags */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://hrvoje.pavlinovic.com" />
+        <meta property="og:site_name" content="Hrvoje Pavlinovic" />
         <meta property="og:title" content="Hrvoje Pavlinovic" />
         <meta property="og:description" content="Software engineer passionate about blockchain innovation and AI. When not coding, you'll find me on the football pitch." />
         <meta property="og:image" content="https://hrvoje.pavlinovic.com/pfp.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Hrvoje Pavlinovic - Software Engineer" />
+        <meta property="og:image:alt" content="Hrvoje Pavlinovic" />
         
         {/* Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Hrvoje Pavlinovic ⚽" />
+        <meta name="twitter:site" content="@0xhp10" />
+        <meta name="twitter:creator" content="@0xhp10" />
+        <meta name="twitter:title" content="Hrvoje Pavlinovic" />
         <meta name="twitter:description" content="Software engineer passionate about blockchain innovation and AI. When not coding, you'll find me on the football pitch." />
         <meta name="twitter:image" content="https://hrvoje.pavlinovic.com/pfp.png" />
-        <meta name="twitter:image:alt" content="Hrvoje Pavlinovic - Software Engineer" />
+        <meta name="twitter:image:alt" content="Hrvoje Pavlinovic" />
         
         {/* Icons */}
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
