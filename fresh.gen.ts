@@ -5,6 +5,7 @@
 import * as $_path_ from "./routes/[...path].tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $api_commit from "./routes/api/commit.ts";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
@@ -12,6 +13,7 @@ import * as $AboutPage from "./islands/AboutPage.tsx";
 import * as $BlogPage from "./islands/BlogPage.tsx";
 import * as $CVPage from "./islands/CVPage.tsx";
 import * as $ContactPage from "./islands/ContactPage.tsx";
+import * as $Footer from "./islands/Footer.tsx";
 import * as $HomePage from "./islands/HomePage.tsx";
 import * as $MobileMenu from "./islands/MobileMenu.tsx";
 import * as $Router from "./islands/Router.tsx";
@@ -23,6 +25,7 @@ const manifest = {
     "./routes/[...path].tsx": $_path_,
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/api/commit.ts": $api_commit,
     "./routes/api/joke.ts": $api_joke,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
@@ -32,6 +35,7 @@ const manifest = {
     "./islands/BlogPage.tsx": $BlogPage,
     "./islands/CVPage.tsx": $CVPage,
     "./islands/ContactPage.tsx": $ContactPage,
+    "./islands/Footer.tsx": $Footer,
     "./islands/HomePage.tsx": $HomePage,
     "./islands/MobileMenu.tsx": $MobileMenu,
     "./islands/Router.tsx": $Router,

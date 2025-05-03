@@ -1,5 +1,6 @@
 import { AppProps } from "$fresh/server.ts";
 import Header from "../components/Header.tsx";
+import Footer from "../islands/Footer.tsx";
 
 const THEME_SCRIPT = `
 (function() {
@@ -32,6 +33,7 @@ export default function App({ Component }: AppProps) {
         <main style="opacity: 1; transition: opacity 150ms ease">
           <Component />
         </main>
+        <Footer />
       </body>
     </html>
   );

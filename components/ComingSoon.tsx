@@ -10,7 +10,8 @@ export default function ComingSoon({ pageName = "" }: ComingSoonProps) {
       </h1>
       <a 
         href="/" 
-        class="mt-8 dark:text-white/40 text-black/40 hover:text-[#F7931A] text-base"
+        class="mt-8 dark:text-white/40 text-black/40 hover:text-btc-orange text-base"
+        data-internal="true"
       >
         go back
       </a>

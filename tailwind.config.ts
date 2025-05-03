@@ -7,6 +7,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        "btc-orange": "#f7931a",
+      },
       fontFamily: {
         mono: ["Space Mono", "monospace"],
       },

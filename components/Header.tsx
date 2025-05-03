@@ -28,7 +28,7 @@ export default function Header() {
           class="dark:text-white/80 dark:hover:text-white text-black/80 hover:text-black text-lg px-5 py-5 inline-block relative z-50 transition-colors duration-1000"
           data-internal="true"
         >
-          hrvoje<span class="text-[#F7931A]">.</span>pavlinovic
+          hrvoje<span class="text-btc-orange">.</span>pavlinovic
         </a>
         
         <div class="hidden md:flex items-center">
@@ -36,10 +36,7 @@ export default function Header() {
           <NavLink href="/cv">cv</NavLink>
           <NavLink href="/blog">blog</NavLink>
           <NavLink href="/contact">contact</NavLink>
-          <NavLink href="https://github.com/hrvojepavlinovic/hrvoje-pavlinovic" external>source</NavLink>
-          <div class="hidden md:block">
-            <ThemeToggle />
-          </div>
+          <ThemeToggle />
         </div>
 
         <MobileMenu />

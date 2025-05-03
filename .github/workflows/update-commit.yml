@@ -1,0 +1,24 @@
+name: Update Commit Hash
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-hash:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update commit hash
+        env:
+          DENO_KV_ACCESS_TOKEN: ${{ secrets.DENO_KV_ACCESS_TOKEN }}
+        run: |
+          COMMIT_HASH=$(git rev-parse --short HEAD)
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $DENO_KV_ACCESS_TOKEN" \
+            -d "{\"hash\":\"$COMMIT_HASH\"}" \
+            ${{ secrets.DENO_DEPLOY_URL }}/api/commit 

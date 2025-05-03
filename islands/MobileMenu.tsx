@@ -72,7 +72,6 @@ export default function MobileMenu() {
           <NavLink href="/cv" onClick={toggleMenu}>cv</NavLink>
           <NavLink href="/blog" onClick={toggleMenu}>blog</NavLink>
           <NavLink href="/contact" onClick={toggleMenu}>contact</NavLink>
-          <NavLink href="https://github.com/hrvojepavlinovic/hrvoje-pavlinovic" onClick={toggleMenu} external>source</NavLink>
           <div class="flex justify-center">
             <ThemeToggle />
           </div>
