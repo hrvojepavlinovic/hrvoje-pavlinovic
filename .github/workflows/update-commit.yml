@@ -14,11 +14,11 @@ jobs:
 
       - name: Update commit hash
         env:
-          DENO_KV_ACCESS_TOKEN: ${{ secrets.DENO_KV_ACCESS_TOKEN }}
+          KV_ACCESS_TOKEN: ${{ secrets.KV_ACCESS_TOKEN }}
         run: |
           COMMIT_HASH=$(git rev-parse --short HEAD)
           curl -X POST \
             -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $DENO_KV_ACCESS_TOKEN" \
+            -H "Authorization: Bearer $KV_ACCESS_TOKEN" \
             -d "{\"hash\":\"$COMMIT_HASH\"}" \
             ${{ secrets.DENO_DEPLOY_URL }}/api/commit 

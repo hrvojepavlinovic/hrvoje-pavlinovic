@@ -2,7 +2,7 @@
 import { Handlers } from "$fresh/server.ts";
 
 // Only try to open KV if we have the required token
-const kv = Deno.env.get("DENO_KV_ACCESS_TOKEN") ? await Deno.openKv() : null;
+const kv = Deno.env.get("KV_ACCESS_TOKEN") ? await Deno.openKv() : null;
 
 export const handler: Handlers = {
   async GET(_req) {
