@@ -6,9 +6,6 @@ export default function HomePage() {
         alt="Hrvoje Pavlinovic"
         class="w-64 h-64 rounded-full mb-8 transition-all duration-1000"
       />
-      <p class="dark:text-white/60 text-black/60 text-lg tracking-wide transition-colors duration-1000 mb-8">
-        Software Engineer
-      </p>
       <div class="flex gap-6">
         <a 
           href="https://x.com/0xhp10" 
