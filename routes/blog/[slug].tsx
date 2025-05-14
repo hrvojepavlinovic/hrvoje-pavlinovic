@@ -17,7 +17,7 @@ interface BlogPostData {
 export const handler: Handlers<BlogPostData> = {
   async GET(req, ctx) {
     const { slug } = ctx.params;
-    const article = blogData.articles.find((a) => a.slug === slug);
+    const article = (blogData.articles as BlogArticle[]).find((a) => a.slug === slug);
 
     if (!article) {
       return ctx.renderNotFound();
@@ -134,6 +134,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
               slug={article.slug}
               initialLikes={article.likes}
               title={article.title}
+              seo={article.seo}
             />
           </div>
         </article>

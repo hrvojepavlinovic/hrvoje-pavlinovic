@@ -1,12 +1,15 @@
 import { useSignal } from "@preact/signals";
+import { useEffect } from "preact/hooks";
+import { BlogArticle } from "../types/blog.ts";
 
 interface SocialActionsProps {
   slug: string;
   initialLikes: number;
   title: string;
+  seo: BlogArticle["seo"];
 }
 
-export default function SocialActions({ slug, initialLikes, title }: SocialActionsProps) {
+export default function SocialActions({ slug, initialLikes, title, seo }: SocialActionsProps) {
   const likes = useSignal(initialLikes);
   const showCopied = useSignal(false);
 
@@ -31,7 +34,7 @@ export default function SocialActions({ slug, initialLikes, title }: SocialActio
     }
 
     try {
-      await globalThis.navigator.clipboard.writeText(`https://hrvoje.pavlinovic.com/blog/${slug}`);
+      await globalThis.navigator.clipboard.writeText(`https://pavlinovic.com/blog/${slug}`);
       showCopied.value = true;
       setTimeout(() => {
         showCopied.value = false;
@@ -47,10 +50,13 @@ export default function SocialActions({ slug, initialLikes, title }: SocialActio
       return;
     }
 
-    const text = encodeURIComponent(`${title}\n\nBy @0xHP10`);
-    const url = encodeURIComponent(`https://hrvoje.pavlinovic.com/blog/${slug}`);
+    const text = encodeURIComponent(`${seo.title}\n\n${seo.description}`);
+    const url = encodeURIComponent(`https://pavlinovic.com/blog/${slug}`);
+    const hashtags = encodeURIComponent(seo.keywords.slice(0, 3).join(","));
+    const via = seo.twitterCreator.replace("@", "");
+
     globalThis.open(
-      `https://x.com/intent/tweet?text=${text}&url=${url}`,
+      `https://x.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}&via=${via}`,
       "_blank"
     );
   };
