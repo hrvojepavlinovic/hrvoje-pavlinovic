@@ -6,6 +6,7 @@ import AboutPage from "./AboutPage.tsx";
 import CVPage from "./CVPage.tsx";
 import ContactPage from "./ContactPage.tsx";
 import StatsPage from "./StatsPage.tsx";
+import WebStatsPage from "./WebStats.tsx";
 
 // Helper function to update meta tags
 function updateMetaTags(title: string) {
@@ -42,7 +43,11 @@ const ROUTES: Routes = {
   },
   "/stats": {
     component: StatsPage,
-    title: "Website Stats | Hrvoje Pavlinovic"
+    title: "Stats | Hrvoje Pavlinovic"
+  },
+  "/webstats": {
+    component: WebStatsPage,
+    title: "Web Stats | Hrvoje Pavlinovic"
   }
 };
 
