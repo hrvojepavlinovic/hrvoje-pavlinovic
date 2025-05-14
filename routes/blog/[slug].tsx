@@ -15,7 +15,7 @@ interface BlogPostData {
 }
 
 export const handler: Handlers<BlogPostData> = {
-  async GET(req, ctx) {
+  async GET(_req, ctx) {
     const { slug } = ctx.params;
     const article = (blogData.articles as BlogArticle[]).find((a) => a.slug === slug);
 
@@ -60,6 +60,10 @@ export const handler: Handlers<BlogPostData> = {
 
 export default function BlogPost({ data }: PageProps<BlogPostData>) {
   const { article } = data;
+  const absoluteImageUrl = article.seo.image.startsWith('http') 
+    ? article.seo.image 
+    : `https://hrvoje.pavlinovic.com${article.seo.image}`;
+  const canonicalUrl = `https://hrvoje.pavlinovic.com/blog/${article.slug}`;
 
   return (
     <>
@@ -68,20 +72,29 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
         <meta name="description" content={article.seo.description} />
         <meta name="keywords" content={article.seo.keywords.join(", ")} />
         <meta name="author" content={article.seo.author} />
+        <link rel="canonical" href={canonicalUrl} />
         
-        {/* Open Graph */}
+        {/* Override Open Graph meta tags */}
+        <meta property="og:type" content="article" />
         <meta property="og:title" content={article.seo.title} />
         <meta property="og:description" content={article.seo.description} />
-        <meta property="og:image" content={article.seo.image} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://hrvoje.pavlinovic.com/blog/${article.slug}`} />
+        <meta property="og:image" content={absoluteImageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={article.title} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="Hrvoje Pavlinovic" />
+        <meta property="article:published_time" content={article.createdAt} />
         
-        {/* Twitter Card */}
+        {/* Override Twitter Card meta tags */}
         <meta name="twitter:card" content={article.seo.twitterCard} />
+        <meta name="twitter:site" content="@0xhp10" />
         <meta name="twitter:creator" content={article.seo.twitterCreator} />
         <meta name="twitter:title" content={article.seo.title} />
         <meta name="twitter:description" content={article.seo.description} />
-        <meta name="twitter:image" content={article.seo.image} />
+        <meta name="twitter:image" content={absoluteImageUrl} />
+        <meta name="twitter:image:alt" content={article.title} />
+        <meta name="twitter:url" content={canonicalUrl} />
         
         {/* JSON-LD */}
         <script type="application/ld+json">
@@ -90,10 +103,19 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
             "@type": "BlogPosting",
             "headline": article.title,
             "description": article.shortDescription,
-            "image": article.seo.image,
+            "image": absoluteImageUrl,
+            "url": canonicalUrl,
             "author": {
               "@type": "Person",
               "name": article.seo.author
+            },
+            "publisher": {
+              "@type": "Person",
+              "name": "Hrvoje Pavlinovic",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://hrvoje.pavlinovic.com/pfp.png"
+              }
             },
             "datePublished": article.createdAt,
             "keywords": article.seo.keywords.join(", ")
@@ -133,7 +155,6 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
             <SocialActions 
               slug={article.slug}
               initialLikes={article.likes}
-              title={article.title}
               seo={article.seo}
             />
           </div>
