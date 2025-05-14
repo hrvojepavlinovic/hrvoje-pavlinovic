@@ -60,9 +60,7 @@ export const handler: Handlers<BlogPostData> = {
 
 export default function BlogPost({ data }: PageProps<BlogPostData>) {
   const { article } = data;
-  const absoluteImageUrl = article.seo.image.startsWith('http') 
-    ? article.seo.image 
-    : `https://hrvoje.pavlinovic.com${article.seo.image}`;
+  const absoluteImageUrl = 'https://hrvoje.pavlinovic.com/blog.png';
   const canonicalUrl = `https://hrvoje.pavlinovic.com/blog/${article.slug}`;
 
   return (
