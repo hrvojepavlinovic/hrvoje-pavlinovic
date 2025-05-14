@@ -71,12 +71,12 @@ export default function Footer() {
 
   return (
     <footer class="fixed bottom-0 left-0 right-0 flex justify-center p-6">
-      <div class={`flex items-center gap-3 text-sm font-mono ${isLoaded.value ? 'opacity-100' : 'opacity-0'}`}>
+      <div class={`flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm font-mono ${isLoaded.value ? 'opacity-100' : 'opacity-0'}`}>
         <a 
           href="https://github.com/hrvojepavlinovic/hrvoje-pavlinovic"
           target="_blank"
           rel="noopener noreferrer"
-          class="dark:text-white/20 text-black/20 hover:text-btc-orange dark:hover:text-btc-orange"
+          class="dark:text-white/20 text-black/20 hover:text-btc-orange dark:hover:text-btc-orange whitespace-nowrap"
         >
           source
         </a>
@@ -87,25 +87,25 @@ export default function Footer() {
               href={`https://github.com/hrvojepavlinovic/hrvoje-pavlinovic/commit/${commitHash.value}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="dark:text-white/20 text-black/20 hover:text-btc-orange dark:hover:text-btc-orange"
+              class="dark:text-white/20 text-black/20 hover:text-btc-orange dark:hover:text-btc-orange whitespace-nowrap"
             >
               {commitHash.value.substring(0, 7)}
             </a>
             <span class="dark:text-white/10 text-black/10">·</span>
-            <span class="dark:text-white/20 text-black/20">
+            <span class="dark:text-white/20 text-black/20 whitespace-nowrap">
               {timeSince.value}
             </span>
           </>
         )}
         {error.value && (
-          <span class="dark:text-red-500/20 text-red-500/20">
+          <span class="dark:text-red-500/20 text-red-500/20 whitespace-nowrap">
             {error.value}
           </span>
         )}
         <span class="dark:text-white/10 text-black/10">·</span>
         <a 
           href="/webstats" 
-          class="dark:text-white/20 text-black/20 hover:text-btc-orange dark:hover:text-btc-orange"
+          class="dark:text-white/20 text-black/20 hover:text-btc-orange dark:hover:text-btc-orange whitespace-nowrap"
           title="View page statistics"
         >
           stats
