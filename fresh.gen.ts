@@ -5,19 +5,28 @@
 import * as $_path_ from "./routes/[...path].tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $api_blog_like_slug_ from "./routes/api/blog/like/[slug].ts";
 import * as $api_commit from "./routes/api/commit.ts";
 import * as $api_joke from "./routes/api/joke.ts";
+import * as $api_stats from "./routes/api/stats.ts";
+import * as $api_track from "./routes/api/track.ts";
+import * as $blog_slug_ from "./routes/blog/[slug].tsx";
+import * as $blog_index from "./routes/blog/index.tsx";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $webstats_index from "./routes/webstats/index.tsx";
 import * as $AboutPage from "./islands/AboutPage.tsx";
-import * as $BlogPage from "./islands/BlogPage.tsx";
 import * as $CVPage from "./islands/CVPage.tsx";
 import * as $ContactPage from "./islands/ContactPage.tsx";
 import * as $Footer from "./islands/Footer.tsx";
 import * as $HomePage from "./islands/HomePage.tsx";
 import * as $MobileMenu from "./islands/MobileMenu.tsx";
 import * as $Router from "./islands/Router.tsx";
+import * as $SocialActions from "./islands/SocialActions.tsx";
+import * as $StatsLink from "./islands/StatsLink.tsx";
+import * as $StatsPage from "./islands/StatsPage.tsx";
 import * as $ThemeToggle from "./islands/ThemeToggle.tsx";
+import * as $WebStats from "./islands/WebStats.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -25,21 +34,30 @@ const manifest = {
     "./routes/[...path].tsx": $_path_,
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/api/blog/like/[slug].ts": $api_blog_like_slug_,
     "./routes/api/commit.ts": $api_commit,
     "./routes/api/joke.ts": $api_joke,
+    "./routes/api/stats.ts": $api_stats,
+    "./routes/api/track.ts": $api_track,
+    "./routes/blog/[slug].tsx": $blog_slug_,
+    "./routes/blog/index.tsx": $blog_index,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
+    "./routes/webstats/index.tsx": $webstats_index,
   },
   islands: {
     "./islands/AboutPage.tsx": $AboutPage,
-    "./islands/BlogPage.tsx": $BlogPage,
     "./islands/CVPage.tsx": $CVPage,
     "./islands/ContactPage.tsx": $ContactPage,
     "./islands/Footer.tsx": $Footer,
     "./islands/HomePage.tsx": $HomePage,
     "./islands/MobileMenu.tsx": $MobileMenu,
     "./islands/Router.tsx": $Router,
+    "./islands/SocialActions.tsx": $SocialActions,
+    "./islands/StatsLink.tsx": $StatsLink,
+    "./islands/StatsPage.tsx": $StatsPage,
     "./islands/ThemeToggle.tsx": $ThemeToggle,
+    "./islands/WebStats.tsx": $WebStats,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

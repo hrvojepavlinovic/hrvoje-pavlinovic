@@ -1,4 +1,5 @@
 import { AppProps } from "$fresh/server.ts";
+import { Head } from "$fresh/runtime.ts";
 import Header from "../components/Header.tsx";
 import Footer from "../islands/Footer.tsx";
 
@@ -12,6 +13,17 @@ const THEME_SCRIPT = `
     document.documentElement.classList.toggle('dark', prefersDark);
     localStorage.setItem('theme', prefersDark ? 'dark' : 'light');
   }
+
+  // Track page view
+  fetch('/api/track', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'pageview',
+      page: window.location.pathname,
+      userAgent: navigator.userAgent
+    })
+  }).catch(console.error);
 })();
 `;
 
@@ -64,9 +76,11 @@ export default function App({ Component }: AppProps) {
         
         <script>{THEME_SCRIPT}</script>
       </head>
-      <body class="dark:bg-black bg-white dark:text-white/80 text-black/80 min-h-screen overflow-hidden font-mono transition-all duration-1000">
+      <body class="dark:bg-black bg-white dark:text-white/80 text-black/80 min-h-screen flex flex-col font-mono">
         <Header />
-        <main style="opacity: 1; transition: opacity 150ms ease">
+        <main 
+          class="flex-1 overflow-y-auto w-full"
+        >
           <Component />
         </main>
         <Footer />

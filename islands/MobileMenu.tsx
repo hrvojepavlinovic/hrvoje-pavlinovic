@@ -10,12 +10,15 @@ interface NavLinkProps {
 }
 
 function NavLink({ href, children, onClick, external }: NavLinkProps) {
+  const isInternal = !external && !href.startsWith("/blog");
+
   return (
     <a
       href={href}
       onClick={onClick}
       class="dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black text-xl w-full text-center px-5 py-6"
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : { "data-internal": "true" })}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      {...(isInternal ? { "data-internal": "true" } : {})}
     >
       {children}
     </a>
@@ -71,6 +74,7 @@ export default function MobileMenu() {
           <NavLink href="/about" onClick={toggleMenu}>about</NavLink>
           <NavLink href="/cv" onClick={toggleMenu}>cv</NavLink>
           <NavLink href="/blog" onClick={toggleMenu}>blog</NavLink>
+          <NavLink href="/stats" onClick={toggleMenu}>stats</NavLink>
           <NavLink href="/contact" onClick={toggleMenu}>contact</NavLink>
           <div class="flex justify-center">
             <ThemeToggle />

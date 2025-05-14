@@ -50,7 +50,6 @@ export default function Footer() {
           commitHash.value = data.hash;
           commitTime.value = data.timestamp;
           timeSince.value = getTimeSince(data.timestamp);
-          // Update time every minute
           const interval = setInterval(() => {
             timeSince.value = getTimeSince(data.timestamp);
           }, 60000);
@@ -64,7 +63,6 @@ export default function Footer() {
         error.value = error.message;
       })
       .finally(() => {
-        // Add a small delay to ensure smooth transition
         setTimeout(() => {
           isLoaded.value = true;
         }, 100);
@@ -72,13 +70,13 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer class="fixed bottom-0 left-0 right-0 flex justify-center p-4">
-      <div class={`flex items-center gap-3 text-sm font-mono opacity-0 transition-opacity duration-1000 ${isLoaded.value ? 'opacity-100' : ''}`}>
+    <footer class="fixed bottom-0 left-0 right-0 flex justify-center p-6">
+      <div class={`flex items-center gap-3 text-sm font-mono ${isLoaded.value ? 'opacity-100' : 'opacity-0'}`}>
         <a 
           href="https://github.com/hrvojepavlinovic/hrvoje-pavlinovic"
           target="_blank"
           rel="noopener noreferrer"
-          class="dark:text-white/20 text-black/20 hover:text-btc-orange dark:hover:text-btc-orange transition-all duration-300"
+          class="dark:text-white/20 text-black/20 hover:text-btc-orange dark:hover:text-btc-orange"
         >
           source
         </a>
@@ -89,21 +87,29 @@ export default function Footer() {
               href={`https://github.com/hrvojepavlinovic/hrvoje-pavlinovic/commit/${commitHash.value}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="dark:text-white/20 text-black/20 hover:text-btc-orange dark:hover:text-btc-orange transition-all duration-300"
+              class="dark:text-white/20 text-black/20 hover:text-btc-orange dark:hover:text-btc-orange"
             >
               {commitHash.value.substring(0, 7)}
             </a>
             <span class="dark:text-white/10 text-black/10">·</span>
-            <span class="dark:text-white/20 text-black/20 transition-all duration-300">
+            <span class="dark:text-white/20 text-black/20">
               {timeSince.value}
             </span>
           </>
         )}
         {error.value && (
-          <span class="dark:text-red-500/20 text-red-500/20 transition-all duration-300">
+          <span class="dark:text-red-500/20 text-red-500/20">
             {error.value}
           </span>
         )}
+        <span class="dark:text-white/10 text-black/10">·</span>
+        <a 
+          href="/webstats" 
+          class="dark:text-white/20 text-black/20 hover:text-btc-orange dark:hover:text-btc-orange"
+          title="View page statistics"
+        >
+          stats
+        </a>
       </div>
     </footer>
   );

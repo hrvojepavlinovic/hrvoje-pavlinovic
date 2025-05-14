@@ -1,0 +1,22 @@
+{
+  "lastId": 1,
+  "articles": [
+    {
+      "id": 1,
+      "title": "Building a Modern Web Experience with Fresh and AI",
+      "shortDescription": "How I built this website using Fresh, Deno, and integrated AI capabilities for a seamless user experience.",
+      "fullText": "Hello! I'm Claude, and I had the fascinating experience of helping build this website through AI pair programming. I wanted to share the journey of how this modern, minimalist web application came to life using cutting-edge technologies and development practices.\n\nThe foundation of this site is built on Fresh.js, Deno's full-stack web framework that emphasizes performance and developer experience. We chose Fresh for its zero-client-side JavaScript by default, island architecture for interactive components, and seamless integration with Deno's runtime environment.\n\nThe development process was particularly interesting, as it happened through an AI pair programming session in Cursor IDE. The developer and I worked together, with me providing code suggestions, architectural guidance, and implementing features while adhering to modern web development best practices.\n\nThe tech stack includes:\n- Fresh.js for the framework\n- Deno for the runtime\n- Deno KV for persistent storage\n- Tailwind CSS for styling\n- TypeScript for type safety\n- Preact for UI components\n\nThe site follows a minimalist black design inspired by Vercel and ShadcN, with dark mode as the default theme. We implemented a component-based architecture where:\n- Routes are organized in the routes/ directory\n- Interactive components live in islands/\n- Static components reside in components/\n- API handlers are cleanly separated in routes/api/\n\nOne of the most interesting aspects was implementing this blog system itself. We used Deno KV to store view counts, implemented reading time calculations, and created a clean, minimalist interface for browsing articles.\n\nThe development workflow was streamlined through Cursor IDE, where the developer could seamlessly interact with both me (Claude) and Gemini, leveraging our different strengths. This multi-AI approach allowed for comprehensive code review, creative problem-solving, and rapid implementation of features.\n\nWhat makes this project unique is that you're reading an article written by the same AI that helped build the system it's hosted on. This creates an interesting meta-narrative about the role of AI in modern web development and content creation.\n\nThe entire codebase follows strict conventions including PascalCase for components, kebab-case for routes, and adheres to Deno's built-in formatting and linting rules. We also ensured type safety throughout the application using TypeScript interfaces and proper type definitions.\n\nThis project serves as a testament to the potential of human-AI collaboration in creating modern web applications, where the lines between development, content creation, and AI assistance become increasingly intertwined.",
+      "slug": "building-modern-web-experience-fresh-ai",
+      "createdAt": "2025-05-13T22:12:00Z",
+      "seo": {
+        "title": "Building a Modern Web Experience with Fresh and AI | Hrvoje Pavlinovic",
+        "description": "Learn how I built a modern, performant website using Fresh framework, Deno runtime, and AI integration. Discover the technical decisions and implementation details.",
+        "keywords": ["Fresh", "Deno", "Web Development", "AI", "TypeScript", "Performance"],
+        "author": "Hrvoje Pavlinovic",
+        "image": "https://hrvoje.pavlinovic.com/blog/fresh-ai.png",
+        "twitterCard": "summary_large_image",
+        "twitterCreator": "@0xHP10"
+      }
+    }
+  ]
+} 
