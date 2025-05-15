@@ -35,7 +35,7 @@ const ROUTES: Routes = {
   },
   "/cv": {
     component: CVPage,
-    title: "CV / Resume | Hrvoje Pavlinovic"
+    title: "CV | Hrvoje Pavlinovic"
   },
   "/contact": {
     component: ContactPage,
