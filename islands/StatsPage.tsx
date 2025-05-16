@@ -51,9 +51,6 @@ export default function StatsPage() {
       <div class="max-w-screen-xl mx-auto px-4">
         <div class="mb-8">
           <h1 class="text-3xl font-semibold tracking-tight mb-2">Personal Stats</h1>
-          <p class="text-sm dark:text-white/60 text-black/60">
-            Last updated: {lastUpdated.value.toLocaleTimeString()}
-          </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
