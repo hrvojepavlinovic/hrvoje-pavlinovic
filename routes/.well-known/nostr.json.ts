@@ -4,8 +4,8 @@ export const handler: Handlers = {
   GET(_req) {
     const nostrData = {
       "names": {
-        "sats": "c3a1041941f1ff1b367c64491b1dd29f3e92f4c95c9d2a1a96c72ed8fcab0e742f",
-        "hrvoje": "c3a1041941f1ff1b367c64491b1dd29f3e92f4c95c9d2a1a96c72ed8fcab0e742f"
+        "sats": "77108163c1d6da73448410b7218e8f4a7dc9877bed92a2a2c81835e34e043266",
+        "hrvoje": "77108163c1d6da73448410b7218e8f4a7dc9877bed92a2a2c81835e34e043266"
       }
     };
 
