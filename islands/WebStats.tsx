@@ -31,7 +31,8 @@ export default function WebStats() {
       // Process page views
       const pageViewsMap = new Map<string, number>();
       Object.entries(data.pageViews).forEach(([page, count]) => {
-        const formattedPage = page === "/" || !page || page === "undefined" || page === "Ndefined" ? "homepage" : page.slice(1);
+        const formattedPage = page === "/" || !page || page === "undefined" || page === "Ndefined" ? "homepage" : 
+          page.startsWith("/") ? page.slice(1) : page;
         pageViewsMap.set(formattedPage, (pageViewsMap.get(formattedPage) || 0) + (count as number));
       });
       

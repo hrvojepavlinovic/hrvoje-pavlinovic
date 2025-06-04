@@ -72,10 +72,12 @@ export async function migrateStats() {
   };
 }
 
-// Execute migration
-console.log("Running stats migration...");
-migrateStats().then(result => {
-  console.log("Migration result:", result);
-}).catch(error => {
-  console.error("Migration failed:", error);
-}); 
+// Run migration if this file is executed directly
+if (import.meta.main) {
+  console.log("Running stats migration...");
+  migrateStats().then(result => {
+    console.log("Migration result:", result);
+  }).catch(error => {
+    console.error("Migration failed:", error);
+  });
+} 
