@@ -155,12 +155,11 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
               <span>{article.timeAgo}</span>
             </div>
           </div>
-          <div class="prose dark:prose-invert prose-gray dark:prose-gray max-w-none">
-            {article.fullText.split('\n\n').map((paragraph, i) => (
-              <p key={i} class="mb-4 text-gray-700 dark:text-gray-300">
-                {paragraph}
-              </p>
-            ))}
+          <div class="max-w-none">
+            <div 
+              class="blog-content"
+              dangerouslySetInnerHTML={{ __html: article.fullText }} 
+            />
           </div>
           
           <div class="mt-12 pt-6 border-t border-gray-200 dark:border-gray-800">
