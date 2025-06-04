@@ -48,7 +48,7 @@ export default function ProjectsPage() {
         <h1 class="text-4xl font-bold mb-8">Projects</h1>
         
         <p class="text-gray-600 dark:text-gray-400 text-lg mb-12">
-          Here are some of the projects I've worked on, ranging from web applications to blockchain solutions. Each project represents a unique challenge and learning experience.
+          Here are some of the projects I've started building as a solo founder, ranging from AI-powered platforms to blockchain solutions. Each project represents a unique challenge and learning experience in my entrepreneurial journey.
         </p>
 
         <div class="grid gap-8 md:grid-cols-2">
