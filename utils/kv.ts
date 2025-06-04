@@ -1,10 +1,5 @@
 import { kv } from "./kv_db.ts";
-
-export interface PageView {
-  page: string;
-  timestamp: number;
-  userAgent?: string;
-}
+import blogData from "../data/blog.json" with { type: "json" };
 
 export interface ClickEvent {
   type: "menu" | "link" | "internal" | "external";
@@ -13,17 +8,9 @@ export interface ClickEvent {
 }
 
 export async function trackPageView(page: string, userAgent?: string) {
-  // Store individual event for detailed analytics
-  const view: PageView = {
-    page,
-    timestamp: Date.now(),
-    userAgent,
-  };
+  const counterKey = ["page_views", page];
   
-  const eventKey = ["page_views", view.timestamp, Math.random().toString(36)];
-  const counterKey = ["counters", "page_views", page];
-  
-  // Atomic operation with retry logic
+  // Atomic increment with retry logic
   let attempts = 0;
   const maxAttempts = 5;
   
@@ -32,7 +19,6 @@ export async function trackPageView(page: string, userAgent?: string) {
       const currentCount = await kv.get<number>(counterKey);
       const result = await kv.atomic()
         .check(currentCount)
-        .set(eventKey, view)
         .set(counterKey, (currentCount.value || 0) + 1)
         .commit();
         
@@ -64,8 +50,11 @@ export async function trackClick(type: "menu" | "link" | "internal" | "external"
     timestamp: Date.now(),
   };
   
+  // Store individual click events (for analytics)
   const eventKey = ["clicks", click.timestamp, Math.random().toString(36)];
-  const counterKey = ["counters", "clicks", `${type}:${target}`];
+  
+  // Also store aggregated counter
+  const counterKey = ["click_counts", `${type}:${target}`];
   
   // Atomic operation with retry logic
   let attempts = 0;
@@ -102,56 +91,43 @@ export async function trackClick(type: "menu" | "link" | "internal" | "external"
 }
 
 export async function getStats() {
-  // Get counters (fast)
   const pageViewCounters: Record<string, number> = {};
   const clickCounters: Record<string, number> = {};
 
   // Get page view counters
-  const pageViewCountersIter = kv.list<number>({ prefix: ["counters", "page_views"] });
+  const pageViewCountersIter = kv.list<number>({ prefix: ["page_views"] });
   for await (const entry of pageViewCountersIter) {
-    const page = entry.key[2] as string;
+    const page = entry.key[1] as string;
     pageViewCounters[page] = entry.value;
   }
 
   // Get blog article view counters (format: ["blog:views:slug"])
-  // Try broader search since prefix matching might not work as expected
-  const allBlogIter = kv.list<number>({ prefix: ["blog"] });
-  for await (const entry of allBlogIter) {
-    const keyString = entry.key[0] as string;
-    if (keyString && keyString.startsWith("blog:views:")) {
-      const slug = keyString.replace("blog:views:", "");
-      const blogPath = `/blog/${slug}`;
-      pageViewCounters[blogPath] = entry.value;
+  for (const article of blogData.articles) {
+    const blogKey = [`blog:views:${article.slug}`];
+    const blogEntry = await kv.get<number>(blogKey);
+    if (blogEntry.value !== null) {
+      const blogPath = `/blog/${article.slug}`;
+      pageViewCounters[blogPath] = blogEntry.value;
     }
   }
 
   // Get click counters
-  const clickCountersIter = kv.list<number>({ prefix: ["counters", "clicks"] });
+  const clickCountersIter = kv.list<number>({ prefix: ["click_counts"] });
   for await (const entry of clickCountersIter) {
-    const clickKey = entry.key[2] as string;
+    const clickKey = entry.key[1] as string;
     clickCounters[clickKey] = entry.value;
   }
 
-  // Also get raw events for detailed analytics (limited to recent events)
-  const pageViews: PageView[] = [];
-  const clicks: ClickEvent[] = [];
-
-  // Get recent page views (last 1000 for performance)
-  const pageViewsIter = kv.list<PageView>({ prefix: ["page_views"] }, { limit: 1000, reverse: true });
-  for await (const entry of pageViewsIter) {
-    pageViews.push(entry.value);
-  }
-
-  // Get recent clicks (last 1000 for performance)
-  const clicksIter = kv.list<ClickEvent>({ prefix: ["clicks"] }, { limit: 1000, reverse: true });
+  // Also get recent click events for detailed analytics (last 100)
+  const recentClicks: ClickEvent[] = [];
+  const clicksIter = kv.list<ClickEvent>({ prefix: ["clicks"] }, { limit: 100, reverse: true });
   for await (const entry of clicksIter) {
-    clicks.push(entry.value);
+    recentClicks.push(entry.value);
   }
 
   return {
     pageViews: pageViewCounters,
     clicks: clickCounters,
-    rawPageViews: pageViews,
-    rawClicks: clicks,
+    recentClicks: recentClicks,
   };
 } 

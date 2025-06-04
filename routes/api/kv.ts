@@ -4,14 +4,14 @@ import { kv } from "../../utils/kv_db.ts";
 export const handler: Handlers = {
   async GET() {
     try {
-      console.log("Listing all KV entries...");
+      console.log("Fetching KV summary...");
       
       const results = {
-        allEntries: [] as Array<{ key: unknown; value: unknown; keyType: string }>,
         summary: {
-          totalEntries: 0,
+          totalKeys: 0,
           keyPrefixes: {} as Record<string, number>
-        }
+        },
+        keys: [] as Array<{ key: unknown; value: unknown; keyType: string }>
       };
       
       // List all entries in the KV store
@@ -23,8 +23,8 @@ export const handler: Handlers = {
           keyType: Array.isArray(entry.key) ? `Array[${entry.key.length}]` : typeof entry.key
         };
         
-        results.allEntries.push(keyInfo);
-        results.summary.totalEntries++;
+        results.keys.push(keyInfo);
+        results.summary.totalKeys++;
         
         // Track key prefixes for summary
         if (Array.isArray(entry.key) && entry.key.length > 0) {
@@ -33,15 +33,17 @@ export const handler: Handlers = {
         }
       }
       
-      console.log(`Found ${results.summary.totalEntries} total KV entries`);
+      console.log(`Found ${results.summary.totalKeys} total KV entries`);
       console.log("Key prefixes:", results.summary.keyPrefixes);
       
       return new Response(JSON.stringify(results, null, 2), {
         headers: { "Content-Type": "application/json" },
       });
     } catch (error) {
-      console.error("Error listing KV entries:", error);
-      return new Response(JSON.stringify({ error: (error as Error).message || String(error) }), {
+      console.error("Error fetching KV data:", error);
+      return new Response(JSON.stringify({ 
+        error: (error as Error).message || String(error) 
+      }), {
         status: 500,
         headers: { "Content-Type": "application/json" },
       });
