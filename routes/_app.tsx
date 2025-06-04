@@ -44,7 +44,7 @@ const THEME_SCRIPT = `
     });
   }
 
-  // Track page view with slight delay to avoid cold start issues
+  // Track page view client-side (in addition to server-side middleware)
   setTimeout(() => {
     trackEvent({
       type: 'pageview',

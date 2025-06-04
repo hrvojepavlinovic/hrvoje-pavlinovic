@@ -7,6 +7,7 @@ import * as $_well_known_nostr_json from "./routes/.well-known/nostr.json.ts";
 import * as $_path_ from "./routes/[...path].tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $_middleware from "./routes/_middleware.ts";
 import * as $about from "./routes/about.tsx";
 import * as $api_blog_like_slug_ from "./routes/api/blog/like/[slug].ts";
 import * as $api_commit from "./routes/api/commit.ts";
@@ -46,6 +47,7 @@ const manifest = {
     "./routes/[...path].tsx": $_path_,
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/_middleware.ts": $_middleware,
     "./routes/about.tsx": $about,
     "./routes/api/blog/like/[slug].ts": $api_blog_like_slug_,
     "./routes/api/commit.ts": $api_commit,
