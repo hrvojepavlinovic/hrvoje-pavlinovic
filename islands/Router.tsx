@@ -1,6 +1,7 @@
 import { useSignal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
 import { ComponentType } from "preact";
+import { trackEvent } from "../utils/track.ts";
 import HomePage from "./HomePage.tsx";
 import AboutPage from "./AboutPage.tsx";
 import CVPage from "./CVPage.tsx";
@@ -74,6 +75,12 @@ export default function Router() {
         const route = ROUTES[currentPath.value];
         if (route) {
           updateMetaTags(route.title);
+          // Track page view for client-side navigation
+          trackEvent({
+            type: "pageview",
+            page: currentPath.value,
+            userAgent: globalThis.navigator?.userAgent
+          });
         }
       }
     };
@@ -116,6 +123,12 @@ export default function Router() {
           const route = ROUTES[newPath];
           if (route) {
             updateMetaTags(route.title);
+            // Track page view for client-side navigation
+            trackEvent({
+              type: "pageview",
+              page: newPath,
+              userAgent: globalThis.navigator?.userAgent
+            });
           }
         }
       }

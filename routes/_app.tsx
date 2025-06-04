@@ -52,6 +52,42 @@ const THEME_SCRIPT = `
       userAgent: globalThis.navigator.userAgent
     });
   }, 100);
+
+  // Add automatic link click tracking
+  globalThis.addEventListener('click', (e) => {
+    const target = e.target.closest('a');
+    if (!target) return;
+    
+    let linkType = 'link';
+    let linkTarget = target.href;
+    
+    // Determine link type and target
+    if (target.hasAttribute('data-internal')) {
+      linkType = 'menu';
+      linkTarget = target.getAttribute('href') || target.href;
+    } else if (target.href) {
+      // External links or regular links
+      if (target.href.startsWith(globalThis.location.origin)) {
+        linkType = 'internal';
+        linkTarget = target.getAttribute('href') || target.pathname;
+      } else {
+        linkType = 'external';
+        try {
+          const url = new URL(target.href);
+          linkTarget = url.hostname;
+        } catch {
+          linkTarget = target.href;
+        }
+      }
+    }
+    
+    // Track the click
+    trackEvent({
+      type: 'click',
+      clickType: linkType,
+      target: linkTarget
+    });
+  });
 })();
 `;
 

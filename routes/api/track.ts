@@ -7,7 +7,8 @@ export const handler: Handlers = {
     const { type, target, page, userAgent } = data;
 
     if (type === "click") {
-      await trackClick(data.clickType, target);
+      const clickType = data.clickType || "link"; // fallback for compatibility
+      await trackClick(clickType as "menu" | "link" | "internal" | "external", target);
     } else if (type === "pageview") {
       await trackPageView(page, userAgent);
     }

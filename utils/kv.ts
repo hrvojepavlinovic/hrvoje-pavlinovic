@@ -7,7 +7,7 @@ export interface PageView {
 }
 
 export interface ClickEvent {
-  type: "menu" | "link";
+  type: "menu" | "link" | "internal" | "external";
   target: string;
   timestamp: number;
 }
@@ -57,7 +57,7 @@ export async function trackPageView(page: string, userAgent?: string) {
   console.error(`Failed to track page view after ${maxAttempts} attempts`);
 }
 
-export async function trackClick(type: "menu" | "link", target: string) {
+export async function trackClick(type: "menu" | "link" | "internal" | "external", target: string) {
   const click: ClickEvent = {
     type,
     target,
