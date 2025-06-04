@@ -31,12 +31,15 @@ export async function migrateStats() {
   
   // Get existing blog views (different format)
   const blogViews: Array<{ path: string; count: number }> = [];
-  const blogViewsIter = kv.list<number>({ prefix: ["blog:views:"] });
-  for await (const entry of blogViewsIter) {
-    const fullKey = entry.key[0] as string; // "blog:views:slug"
-    const slug = fullKey.replace("blog:views:", ""); // Extract slug
-    const blogPath = `/blog/${slug}`;
-    blogViews.push({ path: blogPath, count: entry.value });
+  // Try broader search since prefix matching might not work as expected
+  const allBlogIter = kv.list<number>({ prefix: ["blog"] });
+  for await (const entry of allBlogIter) {
+    const keyString = entry.key[0] as string;
+    if (keyString && keyString.startsWith("blog:views:")) {
+      const slug = keyString.replace("blog:views:", "");
+      const blogPath = `/blog/${slug}`;
+      blogViews.push({ path: blogPath, count: entry.value });
+    }
   }
   
   console.log(`Found ${pageViews.length} page views, ${clicks.length} clicks, and ${blogViews.length} blog article views`);
