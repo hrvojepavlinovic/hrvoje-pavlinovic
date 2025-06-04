@@ -6,32 +6,37 @@ interface Project {
   url?: string;
   description: string;
   technologies?: string[];
+  completion: number;
 }
 
 const PROJECTS: Project[] = [
   {
     name: "Memoato",
     url: "https://memoato.com",
-    description: "A privacy-focused AI-powered note-taking and knowledge management platform for organizing thoughts and ideas.",
-    technologies: ["T3", "AI", "Postgres", "Vercel"]
+    description: "A privacy-focused AI-powered note-taking and knowledge management platform for organizing thoughts, ideas, and research with intelligent connections and seamless workflow integration.",
+    technologies: ["T3", "AI", "Postgres", "Vercel"],
+    completion: 7
   },
   {
     name: "XXI Today",
     url: "https://xxi.today",
     description: "A comprehensive Bitcoin portal providing live network statistics, wallet integration, and tools for exploring the Bitcoin ecosystem in the 21 million era.",
-    technologies: ["T3", "Postgres", "Vercel", "Bitcoin"]
+    technologies: ["T3", "Postgres", "Vercel", "Bitcoin"],
+    completion: 5
   },
   {
     name: "PLAYGRND",
     url: "https://playgrnd.app",
     description: "A football community platform for organizing street tournaments and small-format leagues, bringing back the pure joy of football to local communities.",
-    technologies: ["T3", "Postgres", "Vercel", "Auth"]
+    technologies: ["T3", "Postgres", "Vercel", "Auth"],
+    completion: 0
   },
   {
     name: "Apes Club",
     url: "https://apes.club",
     description: "A platform for launching Solana tokens with comprehensive tracking and leaderboard systems, similar to pump.fun for discovering trending coins.",
-    technologies: ["Solana", "Web3", "TypeScript", "DeFi"]
+    technologies: ["Solana", "Web3", "TypeScript", "DeFi"],
+    completion: 1
   }
 ];
 
@@ -95,6 +100,20 @@ export default function ProjectsPage() {
                       </svg>
                     </div>
                   )}
+                </div>
+                
+                {/* Progress bar - moved below title */}
+                <div class="mb-4">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm text-gray-600 dark:text-gray-400">Progress</span>
+                    <span class="text-sm font-medium text-gray-900 dark:text-white">{project.completion}%</span>
+                  </div>
+                  <div class="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2">
+                    <div 
+                      class="bg-gray-900 dark:bg-white h-2 rounded-full transition-all duration-300"
+                      style={`width: ${project.completion}%`}
+                    ></div>
+                  </div>
                 </div>
                 
                 <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
