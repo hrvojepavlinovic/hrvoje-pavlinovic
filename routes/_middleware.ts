@@ -10,11 +10,12 @@ export async function handler(
     const url = new URL(req.url);
     const userAgent = req.headers.get("user-agent") || undefined;
     
-    // Don't track API calls, static assets, or specific paths
+    // Don't track API calls, static assets, specific paths, or blog posts (they have their own tracking)
     if (!url.pathname.startsWith("/api/") && 
         !url.pathname.startsWith("/static/") &&
         !url.pathname.includes(".") && // Skip files like .css, .js, .ico
-        !url.pathname.startsWith("/_fresh/")) {
+        !url.pathname.startsWith("/_fresh/") &&
+        !url.pathname.startsWith("/blog/")) { // Exclude blog posts - they have their own tracking
       
       // Track asynchronously to not block the response
       trackPageView(url.pathname, userAgent).catch(error => {

@@ -29,12 +29,26 @@ export async function migrateStats() {
     clicks.push(entry.value);
   }
   
-  console.log(`Found ${pageViews.length} page views and ${clicks.length} clicks`);
+  // Get existing blog views (different format)
+  const blogViews: Array<{ path: string; count: number }> = [];
+  const blogViewsIter = kv.list<number>({ prefix: ["blog:views"] });
+  for await (const entry of blogViewsIter) {
+    const slug = entry.key[1] as string;
+    const blogPath = `/blog/${slug}`;
+    blogViews.push({ path: blogPath, count: entry.value });
+  }
+  
+  console.log(`Found ${pageViews.length} page views, ${clicks.length} clicks, and ${blogViews.length} blog article views`);
   
   // Count page views
   const pageViewCounts: Record<string, number> = {};
   pageViews.forEach(view => {
     pageViewCounts[view.page] = (pageViewCounts[view.page] || 0) + 1;
+  });
+  
+  // Add blog views to page view counts
+  blogViews.forEach(({ path, count }) => {
+    pageViewCounts[path] = count; // Use the exact count from blog tracking
   });
   
   // Count clicks
@@ -62,13 +76,14 @@ export async function migrateStats() {
   // Execute all operations
   await Promise.all(operations);
   
-  console.log(`Migration complete! Set ${Object.keys(pageViewCounts).length} page view counters and ${Object.keys(clickCounts).length} click counters`);
+  console.log(`Migration complete! Set ${Object.keys(pageViewCounts).length} page view counters (including ${blogViews.length} blog articles) and ${Object.keys(clickCounts).length} click counters`);
   
   return {
     pageViewCounters: Object.keys(pageViewCounts).length,
     clickCounters: Object.keys(clickCounts).length,
     totalPageViews: Object.values(pageViewCounts).reduce((a, b) => a + b, 0),
-    totalClicks: Object.values(clickCounts).reduce((a, b) => a + b, 0)
+    totalClicks: Object.values(clickCounts).reduce((a, b) => a + b, 0),
+    blogArticles: blogViews.length
   };
 }
 
