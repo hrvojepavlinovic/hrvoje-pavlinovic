@@ -31,9 +31,10 @@ export async function migrateStats() {
   
   // Get existing blog views (different format)
   const blogViews: Array<{ path: string; count: number }> = [];
-  const blogViewsIter = kv.list<number>({ prefix: ["blog:views"] });
+  const blogViewsIter = kv.list<number>({ prefix: ["blog:views:"] });
   for await (const entry of blogViewsIter) {
-    const slug = entry.key[1] as string;
+    const fullKey = entry.key[0] as string; // "blog:views:slug"
+    const slug = fullKey.replace("blog:views:", ""); // Extract slug
     const blogPath = `/blog/${slug}`;
     blogViews.push({ path: blogPath, count: entry.value });
   }

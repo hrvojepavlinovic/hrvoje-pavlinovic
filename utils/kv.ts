@@ -113,10 +113,11 @@ export async function getStats() {
     pageViewCounters[page] = entry.value;
   }
 
-  // Get blog article view counters (different format: blog:views:slug)
-  const blogViewsIter = kv.list<number>({ prefix: ["blog:views"] });
+  // Get blog article view counters (format: ["blog:views:slug"])
+  const blogViewsIter = kv.list<number>({ prefix: ["blog:views:"] });
   for await (const entry of blogViewsIter) {
-    const slug = entry.key[1] as string; // Extract slug from blog:views:slug
+    const fullKey = entry.key[0] as string; // "blog:views:slug"
+    const slug = fullKey.replace("blog:views:", ""); // Extract slug
     const blogPath = `/blog/${slug}`;
     pageViewCounters[blogPath] = entry.value;
   }
