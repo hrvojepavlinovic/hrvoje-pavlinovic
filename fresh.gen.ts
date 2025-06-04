@@ -2,6 +2,7 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import * as $_well_known_lnurlp_username_ from "./routes/.well-known/lnurlp/[username].ts";
 import * as $_well_known_nostr_json from "./routes/.well-known/nostr.json.ts";
 import * as $_path_ from "./routes/[...path].tsx";
 import * as $_404 from "./routes/_404.tsx";
@@ -18,6 +19,8 @@ import * as $contact from "./routes/contact.tsx";
 import * as $cv from "./routes/cv.tsx";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $lightning_callback_username_ from "./routes/lightning/callback/[username].ts";
+import * as $projects from "./routes/projects.tsx";
 import * as $stats from "./routes/stats.tsx";
 import * as $webstats_index from "./routes/webstats/index.tsx";
 import * as $AboutPage from "./islands/AboutPage.tsx";
@@ -26,6 +29,7 @@ import * as $ContactPage from "./islands/ContactPage.tsx";
 import * as $Footer from "./islands/Footer.tsx";
 import * as $HomePage from "./islands/HomePage.tsx";
 import * as $MobileMenu from "./islands/MobileMenu.tsx";
+import * as $ProjectsPage from "./islands/ProjectsPage.tsx";
 import * as $Router from "./islands/Router.tsx";
 import * as $SocialActions from "./islands/SocialActions.tsx";
 import * as $StatsLink from "./islands/StatsLink.tsx";
@@ -36,6 +40,7 @@ import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
+    "./routes/.well-known/lnurlp/[username].ts": $_well_known_lnurlp_username_,
     "./routes/.well-known/nostr.json.ts": $_well_known_nostr_json,
     "./routes/[...path].tsx": $_path_,
     "./routes/_404.tsx": $_404,
@@ -52,6 +57,8 @@ const manifest = {
     "./routes/cv.tsx": $cv,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
+    "./routes/lightning/callback/[username].ts": $lightning_callback_username_,
+    "./routes/projects.tsx": $projects,
     "./routes/stats.tsx": $stats,
     "./routes/webstats/index.tsx": $webstats_index,
   },
@@ -62,6 +69,7 @@ const manifest = {
     "./islands/Footer.tsx": $Footer,
     "./islands/HomePage.tsx": $HomePage,
     "./islands/MobileMenu.tsx": $MobileMenu,
+    "./islands/ProjectsPage.tsx": $ProjectsPage,
     "./islands/Router.tsx": $Router,
     "./islands/SocialActions.tsx": $SocialActions,
     "./islands/StatsLink.tsx": $StatsLink,

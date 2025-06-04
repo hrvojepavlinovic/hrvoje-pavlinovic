@@ -73,6 +73,7 @@ export default function MobileMenu() {
         <div class="flex flex-col items-stretch justify-center h-full">
           <NavLink href="/about" onClick={toggleMenu}>about</NavLink>
           <NavLink href="/cv" onClick={toggleMenu}>cv</NavLink>
+          <NavLink href="/projects" onClick={toggleMenu}>projects</NavLink>
           <NavLink href="/blog" onClick={toggleMenu}>blog</NavLink>
           <NavLink href="/stats" onClick={toggleMenu}>stats</NavLink>
           <NavLink href="/contact" onClick={toggleMenu}>contact</NavLink>

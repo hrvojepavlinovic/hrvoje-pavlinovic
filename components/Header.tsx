@@ -59,6 +59,7 @@ export default function Header() {
         <div class="hidden md:flex items-center">
           <NavLink href="/about">about</NavLink>
           <NavLink href="/cv">cv</NavLink>
+          <NavLink href="/projects">projects</NavLink>
           <NavLink href="/blog">blog</NavLink>
           <NavLink href="/stats">stats</NavLink>
           <NavLink href="/contact">contact</NavLink>

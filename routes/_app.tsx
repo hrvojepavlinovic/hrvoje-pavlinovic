@@ -36,6 +36,7 @@ export default function App({ Component, url }: PageProps) {
                          url.pathname === '/blog' || 
                          url.pathname === '/about' || 
                          url.pathname === '/contact' || 
+                         url.pathname === '/projects' || 
                          url.pathname === '/cv' || 
                          url.pathname === '/stats';
 

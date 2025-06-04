@@ -5,6 +5,7 @@ import HomePage from "./HomePage.tsx";
 import AboutPage from "./AboutPage.tsx";
 import CVPage from "./CVPage.tsx";
 import ContactPage from "./ContactPage.tsx";
+import ProjectsPage from "./ProjectsPage.tsx";
 import StatsPage from "./StatsPage.tsx";
 import WebStatsPage from "./WebStats.tsx";
 
@@ -36,6 +37,10 @@ const ROUTES: Routes = {
   "/cv": {
     component: CVPage,
     title: "CV | Hrvoje Pavlinovic"
+  },
+  "/projects": {
+    component: ProjectsPage,
+    title: "Projects | Hrvoje Pavlinovic"
   },
   "/contact": {
     component: ContactPage,

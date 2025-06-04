@@ -1,21 +1,23 @@
 import { Handlers } from "$fresh/server.ts";
 
 export const handler: Handlers = {
-  GET(_req) {
-    const nostrData = {
-      "names": {
-        "sats": "77108163c1d6da73448410b7218e8f4a7dc9877bed92a2a2c81835e34e043266",
-        "hrvoje": "77108163c1d6da73448410b7218e8f4a7dc9877bed92a2a2c81835e34e043266"
-      }
+  GET() {
+    const nostrKey = "npub1wuggzc7p6md8x3yyzzmjrr50ff7unpmmakf29gkgrq67xnsyxfnq3s03c0"
+    const nostrKeys = {
+      "hrvoje": nostrKey,
+      "sats": nostrKey
     };
-
-    return new Response(JSON.stringify(nostrData), {
+    
+    const response = {
+      names: nostrKeys
+    };
+    
+    return new Response(JSON.stringify(response), {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET",
         "Access-Control-Allow-Headers": "Content-Type",
-        "Cache-Control": "public, max-age=3600"
       },
     });
   },
