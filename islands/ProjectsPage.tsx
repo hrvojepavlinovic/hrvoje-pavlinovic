@@ -29,6 +29,7 @@ const PROJECTS: Project[] = [
   },
   {
     name: "Apes Club",
+    url: "https://apes.club",
     description: "A platform for launching Solana tokens with comprehensive tracking and leaderboard systems, similar to pump.fun for discovering trending coins.",
     technologies: ["Solana", "Web3", "TypeScript", "DeFi"]
   }
