@@ -6,13 +6,12 @@ const THEME_SCRIPT = `
 (function() {
   if (typeof globalThis === "undefined") return;
 
+  // Initialize theme (redundant check, but safe)
   const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-  } else {
-    const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.classList.toggle('dark', prefersDark);
-    localStorage.setItem('theme', prefersDark ? 'dark' : 'light');
+  if (!savedTheme) {
+    // Default to dark mode
+    localStorage.setItem('theme', 'dark');
+    document.documentElement.classList.add('dark');
   }
 
   // Robust tracking function with retry logic
@@ -102,8 +101,22 @@ export default function App({ Component, url }: PageProps) {
                          url.pathname === '/stats';
 
   return (
-    <html lang="en">
+    <html lang="en" class="dark">
       <head>
+        {/* Immediate theme script - must be first */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              const savedTheme = localStorage.getItem('theme');
+              if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+              } else {
+                document.documentElement.classList.add('dark');
+              }
+            })();
+          `
+        }} />
+        
         {/* Basic Meta Tags */}
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -153,6 +166,7 @@ export default function App({ Component, url }: PageProps) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
         
+        {/* Main application script */}
         <script>{THEME_SCRIPT}</script>
       </head>
       <body class="dark:bg-black bg-white dark:text-white/80 text-black/80 min-h-screen flex flex-col font-mono">
