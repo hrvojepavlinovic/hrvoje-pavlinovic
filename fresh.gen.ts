@@ -11,6 +11,7 @@ import * as $_middleware from "./routes/_middleware.ts";
 import * as $about from "./routes/about.tsx";
 import * as $api_blog_like_slug_ from "./routes/api/blog/like/[slug].ts";
 import * as $api_commit from "./routes/api/commit.ts";
+import * as $api_debug_blog_keys from "./routes/api/debug-blog-keys.ts";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $api_migrate_stats from "./routes/api/migrate-stats.ts";
 import * as $api_stats from "./routes/api/stats.ts";
@@ -51,6 +52,7 @@ const manifest = {
     "./routes/about.tsx": $about,
     "./routes/api/blog/like/[slug].ts": $api_blog_like_slug_,
     "./routes/api/commit.ts": $api_commit,
+    "./routes/api/debug-blog-keys.ts": $api_debug_blog_keys,
     "./routes/api/joke.ts": $api_joke,
     "./routes/api/migrate-stats.ts": $api_migrate_stats,
     "./routes/api/stats.ts": $api_stats,
