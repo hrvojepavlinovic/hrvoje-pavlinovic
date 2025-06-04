@@ -13,6 +13,7 @@ import * as $api_blog_like_slug_ from "./routes/api/blog/like/[slug].ts";
 import * as $api_commit from "./routes/api/commit.ts";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $api_kv from "./routes/api/kv.ts";
+import * as $api_likes from "./routes/api/likes.ts";
 import * as $api_stats from "./routes/api/stats.ts";
 import * as $api_track from "./routes/api/track.ts";
 import * as $blog_slug_ from "./routes/blog/[slug].tsx";
@@ -30,6 +31,7 @@ import * as $CVPage from "./islands/CVPage.tsx";
 import * as $ContactPage from "./islands/ContactPage.tsx";
 import * as $Footer from "./islands/Footer.tsx";
 import * as $HomePage from "./islands/HomePage.tsx";
+import * as $LikeButton from "./islands/LikeButton.tsx";
 import * as $MobileMenu from "./islands/MobileMenu.tsx";
 import * as $ProjectsPage from "./islands/ProjectsPage.tsx";
 import * as $Router from "./islands/Router.tsx";
@@ -53,6 +55,7 @@ const manifest = {
     "./routes/api/commit.ts": $api_commit,
     "./routes/api/joke.ts": $api_joke,
     "./routes/api/kv.ts": $api_kv,
+    "./routes/api/likes.ts": $api_likes,
     "./routes/api/stats.ts": $api_stats,
     "./routes/api/track.ts": $api_track,
     "./routes/blog/[slug].tsx": $blog_slug_,
@@ -72,6 +75,7 @@ const manifest = {
     "./islands/ContactPage.tsx": $ContactPage,
     "./islands/Footer.tsx": $Footer,
     "./islands/HomePage.tsx": $HomePage,
+    "./islands/LikeButton.tsx": $LikeButton,
     "./islands/MobileMenu.tsx": $MobileMenu,
     "./islands/ProjectsPage.tsx": $ProjectsPage,
     "./islands/Router.tsx": $Router,

@@ -104,8 +104,8 @@ export default function App({ Component, url }: PageProps) {
     <html lang="en" class="dark">
       <head>
         {/* Immediate theme script - must be first */}
-        <script dangerouslySetInnerHTML={{
-          __html: `
+        <script>
+          {`
             (function() {
               const savedTheme = localStorage.getItem('theme');
               if (savedTheme === 'light') {
@@ -114,8 +114,8 @@ export default function App({ Component, url }: PageProps) {
                 document.documentElement.classList.add('dark');
               }
             })();
-          `
-        }} />
+          `}
+        </script>
         
         {/* Basic Meta Tags */}
         <meta charset="utf-8" />

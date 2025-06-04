@@ -7,7 +7,7 @@ export interface ClickEvent {
   timestamp: number;
 }
 
-export async function trackPageView(page: string, userAgent?: string) {
+export async function trackPageView(page: string, _userAgent?: string) {
   const counterKey = ["page_views", page];
   
   // Atomic increment with retry logic

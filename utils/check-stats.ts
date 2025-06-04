@@ -28,7 +28,7 @@ async function checkStats() {
     console.log("\n📈 Summary:");
     console.log(`  Total page types tracked: ${pageViews.length}`);
     console.log(`  Total click types tracked: ${clicks.length}`);
-    console.log(`  Raw events in memory: ${stats.rawPageViews.length} page views, ${stats.rawClicks.length} clicks`);
+    console.log(`  Recent click events stored: ${stats.recentClicks.length}`);
     
     const totalPageViews = Object.values(stats.pageViews).reduce((a, b) => a + b, 0);
     const totalClicks = Object.values(stats.clicks).reduce((a, b) => a + b, 0);

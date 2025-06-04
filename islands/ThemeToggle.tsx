@@ -14,7 +14,7 @@ export default function ThemeToggle() {
     if (savedTheme) {
       theme.value = savedTheme;
     } else {
-      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const isDark = globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
       theme.value = isDark ? "dark" : "light";
     }
 
@@ -27,6 +27,7 @@ export default function ThemeToggle() {
 
   return (
     <button
+      type="button"
       onClick={() => {
         const newTheme = theme.value === "dark" ? "light" : "dark";
         theme.value = newTheme;
