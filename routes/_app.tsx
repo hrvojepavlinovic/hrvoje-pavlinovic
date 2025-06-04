@@ -15,18 +15,43 @@ const THEME_SCRIPT = `
     localStorage.setItem('theme', prefersDark ? 'dark' : 'light');
   }
 
-  // Track page view
-  if (globalThis.fetch && globalThis.location && globalThis.navigator) {
+  // Robust tracking function with retry logic
+  function trackEvent(eventData, retries = 2) {
+    if (!globalThis.fetch || !globalThis.location || !globalThis.navigator) return;
+    
+    const data = JSON.stringify(eventData);
+    
+    // Try sendBeacon first (more reliable for page unload scenarios)
+    if (globalThis.navigator.sendBeacon) {
+      const blob = new Blob([data], { type: 'application/json' });
+      if (globalThis.navigator.sendBeacon('/api/track', blob)) {
+        return; // Success
+      }
+    }
+    
+    // Fallback to fetch with retry logic
     globalThis.fetch('/api/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        type: 'pageview',
-        page: globalThis.location.pathname,
-        userAgent: globalThis.navigator.userAgent
-      })
-    }).catch(console.error);
+      body: data,
+      keepalive: true // Helps with requests during page navigation
+    }).catch(error => {
+      console.warn('Tracking failed:', error);
+      if (retries > 0) {
+        // Retry after a short delay
+        setTimeout(() => trackEvent(eventData, retries - 1), 100);
+      }
+    });
   }
+
+  // Track page view with slight delay to avoid cold start issues
+  setTimeout(() => {
+    trackEvent({
+      type: 'pageview',
+      page: globalThis.location.pathname,
+      userAgent: globalThis.navigator.userAgent
+    });
+  }, 100);
 })();
 `;
 

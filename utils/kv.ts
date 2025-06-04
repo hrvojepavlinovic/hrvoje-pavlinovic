@@ -23,23 +23,38 @@ export async function trackPageView(page: string, userAgent?: string) {
   const eventKey = ["page_views", view.timestamp, Math.random().toString(36)];
   const counterKey = ["counters", "page_views", page];
   
-  // Atomic operation: store event and increment counter
-  const currentCount = await kv.get<number>(counterKey);
-  const result = await kv.atomic()
-    .check(currentCount)
-    .set(eventKey, view)
-    .set(counterKey, (currentCount.value || 0) + 1)
-    .commit();
-    
-  if (!result.ok) {
-    // Fallback: try again with fresh count
-    const freshCount = await kv.get<number>(counterKey);
-    await kv.atomic()
-      .check(freshCount)
-      .set(eventKey, view)
-      .set(counterKey, (freshCount.value || 0) + 1)
-      .commit();
+  // Atomic operation with retry logic
+  let attempts = 0;
+  const maxAttempts = 5;
+  
+  while (attempts < maxAttempts) {
+    try {
+      const currentCount = await kv.get<number>(counterKey);
+      const result = await kv.atomic()
+        .check(currentCount)
+        .set(eventKey, view)
+        .set(counterKey, (currentCount.value || 0) + 1)
+        .commit();
+        
+      if (result.ok) {
+        return; // Success
+      }
+      
+      attempts++;
+      // Add jitter to prevent thundering herd
+      if (attempts < maxAttempts) {
+        await new Promise(resolve => setTimeout(resolve, Math.random() * 50 + 10));
+      }
+    } catch (error) {
+      console.error("Error tracking page view:", error);
+      attempts++;
+      if (attempts < maxAttempts) {
+        await new Promise(resolve => setTimeout(resolve, Math.random() * 100 + 50));
+      }
+    }
   }
+  
+  console.error(`Failed to track page view after ${maxAttempts} attempts`);
 }
 
 export async function trackClick(type: "menu" | "link", target: string) {
@@ -52,23 +67,38 @@ export async function trackClick(type: "menu" | "link", target: string) {
   const eventKey = ["clicks", click.timestamp, Math.random().toString(36)];
   const counterKey = ["counters", "clicks", `${type}:${target}`];
   
-  // Atomic operation: store event and increment counter
-  const currentCount = await kv.get<number>(counterKey);
-  const result = await kv.atomic()
-    .check(currentCount)
-    .set(eventKey, click)
-    .set(counterKey, (currentCount.value || 0) + 1)
-    .commit();
-    
-  if (!result.ok) {
-    // Fallback: try again with fresh count
-    const freshCount = await kv.get<number>(counterKey);
-    await kv.atomic()
-      .check(freshCount)
-      .set(eventKey, click)
-      .set(counterKey, (freshCount.value || 0) + 1)
-      .commit();
+  // Atomic operation with retry logic
+  let attempts = 0;
+  const maxAttempts = 5;
+  
+  while (attempts < maxAttempts) {
+    try {
+      const currentCount = await kv.get<number>(counterKey);
+      const result = await kv.atomic()
+        .check(currentCount)
+        .set(eventKey, click)
+        .set(counterKey, (currentCount.value || 0) + 1)
+        .commit();
+        
+      if (result.ok) {
+        return; // Success
+      }
+      
+      attempts++;
+      // Add jitter to prevent thundering herd
+      if (attempts < maxAttempts) {
+        await new Promise(resolve => setTimeout(resolve, Math.random() * 50 + 10));
+      }
+    } catch (error) {
+      console.error("Error tracking click:", error);
+      attempts++;
+      if (attempts < maxAttempts) {
+        await new Promise(resolve => setTimeout(resolve, Math.random() * 100 + 50));
+      }
+    }
   }
+  
+  console.error(`Failed to track click after ${maxAttempts} attempts`);
 }
 
 export async function getStats() {
