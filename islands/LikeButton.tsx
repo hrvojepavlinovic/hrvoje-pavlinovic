@@ -60,6 +60,7 @@ export default function LikeButton({ projectId }: ILikeButtonProps) {
 
   return (
     <button
+      type="button"
       onClick={handleLike}
       disabled={isLoading}
       class={`

@@ -12,8 +12,9 @@ function NavLink({ href, children, onClick, external = false }: NavLinkProps) {
   return (
     <a 
       href={href}
-      class="flex items-center justify-center px-6 py-4 rounded-lg text-lg font-medium transition-colors dark:text-white/80 text-black/80 dark:hover:bg-white/5 hover:bg-black/5 dark:hover:text-white hover:text-black border dark:border-white/5 border-black/5 hover:border-btc-orange/20"
+      class="dark:text-white/60 text-black/60 dark:hover:text-white hover:text-black text-2xl py-6 text-center inline-block w-full"
       {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+      {...(!external && { "data-internal": "true" })}
       onClick={onClick}
     >
       {children}

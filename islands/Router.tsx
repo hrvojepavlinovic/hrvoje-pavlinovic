@@ -6,7 +6,6 @@ import HomePage from "./HomePage.tsx";
 import AboutPage from "./AboutPage.tsx";
 import CVPage from "./CVPage.tsx";
 import ContactPage from "./ContactPage.tsx";
-import ProjectsPage from "./ProjectsPage.tsx";
 import StatsPage from "./StatsPage.tsx";
 import WebStatsPage from "./WebStats.tsx";
 
@@ -38,10 +37,6 @@ const ROUTES: Routes = {
   "/cv": {
     component: CVPage,
     title: "CV | Hrvoje Pavlinovic"
-  },
-  "/projects": {
-    component: ProjectsPage,
-    title: "Projects | Hrvoje Pavlinovic"
   },
   "/contact": {
     component: ContactPage,
@@ -107,8 +102,9 @@ export default function Router() {
         const url = new URL(anchor.href);
         const newPath = url.pathname;
         
-        // Let server handle blog routes
-        if (newPath === "/blog" || newPath.startsWith("/blog/")) {
+        // Let server handle blog routes and projects routes
+        if (newPath === "/blog" || newPath.startsWith("/blog/") || 
+            newPath === "/projects" || newPath.startsWith("/projects/")) {
           return;
         }
         

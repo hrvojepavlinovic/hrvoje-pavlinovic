@@ -158,6 +158,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
           <div class="max-w-none">
             <div 
               class="blog-content"
+              // deno-lint-ignore react-no-danger
               dangerouslySetInnerHTML={{ __html: article.fullText }} 
             />
           </div>

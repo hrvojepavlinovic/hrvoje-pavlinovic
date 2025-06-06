@@ -1,7 +1,41 @@
 import { Head } from "$fresh/runtime.ts";
-import ProjectsPage from "../islands/ProjectsPage.tsx";
+import { Handlers, PageProps } from "$fresh/server.ts";
+import ProjectsPage from "../components/ProjectsPage.tsx";
 
-export default function Projects() {
+interface Project {
+  id: string;
+  name: string;
+  url?: string;
+  description: string;
+  technologies?: string[];
+  completion: number;
+  featured: boolean;
+}
+
+interface ProjectsData {
+  description: string;
+  projects: Project[];
+}
+
+export const handler: Handlers<ProjectsData> = {
+  async GET(_, ctx) {
+    try {
+      const projectsText = await Deno.readTextFile("./data/projects.json");
+      const projectsData: ProjectsData = JSON.parse(projectsText);
+      return ctx.render(projectsData);
+    } catch (error) {
+      console.error("Error loading projects data:", error);
+      // Fallback data
+      const fallbackData: ProjectsData = {
+        description: "Unable to load projects data.",
+        projects: []
+      };
+      return ctx.render(fallbackData);
+    }
+  },
+};
+
+export default function Projects({ data }: PageProps<ProjectsData>) {
   return (
     <>
       <Head>
@@ -29,7 +63,7 @@ export default function Projects() {
         <meta name="twitter:image" content="https://hrvoje.pavlinovic.com/pfp.png" />
       </Head>
       
-      <ProjectsPage />
+      <ProjectsPage projectsData={data} />
     </>
   );
 } 

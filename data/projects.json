@@ -1,0 +1,59 @@
+{
+  "description": "Here are some of the projects I've started building as a solo founder, ranging from AI-powered platforms to blockchain solutions. Each project represents a unique challenge and learning experience in my entrepreneurial journey.",
+  "projects": [
+    {
+      "id": "memoato",
+      "name": "Memoato",
+      "url": "https://memoato.com",
+      "description": "A privacy-focused AI-powered note-taking and knowledge management platform for organizing thoughts, ideas, and research with intelligent connections and seamless workflow integration.",
+      "technologies": ["T3", "AI", "Postgres", "Vercel"],
+      "completion": 7,
+      "featured": true
+    },
+    {
+      "id": "xxi-today",
+      "name": "XXI Today",
+      "url": "https://xxi.today",
+      "description": "A comprehensive Bitcoin portal providing live network statistics, wallet integration, and tools for exploring the Bitcoin ecosystem in the 21 million era.",
+      "technologies": ["T3", "Postgres", "Vercel", "Bitcoin"],
+      "completion": 5,
+      "featured": true
+    },
+    {
+      "id": "playgrnd",
+      "name": "PLAYGRND",
+      "url": "https://playgrnd.app",
+      "description": "A football community platform for organizing street tournaments and small-format leagues, bringing back the pure joy of football to local communities.",
+      "technologies": ["T3", "Postgres", "Vercel", "Auth"],
+      "completion": 0,
+      "featured": false
+    },
+    {
+      "id": "apes-club",
+      "name": "Apes Club",
+      "url": "https://apes.club",
+      "description": "A platform for launching Solana tokens with comprehensive tracking and leaderboard systems, similar to pump.fun for discovering trending coins.",
+      "technologies": ["Solana", "Web3", "TypeScript", "DeFi"],
+      "completion": 1,
+      "featured": false
+    },
+    {
+      "id": "hrvoje-pavlinovic",
+      "name": "Hrvoje Pavlinovic",
+      "url": "https://hrvoje.pavlinovic.com",
+      "description": "My personal website and portfolio built with modern web technologies. Features a minimalist design, real-time analytics, blog system, and comprehensive project showcase.",
+      "technologies": ["Deno", "KV", "Fresh", "Tailwind"],
+      "completion": 20,
+      "featured": true
+    },
+    {
+      "id": "hills-lab",
+      "name": "HILLS Lab",
+      "url": "https://hills-lab.hr",
+      "description": "High-tech company focused on innovative solutions and cutting-edge technology development. As founder, leading strategic direction and technological advancement in various domains.",
+      "technologies": ["Deno", "Fresh", "Tailwind"],
+      "completion": 35,
+      "featured": true
+    }
+  ]
+} 
