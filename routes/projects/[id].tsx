@@ -316,7 +316,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                       </li>
                       <li class="flex items-start gap-2">
                         <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Architected decentralised version of CoinMarketCap (CryptoToday)</span>
+                        <span>Architected DAO version of CoinMarketCap (CryptoToday)</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
@@ -337,11 +337,11 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                       </li>
                       <li class="flex items-start gap-2">
                         <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Passionate about football and building community</span>
+                        <span>Lives and breathes cutting-edge tech, AI, and innovation</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Remote work advocate, family-first values</span>
+                        <span>Passionate about football and building community</span>
                       </li>
                     </ul>
                   </div>
