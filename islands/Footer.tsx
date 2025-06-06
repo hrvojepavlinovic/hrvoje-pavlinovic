@@ -48,7 +48,7 @@ export default function Footer() {
   return (
     <footer
       class="fixed bottom-0 left-0 right-0 flex justify-center p-6 z-50"
-      style={{ backgroundImage: 'linear-gradient(to top, var(--theme-background-opaque) 50%, transparent 100%)' }}
+      style={{ backgroundImage: 'linear-gradient(to top, var(--theme-background-opaque) 40%, transparent 100%)' }}
     >
       <div class={`flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm font-mono ${isLoaded.value ? 'opacity-100' : 'opacity-0'}`}>
         <a 
