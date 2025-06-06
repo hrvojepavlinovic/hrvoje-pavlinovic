@@ -12,6 +12,12 @@
   --theme-text-primary: white;
 }
 
+/* Prevent layout shift when scrollbar appears/disappears */
+html {
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
+}
+
 /* Blog Content Styling */
 .blog-content {
   line-height: 1.7;
