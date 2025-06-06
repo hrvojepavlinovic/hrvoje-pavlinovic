@@ -24,6 +24,7 @@ import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
 import * as $lightning_callback_username_ from "./routes/lightning/callback/[username].ts";
 import * as $projects from "./routes/projects.tsx";
+import * as $projects_id_ from "./routes/projects/[id].tsx";
 import * as $stats from "./routes/stats.tsx";
 import * as $webstats_index from "./routes/webstats/index.tsx";
 import * as $AboutPage from "./islands/AboutPage.tsx";
@@ -33,6 +34,7 @@ import * as $Footer from "./islands/Footer.tsx";
 import * as $HomePage from "./islands/HomePage.tsx";
 import * as $LikeButton from "./islands/LikeButton.tsx";
 import * as $MobileMenu from "./islands/MobileMenu.tsx";
+import * as $ProjectPageTracker from "./islands/ProjectPageTracker.tsx";
 import * as $ProjectsList from "./islands/ProjectsList.tsx";
 import * as $Router from "./islands/Router.tsx";
 import * as $SocialActions from "./islands/SocialActions.tsx";
@@ -66,6 +68,7 @@ const manifest = {
     "./routes/index.tsx": $index,
     "./routes/lightning/callback/[username].ts": $lightning_callback_username_,
     "./routes/projects.tsx": $projects,
+    "./routes/projects/[id].tsx": $projects_id_,
     "./routes/stats.tsx": $stats,
     "./routes/webstats/index.tsx": $webstats_index,
   },
@@ -77,6 +80,7 @@ const manifest = {
     "./islands/HomePage.tsx": $HomePage,
     "./islands/LikeButton.tsx": $LikeButton,
     "./islands/MobileMenu.tsx": $MobileMenu,
+    "./islands/ProjectPageTracker.tsx": $ProjectPageTracker,
     "./islands/ProjectsList.tsx": $ProjectsList,
     "./islands/Router.tsx": $Router,
     "./islands/SocialActions.tsx": $SocialActions,

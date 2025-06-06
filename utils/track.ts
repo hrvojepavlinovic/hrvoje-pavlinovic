@@ -5,7 +5,12 @@ export async function trackEvent(data: {
   page?: string;
   userAgent?: string;
 }) {
-  if (typeof globalThis === "undefined" || !globalThis.navigator) return;
+  // Skip tracking in server-side context
+  if (typeof globalThis === "undefined" || 
+      typeof globalThis.window === "undefined" || 
+      !globalThis.navigator) {
+    return;
+  }
   
   const payload = JSON.stringify(data);
   

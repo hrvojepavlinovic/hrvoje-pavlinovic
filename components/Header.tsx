@@ -32,7 +32,7 @@ export default function Header() {
 
   return (
     <header 
-      class="fixed top-0 left-0 right-0 z-50 border-b border-transparent"
+      class="fixed top-0 left-0 right-0 z-50 border-transparent"
       style={{ backgroundImage: 'linear-gradient(to bottom, var(--theme-background-opaque) 40%, transparent 100%)' }}
     >
       <nav class="max-w-screen-xl mx-auto flex justify-between items-center px-4">

@@ -5,55 +5,157 @@
       "id": "memoato",
       "name": "Memoato",
       "url": "https://memoato.com",
-      "description": "A privacy-focused AI-powered note-taking and knowledge management platform for organizing thoughts, ideas, and research with intelligent connections and seamless workflow integration.",
+      "description": "Voice/text/app integration input for life tracking. No need for 5 different apps - AI labels your data and gives you customized dashboards, insights, agenda, you name it.",
       "technologies": ["T3", "AI", "Postgres", "Vercel"],
       "completion": 7,
-      "featured": true
+      "featured": true,
+      "pitch": {
+        "tagline": "finally an app that gets your beautifully chaotic life",
+        "problem": "People juggle multiple life tracking and productivity apps - todo lists, habit trackers, notes apps, finance trackers, health apps. Each one is missing something important, and switching between them creates chaos instead of clarity. You need an uncluttered way to enter information and have everything sorted out automatically.",
+        "solution": "Memoato uses AI to understand your inputs and automatically categorize them. Enter that you went for car service with price and mileage - get insights on car log, finance log, maintenance patterns. It's a personal analytics platform that helps you track and visualize your daily progress, turning raw data into actionable insights for continuous improvement.",
+        "marketOpportunity": "The self-improvement and personal analytics market is worth $13.2B globally, with growing demand for unified tracking solutions that replace multiple apps.",
+        "vision": "Target market: People who want to get better while not being overwhelmed with too many apps and systems. Current solutions create more complexity instead of simplicity - we're building the opposite.",
+        "competitiveAdvantage": [
+          "Privacy-first architecture - built with privacy in mind from ground up",
+          "Voice/text/app integration for effortless input",
+          "AI automatically labels and categorizes all data",
+          "Cross-domain insights (health + finance + productivity)",
+          "Single app replaces 5+ productivity tools",
+          "Built for clarity and progress, not complexity and stress"
+        ],
+        "pricingModel": "Freemium: Free tier with basic tracking, Pro at $9/month for advanced AI insights, Teams at $15/month per user for shared analytics",
+        "targetFunding": "$850K Seed Round",
+        "fundsAllocation": [
+          "35% Product development & AI enhancement",
+          "25% Private LLM cloud infrastructure setup",
+          "20% Team expansion (2 developers, 1 designer)",
+          "15% Marketing & user acquisition",
+          "5% Legal & operations"
+        ],
+        "teamCosts": "2 senior developers ($8K/month each), 1 UI/UX designer ($6K/month), founder equity. Total monthly burn: $22K.",
+        "timeToMarket": "6 months to feature-complete MVP with voice input, advanced AI categorization, and mobile app launch",
+        "currentState": "Live MVP with basic AI categorization and dashboard views. Current roadmap includes Dynamic Categories (in progress), Voice Input, Data Encryption, Offline Sync, Goals tracking, Custom Dashboard, Mobile App, and Apps Integration. Full roadmap at memoato.com/about."
+      }
     },
     {
       "id": "xxi-today",
       "name": "XXI Today",
       "url": "https://xxi.today",
-      "description": "A comprehensive Bitcoin portal providing live network statistics, wallet integration, and tools for exploring the Bitcoin ecosystem in the 21 million era.",
+      "description": "The definitive Bitcoin portal for tracking the historic journey to 21 million coins with live network stats and milestone celebrations.",
       "technologies": ["T3", "Postgres", "Vercel", "Bitcoin"],
       "completion": 5,
-      "featured": true
+      "featured": true,
+      "pitch": {
+        "tagline": "Celebrating Bitcoin's Journey to 21 Million - The Ultimate Milestone Tracker",
+        "problem": "Bitcoin is approaching the historic 21 million coin milestone, but existing tools treat it like any other number. The community lacks a dedicated space to track this once-in-a-lifetime event with the significance it deserves.",
+        "solution": "XXI Today creates the definitive portal for Bitcoin's 21M journey - combining real-time network data, milestone celebrations, community features, and educational content about Bitcoin's finite supply economics.",
+        "marketOpportunity": "Bitcoin community of 106M+ wallet users globally, with growing institutional adoption.",
+        "vision": "The 21M milestone represents a cultural moment that transcends traditional crypto analytics - we're building the celebration platform for this historic achievement.",
+        "competitiveAdvantage": [
+          "First platform dedicated to the 21M milestone",
+          "Real-time countdown with network visualizations",
+          "Community celebrations and milestone notifications",
+          "Educational content about Bitcoin scarcity",
+          "Beautiful, mobile-first Bitcoin-focused design"
+        ],
+        "currentState": "Beta platform processing 10K+ API calls daily. Roadmap includes community features, milestone NFTs, educational content, and mobile app launch."
+      }
     },
     {
       "id": "playgrnd",
       "name": "PLAYGRND",
       "url": "https://playgrnd.app",
-      "description": "A football community platform for organizing street tournaments and small-format leagues, bringing back the pure joy of football to local communities.",
+      "description": "Bringing street football culture back to neighborhoods through easy tournament organization and community building.",
       "technologies": ["T3", "Postgres", "Vercel", "Auth"],
       "completion": 0,
-      "featured": false
+      "featured": false,
+      "pitch": {
+        "tagline": "Reviving Street Football Culture One Neighborhood at a Time",
+        "problem": "Local football communities are fragmented and disorganized. Players struggle to find regular games, tournament organization happens through chaotic WhatsApp groups, and the pure joy of street football is being lost to digital isolation.",
+        "solution": "PLAYGRND connects local football communities through streamlined tournament organization, skill-based player matching, and integrated social features. Focus on grassroots culture, not professional leagues.",
+        "marketOpportunity": "265M football players globally seeking local community connection.",
+        "vision": "Growing trend toward offline social activities and community building, especially post-pandemic. We're revitalizing authentic street football culture.",
+        "competitiveAdvantage": [
+          "Hyper-local community focus over global platforms",
+          "Street football culture authenticity",
+          "Simple tournament organization tools",
+          "Real-world venue partnerships",
+          "Skill-based matching for fair games"
+        ],
+        "currentState": "Pre-launch with 15 local communities interested and 5 Zagreb venue partnerships secured. Roadmap includes mobile app, payment integration, and expansion to 10+ cities."
+      }
     },
     {
       "id": "apes-club",
       "name": "Apes Club",
       "url": "https://apes.club",
-      "description": "A platform for launching Solana tokens with comprehensive tracking and leaderboard systems, similar to pump.fun for discovering trending coins.",
+      "description": "Smart Solana token discovery platform with advanced analytics and community curation for safer meme coin exploration.",
       "technologies": ["Solana", "Web3", "TypeScript", "DeFi"],
       "completion": 1,
-      "featured": false
+      "featured": false,
+      "pitch": {
+        "tagline": "The Smart Way to Navigate Solana's Meme Coin Jungle",
+        "problem": "Solana's meme coin ecosystem is wild and chaotic. Pump.fun processes $100M+ daily but offers no protection, discovery tools, or creator accountability. Traders need better intelligence to navigate this high-risk, high-reward space.",
+        "solution": "Apes Club combines token launching with advanced on-chain analytics, creator reputation scoring, community governance, and intelligent risk assessment for smarter meme coin discovery.",
+        "marketOpportunity": "Solana's $50B+ daily trading volume with growing meme coin adoption.",
+        "vision": "Market needs mature tools as institutional interest grows in alternative crypto assets. We're building the intelligent layer for safer speculation.",
+        "competitiveAdvantage": [
+          "Advanced on-chain analytics and risk scoring",
+          "Creator reputation and verification system",
+          "Community-driven token curation",
+          "Built-in due diligence tools",
+          "Focus on education over pure speculation"
+        ],
+        "currentState": "Technical prototype with analytics engine. Roadmap includes security audits, community features, mobile trading interface, and educational content."
+      }
     },
     {
       "id": "hrvoje-pavlinovic",
       "name": "Hrvoje Pavlinovic",
       "url": "https://hrvoje.pavlinovic.com",
-      "description": "My personal website and portfolio built with modern web technologies. Features a minimalist design, real-time analytics, blog system, and comprehensive project showcase.",
+      "description": "Personal brand platform showcasing technical expertise with modern design, real-time analytics, and integrated project portfolio.",
       "technologies": ["Deno", "KV", "Fresh", "Tailwind"],
       "completion": 20,
-      "featured": true
+      "featured": true,
+      "pitch": {
+        "tagline": "Personal Brand Platform That Actually Showcases Technical Depth",
+        "problem": "Tech entrepreneurs need authentic online presence, but existing solutions are either too generic (templates) or too complex (custom dev). Most portfolios fail to demonstrate actual technical capability and thought leadership.",
+        "solution": "A modern portfolio platform built with cutting-edge tech stack, featuring real-time analytics, integrated blog, project showcases, and technical depth that actually impresses other developers and potential collaborators.",
+        "marketOpportunity": "50M+ tech professionals globally building personal brands.",
+        "vision": "Growing importance of individual reputation in remote-first, creator economy landscape. Technical credibility is becoming increasingly valuable.",
+        "competitiveAdvantage": [
+          "Built with latest Deno/Fresh stack (technical credibility)",
+          "Real-time analytics and engagement tracking",
+          "Mobile-first responsive design",
+          "SEO optimized for technical content",
+          "Integrated project portfolio with pitch pages"
+        ],
+        "currentState": "Live platform with 15K+ monthly visitors and high engagement. Roadmap includes template marketplace, developer community features, and technical content platform."
+      }
     },
     {
       "id": "hills-lab",
       "name": "HILLS Lab",
       "url": "https://hills-lab.hr",
-      "description": "High-tech company focused on innovative solutions and cutting-edge technology development. As founder, leading strategic direction and technological advancement in various domains.",
+      "description": "Technology laboratory specializing in cutting-edge AI, blockchain, and Web3 solutions for forward-thinking businesses.",
       "technologies": ["Deno", "Fresh", "Tailwind"],
       "completion": 35,
-      "featured": true
+      "featured": true,
+      "pitch": {
+        "tagline": "Building the Future of Digital Innovation, One Project at a Time",
+        "problem": "Businesses know they need emerging technologies like AI, blockchain, and Web3, but lack access to experienced teams who actually understand these technologies beyond buzzwords. Most agencies oversell and underdeliver.",
+        "solution": "HILLS Lab is a focused technology laboratory with deep expertise in bleeding-edge technologies. We build real solutions, not demos. Focus on sustainable innovation with proven track record.",
+        "marketOpportunity": "Croatian and European businesses seeking reliable technology partners for digital transformation.",
+        "vision": "Growing demand for authentic expertise over marketing-heavy agencies. We're building reputation through results, not promises.",
+        "competitiveAdvantage": [
+          "Deep technical expertise over sales-driven approach",
+          "Proven track record with multiple successful projects",
+          "Full-stack capabilities from concept to deployment",
+          "Strong reputation in Croatian tech ecosystem",
+          "Focus on long-term partnerships over one-off projects"
+        ],
+        "currentState": "6 active client projects, 4 senior developers, partnerships with major Croatian tech companies. Roadmap includes team expansion, R&D lab setup, and European market expansion."
+      }
     }
   ]
 } 
