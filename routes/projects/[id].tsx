@@ -11,6 +11,7 @@ interface Project {
   completion: number;
   featured: boolean;
   likes?: number;
+  accent?: string;
   pitch?: {
     tagline: string;
     problem: string;
@@ -73,6 +74,49 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
 
   const { pitch } = project;
 
+  // Function to get accent color classes
+  const getAccentClasses = (accent?: string) => {
+    switch (accent) {
+      case 'purple':
+        return {
+          gradient: 'bg-gradient-to-br from-purple-50 via-white to-purple-50/50 dark:from-purple-950/20 dark:via-gray-900 dark:to-purple-950/10',
+          sectionBg: 'bg-purple-50/50 dark:bg-purple-950/20',
+          accent: 'text-purple-600 dark:text-purple-400',
+          button: 'bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600'
+        };
+      case 'orange':
+        return {
+          gradient: 'bg-gradient-to-br from-orange-50 via-white to-orange-50/50 dark:from-orange-950/20 dark:via-gray-900 dark:to-orange-950/10',
+          sectionBg: 'bg-orange-50/50 dark:bg-orange-950/20',
+          accent: 'text-orange-600 dark:text-orange-400',
+          button: 'bg-orange-500 hover:bg-orange-600 dark:bg-orange-500 dark:hover:bg-orange-600'
+        };
+      case 'green':
+        return {
+          gradient: 'bg-gradient-to-br from-green-50 via-white to-green-50/50 dark:from-green-950/20 dark:via-gray-900 dark:to-green-950/10',
+          sectionBg: 'bg-green-50/50 dark:bg-green-950/20',
+          accent: 'text-green-600 dark:text-green-400',
+          button: 'bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600'
+        };
+      case 'violet':
+        return {
+          gradient: 'bg-gradient-to-br from-violet-50 via-white to-violet-50/50 dark:from-violet-950/20 dark:via-gray-900 dark:to-violet-950/10',
+          sectionBg: 'bg-violet-50/50 dark:bg-violet-950/20',
+          accent: 'text-violet-600 dark:text-violet-400',
+          button: 'bg-violet-600 hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-600'
+        };
+      default:
+        return {
+          gradient: 'bg-gradient-to-br from-gray-50 via-white to-gray-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800',
+          sectionBg: 'bg-gray-50/50 dark:bg-gray-800/20',
+          accent: 'text-gray-600 dark:text-gray-400',
+          button: 'bg-gray-900 hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-100'
+        };
+    }
+  };
+
+  const accentClasses = getAccentClasses(project.accent);
+
   return (
     <>
       <Head>
@@ -89,24 +133,24 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
       {/* Client-side tracking */}
       <ProjectPageTracker projectId={project.id} />
 
-      <div class="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white">
+      <div class={`min-h-screen ${accentClasses.gradient}`}>
         {/* Hero Section */}
-        <div class="pt-32 pb-16 px-8">
+        <div class="pt-32 pb-20 px-6 sm:px-8">
           <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-              <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 bg-clip-text text-transparent">
+            <div class="text-center space-y-8">
+              <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-b from-gray-900 via-gray-900 to-gray-600 dark:from-white dark:via-white dark:to-gray-400 bg-clip-text text-transparent">
                 {project.name}
               </h1>
-              <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-4xl mx-auto">
+              <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed font-light">
                 {pitch.tagline}
               </p>
               {project.url && (
-                <div class="flex gap-4 justify-center">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors font-semibold"
+                    class={`inline-flex items-center gap-2 px-8 py-4 text-white rounded-2xl transition-colors font-semibold ${accentClasses.button}`}
                   >
                     Visit Live Site
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,7 +159,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                   </a>
                   <a
                     href="/contact"
-                    class="inline-flex items-center gap-2 px-8 py-4 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg hover:border-gray-400 dark:hover:border-gray-600 transition-colors font-semibold"
+                    class="inline-flex items-center gap-2 px-8 py-4 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-2xl hover:border-gray-400 dark:hover:border-gray-500 transition-colors font-semibold"
                   >
                     Join Seed Round
                   </a>
@@ -126,20 +170,20 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
         </div>
 
         {/* Main Content */}
-        <div class="px-8 pb-24">
+        <div class="px-6 sm:px-8 pb-24">
           <div class="max-w-6xl mx-auto">
-            <div class="space-y-16">
+            <div class="space-y-12">
               {/* Problem */}
-              <div>
-                <h2 class="text-3xl font-bold mb-6 text-red-600 dark:text-red-400">1. The Problem</h2>
+              <div class={`rounded-2xl p-8 ${accentClasses.sectionBg} border border-gray-200/50 dark:border-gray-700/50`}>
+                <h2 class={`text-2xl font-bold mb-6 ${accentClasses.accent}`}>1. The Problem</h2>
                 <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                   {pitch.problem}
                 </p>
               </div>
 
               {/* Solution */}
-              <div>
-                <h2 class="text-3xl font-bold mb-6 text-green-600 dark:text-green-400">2. Our Solution</h2>
+              <div class={`rounded-2xl p-8 ${accentClasses.sectionBg} border border-gray-200/50 dark:border-gray-700/50`}>
+                <h2 class={`text-2xl font-bold mb-6 ${accentClasses.accent}`}>2. Our Solution</h2>
                 <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                   {pitch.solution}
                 </p>
@@ -147,8 +191,8 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
 
               {/* Market Opportunity */}
               {pitch.marketOpportunity && (
-                <div>
-                  <h2 class="text-3xl font-bold mb-6 text-blue-600 dark:text-blue-400">3. Market Opportunity</h2>
+                <div class={`rounded-2xl p-8 ${accentClasses.sectionBg} border border-gray-200/50 dark:border-gray-700/50`}>
+                  <h2 class={`text-2xl font-bold mb-6 ${accentClasses.accent}`}>3. Market Opportunity</h2>
                   <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                     {pitch.marketOpportunity}
                   </p>
@@ -157,8 +201,8 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
 
               {/* Vision */}
               {pitch.vision && (
-                <div>
-                  <h2 class="text-3xl font-bold mb-6 text-purple-600 dark:text-purple-400">4. Vision</h2>
+                <div class={`rounded-2xl p-8 ${accentClasses.sectionBg} border border-gray-200/50 dark:border-gray-700/50`}>
+                  <h2 class={`text-2xl font-bold mb-6 ${accentClasses.accent}`}>4. Vision</h2>
                   <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                     {pitch.vision}
                   </p>
@@ -166,13 +210,13 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
               )}
 
               {/* Competitive Advantage */}
-              <div>
-                <h2 class="text-3xl font-bold mb-6 text-indigo-600 dark:text-indigo-400">5. Competitive Edge</h2>
-                <ul class="space-y-3">
+              <div class={`rounded-2xl p-8 ${accentClasses.sectionBg} border border-gray-200/50 dark:border-gray-700/50`}>
+                <h2 class={`text-2xl font-bold mb-6 ${accentClasses.accent}`}>5. Competitive Edge</h2>
+                <ul class="space-y-4">
                   {pitch.competitiveAdvantage.map((item, index) => (
-                    <li key={index} class="flex items-start gap-3">
-                      <div class="w-2 h-2 bg-indigo-600 dark:bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
-                      <span class="text-gray-700 dark:text-gray-300">{item}</span>
+                    <li key={index} class="flex items-start gap-4">
+                      <div class={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${accentClasses.accent.replace('text-', 'bg-')}`}></div>
+                      <span class="text-gray-700 dark:text-gray-300 leading-relaxed">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -180,8 +224,8 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
 
               {/* Pricing Model */}
               {pitch.pricingModel && (
-                <div>
-                  <h2 class="text-3xl font-bold mb-6 text-emerald-600 dark:text-emerald-400">6. Pricing Model</h2>
+                <div class={`rounded-2xl p-8 ${accentClasses.sectionBg} border border-gray-200/50 dark:border-gray-700/50`}>
+                  <h2 class={`text-2xl font-bold mb-6 ${accentClasses.accent}`}>6. Pricing Model</h2>
                   <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                     {pitch.pricingModel}
                   </p>
@@ -190,56 +234,58 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
 
               {/* Funding & Business Details */}
               {(pitch.targetFunding || pitch.fundsAllocation || pitch.teamCosts || pitch.timeToMarket) && (
-                <div>
-                  <h2 class="text-3xl font-bold mb-6 text-yellow-600 dark:text-yellow-400">7. Business & Funding</h2>
+                <div class={`rounded-2xl p-8 ${accentClasses.sectionBg} border border-gray-200/50 dark:border-gray-700/50`}>
+                  <h2 class={`text-2xl font-bold mb-6 ${accentClasses.accent}`}>7. Business & Funding</h2>
                   
-                  {pitch.targetFunding && (
-                    <div class="mb-6">
-                      <h3 class="text-xl font-semibold mb-3">Target Funding</h3>
-                      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                        {pitch.targetFunding}
-                      </p>
-                    </div>
-                  )}
+                  <div class="space-y-6">
+                    {pitch.targetFunding && (
+                      <div>
+                        <h3 class="text-lg font-semibold mb-3 text-gray-900 dark:text-white">Target Funding</h3>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                          {pitch.targetFunding}
+                        </p>
+                      </div>
+                    )}
 
-                  {pitch.fundsAllocation && (
-                    <div class="mb-6">
-                      <h3 class="text-xl font-semibold mb-3">Funds Allocation</h3>
-                      <ul class="space-y-2">
-                        {pitch.fundsAllocation.map((item, index) => (
-                          <li key={index} class="flex items-start gap-3">
-                            <div class="w-2 h-2 bg-yellow-600 dark:bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span class="text-gray-700 dark:text-gray-300">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                    {pitch.fundsAllocation && (
+                      <div>
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Funds Allocation</h3>
+                        <ul class="space-y-3">
+                          {pitch.fundsAllocation.map((item, index) => (
+                            <li key={index} class="flex items-start gap-4">
+                              <div class={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${accentClasses.accent.replace('text-', 'bg-')}`}></div>
+                              <span class="text-gray-700 dark:text-gray-300 leading-relaxed">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
 
-                  {pitch.teamCosts && (
-                    <div class="mb-6">
-                      <h3 class="text-xl font-semibold mb-3">Team & Costs</h3>
-                      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                        {pitch.teamCosts}
-                      </p>
-                    </div>
-                  )}
+                    {pitch.teamCosts && (
+                      <div>
+                        <h3 class="text-lg font-semibold mb-3 text-gray-900 dark:text-white">Team & Costs</h3>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                          {pitch.teamCosts}
+                        </p>
+                      </div>
+                    )}
 
-                  {pitch.timeToMarket && (
-                    <div>
-                      <h3 class="text-xl font-semibold mb-3">Time to Market</h3>
-                      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                        {pitch.timeToMarket}
-                      </p>
-                    </div>
-                  )}
+                    {pitch.timeToMarket && (
+                      <div>
+                        <h3 class="text-lg font-semibold mb-3 text-gray-900 dark:text-white">Time to Market</h3>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                          {pitch.timeToMarket}
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
 
               {/* Current State & Roadmap */}
               {pitch.currentState && (
-                <div>
-                  <h2 class="text-3xl font-bold mb-6 text-orange-600 dark:text-orange-400">8. Current State & Roadmap</h2>
+                <div class={`rounded-2xl p-8 ${accentClasses.sectionBg} border border-gray-200/50 dark:border-gray-700/50`}>
+                  <h2 class={`text-2xl font-bold mb-6 ${accentClasses.accent}`}>8. Current State & Roadmap</h2>
                   <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                     {pitch.currentState}
                   </p>
@@ -249,13 +295,13 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
 
             {/* Tech Stack */}
             {project.technologies && (
-              <div class="mt-20 text-center">
-                <h2 class="text-2xl font-bold mb-8">Built With</h2>
+              <div class="mt-16 text-center">
+                <h2 class={`text-2xl font-bold mb-8 ${accentClasses.accent}`}>Built With</h2>
                 <div class="flex flex-wrap gap-3 justify-center">
                   {project.technologies.map(tech => (
                     <span
                       key={tech}
-                      class="px-4 py-2 text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full"
+                      class={`px-4 py-2 text-sm font-medium rounded-xl border border-gray-200/50 dark:border-gray-700/50 text-gray-700 dark:text-gray-300 ${accentClasses.sectionBg}`}
                     >
                       {tech}
                     </span>
@@ -265,8 +311,8 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
             )}
 
             {/* Social Proof Section */}
-            <div class="mt-20">
-              <div class="bg-gray-50 dark:bg-gray-900/50 rounded-2xl p-8">
+            <div class="mt-16">
+              <div class={`rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 ${accentClasses.sectionBg}`}>
                 <div class="text-center mb-8">
                   <div class="flex items-center justify-center gap-3 mb-4">
                     <div class="relative">
@@ -307,19 +353,19 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                     <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Experience Highlights</h4>
                     <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                       <li class="flex items-start gap-2">
-                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${accentClasses.accent.replace('text-', 'bg-')}`}></div>
                         <span>Built OTA system for world's fastest EV (Rimac Nevera)</span>
                       </li>
                       <li class="flex items-start gap-2">
-                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${accentClasses.accent.replace('text-', 'bg-')}`}></div>
                         <span>Scaled gaming platform to 1.7B ad impressions (ReneVerse)</span>
                       </li>
                       <li class="flex items-start gap-2">
-                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${accentClasses.accent.replace('text-', 'bg-')}`}></div>
                         <span>Architected DAO version of CoinMarketCap (CryptoToday)</span>
                       </li>
                       <li class="flex items-start gap-2">
-                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${accentClasses.accent.replace('text-', 'bg-')}`}></div>
                         <span>Expert in Web3, AWS, TypeScript, and blockchain tech</span>
                       </li>
                     </ul>
@@ -328,19 +374,19 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                     <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Personal Highlights</h4>
                     <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                       <li class="flex items-start gap-2">
-                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${accentClasses.accent.replace('text-', 'bg-')}`}></div>
                         <span>Pro-Bitcoin since 2017, blockchain enthusiast</span>
                       </li>
                       <li class="flex items-start gap-2">
-                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${accentClasses.accent.replace('text-', 'bg-')}`}></div>
                         <span>Husband and father of two</span>
                       </li>
                       <li class="flex items-start gap-2">
-                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${accentClasses.accent.replace('text-', 'bg-')}`}></div>
                         <span>Lives and breathes cutting-edge tech, AI, and innovation</span>
                       </li>
                       <li class="flex items-start gap-2">
-                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${accentClasses.accent.replace('text-', 'bg-')}`}></div>
                         <span>Passionate about football and building community</span>
                       </li>
                     </ul>
@@ -350,14 +396,14 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
             </div>
 
             {/* CTA */}
-            <div class="mt-20 text-center">
-              <h2 class="text-4xl font-bold mb-6">Ready to Join the Seed Round?</h2>
-              <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+            <div class="mt-16 text-center">
+              <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Ready to Join the Seed Round?</h2>
+              <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
                 Let's do this.
               </p>
               <a
                 href="/contact"
-                class="inline-flex items-center gap-2 px-12 py-4 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 text-white dark:text-black rounded-lg hover:from-gray-800 hover:to-gray-600 dark:hover:from-gray-100 dark:hover:to-gray-300 transition-all font-semibold text-lg"
+                class={`inline-flex items-center gap-2 px-12 py-4 text-white rounded-2xl transition-all font-semibold text-lg ${accentClasses.button}`}
               >
                 Get In Touch
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -367,7 +413,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
             </div>
 
             {/* Back to Projects */}
-            <div class="mt-16 text-center">
+            <div class="mt-12 text-center">
               <a
                 href="/projects"
                 class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"

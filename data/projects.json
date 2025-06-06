@@ -9,6 +9,7 @@
       "technologies": ["T3", "AI", "Postgres", "Vercel"],
       "completion": 7,
       "featured": true,
+      "accent": "purple",
       "pitch": {
         "tagline": "finally an app that gets your beautifully chaotic life",
         "problem": "People juggle multiple life tracking and productivity apps - todo lists, habit trackers, notes apps, finance trackers, health apps. Each one is missing something important, and switching between them creates chaos instead of clarity. You need an uncluttered way to enter information and have everything sorted out automatically.",
@@ -45,6 +46,7 @@
       "technologies": ["T3", "Postgres", "Vercel", "Bitcoin"],
       "completion": 5,
       "featured": true,
+      "accent": "orange",
       "pitch": {
         "tagline": "Celebrating Bitcoin's Journey to 21 Million - The Ultimate Milestone Tracker",
         "problem": "Bitcoin is approaching the historic 21 million coin milestone, but existing tools treat it like any other number. The community lacks a dedicated space to track this once-in-a-lifetime event with the significance it deserves.",
@@ -69,6 +71,7 @@
       "technologies": ["T3", "Postgres", "Vercel", "Auth"],
       "completion": 0,
       "featured": false,
+      "accent": "green",
       "pitch": {
         "tagline": "Reviving Street Football Culture One Neighborhood at a Time",
         "problem": "Local football communities are fragmented and disorganized. Players struggle to find regular games, tournament organization happens through chaotic WhatsApp groups, and the pure joy of street football is being lost to digital isolation.",
@@ -93,6 +96,7 @@
       "technologies": ["Solana", "Web3", "TypeScript", "DeFi"],
       "completion": 1,
       "featured": false,
+      "accent": "violet",
       "pitch": {
         "tagline": "The Smart Way to Navigate Solana's Meme Coin Jungle",
         "problem": "Solana's meme coin ecosystem is wild and chaotic. Pump.fun processes $100M+ daily but offers no protection, discovery tools, or creator accountability. Traders need better intelligence to navigate this high-risk, high-reward space.",
@@ -117,6 +121,7 @@
       "technologies": ["Deno", "KV", "Fresh", "Tailwind"],
       "completion": 20,
       "featured": true,
+      "accent": "orange",
       "pitch": {
         "tagline": "Personal Brand Platform That Actually Showcases Technical Depth",
         "problem": "Tech entrepreneurs need authentic online presence, but existing solutions are either too generic (templates) or too complex (custom dev). Most portfolios fail to demonstrate actual technical capability and thought leadership.",
@@ -141,6 +146,7 @@
       "technologies": ["Deno", "Fresh", "Tailwind"],
       "completion": 35,
       "featured": true,
+      "accent": "orange",
       "pitch": {
         "tagline": "Building the Future of Digital Innovation, One Project at a Time",
         "problem": "Businesses know they need emerging technologies like AI, blockchain, and Web3, but lack access to experienced teams who actually understand these technologies beyond buzzwords. Most agencies oversell and underdeliver.",

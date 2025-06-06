@@ -10,6 +10,7 @@ interface Project {
   technologies?: string[];
   completion: number;
   featured: boolean;
+  accent?: string;
 }
 
 interface ProjectsData {
