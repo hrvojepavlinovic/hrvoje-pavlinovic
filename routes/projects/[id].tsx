@@ -110,7 +110,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                   >
                     Visit Live Site
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                     </svg>
                   </a>
                   <a
@@ -263,6 +263,91 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                 </div>
               </div>
             )}
+
+            {/* Social Proof Section */}
+            <div class="mt-20">
+              <div class="bg-gray-50 dark:bg-gray-900/50 rounded-2xl p-8">
+                <div class="text-center mb-8">
+                  <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="relative">
+                      <img 
+                        src="/pfptbs.png" 
+                        alt="Hrvoje Pavlinovic"
+                        class="w-12 h-12 rounded-full"
+                      />
+                    </div>
+                    <div class="text-left">
+                      <h3 class="font-semibold text-gray-900 dark:text-white">Hrvoje Pavlinovic</h3>
+                      <p class="text-sm text-gray-600 dark:text-gray-400">Founder & Senior Software Engineer</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-gray-900 dark:text-white mb-1">12+</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-gray-900 dark:text-white mb-1">MSc</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Computer Science</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-gray-900 dark:text-white mb-1">15+</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Projects Built</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-gray-900 dark:text-white mb-1">2.9K</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Social Following</div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Experience Highlights</h4>
+                    <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                      <li class="flex items-start gap-2">
+                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Built OTA system for world's fastest EV (Rimac Nevera)</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Scaled gaming platform to 1.7B ad impressions (ReneVerse)</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Architected decentralised version of CoinMarketCap (CryptoToday)</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Expert in Web3, AWS, TypeScript, and blockchain tech</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Personal Highlights</h4>
+                    <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                      <li class="flex items-start gap-2">
+                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Pro-Bitcoin since 2017, blockchain enthusiast</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Husband and father of two</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Passionate about football and building community</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Remote work advocate, family-first values</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* CTA */}
             <div class="mt-20 text-center">
