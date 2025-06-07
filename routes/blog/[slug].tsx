@@ -150,7 +150,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
               </div>
 
               {/* Tags */}
-              <div class="flex items-center gap-3 mb-8">
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-8">
                 <div class="inline-block px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-sm font-medium rounded-full">
                   Essay #{article.id}
                 </div>
