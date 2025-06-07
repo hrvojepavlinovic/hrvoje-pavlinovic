@@ -135,7 +135,7 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
                     </p>
                     
                     {/* Article Stats */}
-                    <div class="flex flex-wrap items-center gap-6 text-sm text-gray-500 dark:text-gray-500">
+                    <div class="flex items-center gap-3 sm:gap-6 text-sm text-gray-500 dark:text-gray-500">
                       <div class="flex items-center gap-2">
                         <svg class="w-4 h-4 text-orange-500 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -153,7 +153,7 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
                         <svg class="w-4 h-4 text-orange-500 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <span class="font-medium">{article.readingTime} min read</span>
+                        <span class="font-medium">{article.readingTime}m<span class="hidden sm:inline"> read</span></span>
                       </div>
                       <div class="flex items-center gap-2">
                         <svg class="w-4 h-4 text-orange-500 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
