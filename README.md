@@ -54,6 +54,7 @@ This will watch the project directory and restart as necessary.
 - [ ] webstats handling of snooping (wp-admin requests logged)
 - [ ] crossposting blog stuff on substack etc. or scrapping data from there and showing it on blog
 - [ ] extract all personal data to json and pull it out instead of having it hardcoded
+- [ ] add all linktree links to contact page
 
 ## License
 

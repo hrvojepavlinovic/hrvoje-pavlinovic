@@ -1,91 +1,123 @@
 export default function CVPage() {
   return (
-    <div class="dark:bg-black bg-white text-black dark:text-white w-full pt-32 pb-16">
-      <div class="max-w-screen-xl mx-auto px-4">
-        <div>
-          {/* Header Stats */}
-          <div class="flex flex-col md:flex-row items-center md:items-start gap-8 mb-12">
-            <div class="relative">
-              <div class="absolute inset-0 bg-gradient-to-br from-btc-orange/20 to-transparent rounded-full"></div>
-              <img 
-                src="/pfptbs.png" 
-                alt="Hrvoje Pavlinovic"
-                class="w-24 h-24 rounded-full relative"
-              />
-            </div>
-            <div class="flex-1">
-              <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-                <div>
-                  <h1 class="text-3xl font-semibold tracking-tight mb-2">Hrvoje Pavlinovic</h1>
-                  <p class="text-btc-orange">Senior Software Engineer</p>
-                </div>
+    <div class="min-h-screen bg-gradient-to-b from-orange-50/30 via-transparent via-40% to-orange-50/30 dark:from-orange-950/10 dark:via-transparent dark:via-40% dark:to-orange-950/10">
+      {/* Hero Section */}
+      <div class="pt-32 pb-20 px-6 sm:px-8">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center space-y-8">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-b from-gray-900 via-gray-900 to-gray-600 dark:from-white dark:via-white dark:to-gray-400 bg-clip-text text-transparent">
+              Curriculum Vitae
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed font-light">
+              12+ years of building scalable software and blockchain solutions
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div class="px-6 sm:px-8 pb-24">
+        <div class="max-w-6xl mx-auto space-y-16">
+          
+          {/* Profile Header */}
+          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 lg:p-12 shadow-xl">
+            <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+              {/* Profile Photo */}
+              <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-br from-orange-200 to-orange-100 dark:from-orange-800/30 dark:to-orange-900/20 rounded-full blur-lg opacity-70"></div>
+                <img 
+                  src="/pfptbs.png" 
+                  alt="Hrvoje Pavlinovic"
+                  class="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-white/50 dark:border-gray-800/50"
+                />
               </div>
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="dark:bg-white/5 bg-black/5 p-4 rounded-lg">
-                  <div class="text-btc-orange text-2xl font-medium">12+</div>
-                  <div class="dark:text-white/60 text-black/60 text-sm">Years Experience</div>
+
+              <div class="flex-1 text-center lg:text-left">
+                {/* Name and Title */}
+                <div class="mb-8">
+                  <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3">
+                    Hrvoje Pavlinovic
+                  </h2>
+                  <p class="text-lg lg:text-xl text-orange-600 dark:text-orange-400 font-semibold">
+                    Senior Software Engineer
+                  </p>
                 </div>
-                <div class="dark:bg-white/5 bg-black/5 p-4 rounded-lg">
-                  <div class="text-btc-orange text-2xl font-medium">15+</div>
-                  <div class="dark:text-white/60 text-black/60 text-sm">Projects</div>
-                </div>
-                <div class="dark:bg-white/5 bg-black/5 p-4 rounded-lg">
-                  <div class="text-btc-orange text-2xl font-medium">MSc</div>
-                  <div class="dark:text-white/60 text-black/60 text-sm">Computer Science</div>
-                </div>
-                <div class="dark:bg-white/5 bg-black/5 p-4 rounded-lg">
-                  <div class="text-btc-orange text-2xl font-medium">Remote</div>
-                  <div class="dark:text-white/60 text-black/60 text-sm">Work Style</div>
+
+                {/* Stats Cards */}
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                  <div class="bg-orange-50/80 dark:bg-orange-950/20 backdrop-blur-sm p-6 rounded-xl border border-orange-200/50 dark:border-orange-800/50 text-center">
+                    <div class="text-3xl lg:text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">12+</div>
+                    <div class="text-sm font-medium text-gray-600 dark:text-gray-400">Years Experience</div>
+                  </div>
+
+                  <div class="bg-orange-50/80 dark:bg-orange-950/20 backdrop-blur-sm p-6 rounded-xl border border-orange-200/50 dark:border-orange-800/50 text-center">
+                    <div class="text-3xl lg:text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">15+</div>
+                    <div class="text-sm font-medium text-gray-600 dark:text-gray-400">Projects</div>
+                  </div>
+
+                  <div class="bg-orange-50/80 dark:bg-orange-950/20 backdrop-blur-sm p-6 rounded-xl border border-orange-200/50 dark:border-orange-800/50 text-center">
+                    <div class="text-3xl lg:text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">MSc</div>
+                    <div class="text-sm font-medium text-gray-600 dark:text-gray-400">Computer Science</div>
+                  </div>
+
+                  <div class="bg-orange-50/80 dark:bg-orange-950/20 backdrop-blur-sm p-6 rounded-xl border border-orange-200/50 dark:border-orange-800/50 text-center">
+                    <div class="text-3xl lg:text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">Remote</div>
+                    <div class="text-sm font-medium text-gray-600 dark:text-gray-400">Work Style</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* About Section */}
-          <div class="mb-12">
-            <h2 class="text-xl font-medium tracking-tight mb-6 flex items-center">
-              <span class="w-1.5 h-1.5 bg-btc-orange rounded-full mr-2"></span>
-              About Me
-            </h2>
-            <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg space-y-4">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div class="space-y-2">
-                  <p class="text-sm flex items-center space-x-2">
-                    <span>🎂</span>
+          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                About Me
+              </h2>
+            </div>
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="space-y-3">
+                  <p class="text-sm flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+                    <span class="text-xl">🎂</span>
                     <span>25th of July 1992 (age 32)</span>
                   </p>
-                  <p class="text-sm flex items-center space-x-2">
-                    <span>🎓</span>
+                  <p class="text-sm flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+                    <span class="text-xl">🎓</span>
                     <span>Master's Degree in Computer Science (2016)</span>
                   </p>
-                  <p class="text-sm flex items-center space-x-2">
-                    <span>👨‍💻</span>
+                  <p class="text-sm flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+                    <span class="text-xl">👨‍💻</span>
                     <span>12 years of experience (since April 2013)</span>
                   </p>
                 </div>
-                <div class="space-y-2">
-                  <p class="text-sm flex items-center space-x-2">
-                    <span>🌟</span>
+                <div class="space-y-3">
+                  <p class="text-sm flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+                    <span class="text-xl">🌟</span>
                     <span>Husband and father of two</span>
                   </p>
-                  <p class="text-sm flex items-center space-x-2">
-                    <span>⚽</span>
+                  <p class="text-sm flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+                    <span class="text-xl">⚽</span>
                     <span>Love playing football</span>
                   </p>
-                  <p class="text-sm flex items-center space-x-2">
-                    <span>🔸</span>
+                  <p class="text-sm flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+                    <span class="text-xl">🔸</span>
                     <span>Pro-Bitcoin since 2017</span>
                   </p>
                 </div>
               </div>
-              <p class="text-sm dark:text-white/80 text-black/80">
-                Doing what I really love - building, exploring and learning how to use technology and software to make this world at least little better than it was. Blockchain and equal opportunities enthusiast, advocating for meritocracy and numbers, but often making decisions by heart.
-              </p>
-              <p class="text-sm dark:text-white/80 text-black/80">
-                As a person, I'm calm, focused on personal growth, learning, and exploring new possibilities. Inspiring future generations so they want to help others and be the best versions of themselves is my definition of success.
-              </p>
-              <div class="pt-4 border-t border-white/10">
-                <p class="text-sm dark:text-white/60 text-black/60">
+              <div class="space-y-4">
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Doing what I really love - building, exploring and learning how to use technology and software to make this world at least little better than it was. Blockchain and equal opportunities enthusiast, advocating for meritocracy and numbers, but often making decisions by heart.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  As a person, I'm calm, focused on personal growth, learning, and exploring new possibilities. Inspiring future generations so they want to help others and be the best versions of themselves is my definition of success.
+                </p>
+              </div>
+              <div class="pt-6 border-t border-gray-200 dark:border-gray-700">
+                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                   Currently reading <span class="italic">Meditations by Marcus Aurelius</span> • 
                   Investing in Bitcoin, S&P 500, Real Estate • 
                   Using Todoist, Toggl Track, Obsidian, and Cursor
@@ -95,92 +127,94 @@ export default function CVPage() {
           </div>
 
           {/* Skills Section */}
-          <div class="mb-12">
-            <h2 class="text-xl font-medium tracking-tight mb-6 flex items-center">
-              <span class="w-1.5 h-1.5 bg-btc-orange rounded-full mr-2"></span>
-              Technical Expertise
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
-                <h3 class="text-btc-orange font-medium mb-4">Top Skills</h3>
-                <div class="space-y-3">
+          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                Technical Expertise
+              </h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50">
+                <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-6">Top Skills</h3>
+                <div class="space-y-4">
                   <div>
-                    <div class="flex justify-between items-center mb-1">
-                      <span class="text-sm">Web3 & Blockchain</span>
-                      <span class="text-sm text-btc-orange">Expert</span>
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Web3 & Blockchain</span>
+                      <span class="text-sm font-bold text-orange-600 dark:text-orange-400">Expert</span>
                     </div>
-                    <div class="h-1.5 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
-                      <div class="h-full bg-btc-orange w-[95%] rounded-full"></div>
+                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                      <div class="h-full bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-400 dark:to-orange-500 w-[95%] rounded-full transition-all duration-500 ease-out"></div>
                     </div>
                   </div>
                   <div>
-                    <div class="flex justify-between items-center mb-1">
-                      <span class="text-sm">Application Architecture</span>
-                      <span class="text-sm text-btc-orange">Expert</span>
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Application Architecture</span>
+                      <span class="text-sm font-bold text-orange-600 dark:text-orange-400">Expert</span>
                     </div>
-                    <div class="h-1.5 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
-                      <div class="h-full bg-btc-orange w-[95%] rounded-full"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between items-center mb-1">
-                      <span class="text-sm">AWS</span>
-                      <span class="text-sm text-btc-orange">Expert</span>
-                    </div>
-                    <div class="h-1.5 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
-                      <div class="h-full bg-btc-orange w-[95%] rounded-full"></div>
+                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                      <div class="h-full bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-400 dark:to-orange-500 w-[95%] rounded-full transition-all duration-500 ease-out"></div>
                     </div>
                   </div>
                   <div>
-                    <div class="flex justify-between items-center mb-1">
-                      <span class="text-sm">TypeScript</span>
-                      <span class="text-sm text-btc-orange">Expert</span>
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">AWS</span>
+                      <span class="text-sm font-bold text-orange-600 dark:text-orange-400">Expert</span>
                     </div>
-                    <div class="h-1.5 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
-                      <div class="h-full bg-btc-orange w-[95%] rounded-full"></div>
+                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                      <div class="h-full bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-400 dark:to-orange-500 w-[95%] rounded-full transition-all duration-500 ease-out"></div>
                     </div>
                   </div>
                   <div>
-                    <div class="flex justify-between items-center mb-1">
-                      <span class="text-sm">PostgreSQL</span>
-                      <span class="text-sm text-btc-orange">Expert</span>
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">TypeScript</span>
+                      <span class="text-sm font-bold text-orange-600 dark:text-orange-400">Expert</span>
                     </div>
-                    <div class="h-1.5 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
-                      <div class="h-full bg-btc-orange w-[95%] rounded-full"></div>
+                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                      <div class="h-full bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-400 dark:to-orange-500 w-[95%] rounded-full transition-all duration-500 ease-out"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">PostgreSQL</span>
+                      <span class="text-sm font-bold text-orange-600 dark:text-orange-400">Expert</span>
+                    </div>
+                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                      <div class="h-full bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-400 dark:to-orange-500 w-[95%] rounded-full transition-all duration-500 ease-out"></div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
-                <h3 class="text-btc-orange font-medium mb-4">Tech Stack Highlights</h3>
-                <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50">
+                <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-6">Tech Stack Highlights</h3>
+                <div class="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <h4 class="font-medium mb-2">Infrastructure</h4>
-                    <ul class="space-y-1 dark:text-white/60 text-black/60">
+                    <h4 class="font-semibold mb-3 text-gray-900 dark:text-white">Infrastructure</h4>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
                       <li>AWS (CDK, Lambda, ECS)</li>
                       <li>Docker & Kubernetes</li>
                       <li>Vercel & Deno Deploy</li>
                     </ul>
                   </div>
                   <div>
-                    <h4 class="font-medium mb-2">Backend</h4>
-                    <ul class="space-y-1 dark:text-white/60 text-black/60">
+                    <h4 class="font-semibold mb-3 text-gray-900 dark:text-white">Backend</h4>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
                       <li>Node.js & Express</li>
                       <li>Next.js & Nest.js</li>
                       <li>GraphQL & REST</li>
                     </ul>
                   </div>
-                  <div class="mt-4">
-                    <h4 class="font-medium mb-2">Data</h4>
-                    <ul class="space-y-1 dark:text-white/60 text-black/60">
+                  <div>
+                    <h4 class="font-semibold mb-3 text-gray-900 dark:text-white">Data</h4>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
                       <li>PostgreSQL & MongoDB</li>
                       <li>Redis & Elasticsearch</li>
                       <li>Kafka & MQTT</li>
                     </ul>
                   </div>
-                  <div class="mt-4">
-                    <h4 class="font-medium mb-2">Web3</h4>
-                    <ul class="space-y-1 dark:text-white/60 text-black/60">
+                  <div>
+                    <h4 class="font-semibold mb-3 text-gray-900 dark:text-white">Web3</h4>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
                       <li>Ethers & Wagmi</li>
                       <li>Smart Contracts</li>
                       <li>TonConnect</li>
@@ -192,166 +226,364 @@ export default function CVPage() {
           </div>
 
           {/* Experience Section */}
-          <div class="mb-12">
-            <h2 class="text-xl font-medium tracking-tight mb-6 flex items-center">
-              <span class="w-1.5 h-1.5 bg-btc-orange rounded-full mr-2"></span>
-              Professional Experience
-            </h2>
+          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                Professional Experience
+              </h2>
+            </div>
             <div class="space-y-6">
-              {/* <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>
-                    <h3 class="text-btc-orange font-medium">Lead Backend Engineer</h3>
-                    <p class="text-sm dark:text-white/60 text-black/60">CryptoToday</p>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Software Engineer</h3>
+                    <p class="text-gray-600 dark:text-gray-400">ReneVerse.io</p>
                   </div>
-                  <span class="text-sm dark:text-white/60 text-black/60">Feb 2024 - Present</span>
+                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">Mar 2023 - Present</span>
                 </div>
-                <ul class="list-disc list-inside space-y-2 text-sm dark:text-white/80 text-black/80">
-                  <li>Building a decentralised version of CoinMarketCap with fair launch</li>
-                  <li>Defined architecture from scratch (AWS CDK, RDS, ECS, CloudFront, Express.js, Next.js, PostgreSQL, MongoDB, Redis, BullMQ)</li>
-                  <li>Created voting engine with BullMQ and smart contract integration</li>
-                  <li>Implemented Telegram Bot and Mini App using Ton Connect</li>
-                  <li class="list-item pl-0">⭐ Set up architecture from scratch, optimised Telegram Bot for scale using Redis</li>
-                </ul>
-              </div> */}
-
-              <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
-                <div class="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 class="text-btc-orange font-medium">Software Engineer</h3>
-                    <p class="text-sm dark:text-white/60 text-black/60">ReneVerse.io</p>
-                  </div>
-                  <span class="text-sm dark:text-white/60 text-black/60">Mar 2023 - Present</span>
-                </div>
-                <ul class="list-disc list-inside space-y-2 text-sm dark:text-white/80 text-black/80">
-                  <li>Built interoperable assets standard for gaming assets</li>
-                  <li>Created tooling for game developers and gamers (automatic wallet creation, minting assets)</li>
-                  <li>Developed immersive brand placement in games with Unity and Unreal Engine SDK</li>
-                  <li>Created NFT drop on Blast</li>
-                  <li class="list-item pl-0">⭐ Scaled system to handle 1.7B ad impressions, unified multiple repos into monorepo</li>
+                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Built interoperable assets standard for gaming assets</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Created tooling for game developers and gamers (automatic wallet creation, minting assets)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Developed immersive brand placement in games with Unity and Unreal Engine SDK</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Created NFT drop on Blast</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-2 h-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mt-1.5 flex-shrink-0"></div>
+                    <span class="font-medium">Scaled system to handle 1.7B ad impressions, unified multiple repos into monorepo</span>
+                  </li>
                 </ul>
               </div>
 
-              <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>
-                    <h3 class="text-btc-orange font-medium">Software Engineer</h3>
-                    <p class="text-sm dark:text-white/60 text-black/60">Povio</p>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Software Engineer</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Povio</p>
                   </div>
-                  <span class="text-sm dark:text-white/60 text-black/60">Nov 2021 - Mar 2023</span>
+                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">Nov 2021 - Mar 2023</span>
                 </div>
-                <ul class="list-disc list-inside space-y-2 text-sm dark:text-white/80 text-black/80">
-                  <li>Worked on clinical trials project for German company Clariness</li>
-                  <li>Tech stack: AWS, Terraform, Docker, GitLab CI, Node.js, Express.js, NestJS, TypeORM, PostgreSQL</li>
-                  <li>Implemented Twilio API for direct call agent integration</li>
-                  <li class="list-item pl-0">⭐ Fixed critical timezone bug affecting patient appointment times</li>
+                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Worked on clinical trials project for German company Clariness</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Tech stack: AWS, Terraform, Docker, GitLab CI, Node.js, Express.js, NestJS, TypeORM, PostgreSQL</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Implemented Twilio API for direct call agent integration</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-2 h-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mt-1.5 flex-shrink-0"></div>
+                    <span class="font-medium">Fixed critical timezone bug affecting patient appointment times</span>
+                  </li>
                 </ul>
               </div>
 
-              <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>
-                    <h3 class="text-btc-orange font-medium">Backend Engineer</h3>
-                    <p class="text-sm dark:text-white/60 text-black/60">Rimac Automobili</p>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Backend Engineer</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Rimac Automobili</p>
                   </div>
-                  <span class="text-sm dark:text-white/60 text-black/60">Oct 2020 - Nov 2021</span>
+                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">Oct 2020 - Nov 2021</span>
                 </div>
-                <ul class="list-disc list-inside space-y-2 text-sm dark:text-white/80 text-black/80">
-                  <li>Worked in M2M team on Telemetry API and OTA updates system</li>
-                  <li>Tech stack: TypeScript, GraphQL (Apollo Federation), PostgreSQL, Kafka, HiveMQ, AWS</li>
-                  <li>Conducted technical interviews and led developer hiring</li>
-                  <li class="list-item pl-0">⭐ Created OTA updates system for the world's fastest homologated car</li>
+                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Worked in M2M team on Telemetry API and OTA updates system</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Tech stack: TypeScript, GraphQL (Apollo Federation), PostgreSQL, Kafka, HiveMQ, AWS</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Conducted technical interviews and led developer hiring</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-2 h-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mt-1.5 flex-shrink-0"></div>
+                    <span class="font-medium">Created OTA updates system for the world's fastest homologated car</span>
+                  </li>
                 </ul>
               </div>
 
-              <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>
-                    <h3 class="text-btc-orange font-medium">Software Engineer</h3>
-                    <p class="text-sm dark:text-white/60 text-black/60">Profico</p>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Software Engineer</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Profico</p>
                   </div>
-                  <span class="text-sm dark:text-white/60 text-black/60">Aug 2018 - Oct 2020</span>
+                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">Aug 2018 - Oct 2020</span>
                 </div>
-                <ul class="list-disc list-inside space-y-2 text-sm dark:text-white/80 text-black/80">
-                  <li>Led development standards meetings and collaborated with CEO</li>
-                  <li>Built large-scale web applications for Norwegian media company Hegnar</li>
-                  <li>Created Real Estate market module integrating 4 different agency APIs</li>
-                  <li class="list-item pl-0">⭐ Led definition of company-wide development standards</li>
+                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Led development standards meetings and collaborated with CEO</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Built large-scale web applications for Norwegian media company Hegnar</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Created Real Estate market module integrating 4 different agency APIs</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-2 h-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mt-1.5 flex-shrink-0"></div>
+                    <span class="font-medium">Led definition of company-wide development standards</span>
+                  </li>
                 </ul>
               </div>
 
-              <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>
-                    <h3 class="text-btc-orange font-medium">Software Engineer</h3>
-                    <p class="text-sm dark:text-white/60 text-black/60">Ericsson</p>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Software Engineer</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Ericsson</p>
                   </div>
-                  <span class="text-sm dark:text-white/60 text-black/60">Feb 2015 - Aug 2018</span>
+                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">Feb 2015 - Aug 2018</span>
                 </div>
-                <ul class="list-disc list-inside space-y-2 text-sm dark:text-white/80 text-black/80">
-                  <li>Developed internal tools: Nodebook (Symfony), Atlas (data analysis), AAT (testing)</li>
-                  <li>Improved performance by migrating from Groovy & Grails to Node.js</li>
-                  <li>Created framework-agnostic schema language for testing tools</li>
-                  <li class="list-item pl-0">⭐ Optimized internal tools, promoted to senior engineer, presented to SoftBank</li>
+                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Developed internal tools: Nodebook (Symfony), Atlas (data analysis), AAT (testing)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Improved performance by migrating from Groovy & Grails to Node.js</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Created framework-agnostic schema language for testing tools</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-2 h-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mt-1.5 flex-shrink-0"></div>
+                    <span class="font-medium">Optimized internal tools, promoted to senior engineer, presented to SoftBank</span>
+                  </li>
                 </ul>
               </div>
 
-              <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>
-                    <h3 class="text-btc-orange font-medium">Student Software Developer</h3>
-                    <p class="text-sm dark:text-white/60 text-black/60">Various Projects</p>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Student Software Developer</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Various Projects</p>
                   </div>
-                  <span class="text-sm dark:text-white/60 text-black/60">Apr 2013 - July 2016</span>
+                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">Apr 2013 - July 2016</span>
                 </div>
-                <ul class="list-disc list-inside space-y-2 text-sm dark:text-white/80 text-black/80">
-                  <li>Tracked 3000+ hours on various projects while studying</li>
-                  <li>Worked with Joomla, WordPress, Magento, custom PHP + jQuery</li>
-                  <li>Managed ad campaigns, SEO optimization, and server maintenance</li>
-                  <li class="list-item pl-0">⭐ Balanced work and studies, graduating with multiple job offers</li>
+                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Tracked 3000+ hours on various projects while studying</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Worked with Joomla, WordPress, Magento, custom PHP + jQuery</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Managed ad campaigns, SEO optimization, and server maintenance</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-2 h-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mt-1.5 flex-shrink-0"></div>
+                    <span class="font-medium">Balanced work and studies, graduating with multiple job offers</span>
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
 
           {/* Education Section */}
-          <div>
-            <h2 class="text-xl font-medium tracking-tight mb-6 flex items-center">
-              <span class="w-1.5 h-1.5 bg-btc-orange rounded-full mr-2"></span>
-              Education
-            </h2>
+          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                Education
+              </h2>
+            </div>
             <div class="space-y-6">
-              <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>
-                    <h3 class="text-btc-orange font-medium">Master's Degree, Computer Science</h3>
-                    <p class="text-sm dark:text-white/60 text-black/60">FESB - Faculty of Electrical Engineering, Mechanical Engineering and Naval Architecture</p>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Master's Degree, Computer Science</h3>
+                    <p class="text-gray-600 dark:text-gray-400">FESB - Faculty of Electrical Engineering, Mechanical Engineering and Naval Architecture</p>
                   </div>
-                  <span class="text-sm dark:text-white/60 text-black/60">2014 - 2016</span>
+                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">2014 - 2016</span>
                 </div>
-                <ul class="list-disc list-inside space-y-2 text-sm dark:text-white/80 text-black/80">
-                  <li>Master's thesis @ Universidad de Las Palmas de Gran Canaria (Erasmus scholarship)</li>
-                  <li>Student Teaching Assistant for Introduction to Distributed Information Systems</li>
+                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Master's thesis @ Universidad de Las Palmas de Gran Canaria (Erasmus scholarship)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Student Teaching Assistant for Introduction to Distributed Information Systems</span>
+                  </li>
                 </ul>
               </div>
 
-              <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>
-                    <h3 class="text-btc-orange font-medium">Bachelor's Degree, Computer Science</h3>
-                    <p class="text-sm dark:text-white/60 text-black/60">FESB - Faculty of Electrical Engineering, Mechanical Engineering and Naval Architecture</p>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Bachelor's Degree, Computer Science</h3>
+                    <p class="text-gray-600 dark:text-gray-400">FESB - Faculty of Electrical Engineering, Mechanical Engineering and Naval Architecture</p>
                   </div>
-                  <span class="text-sm dark:text-white/60 text-black/60">2011 - 2014</span>
+                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">2011 - 2014</span>
                 </div>
               </div>
 
-              <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>
-                    <h3 class="text-btc-orange font-medium">Electronics Technician</h3>
-                    <p class="text-sm dark:text-white/60 text-black/60">Electrotechnical School Split</p>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Electronics Technician</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Electrotechnical School Split</p>
                   </div>
-                  <span class="text-sm dark:text-white/60 text-black/60">2007 - 2011</span>
+                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">2007 - 2011</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Projects Section */}
+          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                Featured Projects
+              </h2>
+            </div>
+            <div class="space-y-6">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Memoato</h3>
+                    <p class="text-gray-600 dark:text-gray-400">AI-powered life tracking platform</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full">7% complete</span>
+                    <a href="https://memoato.com" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Live</a>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Voice/text/app integration input for life tracking. AI labels your data and gives you customized dashboards, insights, agenda. Replaces 5+ productivity apps with one intelligent solution.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">T3</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">AI</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Postgres</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Vercel</span>
+                </div>
+              </div>
+
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">HILLS Lab</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Technology laboratory for AI, blockchain & Web3</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full">35% complete</span>
+                    <a href="https://hills-lab.hr" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Live</a>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Technology laboratory specializing in cutting-edge AI, blockchain, and Web3 solutions. 6 active client projects, 4 senior developers, partnerships with major Croatian tech companies.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Deno</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Fresh</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Tailwind</span>
+                </div>
+              </div>
+
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Personal Portfolio</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Modern portfolio with real-time analytics</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full">20% complete</span>
+                    <a href="https://hrvoje.pavlinovic.com" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Live</a>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Personal brand platform showcasing technical expertise with modern design, real-time analytics, and integrated project portfolio. 15K+ monthly visitors with high engagement.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Deno</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">KV</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Fresh</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Tailwind</span>
+                </div>
+              </div>
+
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">XXI Today</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Bitcoin milestone tracking platform</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full">5% complete</span>
+                    <a href="https://xxi.today" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Live</a>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">The definitive Bitcoin portal for tracking the historic journey to 21 million coins. Beta platform processing 10K+ API calls daily with real-time network stats and milestone celebrations.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">T3</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Postgres</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Vercel</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Bitcoin</span>
+                </div>
+              </div>
+
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Apes Club</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Smart Solana token discovery platform</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-full">1% complete</span>
+                    <a href="https://apes.club" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Prototype</a>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Smart Solana token discovery platform with advanced analytics and community curation for safer meme coin exploration. Technical prototype with analytics engine addressing Solana's $50B+ daily trading volume.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Solana</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Web3</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">TypeScript</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">DeFi</span>
+                </div>
+              </div>
+
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">PLAYGRND</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Street football community platform</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full">Pre-launch</span>
+                    <a href="https://playgrnd.app" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Coming Soon</a>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Bringing street football culture back to neighborhoods. 15 local communities interested and 5 Zagreb venue partnerships secured. Focus on grassroots culture and community building.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">T3</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Postgres</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Vercel</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Auth</span>
                 </div>
               </div>
             </div>
