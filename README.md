@@ -51,15 +51,9 @@ This will watch the project directory and restart as necessary.
 
 ## Backlog
 
-- [x] better footer gradient from black to transparent (same like on header)
-- [x] dedicated icon for dark/light theme instead of menu item, and more visible (on mobile next to the menu button, on desktop far right as icon, distinguished from menu
-- [x] improved header and footer UI
-- [x] remove twitching when moving from non-scrollable page to scrollable
-- [x] extract projects page content to data/projects.json
-- [ ] when clicking on certain project, don't go directly to link, but go to that project page (e.g. /projects/memoato, ssr). content for that page should be in projects.json as well
-- [ ] update contact page to make sense
 - [ ] webstats handling of snooping (wp-admin requests logged)
 - [ ] crossposting blog stuff on substack etc. or scrapping data from there and showing it on blog
+- [ ] extract all personal data to json and pull it out instead of having it hardcoded
 
 ## License
 

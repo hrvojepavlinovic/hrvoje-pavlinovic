@@ -11,6 +11,8 @@ interface SEO {
 export interface BlogArticle {
   id: number;
   title: string;
+  author: string;
+  tags: string[];
   shortDescription: string;
   fullText: string;
   slug: string;

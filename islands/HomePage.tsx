@@ -71,8 +71,26 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* Quick Actions */}
+        <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md">
+          <a 
+            href="/projects"
+            class="flex-1 text-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl transition-colors font-semibold"
+            onClick={() => handleLinkClick("projects")}
+          >
+            View Projects
+          </a>
+          <a 
+            href="/blog"
+            class="flex-1 text-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-2xl hover:border-orange-400 dark:hover:border-orange-500 transition-colors font-semibold"
+            onClick={() => handleLinkClick("blog")}
+          >
+            Read & Think
+          </a>
+        </div>
+
         {/* Social Links */}
-        <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-6 shadow-xl">
+        <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-6 shadow-xl mt-8">
           <div class="flex gap-6 sm:gap-8">
             <a 
               href="https://x.com/0xhp10" 
@@ -129,24 +147,6 @@ export default function HomePage() {
               </svg>
             </a>
           </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md">
-          <a 
-            href="/projects"
-            class="flex-1 text-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl transition-colors font-semibold"
-            onClick={() => handleLinkClick("projects")}
-          >
-            View Projects
-          </a>
-          <a 
-            href="/blog"
-            class="flex-1 text-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-2xl hover:border-orange-400 dark:hover:border-orange-500 transition-colors font-semibold"
-            onClick={() => handleLinkClick("blog")}
-          >
-            Read & Think
-          </a>
         </div>
       </div>
     </div>
