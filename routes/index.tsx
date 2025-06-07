@@ -1,5 +1,5 @@
-import Router from "../islands/Router.tsx";
+import HomePage from "../islands/HomePage.tsx";
 
 export default function Home() {
-  return <Router />;
+  return <HomePage />;
 }

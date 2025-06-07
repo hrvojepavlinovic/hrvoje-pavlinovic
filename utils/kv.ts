@@ -8,6 +8,48 @@ export interface ClickEvent {
 }
 
 export async function trackPageView(page: string, _userAgent?: string) {
+  // Filter out spam/bot requests
+  const spamPatterns = [
+    /^\/wp-/,                    // WordPress paths (wp-admin, wp-content, wp-includes, etc.)
+    /^\/admin/,                  // Admin paths
+    /^\/administrator/,          // Joomla admin
+    /^\/phpmyadmin/,            // PHPMyAdmin
+    /^\/mysql/,                 // MySQL admin
+    /^\/drupal/,                // Drupal paths
+    /^\/joomla/,                // Joomla paths
+    /^\/magento/,               // Magento paths
+    /^\/prestashop/,            // PrestaShop paths
+    /^\/opencart/,              // OpenCart paths
+    /^\/typo3/,                 // TYPO3 paths
+    /\.php$/,                   // PHP files
+    /\.asp$/,                   // ASP files
+    /\.jsp$/,                   // JSP files
+    /\.cgi$/,                   // CGI files
+    /\/\.env$/,                 // Environment files
+    /\/config\./,               // Config files
+    /\/database\./,             // Database files
+    /\/backup/,                 // Backup paths
+    /\/test/,                   // Test paths
+    /\/demo/,                   // Demo paths
+    /\/tmp/,                    // Temp paths
+    /\/cache/,                  // Cache paths
+    /\/logs?/,                  // Log paths
+    /\/vendor/,                 // Vendor paths
+    /\/node_modules/,           // Node modules
+    /\/\.git/,                  // Git paths
+    /\/\.svn/,                  // SVN paths
+    /^\/sitemap/,               // Sitemap requests (usually bots)
+    /^\/robots\.txt$/,          // Robots.txt (legitimate but don't need to track)
+    /^\/favicon\.ico$/,         // Favicon (don't track)
+    /\.(xml|txt|json|yml|yaml)$/, // Config/data files
+  ];
+
+  // Check if the page matches any spam pattern
+  const isSpam = spamPatterns.some(pattern => pattern.test(page));
+  if (isSpam) {
+    return; // Don't track spam requests
+  }
+
   const counterKey = ["page_views", page];
   
   // Atomic increment with retry logic

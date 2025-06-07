@@ -28,9 +28,52 @@ export default function WebStats() {
       const response = await fetch("/api/stats");
       const data: Stats = await response.json();
 
-      // Process page views
+      // Filter out spam/bot requests
+      const spamPatterns = [
+        /^wp-/,                     // WordPress paths (wp-admin, wp-content, wp-includes, etc.)
+        /^admin/,                   // Admin paths
+        /^administrator/,           // Joomla admin
+        /^phpmyadmin/,             // PHPMyAdmin
+        /^mysql/,                  // MySQL admin
+        /^drupal/,                 // Drupal paths
+        /^joomla/,                 // Joomla paths
+        /^magento/,                // Magento paths
+        /^prestashop/,             // PrestaShop paths
+        /^opencart/,               // OpenCart paths
+        /^typo3/,                  // TYPO3 paths
+        /\.php$/,                  // PHP files
+        /\.asp$/,                  // ASP files
+        /\.jsp$/,                  // JSP files
+        /\.cgi$/,                  // CGI files
+        /\/\.env$/,                // Environment files
+        /\/config\./,              // Config files
+        /\/database\./,            // Database files
+        /\/backup/,                // Backup paths
+        /\/test/,                  // Test paths
+        /\/demo/,                  // Demo paths
+        /\/tmp/,                   // Temp paths
+        /\/cache/,                 // Cache paths
+        /\/logs?/,                 // Log paths
+        /\/vendor/,                // Vendor paths
+        /\/node_modules/,          // Node modules
+        /\/\.git/,                 // Git paths
+        /\/\.svn/,                 // SVN paths
+        /^sitemap/,                // Sitemap requests (usually bots)
+        /^robots\.txt$/,           // Robots.txt
+        /^favicon\.ico$/,          // Favicon
+        /\.(xml|txt|json|yml|yaml)$/, // Config/data files
+      ];
+
+      const isSpam = (page: string) => {
+        const cleanPage = page.startsWith("/") ? page.slice(1) : page;
+        return spamPatterns.some(pattern => pattern.test(cleanPage));
+      };
+
+      // Process page views and filter out spam
       const pageViewsMap = new Map<string, number>();
       Object.entries(data.pageViews).forEach(([page, count]) => {
+        if (isSpam(page)) return; // Skip spam pages
+        
         const formattedPage = page === "/" || !page || page === "undefined" || page === "Ndefined" ? "homepage" : 
           page.startsWith("/") ? page.slice(1) : page;
         pageViewsMap.set(formattedPage, (pageViewsMap.get(formattedPage) || 0) + (count as number));

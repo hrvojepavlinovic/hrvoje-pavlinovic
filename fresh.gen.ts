@@ -4,7 +4,6 @@
 
 import * as $_well_known_lnurlp_username_ from "./routes/.well-known/lnurlp/[username].ts";
 import * as $_well_known_nostr_json from "./routes/.well-known/nostr.json.ts";
-import * as $_path_ from "./routes/[...path].tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $_middleware from "./routes/_middleware.ts";
@@ -26,6 +25,7 @@ import * as $lightning_callback_username_ from "./routes/lightning/callback/[use
 import * as $projects from "./routes/projects.tsx";
 import * as $projects_id_ from "./routes/projects/[id].tsx";
 import * as $stats from "./routes/stats.tsx";
+import * as $webstats from "./routes/webstats.tsx";
 import * as $webstats_index from "./routes/webstats/index.tsx";
 import * as $AboutPage from "./islands/AboutPage.tsx";
 import * as $CVPage from "./islands/CVPage.tsx";
@@ -48,7 +48,6 @@ const manifest = {
   routes: {
     "./routes/.well-known/lnurlp/[username].ts": $_well_known_lnurlp_username_,
     "./routes/.well-known/nostr.json.ts": $_well_known_nostr_json,
-    "./routes/[...path].tsx": $_path_,
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/_middleware.ts": $_middleware,
@@ -70,6 +69,7 @@ const manifest = {
     "./routes/projects.tsx": $projects,
     "./routes/projects/[id].tsx": $projects_id_,
     "./routes/stats.tsx": $stats,
+    "./routes/webstats.tsx": $webstats,
     "./routes/webstats/index.tsx": $webstats_index,
   },
   islands: {

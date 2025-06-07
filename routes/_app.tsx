@@ -45,11 +45,18 @@ const THEME_SCRIPT = `
 
   // Track page view client-side (in addition to server-side middleware)
   setTimeout(() => {
-    trackEvent({
-      type: 'pageview',
-      page: globalThis.location.pathname,
-      userAgent: globalThis.navigator.userAgent
-    });
+    // Don't track 404 pages - check if we're on a 404 page
+    const is404Page = document.title.includes('404') || 
+                     document.querySelector('h1')?.textContent?.includes('404') ||
+                     globalThis.location.pathname === '/404';
+    
+    if (!is404Page) {
+      trackEvent({
+        type: 'pageview',
+        page: globalThis.location.pathname,
+        userAgent: globalThis.navigator.userAgent
+      });
+    }
   }, 100);
 
   // Add automatic link click tracking
