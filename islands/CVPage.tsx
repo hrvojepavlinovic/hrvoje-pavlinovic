@@ -578,7 +578,7 @@ export default function CVPage() {
                     <a href="https://playgrnd.app" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Coming Soon</a>
                   </div>
                 </div>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Bringing street football culture back to neighborhoods. 15 local communities interested and 5 Zagreb venue partnerships secured. Focus on grassroots culture and community building.</p>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Returning football to the streets with local league platform, player profiles with comprehensive stats, venue partnerships, and community-driven grassroots organization.</p>
                 <div class="flex flex-wrap gap-2">
                   <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">T3</span>
                   <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Postgres</span>

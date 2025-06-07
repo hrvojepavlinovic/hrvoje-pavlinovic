@@ -77,7 +77,7 @@
       "id": "playgrnd",
       "name": "PLAYGRND",
       "url": "https://playgrnd.app",
-      "description": "Returning football to the streets with local league platform, player profiles with comprehensive stats, venue franchises, and community-driven grassroots organization.",
+      "description": "Returning football to the streets with local league platform, player profiles with comprehensive stats, venue partnerships, and community-driven grassroots organization.",
       "technologies": ["T3", "Postgres", "Vercel", "Auth", "Payments"],
       "completion": 2,
       "featured": false,
@@ -85,14 +85,14 @@
       "pitch": {
         "tagline": "Bringing Football Back to the Streets Where It Belongs",
         "problem": "Street football culture is dying as communities become digitized and fragmented. Local players can't find regular games, have no way to track their progression, and venues lack tools to organize profitable grassroots football programs.",
-        "solution": "PLAYGRND starts with local league platform where players claim profiles and track comprehensive stats across all competitions and teams. We then franchise venues with complete kits (equipment, streaming cameras, scoreboards), partner with sports stores and physiotherapists, and build the grassroots football organization for the next generation.",
+        "solution": "PLAYGRND starts with local league platform where players claim profiles and track comprehensive stats across all competitions and teams. The vision includes venue partnerships with complete kits (equipment, streaming cameras, scoreboards), partnerships with sports stores and physiotherapists, and building the grassroots football organization for the next generation.",
         "marketOpportunity": "265M football players globally, with growing trend toward local community sports and authentic offline experiences, especially post-pandemic.",
         "vision": "Create the largest grassroots football network by empowering local communities with professional tools and support. Transform street football from chaotic WhatsApp groups into organized, trackable, scalable community experiences.",
         "competitiveAdvantage": [
           "Complete ecosystem approach (players + venues + services)",
           "Comprehensive player stat tracking across all competitions",
-          "Franchise model providing venues with profitable business model",
-          "Integrated partnerships with sports industry (stores, physio, equipment)",
+          "Planned franchise model providing venues with profitable business model",
+          "Potential partnerships with sports industry (stores, physio, equipment)",
           "Focus on authentic street culture vs. professional leagues",
           "Community ownership and player-driven growth"
         ],
@@ -105,13 +105,13 @@
           "Streaming and content monetization for popular matches"
         ],
         "expansionStrategy": [
-          "Phase 1: Platform and local league management (Zagreb, Split)",
+          "Phase 1: Platform and local league management development",
           "Phase 2: Venue partnerships and franchise development",
-          "Phase 3: Equipment distribution and service partnerships",
-          "Phase 4: Expansion to 10+ cities with regional tournaments",
+          "Phase 3: Equipment distribution and service partnerships", 
+          "Phase 4: Expansion to multiple cities with regional tournaments",
           "Phase 5: International franchise model and corporate sponsorships"
         ],
-        "currentState": "Pre-launch with 15 local communities interested and 5 Zagreb venue partnerships secured. Roadmap includes mobile app, payment integration, franchise package development, and multi-city expansion."
+        "currentState": "Early development phase with platform architecture planning. Roadmap includes mobile app development, payment integration, franchise package development, and gradual market testing before scaling."
       }
     },
     {
