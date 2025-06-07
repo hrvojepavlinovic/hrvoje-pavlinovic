@@ -10,16 +10,51 @@ interface IStatCardProps {
 
 function StatCard({ title, value, unit, icon }: IStatCardProps) {
   return (
-    <div class="dark:bg-white/5 bg-black/5 p-6 rounded-lg">
+    <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-6 shadow-xl hover:border-orange-200 dark:hover:border-orange-900/50 transition-all duration-300">
       <div class="flex items-center justify-between mb-4">
-        <h3 class="text-btc-orange font-medium flex items-center">
-          <span class="mr-2">{icon}</span>
+        <h3 class="text-orange-600 dark:text-orange-400 font-semibold flex items-center text-lg">
+          <span class="text-2xl mr-3">{icon}</span>
           {title}
         </h3>
       </div>
-      <div class="text-3xl font-medium mb-1">
+      <div class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-1">
         {value}
-        {unit && <span class="text-sm ml-1 dark:text-white/60 text-black/60">{unit}</span>}
+        {unit && <span class="text-lg ml-2 text-gray-500 dark:text-gray-400 font-medium">{unit}</span>}
+      </div>
+    </div>
+  );
+}
+
+interface ProgressBarProps {
+  label: string;
+  current: number;
+  goal: number;
+  unit?: string;
+}
+
+function ProgressBar({ label, current, goal, unit = "" }: ProgressBarProps) {
+  const percentage = Math.min(100, Math.round((current / goal) * 100));
+  
+  return (
+    <div class="space-y-3">
+      <div class="flex justify-between items-center">
+        <span class="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300">
+          {label} ({goal}{unit})
+        </span>
+        <div class="flex items-center gap-2">
+          <span class="text-sm font-bold text-orange-600 dark:text-orange-400">
+            {current}{unit}
+          </span>
+          <span class="text-xs text-gray-500 dark:text-gray-500">
+            {percentage}%
+          </span>
+        </div>
+      </div>
+      <div class="h-3 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
+        <div 
+          style={`width: ${percentage}%`} 
+          class="h-full bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-400 dark:to-orange-500 rounded-full transition-all duration-500 ease-out"
+        ></div>
       </div>
     </div>
   );
@@ -47,92 +82,92 @@ export default function StatsPage() {
   }, []);
 
   return (
-    <div class="dark:bg-black bg-white text-black dark:text-white w-full pt-32 pb-16">
-      <div class="max-w-screen-xl mx-auto px-4">
-        <div class="mb-8">
-          <h1 class="text-3xl font-semibold tracking-tight mb-2">Personal Stats</h1>
+    <div class="min-h-screen bg-gradient-to-b from-orange-50/30 via-transparent via-40% to-orange-50/30 dark:from-orange-950/10 dark:via-transparent dark:via-40% dark:to-orange-950/10">
+      {/* Hero Section */}
+      <div class="pt-32 pb-20 px-6 sm:px-8">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center space-y-8">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-b from-gray-900 via-gray-900 to-gray-600 dark:from-white dark:via-white dark:to-gray-400 bg-clip-text text-transparent">
+              Personal Stats
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed font-light">
+              Real-time metrics of my fitness journey and work progress
+            </p>
+          </div>
         </div>
+      </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatCard
-            title="Weight"
-            value={weight.value}
-            unit="kg"
-            icon="⚖️"
-          />
-          <StatCard
-            title="Push-ups"
-            value={pushUps.value}
-            unit="reps"
-            icon="💪"
-          />
-          <StatCard
-            title="Pull-ups"
-            value={pullUps.value}
-            unit="reps"
-            icon="🏋️‍♂️"
-          />
-          <StatCard
-            title="Hours Worked"
-            value={hoursWorked.value}
-            unit="hrs"
-            icon="⏰"
-          />
-        </div>
+      {/* Stats Cards */}
+      <div class="px-6 sm:px-8 pb-20">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <StatCard
+              title="Weight"
+              value={weight.value}
+              unit="kg"
+              icon="⚖️"
+            />
+            <StatCard
+              title="Push-ups"
+              value={pushUps.value}
+              unit="reps"
+              icon="💪"
+            />
+            <StatCard
+              title="Pull-ups"
+              value={pullUps.value}
+              unit="reps"
+              icon="🏋️‍♂️"
+            />
+            <StatCard
+              title="Hours Worked"
+              value={hoursWorked.value}
+              unit="hrs"
+              icon="⏰"
+            />
+          </div>
 
-        <div class="mt-8 dark:bg-white/5 bg-black/5 p-6 rounded-lg">
-          <h2 class="text-xl font-medium tracking-tight mb-4 flex items-center">
-            <span class="w-1.5 h-1.5 bg-btc-orange rounded-full mr-2"></span>
-            Weekly Goals
-          </h2>
-          <div class="space-y-4">
-            <div>
-              <div class="flex justify-between items-center mb-1">
-                <span class="text-sm">Weight Goal (85kg)</span>
-                <span class="text-sm text-btc-orange">10%</span>
-              </div>
-              <div class="h-1.5 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
-                <div 
-                  style={`width: ${Math.min(100, (weight.value / 85) * 100)}%`} 
-                  class="h-full bg-btc-orange rounded-full"
-                ></div>
-              </div>
+          {/* Goals Section */}
+          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                Weekly Goals
+              </h2>
             </div>
-            <div>
-              <div class="flex justify-between items-center mb-1">
-                <span class="text-sm">Push-ups Goal (250)</span>
-                <span class="text-sm text-btc-orange">{Math.round((pushUps.value / 250) * 100)}%</span>
-              </div>
-              <div class="h-1.5 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
-                <div 
-                  style={`width: ${Math.min(100, (pushUps.value / 250) * 100)}%`} 
-                  class="h-full bg-btc-orange rounded-full"
-                ></div>
-              </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <ProgressBar
+                label="Weight Goal"
+                current={weight.value}
+                goal={85}
+                unit="kg"
+              />
+              <ProgressBar
+                label="Push-ups Goal"
+                current={pushUps.value}
+                goal={250}
+                unit=" reps"
+              />
+              <ProgressBar
+                label="Pull-ups Goal"
+                current={pullUps.value}
+                goal={100}
+                unit=" reps"
+              />
+              <ProgressBar
+                label="Work Hours Goal"
+                current={hoursWorked.value}
+                goal={50}
+                unit=" hrs"
+              />
             </div>
-            <div>
-              <div class="flex justify-between items-center mb-1">
-                <span class="text-sm">Pull-ups Goal (100)</span>
-                <span class="text-sm text-btc-orange">{Math.round((pullUps.value / 100) * 100)}%</span>
-              </div>
-              <div class="h-1.5 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
-                <div 
-                  style={`width: ${Math.min(100, (pullUps.value / 100) * 100)}%`} 
-                  class="h-full bg-btc-orange rounded-full"
-                ></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between items-center mb-1">
-                <span class="text-sm">Work Hours Goal (50)</span>
-                <span class="text-sm text-btc-orange">{Math.round((hoursWorked.value / 50) * 100)}%</span>
-              </div>
-              <div class="h-1.5 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
-                <div 
-                  style={`width: ${Math.min(100, (hoursWorked.value / 50) * 100)}%`} 
-                  class="h-full bg-btc-orange rounded-full"
-                ></div>
-              </div>
+
+            {/* Last Updated */}
+            <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800">
+              <p class="text-sm text-gray-500 dark:text-gray-500 text-center">
+                Last updated: {lastUpdated.value.toLocaleString()}
+              </p>
             </div>
           </div>
         </div>

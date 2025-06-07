@@ -319,7 +319,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                       <img 
                         src="/pfptbs.png" 
                         alt="Hrvoje Pavlinovic"
-                        class="w-12 h-12 rounded-full"
+                        class="w-12 h-12 rounded-full object-cover"
                       />
                     </div>
                     <div class="text-left">
