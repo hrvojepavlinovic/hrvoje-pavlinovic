@@ -120,12 +120,12 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
                       </svg>
                       <span class="font-medium">by {article.author}</span>
                     </div>
-                    <div class="flex items-center gap-3 mb-4">
+                    <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-4">
                       <div class="inline-block px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-sm font-medium rounded-full">
                         Essay #{article.id}
                       </div>
                       {article.tags.map((tag) => (
-                        <div key={tag} class="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-full">
+                        <div key={tag} class="inline-block px-2 sm:px-3 py-1 bg-gray-100 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 text-xs sm:text-sm font-medium rounded-full">
                           {tag}
                         </div>
                       ))}
