@@ -58,14 +58,14 @@ export default function HomePage() {
 
           {/* Text Section */}
           <div class="text-center sm:text-left space-y-4">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-b from-gray-900 via-gray-900 to-gray-600 dark:from-white dark:via-white dark:to-gray-400 bg-clip-text text-transparent">
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-b from-gray-900 via-gray-900 to-gray-600 dark:from-white dark:via-white dark:to-gray-400 bg-clip-text text-transparent">
               Hrvoje Pavlinovic
             </h1>
             <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light">
               <span class="block sm:hidden">Software Engineer • Founder</span>
               <span class="hidden sm:block">Software Engineer • Blockchain Enthusiast • Founder</span>
             </p>
-            <p class="text-sm sm:text-base text-gray-500 dark:text-gray-500 leading-relaxed">
+            <p class="text-xs sm:text-base text-gray-500 dark:text-gray-500 leading-relaxed">
               Building the future one project at a time
             </p>
           </div>
