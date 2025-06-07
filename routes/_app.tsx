@@ -169,11 +169,9 @@ export default function App({ Component, url }: PageProps) {
         {/* Main application script */}
         <script>{THEME_SCRIPT}</script>
       </head>
-      <body class="dark:bg-black bg-white dark:text-white/80 text-black/80 min-h-screen flex flex-col font-mono">
+      <body class="dark:bg-black bg-white dark:text-white/80 text-black/80 min-h-screen font-mono">
         <Header />
-        <main 
-          class="flex-1 overflow-y-auto w-full"
-        >
+        <main class="w-full">
           <Component />
         </main>
         <Footer />
