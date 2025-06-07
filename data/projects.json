@@ -42,125 +42,186 @@
       "id": "xxi-today",
       "name": "XXI Today",
       "url": "https://xxi.today",
-      "description": "The definitive Bitcoin portal for tracking the historic journey to 21 million coins with live network stats and milestone celebrations.",
-      "technologies": ["T3", "Postgres", "Vercel", "Bitcoin"],
-      "completion": 5,
+      "description": "The ultimate Bitcoin hub - complete information ecosystem with resources directory, wallet explorer, news, and milestone tracking for beginners to advanced users.",
+      "technologies": ["T3", "Postgres", "Vercel", "Bitcoin", "Lightning"],
+      "completion": 8,
       "featured": true,
       "accent": "orange",
       "pitch": {
-        "tagline": "Celebrating Bitcoin's Journey to 21 Million - The Ultimate Milestone Tracker",
-        "problem": "Bitcoin is approaching the historic 21 million coin milestone, but existing tools treat it like any other number. The community lacks a dedicated space to track this once-in-a-lifetime event with the significance it deserves.",
-        "solution": "XXI Today creates the definitive portal for Bitcoin's 21M journey - combining real-time network data, milestone celebrations, community features, and educational content about Bitcoin's finite supply economics.",
-        "marketOpportunity": "Bitcoin community of 106M+ wallet users globally, with growing institutional adoption.",
-        "vision": "The 21M milestone represents a cultural moment that transcends traditional crypto analytics - we're building the celebration platform for this historic achievement.",
+        "tagline": "The Complete Bitcoin Universe - From First Satoshi to 21 Million",
+        "problem": "Bitcoin information is scattered across hundreds of websites, tools, and resources. New users are overwhelmed, while advanced users waste time switching between multiple platforms for wallet tracking, news, education, and network monitoring.",
+        "solution": "XXI Today is the comprehensive Bitcoin hub combining milestone tracking, complete resource directory (beginner to advanced), transaction/wallet explorer, curated news, protocol documentation, and educational content. One platform for the entire Bitcoin journey.",
+        "marketOpportunity": "Bitcoin community of 106M+ wallet users globally, growing institutional adoption, and $850B+ market cap ecosystem needing centralized information hub.",
+        "vision": "Become the definitive Bitcoin portal that serves as the starting point for anyone entering the Bitcoin ecosystem - from curious beginners to protocol developers.",
         "competitiveAdvantage": [
-          "First platform dedicated to the 21M milestone",
-          "Real-time countdown with network visualizations",
-          "Community celebrations and milestone notifications",
-          "Educational content about Bitcoin scarcity",
-          "Beautiful, mobile-first Bitcoin-focused design"
+          "Comprehensive resource directory organized by skill level",
+          "Custom wallet and transaction explorer with advanced analytics",
+          "Real-time milestone tracking with community celebrations",
+          "Curated news and protocol updates from trusted sources",
+          "Educational pathway from Bitcoin basics to Lightning Network",
+          "Focus on Bitcoin-only (no shitcoins) for authenticity"
         ],
-        "currentState": "Beta platform processing 10K+ API calls daily. Roadmap includes community features, milestone NFTs, educational content, and mobile app launch."
+        "monetizationStrategy": [
+          "Premium subscriptions for advanced analytics and alerts ($19/month)",
+          "Sponsored listings in resource directory from Bitcoin companies",
+          "Affiliate partnerships with hardware wallets and exchanges",
+          "Educational course marketplace with revenue sharing",
+          "Enterprise API access for Bitcoin data and analytics",
+          "Branded milestone NFTs and commemorative digital collectibles"
+        ],
+        "pricingModel": "Freemium: Free basic hub access, Premium at $19/month for advanced analytics, Enterprise at $299/month for API access and white-label solutions",
+        "currentState": "Beta platform processing 10K+ API calls daily. Roadmap includes resource directory, wallet explorer, educational content platform, mobile app, and Lightning Network integration."
       }
     },
     {
       "id": "playgrnd",
       "name": "PLAYGRND",
       "url": "https://playgrnd.app",
-      "description": "Bringing street football culture back to neighborhoods through easy tournament organization and community building.",
-      "technologies": ["T3", "Postgres", "Vercel", "Auth"],
-      "completion": 0,
+      "description": "Returning football to the streets with local league platform, player profiles with comprehensive stats, venue franchises, and community-driven grassroots organization.",
+      "technologies": ["T3", "Postgres", "Vercel", "Auth", "Payments"],
+      "completion": 2,
       "featured": false,
       "accent": "green",
       "pitch": {
-        "tagline": "Reviving Street Football Culture One Neighborhood at a Time",
-        "problem": "Local football communities are fragmented and disorganized. Players struggle to find regular games, tournament organization happens through chaotic WhatsApp groups, and the pure joy of street football is being lost to digital isolation.",
-        "solution": "PLAYGRND connects local football communities through streamlined tournament organization, skill-based player matching, and integrated social features. Focus on grassroots culture, not professional leagues.",
-        "marketOpportunity": "265M football players globally seeking local community connection.",
-        "vision": "Growing trend toward offline social activities and community building, especially post-pandemic. We're revitalizing authentic street football culture.",
+        "tagline": "Bringing Football Back to the Streets Where It Belongs",
+        "problem": "Street football culture is dying as communities become digitized and fragmented. Local players can't find regular games, have no way to track their progression, and venues lack tools to organize profitable grassroots football programs.",
+        "solution": "PLAYGRND starts with local league platform where players claim profiles and track comprehensive stats across all competitions and teams. We then franchise venues with complete kits (equipment, streaming cameras, scoreboards), partner with sports stores and physiotherapists, and build the grassroots football organization for the next generation.",
+        "marketOpportunity": "265M football players globally, with growing trend toward local community sports and authentic offline experiences, especially post-pandemic.",
+        "vision": "Create the largest grassroots football network by empowering local communities with professional tools and support. Transform street football from chaotic WhatsApp groups into organized, trackable, scalable community experiences.",
         "competitiveAdvantage": [
-          "Hyper-local community focus over global platforms",
-          "Street football culture authenticity",
-          "Simple tournament organization tools",
-          "Real-world venue partnerships",
-          "Skill-based matching for fair games"
+          "Complete ecosystem approach (players + venues + services)",
+          "Comprehensive player stat tracking across all competitions",
+          "Franchise model providing venues with profitable business model",
+          "Integrated partnerships with sports industry (stores, physio, equipment)",
+          "Focus on authentic street culture vs. professional leagues",
+          "Community ownership and player-driven growth"
         ],
-        "currentState": "Pre-launch with 15 local communities interested and 5 Zagreb venue partnerships secured. Roadmap includes mobile app, payment integration, and expansion to 10+ cities."
+        "businessModel": [
+          "Player subscriptions for premium stats and profile features ($9/month)",
+          "Venue franchise fees and revenue sharing ($299 setup + 15% revenue)",
+          "Equipment and kit sales through integrated store",
+          "Partnership commissions with sports stores and services",
+          "Tournament entry fees and prize pool management",
+          "Streaming and content monetization for popular matches"
+        ],
+        "expansionStrategy": [
+          "Phase 1: Platform and local league management (Zagreb, Split)",
+          "Phase 2: Venue partnerships and franchise development",
+          "Phase 3: Equipment distribution and service partnerships",
+          "Phase 4: Expansion to 10+ cities with regional tournaments",
+          "Phase 5: International franchise model and corporate sponsorships"
+        ],
+        "currentState": "Pre-launch with 15 local communities interested and 5 Zagreb venue partnerships secured. Roadmap includes mobile app, payment integration, franchise package development, and multi-city expansion."
       }
     },
     {
       "id": "apes-club",
       "name": "Apes Club",
       "url": "https://apes.club",
-      "description": "Smart Solana token discovery platform with advanced analytics and community curation for safer meme coin exploration.",
-      "technologies": ["Solana", "Web3", "TypeScript", "DeFi"],
-      "completion": 1,
+      "description": "Pump.fun style Solana token launcher with advanced dashboards, creator leaderboards, risk analytics, and community governance for smarter meme coin discovery.",
+      "technologies": ["Solana", "Web3", "TypeScript", "DeFi", "Rust"],
+      "completion": 3,
       "featured": false,
       "accent": "violet",
       "pitch": {
-        "tagline": "The Smart Way to Navigate Solana's Meme Coin Jungle",
-        "problem": "Solana's meme coin ecosystem is wild and chaotic. Pump.fun processes $100M+ daily but offers no protection, discovery tools, or creator accountability. Traders need better intelligence to navigate this high-risk, high-reward space.",
-        "solution": "Apes Club combines token launching with advanced on-chain analytics, creator reputation scoring, community governance, and intelligent risk assessment for smarter meme coin discovery.",
-        "marketOpportunity": "Solana's $50B+ daily trading volume with growing meme coin adoption.",
-        "vision": "Market needs mature tools as institutional interest grows in alternative crypto assets. We're building the intelligent layer for safer speculation.",
+        "tagline": "The Smart Pump.fun - Token Launching with Intelligence and Safety",
+        "problem": "Pump.fun processes $100M+ daily but offers zero protection, analytics, or creator accountability. Traders are flying blind in a $50B+ daily Solana trading volume market that desperately needs intelligence tools for safer speculation.",
+        "solution": "Apes Club combines pump.fun-style token launching with comprehensive dashboards, creator leaderboards, advanced risk analytics, community governance, and intelligent discovery tools. Making meme coin trading smarter, not just faster.",
+        "marketOpportunity": "Solana's explosive growth with $50B+ daily trading volume, growing institutional meme coin adoption, and demand for safer speculation tools in high-risk markets.",
+        "vision": "As meme coins gain institutional attention, the market needs mature intelligence tools. We're building the professional-grade infrastructure for the next evolution of speculative trading.",
         "competitiveAdvantage": [
-          "Advanced on-chain analytics and risk scoring",
-          "Creator reputation and verification system",
-          "Community-driven token curation",
-          "Built-in due diligence tools",
-          "Focus on education over pure speculation"
+          "Advanced on-chain analytics and real-time risk scoring",
+          "Creator reputation system with historical performance tracking",
+          "Community-driven token curation and governance",
+          "Comprehensive leaderboards for creators and traders",
+          "Built-in due diligence tools and automated red flag detection",
+          "Educational focus over pure gambling mentality"
         ],
-        "currentState": "Technical prototype with analytics engine. Roadmap includes security audits, community features, mobile trading interface, and educational content."
+        "monetizationStrategy": [
+          "Trading fees on token launches and transactions (1-2%)",
+          "Premium analytics subscriptions for advanced metrics ($29/month)",
+          "Creator verification and premium listing fees",
+          "Advertising from legitimate Solana projects",
+          "Staking rewards for platform governance token holders",
+          "White-label platform licensing for other chains"
+        ],
+        "currentState": "Technical prototype with analytics engine addressing Solana's $50B+ daily trading volume. Roadmap includes security audits, community governance features, mobile trading interface, and educational content platform."
       }
     },
     {
       "id": "hrvoje-pavlinovic",
-      "name": "Hrvoje Pavlinovic",
+      "name": "Personal Portfolio",
       "url": "https://hrvoje.pavlinovic.com",
-      "description": "Personal brand platform showcasing technical expertise with modern design, real-time analytics, and integrated project portfolio.",
+      "description": "Modern personal brand platform built with cutting-edge Deno/Fresh stack, featuring real-time analytics, integrated project showcase, and technical depth demonstration.",
       "technologies": ["Deno", "KV", "Fresh", "Tailwind"],
-      "completion": 20,
+      "completion": 25,
       "featured": true,
       "accent": "orange",
       "pitch": {
         "tagline": "Personal Brand Platform That Actually Showcases Technical Depth",
         "problem": "Tech entrepreneurs need authentic online presence, but existing solutions are either too generic (templates) or too complex (custom dev). Most portfolios fail to demonstrate actual technical capability and thought leadership.",
-        "solution": "A modern portfolio platform built with cutting-edge tech stack, featuring real-time analytics, integrated blog, project showcases, and technical depth that actually impresses other developers and potential collaborators.",
-        "marketOpportunity": "50M+ tech professionals globally building personal brands.",
-        "vision": "Growing importance of individual reputation in remote-first, creator economy landscape. Technical credibility is becoming increasingly valuable.",
+        "solution": "A modern portfolio platform built with cutting-edge tech stack, featuring real-time analytics, integrated blog, project showcases, and technical depth that actually impresses other developers and potential collaborators. This very website serves as the showcase.",
+        "marketOpportunity": "50M+ tech professionals globally building personal brands in the creator economy and remote-first landscape where individual reputation is increasingly valuable.",
+        "vision": "Growing importance of individual reputation over company credentials. Technical credibility and authentic personal branding becoming critical for opportunities, partnerships, and funding.",
         "competitiveAdvantage": [
-          "Built with latest Deno/Fresh stack (technical credibility)",
-          "Real-time analytics and engagement tracking",
-          "Mobile-first responsive design",
-          "SEO optimized for technical content",
-          "Integrated project portfolio with pitch pages"
+          "Built with latest Deno/Fresh stack demonstrating technical credibility",
+          "Real-time analytics with 15K+ monthly visitors and high engagement",
+          "Mobile-first responsive design with modern aesthetics",
+          "SEO optimized achieving high rankings for technical content",
+          "Integrated project portfolio with detailed pitch pages",
+          "Actual working example of technical execution quality"
         ],
-        "currentState": "Live platform with 15K+ monthly visitors and high engagement. Roadmap includes template marketplace, developer community features, and technical content platform."
+        "businessValue": [
+          "Client acquisition through demonstrated technical competence",
+          "Speaking opportunities and industry recognition",
+          "Partnership development with other tech professionals",
+          "Investment opportunities through visible project showcase",
+          "Thought leadership platform for technical content",
+          "Template/consulting opportunities for other developers"
+        ],
+        "currentState": "Live platform with 15K+ monthly visitors, high engagement, and proven client acquisition results. Roadmap includes technical blog expansion, developer template marketplace, and community features."
       }
     },
     {
       "id": "hills-lab",
       "name": "HILLS Lab",
       "url": "https://hills-lab.hr",
-      "description": "Technology laboratory specializing in cutting-edge AI, blockchain, and Web3 solutions for forward-thinking businesses.",
-      "technologies": ["Deno", "Fresh", "Tailwind"],
-      "completion": 35,
+      "description": "Independent research laboratory specializing in bleeding-edge AI, blockchain, and Web3 solutions. 'Decoding Tomorrow' with 3 senior developers and focus on sustainable innovation.",
+      "technologies": ["Deno", "Fresh", "Tailwind", "AI", "Blockchain"],
+      "completion": 40,
       "featured": true,
       "accent": "orange",
       "pitch": {
-        "tagline": "Building the Future of Digital Innovation, One Project at a Time",
-        "problem": "Businesses know they need emerging technologies like AI, blockchain, and Web3, but lack access to experienced teams who actually understand these technologies beyond buzzwords. Most agencies oversell and underdeliver.",
-        "solution": "HILLS Lab is a focused technology laboratory with deep expertise in bleeding-edge technologies. We build real solutions, not demos. Focus on sustainable innovation with proven track record.",
-        "marketOpportunity": "Croatian and European businesses seeking reliable technology partners for digital transformation.",
-        "vision": "Growing demand for authentic expertise over marketing-heavy agencies. We're building reputation through results, not promises.",
+        "tagline": "Decoding Tomorrow - Independent Research Lab for Next-Generation Technology",
+        "problem": "Businesses know they need emerging technologies like AI, blockchain, and Web3, but lack access to experienced teams who actually understand these technologies beyond buzzwords. Most agencies oversell and underdeliver on cutting-edge solutions.",
+        "solution": "HILLS Lab is an independent technology research laboratory with deep expertise in bleeding-edge technologies. We build real solutions, not demos. Focus on sustainable innovation with proven track record and research-driven approach to emerging tech.",
+        "marketOpportunity": "Croatian and European businesses seeking reliable technology partners for digital transformation, with growing demand for authentic AI and blockchain expertise.",
+        "vision": "Building reputation through results and research, not marketing promises. Becoming the go-to laboratory for companies serious about implementing next-generation technologies effectively.",
         "competitiveAdvantage": [
-          "Deep technical expertise over sales-driven approach",
-          "Proven track record with multiple successful projects",
-          "Full-stack capabilities from concept to deployment",
-          "Strong reputation in Croatian tech ecosystem",
-          "Focus on long-term partnerships over one-off projects"
+          "Independent research lab model vs. traditional agency approach",
+          "Deep technical expertise over sales-driven consulting",
+          "Proven track record with multiple successful implementations",
+          "Full-stack capabilities from research to production deployment",
+          "Strong reputation in Croatian tech ecosystem with industry partnerships",
+          "Focus on long-term innovation partnerships over one-off projects"
         ],
-        "currentState": "6 active client projects, 4 senior developers, partnerships with major Croatian tech companies. Roadmap includes team expansion, R&D lab setup, and European market expansion."
+        "researchFocus": [
+          "AI implementation strategies for traditional businesses",
+          "Blockchain integration for supply chain and verification",
+          "Web3 user experience and adoption patterns",
+          "Cross-technology integration and architecture",
+          "Emerging technology evaluation and strategic planning",
+          "Open source contributions and technical thought leadership"
+        ],
+        "businessModel": [
+          "Research and development consulting ($150-300/hour)",
+          "Technology implementation projects ($50K-500K range)",
+          "Retainer partnerships for ongoing innovation support",
+          "Training and workshop programs for enterprise teams",
+          "Open source sponsorship and grant opportunities",
+          "Strategic technology advisory for scaling companies"
+        ],
+        "currentState": "6 active client projects, 3 senior developers, partnerships with major Croatian tech companies. Roadmap includes team expansion to 5 developers, dedicated R&D lab setup, and European market expansion with focus on AI and blockchain solutions."
       }
     }
   ]
