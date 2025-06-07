@@ -18,8 +18,13 @@ interface BlogPageData {
 export const handler: Handlers<BlogPageData> = {
   async GET(_req, ctx) {
     const kv = await Deno.openKv();
+    
+    // Sort articles by date (newest first) before processing
+    const sortedArticles = (blogData.articles as BlogArticle[])
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    
     const articles = await Promise.all(
-      (blogData.articles as BlogArticle[]).map(async (article) => {
+      sortedArticles.map(async (article) => {
         const [viewsRes, likesRes] = await Promise.all([
           kv.get<number>([`blog:views:${article.slug}`]),
           kv.get<number>([`blog:likes:${article.slug}`])

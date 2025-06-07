@@ -192,44 +192,46 @@ export default function WebStats() {
         <div class="max-w-6xl mx-auto space-y-16">
           
           {/* Summary Stats */}
-          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
-            <div class="grid grid-cols-2 gap-6">
+          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div class="text-center">
-                <div class="text-4xl lg:text-5xl font-bold text-orange-600 dark:text-orange-400 mb-2">{totalViews.toLocaleString()}</div>
+                <div class="text-3xl sm:text-4xl lg:text-5xl font-bold text-orange-600 dark:text-orange-400 mb-2">{totalViews.toLocaleString()}</div>
                 <div class="text-gray-600 dark:text-gray-400 font-medium">Total Page Views</div>
               </div>
               <div class="text-center">
-                <div class="text-4xl lg:text-5xl font-bold text-orange-600 dark:text-orange-400 mb-2">{totalClicks.toLocaleString()}</div>
+                <div class="text-3xl sm:text-4xl lg:text-5xl font-bold text-orange-600 dark:text-orange-400 mb-2">{totalClicks.toLocaleString()}</div>
                 <div class="text-gray-600 dark:text-gray-400 font-medium">Total Click Events</div>
               </div>
             </div>
           </div>
 
           {/* Page Views */}
-          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
-            <div class="flex items-center gap-3 mb-8">
-              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
-              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                Page Views
-              </h2>
-              <div class="ml-auto flex items-center gap-2">
-                <span class="text-lg font-bold text-orange-600 dark:text-orange-400 font-mono">{totalViews}</span>
+          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-xl">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-3 mb-8">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
+                  Page Views
+                </h2>
+              </div>
+              <div class="flex items-center gap-2 sm:ml-auto">
+                <span class="text-base sm:text-lg font-bold text-orange-600 dark:text-orange-400 font-mono">{totalViews}</span>
                 <span class="text-sm text-gray-500 dark:text-gray-500">total</span>
               </div>
             </div>
-            <div class="space-y-4">
+            <div class="space-y-3 sm:space-y-4">
               {sortedPageViews.map(({ page, count }, index) => (
-                <div key={`${page}-${index}`} class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                  <div class="flex justify-between items-center">
-                    <div class="flex items-center gap-4">
-                      <span class="text-sm font-bold text-orange-600 dark:text-orange-400 font-mono bg-orange-50 dark:bg-orange-950/30 px-2 py-1 rounded-lg min-w-[2.5rem] text-center">
+                <div key={`${page}-${index}`} class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                  <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0 flex-1">
+                      <span class="text-xs sm:text-sm font-bold text-orange-600 dark:text-orange-400 font-mono bg-orange-50 dark:bg-orange-950/30 px-2 py-1 rounded-lg w-[2.5rem] text-center flex-shrink-0">
                         #{(index + 1).toString().padStart(2, '0')}
                       </span>
-                      <span class="font-medium text-gray-900 dark:text-white">{page}</span>
+                      <span class="font-medium text-gray-900 dark:text-white text-sm sm:text-base truncate">{page}</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                      <span class="text-lg font-bold text-orange-600 dark:text-orange-400 font-mono">{count}</span>
-                      <span class="text-sm text-gray-500 dark:text-gray-500">views</span>
+                    <div class="flex items-center gap-1 flex-shrink-0">
+                      <span class="text-base sm:text-lg font-bold text-orange-600 dark:text-orange-400 font-mono">{count}</span>
+                      <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-500">views</span>
                     </div>
                   </div>
                 </div>
@@ -238,35 +240,39 @@ export default function WebStats() {
           </div>
 
           {/* Click Events */}
-          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
-            <div class="flex items-center gap-3 mb-8">
-              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
-              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                Click Events
-              </h2>
-              <div class="ml-auto flex items-center gap-2">
-                <span class="text-lg font-bold text-orange-600 dark:text-orange-400 font-mono">{totalClicks}</span>
+          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-xl">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-3 mb-8">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
+                  Click Events
+                </h2>
+              </div>
+              <div class="flex items-center gap-2 sm:ml-auto">
+                <span class="text-base sm:text-lg font-bold text-orange-600 dark:text-orange-400 font-mono">{totalClicks}</span>
                 <span class="text-sm text-gray-500 dark:text-gray-500">total</span>
               </div>
             </div>
-            <div class="space-y-4">
+            <div class="space-y-3 sm:space-y-4">
               {sortedClicks.map(({ target, type, count }, index) => (
-                <div key={`${target}-${type}-${index}`} class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                  <div class="flex justify-between items-center">
-                    <div class="flex items-center gap-4">
-                      <span class="text-sm font-bold text-orange-600 dark:text-orange-400 font-mono bg-orange-50 dark:bg-orange-950/30 px-2 py-1 rounded-lg min-w-[2.5rem] text-center">
+                <div key={`${target}-${type}-${index}`} class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                  <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0 flex-1">
+                      <span class="text-xs sm:text-sm font-bold text-orange-600 dark:text-orange-400 font-mono bg-orange-50 dark:bg-orange-950/30 px-2 py-1 rounded-lg w-[2.5rem] text-center flex-shrink-0">
                         #{(index + 1).toString().padStart(2, '0')}
                       </span>
-                      <div class="flex items-center gap-3">
-                        <span class="font-medium text-gray-900 dark:text-white">{target}</span>
-                        <span class={`text-xs font-medium px-2 py-1 rounded-full ${getTypeStyles(type)}`}>
-                          {type}
-                        </span>
+                      <div class="min-w-0 flex-1">
+                        <div class="flex items-center gap-2">
+                          <span class="font-medium text-gray-900 dark:text-white text-sm sm:text-base truncate">{target}</span>
+                          <span class={`text-xs font-medium px-1.5 py-0.5 rounded flex-shrink-0 ${getTypeStyles(type)}`}>
+                            {type}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                      <span class="text-lg font-bold text-orange-600 dark:text-orange-400 font-mono">{count}</span>
-                      <span class="text-sm text-gray-500 dark:text-gray-500">clicks</span>
+                    <div class="flex items-center gap-1 flex-shrink-0">
+                      <span class="text-base sm:text-lg font-bold text-orange-600 dark:text-orange-400 font-mono">{count}</span>
+                      <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-500">clicks</span>
                     </div>
                   </div>
                 </div>
