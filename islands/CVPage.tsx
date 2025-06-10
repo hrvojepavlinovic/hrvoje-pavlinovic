@@ -1,4 +1,28 @@
 export default function CVPage() {
+  // Smooth scroll function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const elementPosition = element.offsetTop;
+      const offsetPosition = elementPosition - 60; // Scroll 20px less
+      
+      globalThis.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Project URLs mapping
+  const projectUrls: Record<string, string> = {
+    "Memoato": "https://memoato.com",
+    "HILLS Lab": "https://hills-lab.hr",
+    "Personal Portfolio": "https://hrvoje.pavlinovic.com",
+    "XXI Today": "https://xxi.today",
+    "Apes Club": "https://apes.club",
+    "PLAYGRND": "https://playgrnd.app"
+  };
+
   return (
     <div class="min-h-screen bg-gradient-to-b from-orange-50/30 via-transparent via-40% to-orange-50/30 dark:from-orange-950/10 dark:via-transparent dark:via-40% dark:to-orange-950/10">
       {/* Hero Section */}
@@ -8,9 +32,41 @@ export default function CVPage() {
             <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-b from-gray-900 via-gray-900 to-gray-600 dark:from-white dark:via-white dark:to-gray-400 bg-clip-text text-transparent">
               Curriculum Vitae
             </h1>
-            <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed font-light">
+            <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 max-w-6xl mx-auto leading-relaxed font-light">
               12+ years of building scalable software and blockchain solutions
             </p>
+            
+            {/* Navigation Buttons */}
+            <div class="hidden lg:flex flex-wrap justify-center gap-4 mt-12">
+              <button 
+                type="button"
+                onClick={() => scrollToSection('about')}
+                class="px-6 py-3 bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-xl text-gray-900 dark:text-white font-medium hover:bg-orange-50/80 dark:hover:bg-orange-950/20 hover:border-orange-200/50 dark:hover:border-orange-800/50 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                About Me
+              </button>
+              <button 
+                type="button"
+                onClick={() => scrollToSection('experience')}
+                class="px-6 py-3 bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-xl text-gray-900 dark:text-white font-medium hover:bg-orange-50/80 dark:hover:bg-orange-950/20 hover:border-orange-200/50 dark:hover:border-orange-800/50 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Experience
+              </button>
+              <button 
+                type="button"
+                onClick={() => scrollToSection('projects')}
+                class="px-6 py-3 bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-xl text-gray-900 dark:text-white font-medium hover:bg-orange-50/80 dark:hover:bg-orange-950/20 hover:border-orange-200/50 dark:hover:border-orange-800/50 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Personal Projects
+              </button>
+              <button 
+                type="button"
+                onClick={() => scrollToSection('education')}
+                class="px-6 py-3 bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-xl text-gray-900 dark:text-white font-medium hover:bg-orange-50/80 dark:hover:bg-orange-950/20 hover:border-orange-200/50 dark:hover:border-orange-800/50 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Education
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -70,7 +126,7 @@ export default function CVPage() {
           </div>
 
           {/* About Section */}
-          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+          <div id="about" class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
             <div class="flex items-center gap-3 mb-8">
               <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
               <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
@@ -226,7 +282,7 @@ export default function CVPage() {
           </div>
 
           {/* Experience Section */}
-          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+          <div id="experience" class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
             <div class="flex items-center gap-3 mb-8">
               <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
               <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
@@ -408,8 +464,138 @@ export default function CVPage() {
             </div>
           </div>
 
-          {/* Education Section */}
-          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+          {/* Projects Section - Moved before Education */}
+          <div id="projects" class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                Personal Projects
+              </h2>
+            </div>
+            <div class="space-y-6">
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Memoato</h3>
+                    <p class="text-gray-600 dark:text-gray-400">AI-powered life tracking platform</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full">7% complete</span>
+                    <a href={projectUrls["Memoato"]} target="_blank" rel="noopener noreferrer" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400 underline transition-colors">Live</a>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Voice/text/app integration input for life tracking. AI labels your data and gives you customized dashboards, insights, agenda. Replaces 5+ productivity apps with one intelligent solution.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">T3</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">AI</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Postgres</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Vercel</span>
+                </div>
+              </div>
+
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">HILLS Lab</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Technology laboratory for AI, blockchain & Web3</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full">35% complete</span>
+                    <a href={projectUrls["HILLS Lab"]} target="_blank" rel="noopener noreferrer" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400 underline transition-colors">Live</a>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Technology laboratory specializing in cutting-edge AI, blockchain, and Web3 solutions. 6 active client projects, 4 senior developers, partnerships with major Croatian tech companies.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Deno</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Fresh</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Tailwind</span>
+                </div>
+              </div>
+
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Personal Portfolio</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Modern portfolio with real-time analytics</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full">20% complete</span>
+                    <a href={projectUrls["Personal Portfolio"]} target="_blank" rel="noopener noreferrer" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400 underline transition-colors">Live</a>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Personal brand platform showcasing technical expertise with modern design, real-time analytics, and integrated project portfolio. 15K+ monthly visitors with high engagement.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Deno</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">KV</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Fresh</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Tailwind</span>
+                </div>
+              </div>
+
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">XXI Today</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Bitcoin milestone tracking platform</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full">5% complete</span>
+                    <a href={projectUrls["XXI Today"]} target="_blank" rel="noopener noreferrer" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400 underline transition-colors">Live</a>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">The definitive Bitcoin portal for tracking the historic journey to 21 million coins. Beta platform processing 10K+ API calls daily with real-time network stats and milestone celebrations.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">T3</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Postgres</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Vercel</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Bitcoin</span>
+                </div>
+              </div>
+
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Apes Club</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Smart Solana token discovery platform</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-full">1% complete</span>
+                    <a href={projectUrls["Apes Club"]} target="_blank" rel="noopener noreferrer" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400 underline transition-colors">Prototype</a>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Smart Solana token discovery platform with advanced analytics and community curation for safer meme coin exploration. Technical prototype with analytics engine addressing Solana's $50B+ daily trading volume.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Solana</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Web3</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">TypeScript</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">DeFi</span>
+                </div>
+              </div>
+
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">PLAYGRND</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Street football community platform</p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full">Pre-launch</span>
+                    <a href={projectUrls["PLAYGRND"]} target="_blank" rel="noopener noreferrer" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400 underline transition-colors">Coming Soon</a>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Returning football to the streets with local league platform, player profiles with comprehensive stats, venue partnerships, and community-driven grassroots organization.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">T3</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Postgres</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Vercel</span>
+                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Auth</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Education Section - Moved after Projects */}
+          <div id="education" class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
             <div class="flex items-center gap-3 mb-8">
               <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
               <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
@@ -454,136 +640,6 @@ export default function CVPage() {
                     <p class="text-gray-600 dark:text-gray-400">Electrotechnical School Split</p>
                   </div>
                   <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">2007 - 2011</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Projects Section */}
-          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
-            <div class="flex items-center gap-3 mb-8">
-              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
-              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                Personal Projects
-              </h2>
-            </div>
-            <div class="space-y-6">
-              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                <div class="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Memoato</h3>
-                    <p class="text-gray-600 dark:text-gray-400">AI-powered life tracking platform</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full">7% complete</span>
-                    <a href="https://memoato.com" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Live</a>
-                  </div>
-                </div>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Voice/text/app integration input for life tracking. AI labels your data and gives you customized dashboards, insights, agenda. Replaces 5+ productivity apps with one intelligent solution.</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">T3</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">AI</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Postgres</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Vercel</span>
-                </div>
-              </div>
-
-              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                <div class="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">HILLS Lab</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Technology laboratory for AI, blockchain & Web3</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full">35% complete</span>
-                    <a href="https://hills-lab.hr" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Live</a>
-                  </div>
-                </div>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Technology laboratory specializing in cutting-edge AI, blockchain, and Web3 solutions. 6 active client projects, 4 senior developers, partnerships with major Croatian tech companies.</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Deno</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Fresh</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Tailwind</span>
-                </div>
-              </div>
-
-              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                <div class="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Personal Portfolio</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Modern portfolio with real-time analytics</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full">20% complete</span>
-                    <a href="https://hrvoje.pavlinovic.com" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Live</a>
-                  </div>
-                </div>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Personal brand platform showcasing technical expertise with modern design, real-time analytics, and integrated project portfolio. 15K+ monthly visitors with high engagement.</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Deno</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">KV</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Fresh</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Tailwind</span>
-                </div>
-              </div>
-
-              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                <div class="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">XXI Today</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Bitcoin milestone tracking platform</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full">5% complete</span>
-                    <a href="https://xxi.today" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Live</a>
-                  </div>
-                </div>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">The definitive Bitcoin portal for tracking the historic journey to 21 million coins. Beta platform processing 10K+ API calls daily with real-time network stats and milestone celebrations.</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">T3</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Postgres</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Vercel</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Bitcoin</span>
-                </div>
-              </div>
-
-              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                <div class="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Apes Club</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Smart Solana token discovery platform</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-full">1% complete</span>
-                    <a href="https://apes.club" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Prototype</a>
-                  </div>
-                </div>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Smart Solana token discovery platform with advanced analytics and community curation for safer meme coin exploration. Technical prototype with analytics engine addressing Solana's $50B+ daily trading volume.</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Solana</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Web3</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">TypeScript</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">DeFi</span>
-                </div>
-              </div>
-
-              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                <div class="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">PLAYGRND</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Street football community platform</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full">Pre-launch</span>
-                    <a href="https://playgrnd.app" target="_blank" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400">Coming Soon</a>
-                  </div>
-                </div>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Returning football to the streets with local league platform, player profiles with comprehensive stats, venue partnerships, and community-driven grassroots organization.</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">T3</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Postgres</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Vercel</span>
-                  <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">Auth</span>
                 </div>
               </div>
             </div>
