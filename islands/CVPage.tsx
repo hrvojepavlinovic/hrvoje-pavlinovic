@@ -464,7 +464,7 @@ export default function CVPage() {
             <div class="flex items-center gap-3 mb-8">
               <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
               <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                Featured Projects
+                Personal Projects
               </h2>
             </div>
             <div class="space-y-6">
