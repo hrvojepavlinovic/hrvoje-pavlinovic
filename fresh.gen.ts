@@ -13,6 +13,7 @@ import * as $api_commit from "./routes/api/commit.ts";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $api_kv from "./routes/api/kv.ts";
 import * as $api_likes from "./routes/api/likes.ts";
+import * as $api_projects from "./routes/api/projects.ts";
 import * as $api_stats from "./routes/api/stats.ts";
 import * as $api_track from "./routes/api/track.ts";
 import * as $blog_slug_ from "./routes/blog/[slug].tsx";
@@ -57,6 +58,7 @@ const manifest = {
     "./routes/api/joke.ts": $api_joke,
     "./routes/api/kv.ts": $api_kv,
     "./routes/api/likes.ts": $api_likes,
+    "./routes/api/projects.ts": $api_projects,
     "./routes/api/stats.ts": $api_stats,
     "./routes/api/track.ts": $api_track,
     "./routes/blog/[slug].tsx": $blog_slug_,

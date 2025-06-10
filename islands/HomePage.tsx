@@ -2,8 +2,47 @@ import { trackEvent } from "../utils/track.ts";
 import { useSignal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
 
+interface CounterProps {
+  end: number;
+  suffix?: string;
+  duration?: number;
+}
+
+function AnimatedCounter({ end, suffix = "", duration = 2000 }: CounterProps) {
+  const count = useSignal(0);
+  
+  useEffect(() => {
+    const increment = end / (duration / 50);
+    const timer = setInterval(() => {
+      count.value = Math.min(count.value + increment, end);
+      if (count.value >= end) {
+        clearInterval(timer);
+        count.value = end;
+      }
+    }, 50);
+    
+    return () => clearInterval(timer);
+  }, []);
+  
+  return <span>{Math.floor(count.value)}{suffix}</span>;
+}
+
+interface Project {
+  id: string;
+  name: string;
+  url?: string;
+  description: string;
+  technologies?: string[];
+  completion: number;
+  featured: boolean;
+  accent?: string;
+}
+
 export default function HomePage() {
   const btcPrice = useSignal<number | null>(null);
+  const isVisible = useSignal(false);
+  const activeSection = useSignal(0);
+  const featuredProjects = useSignal<Project[]>([]);
 
   useEffect(() => {
     // Fetch Bitcoin price
@@ -14,10 +53,68 @@ export default function HomePage() {
           btcPrice.value = data.bitcoin.usd;
         }
       })
+      .catch(() => btcPrice.value = null);
+
+    // Fetch projects data
+    fetch('/api/projects')
+      .then(res => res.json())
+      .then(data => {
+        if (data.projects) {
+          // Filter for specific projects: memoato, xxi-today, apes-club
+          const targetIds = ['memoato', 'xxi-today', 'apes-club'];
+          const filtered = data.projects.filter((project: Project) => 
+            targetIds.includes(project.id)
+          );
+          // Sort them in the order we want
+          const sorted = targetIds.map(id => filtered.find((p: Project) => p.id === id)).filter(Boolean);
+          featuredProjects.value = sorted;
+        }
+      })
       .catch(() => {
-        // Fallback if API fails
-        btcPrice.value = null;
+        // Fallback data if API fails
+        featuredProjects.value = [
+          {
+            id: "memoato",
+            name: "Memoato",
+            description: "Voice/text/app integration input for life tracking. AI labels your data and gives you customized insights.",
+            technologies: ["AI", "T3", "Postgres"],
+            accent: "purple",
+            url: "/projects#memoato",
+            completion: 7,
+            featured: true
+          },
+          {
+            id: "xxi-today",
+            name: "XXI Today",
+            description: "The ultimate Bitcoin hub - complete information ecosystem with resources directory and wallet explorer.",
+            technologies: ["Bitcoin", "Lightning", "T3"],
+            accent: "orange",
+            url: "/projects#xxi-today",
+            completion: 8,
+            featured: true
+          },
+          {
+            id: "apes-club",
+            name: "Apes Club",
+            description: "Pump.fun style Solana token launcher with advanced dashboards and creator leaderboards.",
+            technologies: ["Solana", "Web3", "DeFi"],
+            accent: "violet",
+            url: "/projects#apes-club",
+            completion: 3,
+            featured: false
+          }
+        ];
       });
+
+    // Animate sections
+    setTimeout(() => isVisible.value = true, 100);
+    
+    // Section animation cycle
+    const sectionTimer = setInterval(() => {
+      activeSection.value = (activeSection.value + 1) % 3;
+    }, 4000);
+    
+    return () => clearInterval(sectionTimer);
   }, []);
 
   const handleLinkClick = (target: string) => {
@@ -28,127 +125,259 @@ export default function HomePage() {
     });
   };
 
+  const achievements = [
+    { number: 12, suffix: "+", label: "Years Engineering", color: "from-orange-500 to-red-500" },
+    { number: 6, suffix: "", label: "Active Projects", color: "from-blue-500 to-purple-500" },
+    { number: 4, suffix: "+", label: "Years Blockchain", color: "from-green-500 to-teal-500" },
+    { number: 50, suffix: "+", label: "Clients Served", color: "from-purple-500 to-pink-500" }
+  ];
+
+  const expertise = [
+    { icon: "🤖", title: "Real-World AI Implementation", desc: "Transforming theoretical AI into practical solutions that solve actual problems", progress: 90 },
+    { icon: "⛓️", title: "Blockchain Architecture", desc: "Deep expertise in decentralized systems and the philosophy of distributed trust", progress: 95 },
+    { icon: "🚀", title: "Concept to Reality", desc: "Building the bridge between visionary ideas and scalable systems", progress: 88 },
+    { icon: "🧭", title: "Edge Technology Navigation", desc: "Exploring the boundaries of what's possible in modern software", progress: 92 }
+  ];
+
   return (
-    <div class="min-h-screen bg-gradient-to-b from-orange-50/30 via-transparent via-40% to-orange-50/30 dark:from-orange-950/10 dark:via-transparent dark:via-40% dark:to-orange-950/10">
-      <div class="flex flex-col items-center space-y-12 px-6 sm:px-8 py-32 sm:py-40">
-        {/* Profile Section */}
-        <div class="flex flex-col sm:flex-row items-center gap-8 sm:gap-12">
-          <div class="relative group">
-            <div class="absolute inset-0 bg-gradient-to-br from-orange-200 to-orange-100 dark:from-orange-800/30 dark:to-orange-900/20 rounded-full blur-lg group-hover:blur-xl transition-all duration-500 opacity-70"></div>
-            <img 
-              src="/pfptbs.png" 
-              alt="Hrvoje Pavlinovic"
-              class="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-white/50 dark:border-gray-800/50 transition-transform duration-500"
-            />
+    <div class="min-h-screen">
+      {/* Hero Section */}
+      <section class="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-orange-50/30 to-gray-50 dark:from-gray-950 dark:via-orange-950/20 dark:to-gray-950">
+        {/* Animated Background Elements */}
+        <div class="absolute inset-0 overflow-hidden">
+          <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-200/20 dark:bg-orange-800/10 rounded-full blur-3xl animate-pulse"></div>
+          <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-200/20 dark:bg-blue-800/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-128 h-128 bg-purple-200/10 dark:bg-purple-800/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 4s"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
+          <div class="text-center space-y-16">
             
-            {/* Bitcoin Easter Egg - shows on hover */}
-            {btcPrice.value && (
-              <div class="absolute inset-0 w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-orange-500/90 dark:bg-orange-600/90 backdrop-blur-sm border-4 border-white/50 dark:border-gray-800/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-default">
-                <div class="text-center">
-                  <div class="text-white font-mono text-xs sm:text-sm font-bold">
-                    ${btcPrice.value.toLocaleString()}
+            {/* Profile Image - Clean */}
+            <div class="relative group mx-auto w-fit mt-16">
+              <img 
+                src="/pfptbs.png" 
+                alt="Hrvoje Pavlinovic"
+                class="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              
+              {/* Bitcoin Easter Egg */}
+              {btcPrice.value && (
+                <div class="absolute inset-0 w-40 h-40 sm:w-48 sm:h-48 rounded-full bg-gradient-to-br from-orange-500/95 to-red-500/95 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 cursor-default">
+                  <div class="text-center">
+                    <div class="text-white font-mono text-lg sm:text-xl font-bold">
+                      ${btcPrice.value.toLocaleString()}
+                    </div>
+                    <div class="text-white/90 font-mono text-sm">
+                      BTC/USD
+                    </div>
                   </div>
-                  <div class="text-white/80 font-mono text-xs">
-                    BTC/USD
+                </div>
+              )}
+            </div>
+
+            {/* Main Title */}
+            <div class="space-y-3">
+              <h1 class={`text-4xl sm:text-6xl lg:text-8xl font-bold tracking-tight transition-all duration-1000 leading-tight ${isVisible.value ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <span class="block bg-gradient-to-b from-gray-900 via-gray-900 to-gray-600 dark:from-white dark:via-white dark:to-gray-400 bg-clip-text text-transparent font-black leading-tight pb-2">
+                  Hrvoje Pavlinovic
+                </span>
+              </h1>
+              
+              <div class={`transition-all duration-1000 delay-300 ${isVisible.value ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <p class="text-xl sm:text-3xl font-semibold text-gray-800 dark:text-gray-200">
+                  Senior Software Engineer & Tech Founder
+                </p>
+              </div>
+            </div>
+
+            {/* Achievements Counter */}
+            <div class={`hidden grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto transition-all duration-1000 delay-500 ${isVisible.value ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              {achievements.map((achievement, index) => (
+                <div key={index} class="group bg-white/60 dark:bg-white/[0.02] backdrop-blur-xl border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-6 hover:border-orange-300 dark:hover:border-orange-700/50 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                  <div class={`text-3xl lg:text-4xl font-bold bg-gradient-to-r ${achievement.color} bg-clip-text text-transparent mb-2`}>
+                    <AnimatedCounter end={achievement.number} suffix={achievement.suffix} />
+                  </div>
+                  <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {achievement.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Primary CTAs */}
+            <div class={`flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto transition-all duration-1000 delay-700 ${isVisible.value ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <a 
+                href="/projects"
+                class="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-2xl transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 overflow-hidden"
+                onClick={() => handleLinkClick("projects")}
+              >
+                <span class="relative z-10">Explore My Work</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </a>
+              <a 
+                href="/contact"
+                class="group relative px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-2xl hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 font-semibold text-lg hover:shadow-lg hover:scale-105 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm"
+                onClick={() => handleLinkClick("contact")}
+              >
+                <span class="relative z-10">Let's Connect</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Expertise Section */}
+      <section class="py-24 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Core Philosophy
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              Operating at the intersection of emerging technology and practical implementation
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {expertise.map((skill, index) => (
+              <div key={index} class="group bg-white/60 dark:bg-white/[0.02] backdrop-blur-xl border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 hover:border-orange-300 dark:hover:border-orange-700/50 transition-all duration-300 hover:scale-102 hover:shadow-xl">
+                <div class="flex items-start gap-4">
+                  <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                    {skill.icon}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                      {skill.title}
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                      {skill.desc}
+                    </p>
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                      <div 
+                        class="h-full bg-gradient-to-r from-orange-500 to-red-500 rounded-full transition-all duration-1000 ease-out"
+                        style={`width: ${skill.progress}%`}
+                      ></div>
+                    </div>
+                    <div class="text-right text-sm text-gray-500 dark:text-gray-500 mt-1">
+                      {skill.progress}%
+                    </div>
                   </div>
                 </div>
               </div>
-            )}
+            ))}
           </div>
+        </div>
+      </section>
 
-          {/* Text Section */}
-          <div class="text-center sm:text-left space-y-4">
-            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-b from-gray-900 via-gray-900 to-gray-600 dark:from-white dark:via-white dark:to-gray-400 bg-clip-text text-transparent">
-              Hrvoje Pavlinovic
-            </h1>
-            <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light">
-              <span class="block sm:hidden">Software Engineer • Founder</span>
-              <span class="hidden sm:block">Software Engineer • Blockchain Enthusiast • Founder</span>
+      {/* Featured Projects Preview */}
+      <section class="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Concepts in Motion
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              Ideas transformed into reality through thoughtful engineering and innovative thinking
             </p>
-            <p class="text-xs sm:text-base text-gray-500 dark:text-gray-500 leading-relaxed">
-              Building the future one project at a time
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {featuredProjects.value.map((project, index) => (
+              <a 
+                key={index}
+                href={project.url || `/projects#${project.id}`}
+                class="group bg-white/60 dark:bg-white/[0.02] backdrop-blur-xl border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 hover:border-orange-300 dark:hover:border-orange-700/50 transition-all duration-300 hover:scale-105 hover:shadow-xl block"
+                onClick={() => handleLinkClick(`project-${project.name.toLowerCase()}`)}
+              >
+                <div class="space-y-4">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                    {project.name}
+                  </h3>
+                  <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    {project.technologies?.map((tech, i) => (
+                      <span key={i} class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div class="text-orange-600 dark:text-orange-400 font-semibold group-hover:translate-x-2 transition-transform duration-300">
+                    Learn More →
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div class="text-center mt-12">
+            <a 
+              href="/projects"
+              class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-gray-900 to-gray-800 dark:from-white dark:to-gray-100 text-white dark:text-gray-900 rounded-2xl hover:shadow-xl transition-all duration-300 font-semibold text-lg hover:scale-105"
+              onClick={() => handleLinkClick("all-projects")}
+            >
+              Explore All Concepts
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof & Connect */}
+      <section class="py-24 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8 text-center">
+          <div class="space-y-8">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
+              Let's Push Boundaries Together
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Whether exploring blockchain frontiers, implementing cutting-edge AI, or building tomorrow's systems, 
+              let's discuss what's possible at the edge of technology.
             </p>
+
+            {/* Enhanced Social Links */}
+            <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-xl border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+              <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+                {[
+                  { href: "https://x.com/0xhp10", label: "Twitter", icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
+                  { href: "https://www.linkedin.com/in/hpavlino", label: "LinkedIn", icon: "M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z" },
+                  { href: "mailto:hrvoje@pavlinovic.com", label: "Email", icon: "M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67zM22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" },
+                  { href: "https://t.me/Oxhp10", label: "Telegram", icon: "M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" }
+                ].map((social, index) => (
+                  <a 
+                    key={index}
+                    href={social.href}
+                    target={social.href.startsWith('mailto:') ? undefined : "_blank"}
+                    rel={social.href.startsWith('mailto:') ? undefined : "noopener noreferrer"}
+                    class="group p-4 rounded-xl bg-gray-50/80 dark:bg-white/5 hover:bg-gradient-to-br hover:from-orange-100 hover:to-red-100 dark:hover:from-orange-900/30 dark:hover:to-red-900/30 text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                    onClick={() => handleLinkClick(social.label.toLowerCase())}
+                  >
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d={social.icon}/>
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Final CTA */}
+            <div class="space-y-6 pb-16">
+              <a 
+                href="/contact"
+                class="group relative inline-flex items-center px-12 py-5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-2xl transition-all duration-300 font-bold text-xl shadow-lg hover:shadow-xl hover:scale-105 overflow-hidden"
+                onClick={() => handleLinkClick("main-contact-cta")}
+              >
+                <span class="relative z-10">Start a Conversation</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </a>
+              <p class="text-gray-500 dark:text-gray-500">
+                Let's explore what's possible together
+              </p>
+            </div>
           </div>
         </div>
-
-        {/* Quick Actions */}
-        <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md">
-          <a 
-            href="/projects"
-            class="flex-1 text-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl transition-colors font-semibold"
-            onClick={() => handleLinkClick("projects")}
-          >
-            View Projects
-          </a>
-          <a 
-            href="/blog"
-            class="flex-1 text-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-2xl hover:border-orange-400 dark:hover:border-orange-500 transition-colors font-semibold"
-            onClick={() => handleLinkClick("blog")}
-          >
-            Read & Think
-          </a>
-        </div>
-
-        {/* Social Links */}
-        <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-6 shadow-xl mt-8">
-          <div class="flex gap-6 sm:gap-8">
-            <a 
-              href="https://x.com/0xhp10" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="group p-3 rounded-xl bg-gray-50/80 dark:bg-white/5 hover:bg-orange-100 dark:hover:bg-orange-900/30 text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-300 hover:scale-110"
-              onClick={() => handleLinkClick("twitter")}
-            >
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-            <a 
-              href="https://nosta.me/npub1wuggzc7p6md8x3yyzzmjrr50ff7unpmmakf29gkgrq67xnsyxfnq3s03c0"
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="group p-3 rounded-xl bg-gray-50/80 dark:bg-white/5 hover:bg-orange-100 dark:hover:bg-orange-900/30 text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-300 hover:scale-110"
-              onClick={() => handleLinkClick("nostr")}
-            >
-              <svg class="w-6 h-6" fill="currentColor" stroke="currentColor" strokeWidth="6" strokeMiterlimit="10" viewBox="0 0 875 875">
-                <path d="m684.72,485.57c.22,12.59-11.93,51.47-38.67,81.3-26.74,29.83-56.02,20.85-58.42,20.16s-3.09-4.46-7.89-3.77-9.6,6.17-18.86,7.2-17.49,1.71-26.06-1.37c-4.46.69-5.14.71-7.2,2.24s-17.83,10.79-21.6,11.47c0,7.2-1.37,44.57,0,55.89s3.77,25.71,7.54,36c3.77,10.29,2.74,10.63,7.54,9.94s13.37.34,15.77,4.11c2.4,3.77,1.37,6.51,5.49,8.23s60.69,17.14,99.43,19.2c26.74.69,42.86,2.74,52.12,19.54,1.37,7.89,7.54,13.03,11.31,14.06s8.23,2.06,12,5.83,1.03,8.23,5.49,11.66c4.46,3.43,14.74,8.57,25.37,13.71,10.63,5.14,15.09,13.37,15.77,16.11s1.71,10.97,1.71,10.97c0,0-8.91,0-10.97-2.06s-2.74-5.83-2.74-5.83c0,0-6.17,1.03-7.54,3.43s.69,2.74-7.89.69-11.66-3.77-18.17-8.57c-6.51-4.8-16.46-17.14-25.03-16.8,4.11,8.23,5.83,8.23,10.63,10.97s8.23,5.83,8.23,5.83l-7.2,4.46s-4.46,2.06-14.74-.69-11.66-4.46-12.69-10.63,0-9.26-2.74-14.4-4.11-15.77-22.29-21.26c-18.17-5.49-66.52-21.26-100.12-24.69s-22.63-2.74-28.11-1.37-15.77,4.46-26.4-1.37c-10.63-5.83-16.8-13.71-17.49-20.23s-1.71-10.97,0-19.2,3.43-19.89,1.71-26.74-14.06-55.89-19.89-64.12c-13.03,1.03-50.74-.69-50.74-.69,0,0-2.4-.69-17.49,5.83s-36.48,13.76-46.77,19.93-14.4,9.7-16.12,13.13c.12,3-1.23,7.72-2.79,9.06s-12.48,2.42-12.48,2.42c0,0-5.85,5.86-8.25,9.97-6.86,9.6-55.2,125.14-66.52,149.83-13.54,32.57-9.77,27.43-37.71,27.43s-8.06.3-8.06.3c0,0-12.34,5.88-16.8,5.88s-18.86-2.4-26.4,0-16.46,9.26-23.31,10.29-4.95-1.34-8.38-3.74c-4-.21-14.27-.12-14.27-.12,0,0,1.74-6.51,7.91-10.88,8.23-5.83,25.37-16.11,34.63-21.26s17.49-7.89,23.31-9.26,18.51-6.17,30.51-9.94,19.54-8.23,29.83-31.54c10.29-23.31,50.4-111.43,51.43-116.23.63-2.96,3.73-6.48,4.8-15.09.66-5.35-2.49-13.04,1.71-22.63,10.97-25.03,21.6-20.23,26.4-20.23s17.14.34,26.4-1.37,15.43-2.74,24.69-7.89,11.31-8.91,11.31-8.91l-19.89-3.43s-18.51.69-25.03-4.46-15.43-15.77-15.43-15.77l-7.54-7.2,1.03,8.57s-5.14-8.91-6.51-10.29-8.57-6.51-11.31-11.31-7.54-25.03-7.54-25.03l-6.17,13.03-1.71-18.86-5.14,7.2-2.74-16.11-4.8,8.23-3.43-14.4-5.83,4.46-2.4-10.29-5.83-3.43s-14.06-9.26-16.46-9.6-4.46,3.43-4.46,3.43l1.37,12-12.2-6.27-7-11.9s2.36,4.01-9.62,7.53c-20.55,0-21.89-2.28-24.93-3.94-1.31-6.56-5.57-10.11-5.57-10.11h-20.57l-.34-6.86-7.89,3.09.69-10.29h-14.06l1.03-11.31h-8.91s3.09-9.26,25.71-22.97,25.03-16.46,46.29-17.14c21.26-.69,32.91,2.74,46.29,8.23s38.74,13.71,43.89,17.49c11.31-9.94,28.46-19.89,34.29-19.89,1.03-2.4,6.19-12.33,17.96-17.6,35.31-15.81,108.13-34,131.53-35.54,31.2-2.06,7.89-1.37,39.09,2.06,31.2,3.43,54.17,7.54,69.6,12.69,12.58,4.19,25.03,9.6,34.29,2.06,4.33-1.81,11.81-1.34,17.83-5.14,30.69-25.09,34.72-32.35,43.63-41.95s20.14-24.91,22.54-45.14,4.46-58.29-10.63-88.12-28.8-45.26-34.63-69.26c-5.83-24-8.23-61.03-6.17-73.03,2.06-12,5.14-22.29,6.86-30.51s9.94-14.74,19.89-16.46c9.94-1.71,17.83,1.37,22.29,4.8,4.46,3.43,11.65,6.28,13.37,10.29.34,1.71-1.37,6.51,8.23,8.23,9.6,1.71,16.05,4.16,16.05,4.16,0,0,15.64,4.29,3.11,7.73-12.69,2.06-20.52-.71-24.29,1.69s-7.21,10.08-9.61,11.1-7.2.34-12,4.11-9.6,6.86-12.69,14.4-5.49,15.77-3.43,26.74,8.57,31.54,14.4,43.2c5.83,11.66,20.23,40.8,24.34,47.66s15.77,29.49,16.8,53.83,1.03,44.23,0,54.86-10.84,51.65-35.53,85.94c-8.16,14.14-23.21,31.9-24.67,35.03-1.45,3.13-3.02,4.88-1.61,7.65,4.62,9.05,12.87,22.13,14.71,29.22,2.29,6.64,6.99,16.13,7.22,28.72Z"/>
-              </svg>
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/hpavlino" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="group p-3 rounded-xl bg-gray-50/80 dark:bg-white/5 hover:bg-orange-100 dark:hover:bg-orange-900/30 text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-300 hover:scale-110"
-              onClick={() => handleLinkClick("linkedin")}
-            >
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/>
-              </svg>
-            </a>
-            <a 
-              href="mailto:hrvoje@pavlinovic.com"
-              class="group p-3 rounded-xl bg-gray-50/80 dark:bg-white/5 hover:bg-orange-100 dark:hover:bg-orange-900/30 text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-300 hover:scale-110"
-              onClick={() => handleLinkClick("email")}
-            >
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
-                <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
-              </svg>
-            </a>
-            <a 
-              href="https://t.me/Oxhp10"
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="group p-3 rounded-xl bg-gray-50/80 dark:bg-white/5 hover:bg-orange-100 dark:hover:bg-orange-900/30 text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-300 hover:scale-110"
-              onClick={() => handleLinkClick("telegram")}
-            >
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
+      </section>
     </div>
   );
 } 
