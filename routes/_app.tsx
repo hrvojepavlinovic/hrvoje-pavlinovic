@@ -24,6 +24,14 @@ const THEME_SCRIPT = `
     if (globalThis.navigator.sendBeacon) {
       const blob = new Blob([data], { type: 'application/json' });
       if (globalThis.navigator.sendBeacon('/api/track', blob)) {
+        // Also send to Databuddy if available
+        if (globalThis.databuddy && eventData.type === 'click') {
+          globalThis.databuddy.track(eventData.clickType + '_click', {
+            target: eventData.target,
+            page: globalThis.location.pathname,
+            timestamp: new Date().toISOString()
+          });
+        }
         return; // Success
       }
     }
@@ -34,6 +42,15 @@ const THEME_SCRIPT = `
       headers: { 'Content-Type': 'application/json' },
       body: data,
       keepalive: true // Helps with requests during page navigation
+    }).then(() => {
+      // Also send to Databuddy if available
+      if (globalThis.databuddy && eventData.type === 'click') {
+        globalThis.databuddy.track(eventData.clickType + '_click', {
+          target: eventData.target,
+          page: globalThis.location.pathname,
+          timestamp: new Date().toISOString()
+        });
+      }
     }).catch(error => {
       console.warn('Tracking failed:', error);
       if (retries > 0) {
@@ -56,6 +73,15 @@ const THEME_SCRIPT = `
         page: globalThis.location.pathname,
         userAgent: globalThis.navigator.userAgent
       });
+      
+      // Also track page view in Databuddy
+      if (globalThis.databuddy) {
+        globalThis.databuddy.track('page_view', {
+          path: globalThis.location.pathname,
+          referrer: document.referrer || 'direct',
+          user_agent: globalThis.navigator.userAgent
+        });
+      }
     }
   }, 100);
 
@@ -93,6 +119,32 @@ const THEME_SCRIPT = `
       clickType: linkType,
       target: linkTarget
     });
+  });
+
+  // Enhanced button click tracking for CTAs
+  globalThis.addEventListener('click', (e) => {
+    const button = e.target.closest('a[data-track], button[data-track]');
+    if (!button) return;
+    
+    const trackingData = button.getAttribute('data-track');
+    const buttonText = button.textContent?.trim() || 'unknown';
+    
+    // Track internal system
+    trackEvent({
+      type: 'click',
+      clickType: 'cta',
+      target: trackingData || buttonText
+    });
+    
+    // Track Databuddy
+    if (globalThis.databuddy) {
+      globalThis.databuddy.track('cta_click', {
+        button_text: buttonText,
+        button_id: trackingData,
+        page: globalThis.location.pathname,
+        button_position: button.getBoundingClientRect().top < globalThis.innerHeight / 2 ? 'above_fold' : 'below_fold'
+      });
+    }
   });
 })();
 `;
@@ -175,6 +227,21 @@ export default function App({ Component, url }: PageProps) {
         
         {/* Main application script */}
         <script>{THEME_SCRIPT}</script>
+        
+        {/* Databuddy Analytics - Only in production */}
+        {url.hostname !== 'localhost' && (
+          <script 
+            src="https://app.databuddy.cc/databuddy.js"
+            data-client-id="M-4ShisWAZcWCPjl6j3u-"
+            data-track-screen-views="true"
+            data-track-performance="true"
+            data-track-web-vitals="true"
+            data-track-errors="true"
+            data-track-sessions="true"
+            data-track-outgoing-links="true"
+            defer
+          ></script>
+        )}
       </head>
       <body class="dark:bg-black bg-white dark:text-white/80 text-black/80 min-h-screen font-mono">
         <Header />

@@ -209,6 +209,7 @@ export default function HomePage() {
             <div class={`flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto transition-all duration-1000 delay-700 ${isVisible.value ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <a 
                 href="/projects"
+                data-track="homepage-explore-work"
                 class="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-2xl transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 overflow-hidden"
                 onClick={() => handleLinkClick("projects")}
               >
@@ -217,6 +218,7 @@ export default function HomePage() {
               </a>
               <a 
                 href="/contact"
+                data-track="homepage-lets-connect"
                 class="group relative px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-2xl hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 font-semibold text-lg hover:shadow-lg hover:scale-105 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm"
                 onClick={() => handleLinkClick("contact")}
               >
@@ -315,6 +317,7 @@ export default function HomePage() {
           <div class="text-center mt-12">
             <a 
               href="/projects"
+              data-track="projects-explore-all-concepts"
               class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-gray-900 to-gray-800 dark:from-white dark:to-gray-100 text-white dark:text-gray-900 rounded-2xl hover:shadow-xl transition-all duration-300 font-semibold text-lg hover:scale-105"
               onClick={() => handleLinkClick("all-projects")}
             >
@@ -365,6 +368,7 @@ export default function HomePage() {
             <div class="space-y-6 pb-16">
               <a 
                 href="/contact"
+                data-track="homepage-start-conversation"
                 class="group relative inline-flex items-center px-12 py-5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-2xl transition-all duration-300 font-bold text-xl shadow-lg hover:shadow-xl hover:scale-105 overflow-hidden"
                 onClick={() => handleLinkClick("main-contact-cta")}
               >
