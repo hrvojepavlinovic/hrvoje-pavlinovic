@@ -234,6 +234,7 @@ export default function App({ Component, url }: PageProps) {
             src="https://app.databuddy.cc/databuddy.js"
             data-client-id="M-4ShisWAZcWCPjl6j3u-"
             data-track-screen-views="true"
+            data-track-attributes="true"
             data-track-performance="true"
             data-track-web-vitals="true"
             data-track-errors="true"
