@@ -178,7 +178,7 @@ export default function HomePage() {
 
             {/* Main Title */}
             <div class="space-y-3">
-              <h1 class={`text-4xl sm:text-6xl lg:text-8xl font-bold tracking-tight transition-all duration-1000 leading-tight ${isVisible.value ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <h1 class={`text-3xl sm:text-6xl lg:text-8xl font-bold tracking-tight transition-all duration-1000 leading-tight ${isVisible.value ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <span class="block bg-gradient-to-b from-gray-900 via-gray-900 to-gray-600 dark:from-white dark:via-white dark:to-gray-400 bg-clip-text text-transparent font-black leading-tight pb-2">
                   Hrvoje Pavlinovic
                 </span>

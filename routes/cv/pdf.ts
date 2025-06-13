@@ -70,12 +70,7 @@ export const handler: Handlers = {
           photoData = await Deno.readFile("./static/pfptbs.png");
           console.log("Photo loaded from static directory");
         } catch {
-          try {
-            photoData = await Deno.readFile("./pfptbs.png");
-            console.log("Photo loaded from current directory");
-          } catch {
-            console.log("Could not read photo file from filesystem");
-          }
+          console.log("Could not read photo file from filesystem");
         }
         
         if (photoData) {
