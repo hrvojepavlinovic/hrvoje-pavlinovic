@@ -63,9 +63,8 @@ export const handler: Handlers = {
 
       // Fetch and add profile photo
       try {
-        // Construct the full URL for the photo
-        const baseUrl = new URL(_req.url).origin;
-        const photoUrl = `${baseUrl}${cvData.profile.photo}`;
+        // Use direct URL for reliable photo loading
+        const photoUrl = "https://hrvoje.pavlinovic.com/pfptbs.png";
         console.log("Fetching photo from:", photoUrl);
         
         const photoResponse = await fetch(photoUrl);

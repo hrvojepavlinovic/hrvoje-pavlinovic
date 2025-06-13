@@ -75,7 +75,7 @@ export default function CVPage() {
               <a 
                 href="/cv/pdf"
                 target="_blank"
-                class="px-8 py-4 bg-orange-500/90 hover:bg-orange-600 backdrop-blur-sm border border-orange-400/50 rounded-xl text-white font-medium transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3 text-lg"
+                class="px-8 py-4 bg-orange-500/90 hover:bg-orange-600 backdrop-blur-sm border border-orange-400/50 rounded-xl text-white font-medium transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3 text-lg [-webkit-appearance:none] [appearance:none]"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
