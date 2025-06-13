@@ -63,11 +63,24 @@ export const handler: Handlers = {
 
       // Fetch and add profile photo
       try {
-        // Use direct URL for reliable photo loading
-        const photoUrl = "https://hrvoje.pavlinovic.com/pfptbs.png";
-        console.log("Fetching photo from:", photoUrl);
+        // Try multiple photo URL strategies for deployment reliability
+        const baseUrl = new URL(_req.url).origin;
+        let photoUrl = `${baseUrl}/pfptbs.png`;
+        console.log("Trying photo URL:", photoUrl);
         
-        const photoResponse = await fetch(photoUrl);
+        let photoResponse = await fetch(photoUrl);
+        
+        // If that fails, try without the origin (relative fetch)
+        if (!photoResponse.ok) {
+          console.log("First attempt failed, trying relative path");
+          photoResponse = await fetch(new URL("/pfptbs.png", _req.url));
+        }
+        
+        // If still fails, try direct URL as fallback
+        if (!photoResponse.ok) {
+          console.log("Relative path failed, trying direct URL");
+          photoResponse = await fetch("https://hrvoje.pavlinovic.com/pfptbs.png");
+        }
         if (photoResponse.ok) {
           const photoArrayBuffer = await photoResponse.arrayBuffer();
           const photoUint8Array = new Uint8Array(photoArrayBuffer);
