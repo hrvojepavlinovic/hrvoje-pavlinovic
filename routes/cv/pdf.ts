@@ -61,51 +61,40 @@ export const handler: Handlers = {
         return y + 8;
       };
 
-      // Fetch and add profile photo
+      // Load and add profile photo (avoiding HTTP 508 loop detection)
       try {
-        // Try multiple photo URL strategies for deployment reliability
-        const baseUrl = new URL(_req.url).origin;
-        let photoUrl = `${baseUrl}/pfptbs.png`;
-        console.log("Trying photo URL:", photoUrl);
+        let photoData: Uint8Array | null = null;
         
-        let photoResponse = await fetch(photoUrl);
-        
-        // If that fails, try without the origin (relative fetch)
-        if (!photoResponse.ok) {
-          console.log("First attempt failed, trying relative path");
-          photoResponse = await fetch(new URL("/pfptbs.png", _req.url));
+        // Try to read the file directly from the file system
+        try {
+          photoData = await Deno.readFile("./static/pfptbs.png");
+          console.log("Photo loaded from static directory");
+        } catch {
+          try {
+            photoData = await Deno.readFile("./pfptbs.png");
+            console.log("Photo loaded from current directory");
+          } catch {
+            console.log("Could not read photo file from filesystem");
+          }
         }
         
-        // If still fails, try direct URL as fallback
-        if (!photoResponse.ok) {
-          console.log("Relative path failed, trying direct URL");
-          photoResponse = await fetch("https://hrvoje.pavlinovic.com/pfptbs.png");
-        }
-        if (photoResponse.ok) {
-          const photoArrayBuffer = await photoResponse.arrayBuffer();
-          const photoUint8Array = new Uint8Array(photoArrayBuffer);
-          
-          // Convert to base64 using a more efficient method
+        if (photoData) {
+          // Convert to base64
           let binary = '';
           const chunkSize = 8192;
-          for (let i = 0; i < photoUint8Array.length; i += chunkSize) {
-            const chunk = photoUint8Array.slice(i, i + chunkSize);
+          for (let i = 0; i < photoData.length; i += chunkSize) {
+            const chunk = photoData.slice(i, i + chunkSize);
             binary += String.fromCharCode.apply(null, Array.from(chunk));
           }
           const photoBase64 = btoa(binary);
           
-          // Add photo with professional border
+          // Add photo
           const photoSize = 25;
           const photoX = pageWidth - margin - photoSize;
           const photoY = yPosition;
           
-          // Add the photo
-          const imageFormat = cvData.profile.photo.toLowerCase().includes('.png') ? 'PNG' : 'JPEG';
-          doc.addImage(`data:image/${imageFormat.toLowerCase()};base64,${photoBase64}`, imageFormat, photoX, photoY, photoSize, photoSize);
-          
-          console.log("Photo added successfully");
-        } else {
-          console.log("Photo response not ok:", photoResponse.status);
+          doc.addImage(`data:image/png;base64,${photoBase64}`, 'PNG', photoX, photoY, photoSize, photoSize);
+          console.log("Photo added successfully to PDF");
         }
       } catch (error) {
         console.log("Could not load profile photo:", error);
