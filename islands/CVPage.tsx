@@ -325,6 +325,46 @@ export default function CVPage() {
               <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Software Engineer (part-time)</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Crypto Today</p>
+                  </div>
+                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">Feb 2024 - May 2025</span>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Engaged in flexible consulting to maintain financial stability during market difficulties</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Architected AWS infrastructure using CDK, ECS, serverless, and RDS</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Optimized database for coin prices scraping from CEX and DEX data</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Built Ethereum-based voting engine for decentralized project reviews</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Integrated TON and ETH payments processing</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Developed Telegram mini app with voting and gamification features</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-2 h-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mt-1.5 flex-shrink-0"></div>
+                    <span class="font-medium">Optimized Telegram bot to handle thousands of concurrent requests</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
                     <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">Software Engineer</h3>
                     <p class="text-gray-600 dark:text-gray-400">Povio</p>
                   </div>
