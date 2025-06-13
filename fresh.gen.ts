@@ -20,6 +20,7 @@ import * as $blog_slug_ from "./routes/blog/[slug].tsx";
 import * as $blog_index from "./routes/blog/index.tsx";
 import * as $contact from "./routes/contact.tsx";
 import * as $cv from "./routes/cv.tsx";
+import * as $cv_pdf from "./routes/cv/pdf.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
 import * as $lightning_callback_username_ from "./routes/lightning/callback/[username].ts";
@@ -65,6 +66,7 @@ const manifest = {
     "./routes/blog/index.tsx": $blog_index,
     "./routes/contact.tsx": $contact,
     "./routes/cv.tsx": $cv,
+    "./routes/cv/pdf.ts": $cv_pdf,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
     "./routes/lightning/callback/[username].ts": $lightning_callback_username_,

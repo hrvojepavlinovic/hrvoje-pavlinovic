@@ -1,0 +1,282 @@
+{
+  "hero": {
+    "title": "Curriculum Vitae",
+    "subtitle": "12+ years of building scalable software and blockchain solutions"
+  },
+  "profile": {
+    "name": "Hrvoje Pavlinovic",
+    "title": "Senior Software Engineer",
+    "photo": "/pfptbs.png",
+    "stats": [
+      {
+        "value": "12+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "15+",
+        "label": "Projects"
+      },
+      {
+        "value": "MSc",
+        "label": "Computer Science"
+      },
+      {
+        "value": "Remote",
+        "label": "Work Style"
+      }
+    ]
+  },
+  "about": {
+    "personalInfo": [
+      {
+        "icon": "🎂",
+        "text": "25th of July 1992 (age 32)"
+      },
+      {
+        "icon": "🎓",
+        "text": "Master's Degree in Computer Science (2016)"
+      },
+      {
+        "icon": "👨‍💻",
+        "text": "12 years of experience (since April 2013)"
+      },
+      {
+        "icon": "🌟",
+        "text": "Husband and father of two"
+      },
+      {
+        "icon": "⚽",
+        "text": "Love playing football"
+      },
+      {
+        "icon": "🔸",
+        "text": "Pro-Bitcoin since 2017"
+      }
+    ],
+    "description": [
+      "Doing what I really love - building, exploring and learning how to use technology and software to make this world at least little better than it was. Blockchain and equal opportunities enthusiast, advocating for meritocracy and numbers, but often making decisions by heart.",
+      "As a person, I'm calm, focused on personal growth, learning, and exploring new possibilities. Inspiring future generations so they want to help others and be the best versions of themselves is my definition of success."
+    ],
+    "currentActivities": "Currently reading Meditations by Marcus Aurelius • Investing in Bitcoin, S&P 500, Real Estate • Using Todoist, Toggl Track, Obsidian, and Cursor"
+  },
+  "skills": {
+    "topSkills": [
+      {
+        "name": "Web3 & Blockchain",
+        "level": "Expert",
+        "percentage": 95
+      },
+      {
+        "name": "Application Architecture",
+        "level": "Expert",
+        "percentage": 95
+      },
+      {
+        "name": "AWS",
+        "level": "Expert",
+        "percentage": 95
+      },
+      {
+        "name": "TypeScript",
+        "level": "Expert",
+        "percentage": 95
+      },
+      {
+        "name": "PostgreSQL",
+        "level": "Expert",
+        "percentage": 95
+      }
+    ],
+    "techStack": {
+      "Infrastructure": [
+        "AWS (CDK, Lambda, ECS)",
+        "Docker & Kubernetes",
+        "Vercel & Deno Deploy"
+      ],
+      "Backend": [
+        "Node.js & Express",
+        "Next.js & Nest.js",
+        "GraphQL & REST"
+      ],
+      "Data": [
+        "PostgreSQL & MongoDB",
+        "Redis & Elasticsearch",
+        "Kafka & MQTT"
+      ],
+      "Web3": [
+        "Ethers & Wagmi",
+        "Smart Contracts",
+        "TonConnect"
+      ]
+    }
+  },
+  "experience": [
+    {
+      "title": "Software Engineer",
+      "company": "ReneVerse.io",
+      "period": "Mar 2023 - Present",
+      "achievements": [
+        "Built interoperable assets standard for gaming assets",
+        "Created tooling for game developers and gamers (automatic wallet creation, minting assets)",
+        "Developed immersive brand placement in games with Unity and Unreal Engine SDK",
+        "Created NFT drop on Blast",
+        "Scaled system to handle 1.7B ad impressions, unified multiple repos into monorepo"
+      ],
+      "isHighlight": true
+    },
+    {
+      "title": "Software Engineer (part-time)",
+      "company": "CryptoToday",
+      "period": "Feb 2024 - May 2025",
+      "achievements": [
+        "Engaged in flexible consulting to maintain financial stability during market difficulties",
+        "Architected AWS infrastructure using CDK, ECS, serverless, and RDS",
+        "Optimized database for coin prices scraping from CEX and DEX data",
+        "Built Ethereum-based voting engine for decentralized project reviews",
+        "Integrated TON and ETH payments processing",
+        "Developed Telegram mini app with voting and gamification features",
+        "Optimized Telegram bot to handle thousands of concurrent requests"
+      ],
+      "isHighlight": true
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Povio",
+      "period": "Nov 2021 - Mar 2023",
+      "achievements": [
+        "Worked on clinical trials project for German company Clariness",
+        "Tech stack: AWS, Terraform, Docker, GitLab CI, Node.js, Express.js, NestJS, TypeORM, PostgreSQL",
+        "Implemented Twilio API for direct call agent integration",
+        "Fixed critical timezone bug affecting patient appointment times"
+      ],
+      "isHighlight": true
+    },
+    {
+      "title": "Backend Engineer",
+      "company": "Rimac Automobili",
+      "period": "Oct 2020 - Nov 2021",
+      "achievements": [
+        "Worked in M2M team on Telemetry API and OTA updates system",
+        "Tech stack: TypeScript, GraphQL (Apollo Federation), PostgreSQL, Kafka, HiveMQ, AWS",
+        "Conducted technical interviews and led developer hiring",
+        "Created OTA updates system for the world's fastest homologated car"
+      ],
+      "isHighlight": true
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Profico",
+      "period": "Aug 2018 - Oct 2020",
+      "achievements": [
+        "Led development standards meetings and collaborated with CEO",
+        "Built large-scale web applications for Norwegian media company Hegnar",
+        "Created Real Estate market module integrating 4 different agency APIs",
+        "Led definition of company-wide development standards"
+      ],
+      "isHighlight": true
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Ericsson",
+      "period": "Feb 2015 - Aug 2018",
+      "achievements": [
+        "Developed internal tools: Nodebook (Symfony), Atlas (data analysis), AAT (testing)",
+        "Improved performance by migrating from Groovy & Grails to Node.js",
+        "Created framework-agnostic schema language for testing tools",
+        "Optimized internal tools, promoted to senior engineer, presented to SoftBank"
+      ],
+      "isHighlight": true
+    },
+    {
+      "title": "Student Software Developer",
+      "company": "Various Projects",
+      "period": "Apr 2013 - July 2016",
+      "achievements": [
+        "Tracked 3000+ hours on various projects while studying",
+        "Worked with Joomla, WordPress, Magento, custom PHP + jQuery",
+        "Managed ad campaigns, SEO optimization, and server maintenance",
+        "Balanced work and studies, graduating with multiple job offers"
+      ],
+      "isHighlight": true
+    }
+  ],
+  "projects": [
+    {
+      "name": "Memoato",
+      "description": "AI-powered life tracking platform",
+      "details": "Voice/text/app integration input for life tracking. AI labels your data and gives you customized dashboards, insights, agenda. Replaces 5+ productivity apps with one intelligent solution.",
+      "completion": "7% complete",
+      "completionColor": "purple",
+      "url": "https://memoato.com",
+      "urlLabel": "Live",
+      "technologies": ["T3", "AI", "Postgres", "Vercel"]
+    },
+    {
+      "name": "XXI Today",
+      "description": "Bitcoin milestone tracking platform",
+      "details": "The definitive Bitcoin portal for tracking the historic journey to 21 million coins. Beta platform processing 10K+ API calls daily with real-time network stats and milestone celebrations.",
+      "completion": "5% complete",
+      "completionColor": "orange",
+      "url": "https://xxi.today",
+      "urlLabel": "Live",
+      "technologies": ["T3", "Postgres", "Vercel", "Bitcoin"]
+    },
+    {
+      "name": "Apes Club",
+      "description": "Smart Solana token discovery platform",
+      "details": "Smart Solana token discovery platform with advanced analytics and community curation for safer meme coin exploration. Technical prototype with analytics engine addressing Solana's $50B+ daily trading volume.",
+      "completion": "1% complete",
+      "completionColor": "violet",
+      "url": "https://apes.club",
+      "urlLabel": "Prototype",
+      "technologies": ["Solana", "Web3", "TypeScript", "DeFi"]
+    },
+    {
+      "name": "Personal Portfolio",
+      "description": "Modern portfolio with real-time analytics",
+      "details": "Personal brand platform showcasing technical expertise with modern design, real-time analytics, and integrated project portfolio. 15K+ monthly visitors with high engagement.",
+      "completion": "20% complete",
+      "completionColor": "orange",
+      "url": "https://hrvoje.pavlinovic.com",
+      "urlLabel": "Live",
+      "technologies": ["Deno", "KV", "Fresh", "Tailwind"]
+    },
+    {
+      "name": "PLAYGRND",
+      "description": "Street football community platform",
+      "details": "Returning football to the streets with local league platform, player profiles with comprehensive stats, venue partnerships, and community-driven grassroots organization.",
+      "completion": "Pre-launch",
+      "completionColor": "gray",
+      "url": "https://playgrnd.app",
+      "urlLabel": "Coming Soon",
+      "technologies": ["T3", "Postgres", "Vercel", "Auth"]
+    },
+    {
+      "name": "HILLS Lab (My B2B company)",
+      "description": "Technology laboratory for AI, blockchain & Web3",
+      "details": "Technology laboratory specializing in cutting-edge AI, blockchain, and Web3 solutions. 6 active client projects, 4 senior developers, partnerships with major Croatian tech companies.",
+      "completion": "35% complete",
+      "completionColor": "orange",
+      "url": "https://hills-lab.hr",
+      "urlLabel": "Live",
+      "technologies": ["Deno", "Fresh", "Tailwind"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master's Degree, Computer Science",
+      "institution": "FESB - Faculty of Electrical Engineering, Mechanical Engineering and Naval Architecture",
+      "period": "2014 - 2016",
+      "details": [
+        "Master's thesis @ Universidad de Las Palmas de Gran Canaria (Erasmus scholarship)",
+        "Student Teaching Assistant for Introduction to Distributed Information Systems"
+      ]
+    },
+    {
+      "degree": "Bachelor's Degree, Computer Science",
+      "institution": "FESB - Faculty of Electrical Engineering, Mechanical Engineering and Naval Architecture",
+      "period": "2011 - 2014",
+      "details": []
+    }
+  ]
+} 
