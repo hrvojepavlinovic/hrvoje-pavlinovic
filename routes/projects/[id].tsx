@@ -375,7 +375,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                     <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                       <li class="flex items-start gap-2">
                         <div class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${accentClasses.accent.replace('text-', 'bg-')}`}></div>
-                        <span>Pro-Bitcoin since 2017, blockchain enthusiast</span>
+                        <span>Bitcoin fan since 2017, blockchain enthusiast</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <div class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${accentClasses.accent.replace('text-', 'bg-')}`}></div>
