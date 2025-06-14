@@ -218,7 +218,7 @@
       "completionColor": "purple",
       "url": "https://memoato.com",
       "urlLabel": "Live",
-      "technologies": ["T3", "AI", "Postgres", "Vercel"]
+      "technologies": ["T3", "GPT Turbo", "Whisper", "Postgres", "Vercel"]
     },
     {
       "name": "XXI Today",
