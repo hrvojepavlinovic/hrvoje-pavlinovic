@@ -21,8 +21,8 @@
         "label": "Computer Science"
       },
       {
-        "value": "Remote",
-        "label": "Work Style"
+        "value": "B2B",
+        "label": "Remote"
       }
     ]
   },
@@ -90,21 +90,21 @@
     "techStack": {
       "Infrastructure": [
         "AWS (CDK, Lambda, ECS)",
-        "Docker & Kubernetes",
-        "Vercel & Deno Deploy"
+        "Docker, Kubernetes",
+        "Vercel, Deno Deploy"
       ],
       "Backend": [
-        "Node.js & Express",
-        "Next.js & Nest.js",
-        "GraphQL & REST"
+        "Node.js, Express",
+        "Next.js, Nest.js",
+        "GraphQL, REST"
       ],
       "Data": [
-        "PostgreSQL & MongoDB",
-        "Redis & Elasticsearch",
-        "Kafka & MQTT"
+        "PostgreSQL, MongoDB",
+        "Redis, Elasticsearch",
+        "Kafka, MQTT"
       ],
       "Web3": [
-        "Ethers & Wagmi",
+        "Ethers, Wagmi",
         "Smart Contracts",
         "TonConnect"
       ]

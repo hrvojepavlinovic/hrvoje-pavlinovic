@@ -68,7 +68,6 @@ export const handler: Handlers = {
         // Try to read the file directly from the file system
         try {
           photoData = await Deno.readFile("./static/pfptbs.png");
-          console.log("Photo loaded from static directory");
         } catch {
           console.log("Could not read photo file from filesystem");
         }
@@ -89,7 +88,6 @@ export const handler: Handlers = {
           const photoY = yPosition;
           
           doc.addImage(`data:image/png;base64,${photoBase64}`, 'PNG', photoX, photoY, photoSize, photoSize);
-          console.log("Photo added successfully to PDF");
         }
       } catch (error) {
         console.log("Could not load profile photo:", error);
@@ -149,7 +147,7 @@ export const handler: Handlers = {
         checkNewPage(10);
         const isBackend = category === 'Backend';
         const categoryText = isBackend ? 'Backend/Frontend' : category;
-        const skills = isBackend ? technologies.map(skill => skill.replace(' & ', ', ')).concat(['React', 'Tailwind']) : technologies;
+        const skills = isBackend ? technologies.concat(['React', 'Tailwind']) : technologies;
         yPosition = addText(`${categoryText}: ${skills.join(", ")}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
         yPosition += 2;
       });
