@@ -50,7 +50,7 @@
       },
       {
         "icon": "🔸",
-        "text": "Pro-Bitcoin since 2017"
+        "text": "Bitcoin fan"
       }
     ],
     "description": [
@@ -62,17 +62,7 @@
   "skills": {
     "topSkills": [
       {
-        "name": "Web3 & Blockchain",
-        "level": "Expert",
-        "percentage": 95
-      },
-      {
-        "name": "Application Architecture",
-        "level": "Expert",
-        "percentage": 95
-      },
-      {
-        "name": "AWS",
+        "name": "System Design",
         "level": "Expert",
         "percentage": 95
       },
@@ -84,27 +74,46 @@
       {
         "name": "PostgreSQL",
         "level": "Expert",
-        "percentage": 95
+        "percentage": 90
+      },
+      {
+        "name": "AWS",
+        "level": "Expert",
+        "percentage": 90
+      },
+      {
+        "name": "Web3 & Blockchain",
+        "level": "Advanced",
+        "percentage": 85
+      },
+      {
+        "name": "AI/LLM Integration",
+        "level": "Advanced",
+        "percentage": 75
       }
     ],
     "techStack": {
       "Infrastructure": [
         "AWS (CDK, Lambda, ECS)",
         "Docker, Kubernetes",
+        "Terraform",
         "Vercel, Deno Deploy"
       ],
-      "Backend": [
+      "Web": [
         "Node.js, Express",
         "Next.js, Nest.js",
-        "GraphQL, REST"
+        "GraphQL, REST",
+        "React, Tailwind"
       ],
       "Data": [
         "PostgreSQL, MongoDB",
         "Redis, Elasticsearch",
-        "Kafka, MQTT"
+        "Kafka, MQTT",
+        "Optimization, Monitoring"
       ],
       "Web3": [
         "Ethers, Wagmi",
+        "Bitcoin",
         "Smart Contracts",
         "TonConnect"
       ]
@@ -189,10 +198,10 @@
     },
     {
       "title": "Student Software Developer",
-      "company": "Various Projects",
+      "company": "Freelance",
       "period": "Apr 2013 - July 2016",
       "achievements": [
-        "Tracked 3000+ hours on various projects while studying",
+        "Tracked 3000+ hours on various projects while attending university",
         "Worked with Joomla, WordPress, Magento, custom PHP + jQuery",
         "Managed ad campaigns, SEO optimization, and server maintenance",
         "Balanced work and studies, graduating with multiple job offers"
@@ -213,8 +222,8 @@
     },
     {
       "name": "XXI Today",
-      "description": "Bitcoin milestone tracking platform",
-      "details": "The definitive Bitcoin portal for tracking the historic journey to 21 million coins. Beta platform processing 10K+ API calls daily with real-time network stats and milestone celebrations.",
+      "description": "From beginners to experts, XXI Today is go-to resource for all things Bitcoin.",
+      "details": "The definitive Bitcoin portal for tracking the historic journey to 21 million coins. Beta platform with real-time network stats and milestone celebrations.",
       "completion": "5% complete",
       "completionColor": "orange",
       "url": "https://xxi.today",
@@ -228,7 +237,7 @@
       "completion": "1% complete",
       "completionColor": "violet",
       "url": "https://apes.club",
-      "urlLabel": "Prototype",
+      "urlLabel": "Live",
       "technologies": ["Solana", "Web3", "TypeScript", "DeFi"]
     },
     {
@@ -248,7 +257,7 @@
       "completion": "Pre-launch",
       "completionColor": "gray",
       "url": "https://playgrnd.app",
-      "urlLabel": "Coming Soon",
+      "urlLabel": "Live",
       "technologies": ["T3", "Postgres", "Vercel", "Auth"]
     },
     {

@@ -155,6 +155,8 @@ export const handler: Handlers = {
       yPosition += 4;
       // Experience Section
       yPosition = addSectionHeader("Professional Experience", yPosition);
+
+      yPosition+=2;
       
       cvData.experience.forEach((job) => {
         checkNewPage(20);
@@ -175,6 +177,8 @@ export const handler: Handlers = {
 
       // Projects Section
       yPosition = addSectionHeader("Personal Projects", yPosition);
+
+      yPosition+=2;
       
       cvData.projects.forEach((project, index) => {
         // Only check for new page if we have enough content to display
@@ -197,6 +201,8 @@ export const handler: Handlers = {
 
       // Education Section
       yPosition = addSectionHeader("Education", yPosition);
+
+      yPosition+=2;
       
       cvData.education.forEach((edu, index) => {
         // Better page break logic for education section
