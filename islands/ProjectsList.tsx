@@ -24,12 +24,12 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
   // Function to get accent color classes
   const getAccentClasses = (accent?: string) => {
     switch (accent) {
-      case 'purple':
+      case 'emerald':
         return {
-          progress: 'bg-purple-600 dark:bg-purple-400',
-          badge: 'bg-purple-600 dark:bg-purple-400',
-          background: 'bg-gradient-to-br from-purple-50 to-white dark:from-purple-950/30 dark:to-gray-900',
-          hoverBackground: 'group-hover:from-purple-100 group-hover:to-purple-50 dark:group-hover:from-purple-900/50 dark:group-hover:to-purple-950/20'
+          progress: 'bg-emerald-600 dark:bg-emerald-400',
+          badge: 'bg-emerald-600 dark:bg-emerald-400',
+          background: 'bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-950/30 dark:to-gray-900',
+          hoverBackground: 'group-hover:from-emerald-100 group-hover:to-emerald-50 dark:group-hover:from-emerald-900/50 dark:group-hover:to-emerald-950/20'
         };
       case 'orange':
         return {

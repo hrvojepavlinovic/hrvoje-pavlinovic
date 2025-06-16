@@ -215,7 +215,7 @@
       "description": "AI-powered life tracking platform",
       "details": "Voice/text/app integration input for life tracking. AI labels your data and gives you customized dashboards, insights, agenda. Replaces 5+ productivity apps with one intelligent solution.",
       "completion": "7% complete",
-      "completionColor": "purple",
+      "completionColor": "emerald",
       "url": "https://memoato.com",
       "urlLabel": "Live",
       "technologies": ["T3", "GPT Turbo", "Whisper", "Postgres", "Vercel"]

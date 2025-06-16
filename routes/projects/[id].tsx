@@ -77,12 +77,12 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
   // Function to get accent color classes
   const getAccentClasses = (accent?: string) => {
     switch (accent) {
-      case 'purple':
+      case 'emerald':
         return {
-          gradient: 'bg-gradient-to-br from-purple-50 via-white to-purple-50/50 dark:from-purple-950/20 dark:via-gray-900 dark:to-purple-950/10',
-          sectionBg: 'bg-purple-50/50 dark:bg-purple-950/20',
-          accent: 'text-purple-600 dark:text-purple-400',
-          button: 'bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600'
+          gradient: 'bg-gradient-to-br from-emerald-50 via-white to-emerald-50/50 dark:from-emerald-950/20 dark:via-gray-900 dark:to-emerald-950/10',
+          sectionBg: 'bg-emerald-50/50 dark:bg-emerald-950/20',
+          accent: 'text-emerald-600 dark:text-emerald-400',
+          button: 'bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600'
         };
       case 'orange':
         return {

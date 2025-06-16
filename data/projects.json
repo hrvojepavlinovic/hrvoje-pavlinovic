@@ -9,7 +9,7 @@
       "technologies": ["T3", "AI", "Postgres", "Vercel"],
       "completion": 7,
       "featured": true,
-      "accent": "purple",
+      "accent": "emerald",
       "pitch": {
         "tagline": "finally an app that gets your beautifully chaotic life",
         "problem": "People juggle multiple life tracking and productivity apps - todo lists, habit trackers, notes apps, finance trackers, health apps. Each one is missing something important, and switching between them creates chaos instead of clarity. You need an uncluttered way to enter information and have everything sorted out automatically.",

@@ -78,7 +78,7 @@ export default function HomePage() {
             name: "Memoato",
             description: "Voice/text/app integration input for life tracking. AI labels your data and gives you customized insights.",
             technologies: ["AI", "T3", "Postgres"],
-            accent: "purple",
+            accent: "emerald",
             url: "/projects#memoato",
             completion: 7,
             featured: true

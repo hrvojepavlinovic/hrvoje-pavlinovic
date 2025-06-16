@@ -18,7 +18,7 @@ export default function CVPage() {
   // Helper function to get completion color classes
   const getCompletionColorClasses = (color: string) => {
     const colorMap: Record<string, string> = {
-      'purple': 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300',
+      'emerald': 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300',
       'orange': 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300',
       'violet': 'bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300',
       'gray': 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
