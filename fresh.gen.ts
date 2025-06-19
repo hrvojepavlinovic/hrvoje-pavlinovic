@@ -18,6 +18,8 @@ import * as $api_stats from "./routes/api/stats.ts";
 import * as $api_track from "./routes/api/track.ts";
 import * as $blog_slug_ from "./routes/blog/[slug].tsx";
 import * as $blog_index from "./routes/blog/index.tsx";
+import * as $branding_x_cover from "./routes/branding/x/cover.tsx";
+import * as $branding_x_profile from "./routes/branding/x/profile.tsx";
 import * as $contact from "./routes/contact.tsx";
 import * as $cv from "./routes/cv.tsx";
 import * as $cv_pdf from "./routes/cv/pdf.ts";
@@ -64,6 +66,8 @@ const manifest = {
     "./routes/api/track.ts": $api_track,
     "./routes/blog/[slug].tsx": $blog_slug_,
     "./routes/blog/index.tsx": $blog_index,
+    "./routes/branding/x/cover.tsx": $branding_x_cover,
+    "./routes/branding/x/profile.tsx": $branding_x_profile,
     "./routes/contact.tsx": $contact,
     "./routes/cv.tsx": $cv,
     "./routes/cv/pdf.ts": $cv_pdf,
