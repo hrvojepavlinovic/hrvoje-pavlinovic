@@ -53,6 +53,7 @@ export default function XFollowersPage(props: PageProps) {
 
         <script 
           type="application/ld+json"
+          // deno-lint-ignore react-no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>

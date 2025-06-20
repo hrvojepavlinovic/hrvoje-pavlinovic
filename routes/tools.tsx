@@ -48,6 +48,7 @@ function ToolListItem({ title, description, href, icon, comingSoon = false, feat
       <div class="flex-shrink-0">
         {comingSoon ? (
           <button 
+            type="button"
             disabled
             class="px-4 py-2 bg-gray-100 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 font-medium rounded-lg cursor-not-allowed border border-gray-200 dark:border-gray-700/50"
           >
@@ -147,6 +148,7 @@ export default function ToolsPage(props: PageProps) {
         {/* Structured Data */}
         <script 
           type="application/ld+json"
+          // deno-lint-ignore react-no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
 
