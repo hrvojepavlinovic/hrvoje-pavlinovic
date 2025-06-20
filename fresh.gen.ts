@@ -29,6 +29,8 @@ import * as $lightning_callback_username_ from "./routes/lightning/callback/[use
 import * as $projects from "./routes/projects.tsx";
 import * as $projects_id_ from "./routes/projects/[id].tsx";
 import * as $stats from "./routes/stats.tsx";
+import * as $tools from "./routes/tools.tsx";
+import * as $tools_x_followers from "./routes/tools/x-followers.tsx";
 import * as $webstats from "./routes/webstats.tsx";
 import * as $webstats_index from "./routes/webstats/index.tsx";
 import * as $AboutPage from "./islands/AboutPage.tsx";
@@ -46,6 +48,7 @@ import * as $StatsLink from "./islands/StatsLink.tsx";
 import * as $StatsPage from "./islands/StatsPage.tsx";
 import * as $ThemeToggle from "./islands/ThemeToggle.tsx";
 import * as $WebStats from "./islands/WebStats.tsx";
+import * as $XFollowersTracker from "./islands/XFollowersTracker.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -77,6 +80,8 @@ const manifest = {
     "./routes/projects.tsx": $projects,
     "./routes/projects/[id].tsx": $projects_id_,
     "./routes/stats.tsx": $stats,
+    "./routes/tools.tsx": $tools,
+    "./routes/tools/x-followers.tsx": $tools_x_followers,
     "./routes/webstats.tsx": $webstats,
     "./routes/webstats/index.tsx": $webstats_index,
   },
@@ -96,6 +101,7 @@ const manifest = {
     "./islands/StatsPage.tsx": $StatsPage,
     "./islands/ThemeToggle.tsx": $ThemeToggle,
     "./islands/WebStats.tsx": $WebStats,
+    "./islands/XFollowersTracker.tsx": $XFollowersTracker,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

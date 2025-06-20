@@ -52,7 +52,8 @@ export default function Header() {
             <NavLink href="/cv">cv</NavLink>
             <NavLink href="/projects">projects</NavLink>
             <NavLink href="/blog">blog</NavLink>
-            <NavLink href="/stats">stats</NavLink>
+            <NavLink href="/tools">tools</NavLink>
+            {/* <NavLink href="/stats">stats</NavLink> */}
             <NavLink href="/contact">contact</NavLink>
           </nav>
           
