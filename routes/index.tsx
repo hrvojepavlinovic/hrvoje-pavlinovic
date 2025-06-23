@@ -37,35 +37,39 @@ export default function Home() {
         <link rel="canonical" href="https://hrvoje.pavlinovic.com/" />
 
         {/* JSON-LD structured data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Hrvoje Pavlinovic",
-            "alternateName": "0xhp10",
-            "description": "Senior Software Engineer and tech entrepreneur with 12+ years engineering experience.",
-            "image": "https://hrvoje.pavlinovic.com/pfptbs.png",
-            "url": "https://hrvoje.pavlinovic.com",
-            "sameAs": [
-              "https://twitter.com/0xhp10",
-              "https://github.com/hrvoje-pavlinovic",
-              "https://linkedin.com/in/hpavlino"
-            ],
-            "jobTitle": "Senior Software Engineer & Tech Entrepreneur",
-            "knowsAbout": [
-              "Blockchain Technology",
-              "Bitcoin",
-              "Artificial Intelligence",
-              "Software Development",
-              "Web3",
-              "Entrepreneurship"
-            ],
-            "foundingLocation": {
-              "@type": "Place",
-              "name": "Croatia"
-            }
-          })}
-        </script>
+        <script 
+          type="application/ld+json"
+          // deno-lint-ignore react-no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Hrvoje Pavlinovic",
+              "alternateName": "@0xhp10",
+              "description": "Senior Software Engineer and tech entrepreneur with 12+ years engineering experience.",
+              "image": "https://hrvoje.pavlinovic.com/pfptbs.png",
+              "url": "https://hrvoje.pavlinovic.com",
+              "sameAs": [
+                "https://twitter.com/0xhp10",
+                "https://github.com/hrvoje-pavlinovic",
+                "https://linkedin.com/in/hpavlino"
+              ],
+              "jobTitle": "Senior Software Engineer & Tech Entrepreneur",
+              "knowsAbout": [
+                "Blockchain Technology",
+                "Bitcoin",
+                "Artificial Intelligence",
+                "Software Development",
+                "Web3",
+                "Entrepreneurship"
+              ],
+              "foundingLocation": {
+                "@type": "Place",
+                "name": "Croatia"
+              }
+            })
+          }}
+        />
       </Head>
       
       <HomePage />

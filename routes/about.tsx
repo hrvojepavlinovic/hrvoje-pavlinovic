@@ -37,33 +37,38 @@ export default function About() {
         <link rel="canonical" href="https://hrvoje.pavlinovic.com/about" />
 
         {/* JSON-LD structured data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Hrvoje Pavlinovic",
-            "alternateName": "0xhp10",
-            "description": "Senior Software Engineer and tech lead with 4+ years of experience in decentralized systems.",
-            "image": "https://hrvoje.pavlinovic.com/pfptbs.png",
-            "url": "https://hrvoje.pavlinovic.com",
-            "sameAs": [
-              "https://twitter.com/0xhp10",
-              "https://github.com/hrvoje-pavlinovic"
-            ],
-            "jobTitle": "Blockchain Developer & Tech Lead",
-            "knowsAbout": [
-              "Blockchain Technology",
-              "Bitcoin",
-              "Software Development",
-              "Decentralized Systems",
-              "Web3"
-            ],
-            "worksFor": {
-              "@type": "Organization",
-              "name": "Independent Contractor"
-            }
-          })}
-        </script>
+        <script 
+          type="application/ld+json"
+          // deno-lint-ignore react-no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Hrvoje Pavlinovic",
+              "alternateName": "@0xhp10",
+              "description": "Senior Software Engineer and tech lead with 4+ years of experience in decentralized systems.",
+              "image": "https://hrvoje.pavlinovic.com/pfptbs.png",
+              "url": "https://hrvoje.pavlinovic.com",
+              "sameAs": [
+                "https://twitter.com/0xhp10",
+                "https://github.com/hrvoje-pavlinovic",
+                "https://linkedin.com/in/hpavlino"
+              ],
+              "jobTitle": "Blockchain Developer & Tech Lead",
+              "knowsAbout": [
+                "Blockchain Technology",
+                "Bitcoin",
+                "Software Development",
+                "Decentralized Systems",
+                "Web3"
+              ],
+              "worksFor": {
+                "@type": "Organization",
+                "name": "Independent Contractor"
+              }
+            })
+          }}
+        />
       </Head>
       
       <AboutPage />

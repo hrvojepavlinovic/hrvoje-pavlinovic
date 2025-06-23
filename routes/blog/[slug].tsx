@@ -100,30 +100,34 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
         <meta name="twitter:url" content={canonicalUrl} />
         
         {/* JSON-LD */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": article.title,
-            "description": article.shortDescription,
-            "image": absoluteImageUrl,
-            "url": canonicalUrl,
-            "author": {
-              "@type": "Person",
-              "name": article.seo.author
-            },
-            "publisher": {
-              "@type": "Person",
-              "name": "Hrvoje Pavlinovic",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://hrvoje.pavlinovic.com/pfp.png"
-              }
-            },
-            "datePublished": article.createdAt,
-            "keywords": article.seo.keywords.join(", ")
-          })}
-        </script>
+        <script 
+          type="application/ld+json"
+          // deno-lint-ignore react-no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              "headline": article.title,
+              "description": article.shortDescription,
+              "image": absoluteImageUrl,
+              "url": canonicalUrl,
+              "author": {
+                "@type": "Person",
+                "name": article.seo.author
+              },
+              "publisher": {
+                "@type": "Person",
+                "name": "Hrvoje Pavlinovic",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://hrvoje.pavlinovic.com/pfp.png"
+                }
+              },
+              "datePublished": article.createdAt,
+              "keywords": article.seo.keywords.join(", ")
+            })
+          }}
+        />
       </Head>
       
       <div class="min-h-screen bg-gradient-to-b from-orange-50/30 via-transparent via-40% to-orange-50/30 dark:from-orange-950/10 dark:via-transparent dark:via-40% dark:to-orange-950/10">
