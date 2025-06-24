@@ -8,7 +8,7 @@ interface Project {
   url?: string;
   description: string;
   technologies?: string[];
-  completion: number;
+  status: "early" | "development" | "live";
   featured: boolean;
   likes?: number;
   accent?: string;
@@ -20,6 +20,20 @@ interface ProjectsListProps {
 
 export default function ProjectsList({ projects }: ProjectsListProps) {
   const [sortedProjects, setSortedProjects] = useState<Project[]>(projects);
+
+  // Function to get status info
+  const getStatusInfo = (status: "early" | "development" | "live") => {
+    switch (status) {
+      case 'early':
+        return { label: 'Early Development', percentage: 20 };
+      case 'development':
+        return { label: 'Development', percentage: 60 };
+      case 'live':
+        return { label: 'Live', percentage: 100 };
+      default:
+        return { label: 'Unknown', percentage: 0 };
+    }
+  };
 
   // Function to get accent color classes
   const getAccentClasses = (accent?: string) => {
@@ -140,16 +154,16 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                 </div>
               </div>
               
-              {/* Progress indicator */}
+              {/* Status indicator */}
               <div class="mt-auto">
                 <div class="flex items-center justify-between mb-2">
-                  <span class="text-xs font-medium text-gray-500 dark:text-gray-500">Progress</span>
-                  <span class="text-xs font-bold text-gray-900 dark:text-white">{project.completion}%</span>
+                  <span class="text-xs font-medium text-gray-500 dark:text-gray-500">Status</span>
+                  <span class="text-xs font-bold text-gray-900 dark:text-white">{getStatusInfo(project.status).label}</span>
                 </div>
                 <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-1.5">
                   <div 
                     class={`h-1.5 rounded-full transition-all duration-500 ${accentClasses.progress}`}
-                    style={`width: ${project.completion}%`}
+                    style={`width: ${getStatusInfo(project.status).percentage}%`}
                   ></div>
                 </div>
               </div>

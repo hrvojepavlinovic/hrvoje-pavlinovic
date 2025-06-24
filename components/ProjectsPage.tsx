@@ -6,7 +6,7 @@ interface Project {
   url?: string;
   description: string;
   technologies?: string[];
-  completion: number;
+  status: "early" | "development" | "live";
   featured: boolean;
   likes?: number;
   accent?: string;

@@ -33,7 +33,7 @@ interface Project {
   url?: string;
   description: string;
   technologies?: string[];
-  completion: number;
+  status: "early" | "development" | "live";
   featured: boolean;
   accent?: string;
 }
@@ -80,7 +80,7 @@ export default function HomePage() {
             technologies: ["AI", "T3", "Postgres"],
             accent: "emerald",
             url: "/projects#memoato",
-            completion: 7,
+            status: "development",
             featured: true
           },
           {
@@ -90,7 +90,7 @@ export default function HomePage() {
             technologies: ["Bitcoin", "Lightning", "T3"],
             accent: "orange",
             url: "/projects#xxi-today",
-            completion: 8,
+            status: "early",
             featured: true
           },
           {
@@ -100,7 +100,7 @@ export default function HomePage() {
             technologies: ["Solana", "Web3", "DeFi"],
             accent: "violet",
             url: "/projects#apes-club",
-            completion: 3,
+            status: "early",
             featured: false
           }
         ];

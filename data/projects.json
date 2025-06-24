@@ -7,7 +7,7 @@
       "url": "https://memoato.com",
       "description": "Voice/text/app integration input for life tracking. AI labels your data and provides you with insights, customized dashboards and agenda. Replaces 5+ productivity apps with one intelligent solution.",
       "technologies": ["T3", "AI", "Postgres", "Vercel"],
-      "completion": 7,
+      "status": "development",
       "featured": true,
       "accent": "emerald",
       "pitch": {
@@ -44,7 +44,7 @@
       "url": "https://xxi.today",
       "description": "The ultimate Bitcoin hub - complete information ecosystem with resources directory, wallet explorer, news, and milestone tracking for beginners to advanced users.",
       "technologies": ["T3", "Postgres", "Vercel", "Bitcoin", "Lightning"],
-      "completion": 8,
+      "status": "early",
       "featured": true,
       "accent": "orange",
       "pitch": {
@@ -79,7 +79,7 @@
       "url": "https://playgrnd.app",
       "description": "Returning football to the streets with local league platform, player profiles with comprehensive stats, venue partnerships, and community-driven grassroots organization.",
       "technologies": ["T3", "Postgres", "Vercel", "Auth", "Payments"],
-      "completion": 2,
+      "status": "early",
       "featured": false,
       "accent": "green",
       "pitch": {
@@ -120,7 +120,7 @@
       "url": "https://apes.club",
       "description": "Pump.fun style Solana token launcher with advanced dashboards, creator leaderboards, risk analytics, and community governance for smarter meme coin discovery.",
       "technologies": ["Solana", "Web3", "TypeScript", "DeFi", "Rust"],
-      "completion": 3,
+      "status": "early",
       "featured": false,
       "accent": "violet",
       "pitch": {
@@ -154,7 +154,7 @@
       "url": "https://hrvoje.pavlinovic.com",
       "description": "Modern personal brand platform built with cutting-edge Deno/Fresh stack, featuring real-time analytics, integrated project showcase, and technical depth demonstration.",
       "technologies": ["Deno", "KV", "Fresh", "Tailwind"],
-      "completion": 25,
+      "status": "live",
       "featured": true,
       "accent": "orange",
       "pitch": {
@@ -188,7 +188,7 @@
       "url": "https://hills-lab.hr",
       "description": "Independent research laboratory specializing in bleeding-edge AI, blockchain, and Web3 solutions. 'Decoding Tomorrow' with focus on sustainable innovation.",
       "technologies": ["Deno", "Fresh", "Tailwind", "AI", "Blockchain"],
-      "completion": 40,
+      "status": "development",
       "featured": true,
       "accent": "orange",
       "pitch": {
