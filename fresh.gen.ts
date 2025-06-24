@@ -21,6 +21,9 @@ import * as $blog_index from "./routes/blog/index.tsx";
 import * as $branding_x_cover from "./routes/branding/x/cover.tsx";
 import * as $branding_x_profile from "./routes/branding/x/profile.tsx";
 import * as $contact from "./routes/contact.tsx";
+import * as $cover from "./routes/cover.tsx";
+import * as $cover_type_ from "./routes/cover/[type].ts";
+import * as $cover_generate from "./routes/cover/generate.ts";
 import * as $cv from "./routes/cv.tsx";
 import * as $cv_pdf from "./routes/cv/pdf.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
@@ -69,6 +72,9 @@ const manifest = {
     "./routes/branding/x/cover.tsx": $branding_x_cover,
     "./routes/branding/x/profile.tsx": $branding_x_profile,
     "./routes/contact.tsx": $contact,
+    "./routes/cover.tsx": $cover,
+    "./routes/cover/[type].ts": $cover_type_,
+    "./routes/cover/generate.ts": $cover_generate,
     "./routes/cv.tsx": $cv,
     "./routes/cv/pdf.ts": $cv_pdf,
     "./routes/greet/[name].tsx": $greet_name_,

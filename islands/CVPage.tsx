@@ -1,4 +1,5 @@
 import cvData from "../data/cv.json" with { type: "json" };
+import projectsData from "../data/projects.json" with { type: "json" };
 
 export default function CVPage() {
   // Smooth scroll function
@@ -13,17 +14,6 @@ export default function CVPage() {
         behavior: 'smooth'
       });
     }
-  };
-
-  // Helper function to get completion color classes
-  const getCompletionColorClasses = (color: string) => {
-    const colorMap: Record<string, string> = {
-      'emerald': 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300',
-      'orange': 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300',
-      'violet': 'bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300',
-      'gray': 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-    };
-    return colorMap[color] || colorMap.gray;
   };
 
   return (
@@ -98,7 +88,7 @@ export default function CVPage() {
               <div class="relative">
                 <div class="absolute inset-0 bg-gradient-to-br from-orange-200 to-orange-100 dark:from-orange-800/30 dark:to-orange-900/20 rounded-full blur-lg opacity-70"></div>
                 <img 
-                  src={cvData.profile.photo} 
+                  src={(cvData.profile as any).photo} 
                   alt={cvData.profile.name}
                   class="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-white/50 dark:border-gray-800/50"
                 />
@@ -128,185 +118,165 @@ export default function CVPage() {
             </div>
           </div>
 
-          {/* About Section */}
+          {/* Professional Summary Section */}
           <div id="about" class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
             <div class="flex items-center gap-3 mb-8">
               <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
               <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                About Me
+                Professional Summary
               </h2>
             </div>
             <div class="space-y-6">
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="space-y-3">
-                  {cvData.about.personalInfo.slice(0, 3).map((info, index) => (
-                    <p key={index} class="text-sm flex items-center space-x-3 text-gray-700 dark:text-gray-300">
-                      <span class="text-xl">{info.icon}</span>
-                      <span>{info.text}</span>
-                    </p>
-                  ))}
-                </div>
-                <div class="space-y-3">
-                  {cvData.about.personalInfo.slice(3).map((info, index) => (
-                    <p key={index} class="text-sm flex items-center space-x-3 text-gray-700 dark:text-gray-300">
-                      <span class="text-xl">{info.icon}</span>
-                      <span>{info.text}</span>
-                    </p>
-                  ))}
-                </div>
-              </div>
-              <div class="space-y-4">
-                {cvData.about.description.map((paragraph, index) => (
-                  <p key={index} class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-              <div class="pt-6 border-t border-gray-200 dark:border-gray-700">
-                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {cvData.about.currentActivities}
-                </p>
-              </div>
+              <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+                {cvData.professionalSummary.description}
+              </p>
             </div>
           </div>
 
           {/* Skills Section */}
-          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
-            <div class="flex items-center gap-3 mb-8">
+          <div class="space-y-8">
+            <div class="flex items-center gap-3">
               <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
               <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
                 Technical Expertise
               </h2>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50">
-                <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-6">Top Skills</h3>
-                <div class="space-y-4">
-                  {cvData.skills.topSkills.map((skill, index) => (
-                    <div key={index}>
-                      <div class="flex justify-between items-center mb-2">
-                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
-                        <span class="text-sm font-bold text-orange-600 dark:text-orange-400">{skill.level}</span>
-                      </div>
-                      <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-400 dark:to-orange-500 rounded-full transition-all duration-500 ease-out" style={`width: ${skill.percentage}%`}></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+            
+            {/* Core Expertise - Full Width */}
+            <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+              <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-6">Core Expertise</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {cvData.skills.coreExpertise.map((skill, index) => (
+                  <div key={index} class="flex items-center gap-3 p-3 bg-orange-50/50 dark:bg-orange-950/10 rounded-lg">
+                    <div class="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
+                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{skill}</span>
+                  </div>
+                ))}
               </div>
-              <div class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50">
-                <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-6">Tech Stack Highlights</h3>
-                <div class="grid grid-cols-2 gap-4 text-sm">
-                  {Object.entries(cvData.skills.techStack).map(([category, technologies]) => (
-                    <div key={category}>
-                      <h4 class="font-semibold mb-3 text-gray-900 dark:text-white">{category}</h4>
-                      <ul class="space-y-2 text-gray-600 dark:text-gray-400">
-                        {technologies.map((tech, techIndex) => (
-                          <li key={techIndex}>{tech}</li>
-                        ))}
-                      </ul>
+            </div>
+
+            {/* Tech Stack */}
+            <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+              <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-6">Tech Stack</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {Object.entries(cvData.skills.techStack).map(([category, technologies]) => (
+                  <div key={category}>
+                    <h4 class="font-semibold mb-3 text-gray-900 dark:text-white">{category}</h4>
+                    <div class="flex flex-wrap gap-2">
+                      {technologies.map((tech, techIndex) => (
+                        <span key={techIndex} class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded">{tech}</span>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
           {/* Experience Section */}
-          <div id="experience" class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
-            <div class="flex items-center gap-3 mb-8">
+          <div id="experience" class="space-y-8">
+            <div class="flex items-center gap-3">
               <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
               <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
                 Professional Experience
               </h2>
             </div>
-            <div class="space-y-6">
-              {cvData.experience.map((job, index) => (
-                <div key={index} class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                  <div class="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">{job.title}</h3>
+            {cvData.experience.map((job, index) => (
+              <div key={index} class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">{job.title}</h3>
+                    {(job as any).companyUrl ? (
+                      <a 
+                        href={(job as any).companyUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors underline"
+                      >
+                        {job.company}
+                      </a>
+                    ) : (
                       <p class="text-gray-600 dark:text-gray-400">{job.company}</p>
-                    </div>
-                    <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">{job.period}</span>
+                    )}
                   </div>
-                  <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                    {job.achievements.map((achievement, achievementIndex) => (
-                      <li key={achievementIndex} class="flex items-start gap-2">
-                        <div class={`${achievementIndex === job.achievements.length - 1 ? 'w-2 h-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mt-1.5' : 'w-1 h-1 bg-orange-500 rounded-full mt-2'} flex-shrink-0`}></div>
-                        <span class={achievementIndex === job.achievements.length - 1 ? 'font-medium' : ''}>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">{job.period}</span>
                 </div>
-              ))}
-            </div>
+                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300 mb-4">
+                  {job.achievements.map((achievement, achievementIndex) => (
+                    <li key={achievementIndex} class="flex items-start gap-2">
+                      <div class={`${achievementIndex === job.achievements.length - 1 ? 'w-2 h-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mt-1.5' : 'w-1 h-1 bg-orange-500 rounded-full mt-2'} flex-shrink-0`}></div>
+                      <span class={achievementIndex === job.achievements.length - 1 ? 'font-medium' : ''}>{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
+                {(job as any).technologies && (
+                  <div class="flex flex-wrap gap-2">
+                    {(job as any).technologies.map((tech: string, techIndex: number) => (
+                      <span key={techIndex} class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">{tech}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
 
           {/* Projects Section */}
-          <div id="projects" class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
-            <div class="flex items-center gap-3 mb-8">
+          <div id="projects" class="space-y-8">
+            <div class="flex items-center gap-3">
               <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
               <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
                 Personal Projects
               </h2>
             </div>
-            <div class="space-y-6">
-              {cvData.projects.map((project, index) => (
-                <div key={index} class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                  <div class="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">{project.name}</h3>
-                      <p class="text-gray-600 dark:text-gray-400">{project.description}</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                      <span class={`text-xs px-2 py-1 rounded-full ${getCompletionColorClasses(project.completionColor)}`}>{project.completion}</span>
-                      <a href={project.url} target="_blank" rel="noopener noreferrer" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400 underline transition-colors">{project.urlLabel}</a>
-                    </div>
+            {projectsData.projects.map((project, index) => (
+              <div key={index} class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">{project.name}</h3>
+                    <p class="text-gray-600 dark:text-gray-400">{project.description}</p>
                   </div>
-                  <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">{project.details}</p>
-                  <div class="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span key={techIndex} class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">{tech}</span>
-                    ))}
+                  <div class="flex items-center gap-2">
+                    <a href={project.url} target="_blank" rel="noopener noreferrer" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400 underline transition-colors">Live</a>
                   </div>
                 </div>
-              ))}
-            </div>
+                <div class="flex flex-wrap gap-2">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span key={techIndex} class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Education Section */}
-          <div id="education" class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
-            <div class="flex items-center gap-3 mb-8">
+          <div id="education" class="space-y-8">
+            <div class="flex items-center gap-3">
               <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
               <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
                 Education
               </h2>
             </div>
-            <div class="space-y-6">
-              {cvData.education.map((edu, index) => (
-                <div key={index} class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                  <div class="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">{edu.degree}</h3>
-                      <p class="text-gray-600 dark:text-gray-400">{edu.institution}</p>
-                    </div>
-                    <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">{edu.period}</span>
+            {cvData.education.map((edu, index) => (
+              <div key={index} class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">{edu.degree}</h3>
+                    <p class="text-gray-600 dark:text-gray-400">{edu.institution}</p>
                   </div>
-                  {edu.details.length > 0 && (
-                    <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                      {edu.details.map((detail, detailIndex) => (
-                        <li key={detailIndex} class="flex items-start gap-2">
-                          <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span>{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">{edu.period}</span>
                 </div>
-              ))}
-            </div>
+                {edu.details.length > 0 && (
+                  <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                    {edu.details.map((detail, detailIndex) => (
+                      <li key={detailIndex} class="flex items-start gap-2">
+                        <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>

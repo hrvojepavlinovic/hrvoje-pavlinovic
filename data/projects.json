@@ -5,7 +5,7 @@
       "id": "memoato",
       "name": "Memoato",
       "url": "https://memoato.com",
-      "description": "Voice/text/app integration input for life tracking. No need for 5 different apps - AI labels your data and gives you customized dashboards, insights, agenda, you name it.",
+      "description": "Voice/text/app integration input for life tracking. AI labels your data and provides you with insights, customized dashboards and agenda. Replaces 5+ productivity apps with one intelligent solution.",
       "technologies": ["T3", "AI", "Postgres", "Vercel"],
       "completion": 7,
       "featured": true,
@@ -186,7 +186,7 @@
       "id": "hills-lab",
       "name": "HILLS Lab",
       "url": "https://hills-lab.hr",
-      "description": "Independent research laboratory specializing in bleeding-edge AI, blockchain, and Web3 solutions. 'Decoding Tomorrow' with 3 senior developers and focus on sustainable innovation.",
+      "description": "Independent research laboratory specializing in bleeding-edge AI, blockchain, and Web3 solutions. 'Decoding Tomorrow' with focus on sustainable innovation.",
       "technologies": ["Deno", "Fresh", "Tailwind", "AI", "Blockchain"],
       "completion": 40,
       "featured": true,
@@ -221,7 +221,7 @@
           "Open source sponsorship and grant opportunities",
           "Strategic technology advisory for scaling companies"
         ],
-        "currentState": "6 active client projects, 3 senior developers, partnerships with major Croatian tech companies. Roadmap includes team expansion to 5 developers, dedicated R&D lab setup, and European market expansion with focus on AI and blockchain solutions."
+        "currentState": "Roadmap includes team expansion to 5 developers, dedicated R&D lab setup, and European market expansion with focus on AI and blockchain solutions."
       }
     }
   ]

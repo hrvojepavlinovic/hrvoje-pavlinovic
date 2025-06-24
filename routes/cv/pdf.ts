@@ -1,5 +1,6 @@
 import { FreshContext, Handlers } from "$fresh/server.ts";
 import cvData from "../../data/cv.json" with { type: "json" };
+import projectsData from "../../data/projects.json" with { type: "json" };
 
 export const handler: Handlers = {
   async GET(_req: Request, _ctx: FreshContext) {
@@ -61,54 +62,22 @@ export const handler: Handlers = {
         return y + 8;
       };
 
-      // Load and add profile photo (avoiding HTTP 508 loop detection)
-      try {
-        let photoData: Uint8Array | null = null;
-        
-        // Try to read the file directly from the file system
-        try {
-          photoData = await Deno.readFile("./static/pfptbs.png");
-        } catch {
-          console.log("Could not read photo file from filesystem");
-        }
-        
-        if (photoData) {
-          // Convert to base64
-          let binary = '';
-          const chunkSize = 8192;
-          for (let i = 0; i < photoData.length; i += chunkSize) {
-            const chunk = photoData.slice(i, i + chunkSize);
-            binary += String.fromCharCode.apply(null, Array.from(chunk));
-          }
-          const photoBase64 = btoa(binary);
-          
-          // Add photo
-          const photoSize = 25;
-          const photoX = pageWidth - margin - photoSize;
-          const photoY = yPosition;
-          
-          doc.addImage(`data:image/png;base64,${photoBase64}`, 'PNG', photoX, photoY, photoSize, photoSize);
-        }
-      } catch (error) {
-        console.log("Could not load profile photo:", error);
-        // Continue without photo - don't let this break the PDF generation
-      }
-
-      // Header Section - Professional layout
-      yPosition = addText(cvData.profile.name, margin, yPosition, contentWidth - 30, 20, 'bold');
-      yPosition = addText(cvData.profile.title, margin, yPosition + 2, contentWidth - 30, 12, 'normal', [60, 60, 60]);
+      // Header Section - Professional layout (no photo)
+      yPosition = addText(cvData.profile.name, margin, yPosition, contentWidth, 20, 'bold');
+      yPosition = addText(cvData.profile.title, margin, yPosition + 2, contentWidth, 12, 'normal', [60, 60, 60]);
 
       yPosition += 8;
 
       // Contact Info on separate lines
-      yPosition = addText("Email: hrvoje@pavlinovic.com", margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
-      yPosition = addText("Website: https://hrvoje.pavlinovic.com", margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
-      yPosition = addText("Location: Croatia (EU)", margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
+      yPosition = addText(`Email: ${cvData.profile.email}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
+      yPosition = addText(`Phone: ${cvData.profile.phone}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
+      yPosition = addText(`Website: ${cvData.profile.website}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
+      yPosition = addText(`Location: ${cvData.profile.location}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
       yPosition += 6;
 
       // Professional stats layout with B2B override
       const statsWithOverride = cvData.profile.stats.map(stat => {
-        if (stat.value.toLowerCase().includes('remote')) {
+        if (stat.value.toLowerCase().includes('remote') || stat.label.toLowerCase().includes('remote')) {
           return 'Remote (B2B)';
         }
         return `${stat.value} ${stat.label}`;
@@ -117,53 +86,51 @@ export const handler: Handlers = {
       yPosition = addText(statsText, margin, yPosition, contentWidth, 10, 'normal', [100, 100, 100]);
       yPosition += 8;
 
-      // About Section
-      yPosition = addSectionHeader("About", yPosition);
+      // Professional Summary Section
+      yPosition = addSectionHeader("Professional Summary", yPosition);
       
-      // Personal Info in clean format
-      const personalInfoText = cvData.about.personalInfo.map(info => info.text).join('  |  ');
-      yPosition = addText(personalInfoText, margin, yPosition, contentWidth, 9, 'normal', [100, 100, 100]);
-      yPosition += 6;
+      // Professional summary description
+      yPosition = addText(cvData.professionalSummary.description, margin, yPosition, contentWidth, 10, 'normal', [40, 40, 40]);
+      yPosition += 8;
 
-      // Description with professional formatting
-      cvData.about.description.forEach((paragraph) => {
-        checkNewPage(15);
-        yPosition = addText(paragraph, margin, yPosition, contentWidth, 10, 'normal', [40, 40, 40]);
-        yPosition += 3;
-      });
-
-      yPosition += 6;
-
-      // Skills Section
+      // Technical Skills Section
       yPosition = addSectionHeader("Technical Skills", yPosition);
       
-      // Top Skills inline format
-      const topSkillsText = "Top skills: " + cvData.skills.topSkills.map(skill => skill.name).join(", ");
-      yPosition = addText(topSkillsText, margin, yPosition, contentWidth, 10, 'normal', [40, 40, 40]);
+      // Core Expertise
+      const coreExpertiseText = "Core Expertise: " + cvData.skills.coreExpertise.join(", ");
+      yPosition = addText(coreExpertiseText, margin, yPosition, contentWidth, 10, 'normal', [40, 40, 40]);
       yPosition += 6;
 
       // Tech Stack in professional format
       Object.entries(cvData.skills.techStack).forEach(([category, technologies]) => {
         checkNewPage(10);
-        const isBackend = category === 'Backend';
-        const categoryText = isBackend ? 'Backend/Frontend' : category;
-        const skills = isBackend ? technologies.concat(['React', 'Tailwind']) : technologies;
-        yPosition = addText(`${categoryText}: ${skills.join(", ")}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
+        yPosition = addText(`${category}: ${technologies.join(", ")}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
         yPosition += 2;
       });
 
       yPosition += 4;
+      
       // Experience Section
       yPosition = addSectionHeader("Professional Experience", yPosition);
 
-      yPosition+=2;
+      yPosition += 2;
       
       cvData.experience.forEach((job) => {
         checkNewPage(20);
         
         // Job header
         yPosition = addText(job.title, margin, yPosition, contentWidth - 40, 12, 'bold');
-        yPosition = addText(`${job.company} | ${job.period}`, margin, yPosition, contentWidth, 10, 'normal', [247, 147, 26]);
+        
+        // Company name with link and period
+        const companyText = `${job.company} | ${job.period}`;
+        yPosition = addText(companyText, margin, yPosition, contentWidth, 12, 'normal', [247, 147, 26]);
+        
+        // Add clickable link for company if URL exists
+        if ((job as any).companyUrl) {
+          const companyTextWidth = doc.getTextWidth(job.company);
+          doc.link(margin, yPosition - 7, companyTextWidth, 4, { url: (job as any).companyUrl });
+        }
+        
         yPosition += 2;
         
         job.achievements.forEach((achievement) => {
@@ -172,15 +139,21 @@ export const handler: Handlers = {
           yPosition += 1;
         });
         
+        // Add technologies if they exist
+        if ((job as any).technologies) {
+          yPosition += 2;
+          yPosition = addText(`Technologies: ${(job as any).technologies.join(", ")}`, margin, yPosition, contentWidth, 9, 'normal', [100, 100, 100]);
+        }
+        
         yPosition += 4;
       });
 
-      // Projects Section
+      // Personal Projects Section
       yPosition = addSectionHeader("Personal Projects", yPosition);
 
-      yPosition+=2;
+      yPosition += 2;
       
-      cvData.projects.forEach((project, index) => {
+      projectsData.projects.forEach((project, index) => {
         // Only check for new page if we have enough content to display
         if (index > 0) {
           checkNewPage(25);
@@ -188,21 +161,26 @@ export const handler: Handlers = {
         
         // Project header
         yPosition = addText(project.name, margin, yPosition, contentWidth - 30, 12, 'bold');
-        yPosition = addText(project.description, margin, yPosition, contentWidth, 10, 'normal', [247, 147, 26]);
+        
+        // Add clickable project link in orange
+        yPosition = addText(project.url, margin, yPosition, contentWidth, 9, 'normal', [247, 147, 26]);
+        const linkWidth = doc.getTextWidth(project.url);
+        doc.link(margin, yPosition - 6, linkWidth, 4, { url: project.url });
         yPosition += 2;
         
-        yPosition = addText(project.details, margin, yPosition, contentWidth, 10, 'normal', [40, 40, 40]);
+        // Add description
+        yPosition = addText(project.description, margin, yPosition, contentWidth, 10, 'normal');
         yPosition += 2;
         
         yPosition = addText(`Technologies: ${project.technologies.join(", ")}`, margin, yPosition, contentWidth, 9, 'normal', [100, 100, 100]);
-        yPosition = addText(`${project.urlLabel}: ${project.url}`, margin, yPosition + 1, contentWidth, 9, 'normal', [100, 100, 100]);
+        
         yPosition += 6;
       });
 
       // Education Section
       yPosition = addSectionHeader("Education", yPosition);
 
-      yPosition+=2;
+      yPosition += 2;
       
       cvData.education.forEach((edu, index) => {
         // Better page break logic for education section
@@ -231,7 +209,7 @@ export const handler: Handlers = {
       return new Response(pdfBuffer, {
         headers: {
           "Content-Type": "application/pdf",
-          "Content-Disposition": "attachment; filename=\"Hrvoje_Pavlinovic_CV.pdf\"",
+          "Content-Disposition": "attachment; filename=\"Hrvoje_Pavlinovic_Resume.pdf\"",
           "Cache-Control": "no-cache",
         },
       });
