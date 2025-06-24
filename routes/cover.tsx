@@ -23,6 +23,7 @@ export default function CoverPage() {
                 <option value="">Select a template</option>
                 <option value="web3">Web3</option>
                 <option value="bitcoin">Bitcoin</option>
+                <option value="ai">AI</option>
                 <option value="backend">Backend</option>
                 <option value="fullstack">Fullstack</option>
                 <option value="lead">Lead</option>
