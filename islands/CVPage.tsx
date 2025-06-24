@@ -1,6 +1,88 @@
 import cvData from "../data/cv.json" with { type: "json" };
 import projectsData from "../data/projects.json" with { type: "json" };
 
+// CV Data Types
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface Hero {
+  title: string;
+  subtitle: string;
+}
+
+interface Profile {
+  name: string;
+  title: string;
+  photo: string;
+  phone: string;
+  email: string;
+  website: string;
+  location: string;
+  stats: Stat[];
+}
+
+interface ProfessionalSummary {
+  description: string;
+}
+
+interface TechStack {
+  Backend: string[];
+  Infrastructure: string[];
+  Databases: string[];
+  Security: string[];
+  "Web3/Blockchain": string[];
+  Frontend: string[];
+}
+
+interface Skills {
+  coreExpertise: string[];
+  techStack: TechStack;
+}
+
+interface Experience {
+  title: string;
+  company: string;
+  companyUrl?: string;
+  period: string;
+  achievements: string[];
+  technologies?: string[];
+  isHighlight: boolean;
+}
+
+interface Education {
+  degree: string;
+  institution: string;
+  period: string;
+  details: string[];
+}
+
+interface CVData {
+  hero: Hero;
+  profile: Profile;
+  professionalSummary: ProfessionalSummary;
+  skills: Skills;
+  experience: Experience[];
+  education: Education[];
+}
+
+// Projects Data Types
+interface Project {
+  name: string;
+  description: string;
+  url: string;
+  technologies: string[];
+}
+
+interface ProjectsData {
+  projects: Project[];
+}
+
+// Type the imported data
+const typedCvData = cvData as unknown as CVData;
+const typedProjectsData = projectsData as unknown as ProjectsData;
+
 export default function CVPage() {
   // Smooth scroll function
   const scrollToSection = (sectionId: string) => {
@@ -23,10 +105,10 @@ export default function CVPage() {
         <div class="max-w-6xl mx-auto">
           <div class="text-center space-y-8">
             <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-b from-gray-900 via-gray-900 to-gray-600 dark:from-white dark:via-white dark:to-gray-400 bg-clip-text text-transparent">
-              {cvData.hero.title}
+              {typedCvData.hero.title}
             </h1>
             <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 max-w-6xl mx-auto leading-relaxed font-light">
-              {cvData.hero.subtitle}
+              {typedCvData.hero.subtitle}
             </p>
             
             {/* Navigation Buttons */}
@@ -88,8 +170,8 @@ export default function CVPage() {
               <div class="relative">
                 <div class="absolute inset-0 bg-gradient-to-br from-orange-200 to-orange-100 dark:from-orange-800/30 dark:to-orange-900/20 rounded-full blur-lg opacity-70"></div>
                 <img 
-                  src={(cvData.profile as any).photo} 
-                  alt={cvData.profile.name}
+                  src={typedCvData.profile.photo} 
+                  alt={typedCvData.profile.name}
                   class="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-white/50 dark:border-gray-800/50"
                 />
               </div>
@@ -98,16 +180,16 @@ export default function CVPage() {
                 {/* Name and Title */}
                 <div class="mb-8">
                   <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3">
-                    {cvData.profile.name}
+                    {typedCvData.profile.name}
                   </h2>
                   <p class="text-lg lg:text-xl text-orange-600 dark:text-orange-400 font-semibold">
-                    {cvData.profile.title}
+                    {typedCvData.profile.title}
                   </p>
                 </div>
 
                 {/* Stats Cards */}
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                  {cvData.profile.stats.map((stat, index) => (
+                  {typedCvData.profile.stats.map((stat, index) => (
                     <div key={index} class="bg-orange-50/80 dark:bg-orange-950/20 backdrop-blur-sm p-6 rounded-xl border border-orange-200/50 dark:border-orange-800/50 text-center">
                       <div class="text-3xl lg:text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">{stat.value}</div>
                       <div class="text-sm font-medium text-gray-600 dark:text-gray-400">{stat.label}</div>
@@ -129,7 +211,7 @@ export default function CVPage() {
             <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
               <div class="space-y-6">
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                  {cvData.professionalSummary.description}
+                  {typedCvData.professionalSummary.description}
                 </p>
               </div>
             </div>
@@ -148,7 +230,7 @@ export default function CVPage() {
             <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
               <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-6">Core Expertise</h3>
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {cvData.skills.coreExpertise.map((skill, index) => (
+                {typedCvData.skills.coreExpertise.map((skill, index) => (
                   <div key={index} class="flex items-center gap-3 p-3 bg-orange-50/50 dark:bg-orange-950/10 rounded-lg">
                     <div class="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
                     <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{skill}</span>
@@ -161,11 +243,11 @@ export default function CVPage() {
             <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
               <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-6">Tech Stack</h3>
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {Object.entries(cvData.skills.techStack).map(([category, technologies]) => (
+                {Object.entries(typedCvData.skills.techStack).map(([category, technologies]) => (
                   <div key={category}>
                     <h4 class="font-semibold mb-3 text-gray-900 dark:text-white">{category}</h4>
                     <div class="flex flex-wrap gap-2">
-                      {technologies.map((tech, techIndex) => (
+                      {technologies.map((tech: string, techIndex: number) => (
                         <span key={techIndex} class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded">{tech}</span>
                       ))}
                     </div>
@@ -183,14 +265,14 @@ export default function CVPage() {
                 Professional Experience
               </h2>
             </div>
-            {cvData.experience.map((job, index) => (
+            {typedCvData.experience.map((job, index) => (
               <div key={index} class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>
                     <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">{job.title}</h3>
-                    {(job as any).companyUrl ? (
+                    {job.companyUrl ? (
                       <a 
-                        href={(job as any).companyUrl} 
+                        href={job.companyUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         class="text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors underline"
@@ -211,9 +293,9 @@ export default function CVPage() {
                     </li>
                   ))}
                 </ul>
-                {(job as any).technologies && (
+                {job.technologies && (
                   <div class="flex flex-wrap gap-2">
-                    {(job as any).technologies.map((tech: string, techIndex: number) => (
+                    {job.technologies.map((tech, techIndex) => (
                       <span key={techIndex} class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">{tech}</span>
                     ))}
                   </div>
@@ -230,7 +312,7 @@ export default function CVPage() {
                 Personal Projects
               </h2>
             </div>
-            {projectsData.projects.map((project, index) => (
+            {typedProjectsData.projects.map((project, index) => (
               <div key={index} class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>
@@ -258,7 +340,7 @@ export default function CVPage() {
                 Education
               </h2>
             </div>
-            {cvData.education.map((edu, index) => (
+            {typedCvData.education.map((edu, index) => (
               <div key={index} class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
                 <div class="flex justify-between items-start mb-4">
                   <div>

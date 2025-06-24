@@ -2,6 +2,88 @@ import { FreshContext, Handlers } from "$fresh/server.ts";
 import cvData from "../../data/cv.json" with { type: "json" };
 import projectsData from "../../data/projects.json" with { type: "json" };
 
+// CV Data Types
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface Hero {
+  title: string;
+  subtitle: string;
+}
+
+interface Profile {
+  name: string;
+  title: string;
+  photo: string;
+  phone: string;
+  email: string;
+  website: string;
+  location: string;
+  stats: Stat[];
+}
+
+interface ProfessionalSummary {
+  description: string;
+}
+
+interface TechStack {
+  Backend: string[];
+  Infrastructure: string[];
+  Databases: string[];
+  Security: string[];
+  "Web3/Blockchain": string[];
+  Frontend: string[];
+}
+
+interface Skills {
+  coreExpertise: string[];
+  techStack: TechStack;
+}
+
+interface Experience {
+  title: string;
+  company: string;
+  companyUrl?: string;
+  period: string;
+  achievements: string[];
+  technologies?: string[];
+  isHighlight: boolean;
+}
+
+interface Education {
+  degree: string;
+  institution: string;
+  period: string;
+  details: string[];
+}
+
+interface CVData {
+  hero: Hero;
+  profile: Profile;
+  professionalSummary: ProfessionalSummary;
+  skills: Skills;
+  experience: Experience[];
+  education: Education[];
+}
+
+// Projects Data Types
+interface Project {
+  name: string;
+  description: string;
+  url: string;
+  technologies: string[];
+}
+
+interface ProjectsData {
+  projects: Project[];
+}
+
+// Type the imported data
+const typedCvData = cvData as unknown as CVData;
+const typedProjectsData = projectsData as unknown as ProjectsData;
+
 export const handler: Handlers = {
   async GET(_req: Request, _ctx: FreshContext) {
     try {
@@ -63,20 +145,20 @@ export const handler: Handlers = {
       };
 
       // Header Section - Professional layout (no photo)
-      yPosition = addText(cvData.profile.name, margin, yPosition, contentWidth, 20, 'bold');
-      yPosition = addText(cvData.profile.title, margin, yPosition + 2, contentWidth, 12, 'normal', [60, 60, 60]);
+      yPosition = addText(typedCvData.profile.name, margin, yPosition, contentWidth, 20, 'bold');
+      yPosition = addText(typedCvData.profile.title, margin, yPosition + 2, contentWidth, 12, 'normal', [60, 60, 60]);
 
       yPosition += 8;
 
       // Contact Info on separate lines
-      yPosition = addText(`Email: ${cvData.profile.email}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
-      yPosition = addText(`Phone: ${cvData.profile.phone}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
-      yPosition = addText(`Website: ${cvData.profile.website}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
-      yPosition = addText(`Location: ${cvData.profile.location}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
+      yPosition = addText(`Email: ${typedCvData.profile.email}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
+      yPosition = addText(`Phone: ${typedCvData.profile.phone}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
+      yPosition = addText(`Website: ${typedCvData.profile.website}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
+      yPosition = addText(`Location: ${typedCvData.profile.location}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
       yPosition += 6;
 
       // Professional stats layout with B2B override
-      const statsWithOverride = cvData.profile.stats.map(stat => {
+      const statsWithOverride = typedCvData.profile.stats.map(stat => {
         if (stat.value.toLowerCase().includes('remote') || stat.label.toLowerCase().includes('remote')) {
           return 'Remote (B2B)';
         }
@@ -90,19 +172,19 @@ export const handler: Handlers = {
       yPosition = addSectionHeader("Professional Summary", yPosition);
       
       // Professional summary description
-      yPosition = addText(cvData.professionalSummary.description, margin, yPosition, contentWidth, 10, 'normal', [40, 40, 40]);
+      yPosition = addText(typedCvData.professionalSummary.description, margin, yPosition, contentWidth, 10, 'normal', [40, 40, 40]);
       yPosition += 8;
 
       // Technical Skills Section
       yPosition = addSectionHeader("Technical Skills", yPosition);
       
       // Core Expertise
-      const coreExpertiseText = "Core Expertise: " + cvData.skills.coreExpertise.join(", ");
+      const coreExpertiseText = "Core Expertise: " + typedCvData.skills.coreExpertise.join(", ");
       yPosition = addText(coreExpertiseText, margin, yPosition, contentWidth, 10, 'normal', [40, 40, 40]);
       yPosition += 6;
 
       // Tech Stack in professional format
-      Object.entries(cvData.skills.techStack).forEach(([category, technologies]) => {
+      Object.entries(typedCvData.skills.techStack).forEach(([category, technologies]) => {
         checkNewPage(10);
         yPosition = addText(`${category}: ${technologies.join(", ")}`, margin, yPosition, contentWidth, 10, 'normal', [60, 60, 60]);
         yPosition += 2;
@@ -115,7 +197,7 @@ export const handler: Handlers = {
 
       yPosition += 2;
       
-      cvData.experience.forEach((job) => {
+      typedCvData.experience.forEach((job) => {
         checkNewPage(20);
         
         // Job header
@@ -126,9 +208,9 @@ export const handler: Handlers = {
         yPosition = addText(companyText, margin, yPosition, contentWidth, 12, 'normal', [247, 147, 26]);
         
         // Add clickable link for company if URL exists
-        if ((job as any).companyUrl) {
+        if (job.companyUrl) {
           const companyTextWidth = doc.getTextWidth(job.company);
-          doc.link(margin, yPosition - 7, companyTextWidth, 4, { url: (job as any).companyUrl });
+          doc.link(margin, yPosition - 7, companyTextWidth, 4, { url: job.companyUrl });
         }
         
         yPosition += 2;
@@ -140,9 +222,9 @@ export const handler: Handlers = {
         });
         
         // Add technologies if they exist
-        if ((job as any).technologies) {
+        if (job.technologies) {
           yPosition += 2;
-          yPosition = addText(`Technologies: ${(job as any).technologies.join(", ")}`, margin, yPosition, contentWidth, 9, 'normal', [100, 100, 100]);
+          yPosition = addText(`Technologies: ${job.technologies.join(", ")}`, margin, yPosition, contentWidth, 9, 'normal', [100, 100, 100]);
         }
         
         yPosition += 4;
@@ -153,7 +235,7 @@ export const handler: Handlers = {
 
       yPosition += 2;
       
-      projectsData.projects.forEach((project, index) => {
+      typedProjectsData.projects.forEach((project, index) => {
         // Only check for new page if we have enough content to display
         if (index > 0) {
           checkNewPage(25);
@@ -182,7 +264,7 @@ export const handler: Handlers = {
 
       yPosition += 2;
       
-      cvData.education.forEach((edu, index) => {
+      typedCvData.education.forEach((edu, index) => {
         // Better page break logic for education section
         const totalDetailsHeight = edu.details.length * 5;
         const requiredSpace = 20 + totalDetailsHeight;

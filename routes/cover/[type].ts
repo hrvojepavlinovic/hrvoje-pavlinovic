@@ -164,7 +164,7 @@ export const handler: Handlers = {
       yPosition += 6;
 
       // Body paragraphs
-      template.body.forEach((paragraph, index) => {
+      template.body.forEach((paragraph) => {
         checkNewPage(20);
         const bodyText = paragraph.replace(/{companyName}/g, companyName).replace(/{position}/g, position);
         yPosition = addText(bodyText, margin, yPosition, contentWidth, 10, 'normal');
