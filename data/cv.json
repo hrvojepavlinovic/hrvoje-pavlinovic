@@ -31,7 +31,7 @@
     ]
   },
   "professionalSummary": {
-    "description": "Senior Backend Engineer with 12+ years developing scalable serverless and event-driven architecture alongside leading technical teams. Expertise in AWS infrastructure, distributed systems engineering, and Web3/blockchain technologies. Proven track record scaling systems to handle 1.7B+ ad impressions, optimizing performance for thousands of concurrent requests, and implementing security best practices. Experience with legacy system integration and third-party API integration. Led development standards across multiple organizations and mentored engineering teams. Driven by genuine curiosity and eagerness to learn and improve."
+    "description": "Senior Backend Engineer with 12+ years developing scalable serverless architecture and leading technical teams. Expertise in AWS infrastructure, distributed systems, and Web3/blockchain technologies. Proven track record scaling systems to 1.7B+ ad impressions, optimizing performance for thousands of concurrent requests, and implementing security best practices. Experience mentoring teams and translating complex technical concepts for stakeholders."
   },
   "skills": {
     "coreExpertise": [
@@ -49,45 +49,38 @@
         "Express",
         "Nest.js",
         "GraphQL",
-        "REST APIs",
-        "API Integration"
+        "REST APIs"
       ],
       "Infrastructure": [
         "AWS (CDK, Lambda, ECS)",
         "CI/CD",
         "Docker",
         "Kubernetes",
-        "Terraform",
-        "Vercel"
+        "Terraform"
       ],
       "Databases": [
         "PostgreSQL",
         "MongoDB",
         "Redis",
-        "Qdrant",
-        "Query Optimization",
-        "Concurrency"
+        "Query Optimization"
       ],
       "Security": [
         "OWASP",
         "Smart Contracts Audit",
         "Auth",
-        "Data Protection",
-        "12-Factor App"
+        "Data Protection"
       ],
       "Web3/Blockchain": [
         "Ethereum",
         "Bitcoin",
         "Smart Contracts",
         "TonConnect",
-        "Ethers",
-        "Wagmi"
+        "Ethers"
       ],
       "Frontend": [
         "React",
         "Next.js",
         "Tailwind CSS",
-        "Shadcn UI",
         "Static Site Generation"
       ]
     }
@@ -97,95 +90,90 @@
       "title": "Senior Backend Engineer",
       "company": "ReneVerse.io",
       "companyUrl": "https://reneverse.io",
-      "period": "Mar 2023 - Present",
+      "period": "2023 - Present",
       "achievements": [
-        "Architect microservices infrastructure supporting interoperable gaming assets standard across multiple blockchain networks",
+        "Architect microservices infrastructure supporting interoperable gaming assets across multiple blockchain networks",
         "Scale mobile backend systems to handle 1.7B+ ad impressions monthly with 99.9% uptime and sub-200ms response times",
-        "Implement performance optimization strategies managing thousands of concurrent requests through efficient caching and load balancing",
         "Lead third-party API integration projects with Unity and UE SDKs, reducing integration time by 40%",
-        "Apply security best practices for smart contract deployment and user asset protection, preventing potential vulnerabilities",
-        "Execute DevOps practices using AWS CDK and Infrastructure as Code, improving deployment frequency by 3x, and reducing deployment time by 50%",
-        "Mentor team of 4 developers and conduct technical interviews, contributing to 50% reduction in time-to-productivity for new hires",
-        "Consolidate legacy system architecture by unifying 6 repositories into monorepo, reducing development and build time by 50%"
+        "Explain blockchain concepts to gaming partners and stakeholders, enabling successful technical integrations",
+        "Execute DevOps practices using AWS CDK, improving deployment frequency by 3x and reducing deployment time by 50%",
+        "Mentor team of 4 developers, contributing to 50% reduction in time-to-productivity for new hires",
+        "Consolidate legacy architecture by unifying 6 repositories into monorepo, reducing build time by 50%"
       ],
-      "technologies": ["Node.js", "TypeScript", "GraphQL", "Serverless", "AWS CDK", "SQS", "ECS", "Docker", "TypeORM", "PostgreSQL", "DynamoDB", "DynamoDB", "Grafana", "Yarn Workspaces", "Smart Contracts", "NFT"],
+      "technologies": ["Node.js", "TypeScript", "GraphQL", "AWS CDK", "ECS", "Docker", "PostgreSQL", "Smart Contracts"],
       "isHighlight": true
     },
     {
       "title": "Software Engineer (Consulting)",
       "company": "CryptoToday",
       "companyUrl": "https://cryptotoday.com",
-      "period": "Feb 2024 - May 2025",
+      "period": "2024 - 2025",
       "achievements": [
-        "Provided flexible backend consulting during market volatility, maintaining 100% client retention",
-        "Architected scalable AWS infrastructure using CDK, ECS, serverless functions, and RDS for high-availability trading platform",
-        "Optimized database performance for real-time coin price scraping from 50+ CEX and DEX sources, improving query speed by 70%",
-        "Built Ethereum-based decentralized voting engine processing 10K+ votes with zero downtime",
-        "Integrated mobile backend development for Telegram mini-app supporting concurrent user sessions",
-        "Implemented concurrent requests handling for Telegram bot serving 1K+ daily active users"
+        "Architect scalable AWS infrastructure using CDK, ECS, and serverless functions for crypto discovery platform",
+        "Optimize database performance for real-time price scraping from 20+ exchanges, improving query speed by 70%",
+        "Build Ethereum-based decentralized voting engine with zero downtime",
+        "Present complex blockchain voting mechanisms to non-technical stakeholders, securing project approval",
+        "Integrate mobile backend for Telegram mini-app supporting 10K+ daily active users"
       ],
-      "technologies": ["Next.js", "MongoDB", "PostgreSQL", "Ethereum", "TonConnect", "Telegram APIs", "Telegram Mini Apps", "AWS CDK", "ECS"],
+      "technologies": ["Next.js", "MongoDB", "PostgreSQL", "Ethereum", "TonConnect", "AWS CDK", "ECS"],
       "isHighlight": true
     },
     {
       "title": "Software Engineer",
       "company": "Povio",
       "companyUrl": "https://povio.com",
-      "period": "Nov 2021 - Mar 2023",
+      "period": "2021 - 2023",
       "achievements": [
-        "Developed clinical trials management system for German healthcare company Clariness",
-        "Implemented scalable backend architecture using AWS, Terraform, Docker, and GitLab CI/CD pipelines",
-        "Integrated third-party API services including Twilio for direct call agent functionality",
-        "Resolved critical timezone calculation bug affecting patient appointment scheduling accuracy",
-        "Applied security best practices for healthcare data protection and HIPAA compliance",
-        "Optimized database performance for handling thousands of concurrent patient record queries"
+        "Develop clinical trials management system for German healthcare company Clariness",
+        "Implement scalable backend architecture using AWS, Terraform, Docker, and GitLab CI/CD pipelines",
+        "Integrate Twilio API for direct call agent functionality and resolve critical timezone calculation bugs",
+        "Simplify HIPAA compliance requirements for healthcare team, ensuring successful regulatory approval",
+        "Optimize database performance for handling thousands of concurrent patient record queries"
       ],
-      "technologies": ["Node.js", "TypeScript", "NestJS", "Twilio", "Data Anonymization", "TypeORM", "PostgreSQL", "DataDog", "AWS", "Terraform", "Docker", "OpenShift", "GitLab CI", "Java", "Spring Boot"],
+      "technologies": ["Node.js", "NestJS", "TypeORM", "PostgreSQL", "AWS", "Terraform", "Docker"],
       "isHighlight": true
     },
     {
       "title": "Backend Engineer",
       "company": "Rimac Automobili",
       "companyUrl": "https://rimac-automobili.com",
-      "period": "Oct 2020 - Nov 2021",
+      "period": "2020 - 2021",
       "achievements": [
-        "Contributed to M2M team developing Telemetry API and OTA updates system for world's fastest electric hypercar",
-        "Implemented microservices architecture using TypeScript, GraphQL (Apollo Federation), and event-driven design with Kafka",
-        "Designed scalability solutions handling real-time telemetry data from 100+ vehicle sensors",
-        "Conducted 15+ technical interviews and established hiring standards, reducing time-to-hire by 30%",
-        "Created secure OTA updates system with rollback capabilities, ensuring zero failed deployments",
-        "Applied security best practices for automotive data protection and secure communication protocols"
+        "Contribute to Telemetry API and OTA updates system for world's fastest electric hypercar",
+        "Implement microservices architecture using TypeScript, GraphQL, and event-driven design with Kafka",
+        "Design scalability solutions handling real-time telemetry data from 100+ vehicle sensors",
+        "Conduct 15+ technical interviews and establish hiring standards, reducing time-to-hire by 30%",
+        "Create secure OTA updates system with rollback capabilities, ensuring zero failed deployments"
       ],
-      "technologies": ["TypeScript", "GraphQL", "Apollo Federation", "Kafka", "PostgreSQL", "InfluxDB", "Mobile backend", "Scala", "Akka", "HiveMQ", "AWS"],
+      "technologies": ["TypeScript", "GraphQL", "Apollo Federation", "Kafka", "PostgreSQL", "AWS"],
       "isHighlight": true
     },
     {
       "title": "Senior Software Engineer",
       "company": "Profico",
       "companyUrl": "https://profi.co",
-      "period": "Aug 2018 - Oct 2020",
+      "period": "2018 - 2020",
       "achievements": [
-        "Led development standards meetings with C-level executives, establishing company-wide coding practices adopted by 20+ developers",
-        "Architected scalable web applications for Norwegian media company Hegnar handling 1M+ monthly users",
-        "Implemented legacy system integration connecting 4 different real estate agency APIs into unified platform",
-        "Mentored 3 junior developers who achieved promotion to mid-level positions within 12 months",
-        "Reduced system downtime by 80% through performance optimization and proactive monitoring implementation"
+        "Lead development standards meetings with C-level executives, establishing company-wide coding practices",
+        "Architect scalable web applications for Norwegian media company handling 1M+ monthly users",
+        "Implement legacy system integration connecting 4 real estate agency APIs into unified platform",
+        "Mentor 3 junior developers achieving promotion to mid-level positions within 12 months",
+        "Reduce system downtime by 80% through performance optimization and proactive monitoring"
       ],
-      "technologies": ["Node.js", "TypeScript", "Express", "React", "PostgreSQL", "Redis", "Docker", "OpenShift", "Varnish"],
+      "technologies": ["Node.js", "TypeScript", "Express", "React", "PostgreSQL", "Redis", "Docker"],
       "isHighlight": true
     },
     {
       "title": "Software Engineer",
       "company": "Ericsson",
       "companyUrl": "https://ericsson.com",
-      "period": "Feb 2015 - Aug 2018",
+      "period": "2015 - 2018",
       "achievements": [
-        "Developed internal tools: Nodebook (Symfony), Atlas (data analysis), AAT (testing)",
-        "Improved performance by migrating from Groovy & Grails to Node.js",
-        "Created framework-agnostic schema language for testing tools",
-        "Optimized internal tools, promoted to senior engineer, presented to SoftBank"
+        "Develop internal tools: Nodebook (Symfony), Atlas (data analysis), AAT (testing)",
+        "Improve performance by migrating from Groovy & Grails to Node.js",
+        "Create framework-agnostic schema language for testing tools and present to SoftBank executives"
       ],
-      "technologies": ["Node.js", "Symfony", "PHP", "Groovy", "Grails", "Python", "MySQL", "Jenkins"],
+      "technologies": ["Node.js", "Symfony", "PHP", "Python", "MySQL"],
       "isHighlight": true
     },
     {
@@ -201,6 +189,33 @@
       ],
       "technologies": ["PHP", "Symfony", "jQuery", "Joomla", "WordPress", "Magento", "MySQL", "Linux", "SEO", "Google Analytics", "Google Ads", "Facebook Ads"],
       "isHighlight": true
+    }
+  ],
+
+  "personalProjects": [
+    {
+      "name": "Memoato",
+      "url": "https://memoato.com",
+      "description": "AI-powered life tracking platform with voice/text input, automated categorization, and intelligent insights dashboard replacing 5+ productivity apps.",
+      "technologies": ["T3", "AI", "Postgres", "Vercel"]
+    },
+    {
+      "name": "XXI Today", 
+      "url": "https://xxi.today",
+      "description": "Comprehensive Bitcoin information hub with wallet explorer, milestone tracking, news curation, and educational resources for the entire Bitcoin ecosystem.",
+      "technologies": ["T3", "Postgres", "Bitcoin", "Lightning"]
+    },
+    {
+      "name": "Personal Portfolio",
+      "url": "https://hrvoje.pavlinovic.com", 
+      "description": "Modern personal brand platform built with cutting-edge Deno/Fresh stack, featuring real-time analytics, integrated project showcase, and technical depth demonstration.",
+      "technologies": ["Deno", "KV", "Fresh", "Tailwind"]
+    },
+    {
+      "name": "Apes Club",
+      "url": "https://apes.club",
+      "description": "Solana token launcher with advanced dashboards, creator leaderboards, risk analytics, and community governance for intelligent meme coin discovery.",
+      "technologies": ["Solana", "Web3", "TypeScript", "DeFi", "Rust"]
     }
   ],
 
