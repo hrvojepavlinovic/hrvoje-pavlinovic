@@ -119,17 +119,19 @@ export default function CVPage() {
           </div>
 
           {/* Professional Summary Section */}
-          <div id="about" class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
-            <div class="flex items-center gap-3 mb-8">
+          <div id="about" class="space-y-8">
+            <div class="flex items-center gap-3">
               <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
               <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
                 Professional Summary
               </h2>
             </div>
-            <div class="space-y-6">
-              <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                {cvData.professionalSummary.description}
-              </p>
+            <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
+              <div class="space-y-6">
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+                  {cvData.professionalSummary.description}
+                </p>
+              </div>
             </div>
           </div>
 
