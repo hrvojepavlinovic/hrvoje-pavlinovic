@@ -343,7 +343,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                     <div class="text-sm text-gray-600 dark:text-gray-400">Projects Built</div>
                   </div>
                   <div class="text-center">
-                    <div class="text-2xl font-bold text-gray-900 dark:text-white mb-1">2.9K</div>
+                    <div class="text-2xl font-bold text-gray-900 dark:text-white mb-1">3.6K</div>
                     <div class="text-sm text-gray-600 dark:text-gray-400">Social Following</div>
                   </div>
                 </div>
