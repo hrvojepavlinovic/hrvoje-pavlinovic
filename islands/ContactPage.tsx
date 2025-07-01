@@ -159,7 +159,7 @@ export default function ContactPage() {
                 "What we do now echoes in eternity."
               </blockquote>
               <cite class="text-sm text-orange-600 dark:text-orange-400 font-medium">
-                — Marcus Aurelius
+                - Marcus Aurelius
               </cite>
             </div>
           </div>

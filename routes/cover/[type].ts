@@ -36,7 +36,7 @@ const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
       "I specialize in implementing complex LLM pipeline architectures, designing systems where ChatGPT Turbo serves as an entry assistant that intelligently routes requests to more specialized assistants based on context and requirements. These pipelines leverage vector databases for context retrieval and semantic understanding, creating sophisticated AI workflows that can handle diverse user inputs while maintaining conversation context and delivering highly relevant responses.",
       "At ReneVerse.io, I architected scalable backend systems processing 1.7B+ requests with the infrastructure necessary for AI service integration while maintaining sub-200ms response times. My experience combines practical AI implementation with production-scale architecture, ensuring that complex LLM pipelines and vector database operations perform reliably under heavy load while delivering intelligent, context-aware user experiences."
     ],
-    closing: "I am eager to discuss how my comprehensive AI expertise—from vector databases and LLM pipelines to production-scale AI architecture can help {companyName} implement transformative intelligent systems that drive real business value.",
+    closing: "I am eager to discuss how my comprehensive AI expertise,from vector databases and LLM pipelines to production-scale AI architecture can help {companyName} implement transformative intelligent systems that drive real business value.",
     skills: ["LLM Pipelines", "Vector Databases", "Qdrant", "PDF Data Ingestion", "GPT/OpenAI APIs", "AI Architecture", "Semantic Search", "Intelligent Routing"]
   },
   backend: {
