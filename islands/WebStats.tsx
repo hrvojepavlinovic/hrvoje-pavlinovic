@@ -16,271 +16,238 @@ interface Stats {
   clicks: Record<string, number>;
 }
 
-export default function WebStats() {
-  const [stats, setStats] = useState<Stats | null>(null);
-  const [sortedPageViews, setSortedPageViews] = useState<SortedStats[]>([]);
-  const [sortedClicks, setSortedClicks] = useState<ClickStats[]>([]);
+const SPAM_PATTERNS = [
+  /^wp-/,
+  /^admin/,
+  /^administrator/,
+  /^phpmyadmin/,
+  /^mysql/,
+  /^drupal/,
+  /^joomla/,
+  /^magento/,
+  /^prestashop/,
+  /^opencart/,
+  /^typo3/,
+  /\.php$/,
+  /\.asp$/,
+  /\.jsp$/,
+  /\.cgi$/,
+  /\.env$/,
+  /config\./,
+  /database\./,
+  /backup/,
+  /test/,
+  /demo/,
+  /tmp/,
+  /cache/,
+  /logs?/,
+  /vendor/,
+  /node_modules/,
+  /\.git/,
+  /\.svn/,
+  /^sitemap/,
+  /^robots\.txt$/,
+  /^favicon\.ico$/,
+  /\.(xml|txt|json|yml|yaml)$/,
+];
+
+const TYPE_BADGE: Record<string, string> = {
+  menu: "border-blue-200 bg-blue-100 text-blue-700 dark:border-blue-800/50 dark:bg-blue-900/30 dark:text-blue-200",
+  name: "border-green-200 bg-green-100 text-green-700 dark:border-green-800/50 dark:bg-green-900/30 dark:text-green-200",
+  footer: "border-purple-200 bg-purple-100 text-purple-700 dark:border-purple-800/50 dark:bg-purple-900/30 dark:text-purple-200",
+  social: "border-pink-200 bg-pink-100 text-pink-700 dark:border-pink-800/50 dark:bg-pink-900/30 dark:text-pink-200",
+  project: "border-indigo-200 bg-indigo-100 text-indigo-700 dark:border-indigo-800/50 dark:bg-indigo-900/30 dark:text-indigo-200",
+  link: "border-cyan-200 bg-cyan-100 text-cyan-700 dark:border-cyan-800/50 dark:bg-cyan-900/30 dark:text-cyan-200",
+  like: "border-red-200 bg-red-100 text-red-700 dark:border-red-800/50 dark:bg-red-900/30 dark:text-red-200",
+};
+
+const formatTarget = (type: string, target: string) => {
+  if (type === "menu") {
+    if (!target || target === "/" || target === "undefined" || target === "Ndefined") {
+      return "homepage";
+    }
+    return target.replace(/^\//, "");
+  }
+  if (type === "name") {
+    return "hrvoje.pavlinovic";
+  }
+  return target;
+};
+
+const isSpam = (page: string) => {
+  const clean = page.startsWith("/") ? page.slice(1) : page;
+  return SPAM_PATTERNS.some((pattern) => pattern.test(clean));
+};
+
+export default function WebStatsPage() {
+  const [loading, setLoading] = useState(true);
+  const [pageViews, setPageViews] = useState<SortedStats[]>([]);
+  const [clicks, setClicks] = useState<ClickStats[]>([]);
   const [totalViews, setTotalViews] = useState(0);
   const [totalClicks, setTotalClicks] = useState(0);
-
-  // Function to get type label styling
-  const getTypeStyles = (type: string) => {
-    switch (type) {
-      case 'menu':
-        return 'text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800/50';
-      case 'name':
-        return 'text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800/50';
-      case 'footer':
-        return 'text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800/50';
-      case 'social':
-        return 'text-pink-700 dark:text-pink-300 bg-pink-100 dark:bg-pink-900/30 border border-pink-200 dark:border-pink-800/50';
-      case 'project':
-        return 'text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800/50';
-      case 'link':
-        return 'text-cyan-700 dark:text-cyan-300 bg-cyan-100 dark:bg-cyan-900/30 border border-cyan-200 dark:border-cyan-800/50';
-      case 'like':
-        return 'text-red-700 dark:text-red-300 bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-800/50';
-      default:
-        return 'text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800/30 border border-gray-200 dark:border-gray-700/50';
-    }
-  };
+  const [updatedAt, setUpdatedAt] = useState<string>(new Date().toLocaleString());
 
   useEffect(() => {
     const fetchStats = async () => {
-      const response = await fetch("/api/stats");
-      const data: Stats = await response.json();
+      try {
+        const response = await fetch("/api/stats");
+        const data: Stats = await response.json();
 
-      // Filter out spam/bot requests
-      const spamPatterns = [
-        /^wp-/,                     // WordPress paths (wp-admin, wp-content, wp-includes, etc.)
-        /^admin/,                   // Admin paths
-        /^administrator/,           // Joomla admin
-        /^phpmyadmin/,             // PHPMyAdmin
-        /^mysql/,                  // MySQL admin
-        /^drupal/,                 // Drupal paths
-        /^joomla/,                 // Joomla paths
-        /^magento/,                // Magento paths
-        /^prestashop/,             // PrestaShop paths
-        /^opencart/,               // OpenCart paths
-        /^typo3/,                  // TYPO3 paths
-        /\.php$/,                  // PHP files
-        /\.asp$/,                  // ASP files
-        /\.jsp$/,                  // JSP files
-        /\.cgi$/,                  // CGI files
-        /\/\.env$/,                // Environment files
-        /\/config\./,              // Config files
-        /\/database\./,            // Database files
-        /\/backup/,                // Backup paths
-        /\/test/,                  // Test paths
-        /\/demo/,                  // Demo paths
-        /\/tmp/,                   // Temp paths
-        /\/cache/,                 // Cache paths
-        /\/logs?/,                 // Log paths
-        /\/vendor/,                // Vendor paths
-        /\/node_modules/,          // Node modules
-        /\/\.git/,                 // Git paths
-        /\/\.svn/,                 // SVN paths
-        /^sitemap/,                // Sitemap requests (usually bots)
-        /^robots\.txt$/,           // Robots.txt
-        /^favicon\.ico$/,          // Favicon
-        /\.(xml|txt|json|yml|yaml)$/, // Config/data files
-      ];
-
-      const isSpam = (page: string) => {
-        const cleanPage = page.startsWith("/") ? page.slice(1) : page;
-        return spamPatterns.some(pattern => pattern.test(cleanPage));
-      };
-
-      // Process page views and filter out spam
-      const pageViewsMap = new Map<string, number>();
-      Object.entries(data.pageViews).forEach(([page, count]) => {
-        if (isSpam(page)) return; // Skip spam pages
-        
-        const formattedPage = page === "/" || !page || page === "undefined" || page === "Ndefined" ? "homepage" : 
-          page.startsWith("/") ? page.slice(1) : page;
-        pageViewsMap.set(formattedPage, (pageViewsMap.get(formattedPage) || 0) + (count as number));
-      });
-      
-      const processedPageViews = Array.from(pageViewsMap.entries())
-        .map(([page, count]) => ({ page, count }))
-        .sort((a, b) => b.count - a.count);
-
-      // Process clicks
-      const clicksMap = new Map<string, { type: string; count: number }>();
-      Object.entries(data.clicks).forEach(([key, count]) => {
-        const [type, target] = key.split(":");
-        const formattedTarget = type === "menu" ? 
-          (target === "/" || target === "undefined" || target === "Ndefined" ? "homepage" : target) :
-          type === "name" ? "hrvoje.pavlinovic" :
-          target;
-        const mapKey = `${formattedTarget}:${type}`;
-        const existing = clicksMap.get(mapKey);
-        clicksMap.set(mapKey, { 
-          type, 
-          count: (existing?.count || 0) + (count as number) 
+        const viewsMap = new Map<string, number>();
+        Object.entries(data.pageViews).forEach(([page, count]) => {
+          if (isSpam(page)) return;
+          const formatted = page === "/" || !page ? "homepage" : page.replace(/^\//, "");
+          viewsMap.set(formatted, (viewsMap.get(formatted) || 0) + count);
         });
-      });
+        const sortedViews = Array.from(viewsMap.entries())
+          .map(([page, count]) => ({ page, count }))
+          .sort((a, b) => b.count - a.count);
 
-      const processedClicks = Array.from(clicksMap.entries())
-        .map(([key, value]) => {
-          const [target] = key.split(":");
-          return { target, type: value.type, count: value.count };
-        })
-        .sort((a, b) => {
-          if (b.count !== a.count) return b.count - a.count;
-          const getWeight = (type: string) => {
-            switch (type) {
-              case "menu": return 3;
-              case "name": return 2;
-              case "footer": return 1;
-              default: return 0;
-            }
-          };
-          return getWeight(b.type) - getWeight(a.type);
+        const clicksMap = new Map<string, { type: string; count: number }>();
+        Object.entries(data.clicks).forEach(([key, count]) => {
+          const [type, target = "unknown"] = key.split(":");
+          const formatted = formatTarget(type, target);
+          const mapKey = `${formatted}:${type}`;
+          const existing = clicksMap.get(mapKey);
+          clicksMap.set(mapKey, {
+            type,
+            count: (existing?.count || 0) + count,
+          });
         });
+        const sortedClicks = Array.from(clicksMap.entries())
+          .map(([key, value]) => {
+            const [target] = key.split(":");
+            return { target, type: value.type, count: value.count };
+          })
+          .sort((a, b) => {
+            if (b.count !== a.count) return b.count - a.count;
+            const weight = (type: string) => {
+              switch (type) {
+                case "menu":
+                  return 3;
+                case "name":
+                  return 2;
+                case "footer":
+                  return 1;
+                default:
+                  return 0;
+              }
+            };
+            return weight(b.type) - weight(a.type);
+          });
 
-      setStats(data);
-      setSortedPageViews(processedPageViews);
-      setSortedClicks(processedClicks);
-      setTotalViews(processedPageViews.reduce((sum, { count }) => sum + count, 0));
-      setTotalClicks(processedClicks.reduce((sum, { count }) => sum + count, 0));
+        setPageViews(sortedViews);
+        setClicks(sortedClicks);
+        setTotalViews(sortedViews.reduce((sum, item) => sum + item.count, 0));
+        setTotalClicks(sortedClicks.reduce((sum, item) => sum + item.count, 0));
+        setUpdatedAt(new Date().toLocaleString());
+      } catch (error) {
+        console.error("Failed to load stats", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchStats();
   }, []);
 
-  if (!stats) {
+  if (loading) {
     return (
-      <div class="min-h-screen bg-gradient-to-b from-orange-50/30 via-transparent via-40% to-orange-50/30 dark:from-orange-950/10 dark:via-transparent dark:via-40% dark:to-orange-950/10">
-        <div class="pt-32 pb-20 px-6 sm:px-8">
-          <div class="max-w-6xl mx-auto">
-            <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-16 shadow-xl text-center">
-              <div class="inline-flex items-center gap-3">
-                <div class="w-6 h-6 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
-                <span class="text-gray-600 dark:text-gray-400">Loading analytics...</span>
-              </div>
+      <div class="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+        <section class="max-w-4xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
+          <div class="space-y-6 text-center">
+            <div class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 dark:border-gray-700">
+              <div class="h-4 w-4 animate-spin rounded-full border-2 border-orange-500 border-t-transparent" />
             </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Loading analytics…</p>
           </div>
-        </div>
+        </section>
       </div>
     );
   }
 
   return (
-    <div class="min-h-screen bg-gradient-to-b from-orange-50/30 via-transparent via-40% to-orange-50/30 dark:from-orange-950/10 dark:via-transparent dark:via-40% dark:to-orange-950/10">
-      {/* Hero Section */}
-      <div class="pt-32 pb-20 px-6 sm:px-8">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center space-y-8">
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-b from-gray-900 via-gray-900 to-gray-600 dark:from-white dark:via-white dark:to-gray-400 bg-clip-text text-transparent">
-              Analytics
-            </h1>
-            <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed font-light">
-              Real-time insights into website traffic and user interactions
-            </p>
-            <div class="flex justify-center">
-              <span class="text-sm text-gray-500 dark:text-gray-500 bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-full">
-                Last updated: {new Date().toLocaleString()}
-              </span>
+    <div class="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+      <section class="max-w-5xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
+        <div class="space-y-6">
+          <div class="flex items-center gap-4 md:gap-5">
+            <img
+              src="/pfptbs.png"
+              alt="Hrvoje Pavlinovic"
+              class="h-12 w-12 rounded-full object-cover md:h-[52px] md:w-[52px]"
+              loading="eager"
+            />
+            <div>
+              <h1 class="text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[44px]">
+                Site analytics
+              </h1>
+              <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
+                Internal dashboard for traffic trends and interaction hot spots.
+              </p>
             </div>
           </div>
+
+          <p class="max-w-3xl text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
+            Filters out obvious bot traffic, aggregates human interactions, and shows where visitors are spending attention.
+          </p>
+
+          <span class="inline-flex text-xs text-gray-500 dark:text-gray-500">
+            Last updated: {updatedAt}
+          </span>
         </div>
-      </div>
+      </section>
 
-      {/* Main Content */}
-      <div class="px-6 sm:px-8 pb-24">
-        <div class="max-w-6xl mx-auto space-y-16">
-          
-          {/* Summary Stats */}
-          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-xl">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div class="text-center">
-                <div class="text-3xl sm:text-4xl lg:text-5xl font-bold text-orange-600 dark:text-orange-400 mb-2">{totalViews.toLocaleString()}</div>
-                <div class="text-gray-600 dark:text-gray-400 font-medium">Total Page Views</div>
-              </div>
-              <div class="text-center">
-                <div class="text-3xl sm:text-4xl lg:text-5xl font-bold text-orange-600 dark:text-orange-400 mb-2">{totalClicks.toLocaleString()}</div>
-                <div class="text-gray-600 dark:text-gray-400 font-medium">Total Click Events</div>
-              </div>
+      <section class="border-t border-gray-100 dark:border-gray-800">
+        <div class="max-w-5xl mx-auto px-6 py-12 pb-24 md:py-16 md:pb-28 space-y-10">
+          <div class="grid gap-6 md:grid-cols-2">
+            <div class="rounded-2xl border border-gray-200 bg-white/80 p-6 text-center dark:border-gray-800 dark:bg-gray-900/40">
+              <p class="text-3xl font-semibold text-orange-600 dark:text-orange-400">
+                {totalViews.toLocaleString()}
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Total page views</p>
+            </div>
+            <div class="rounded-2xl border border-gray-200 bg-white/80 p-6 text-center dark:border-gray-800 dark:bg-gray-900/40">
+              <p class="text-3xl font-semibold text-orange-600 dark:text-orange-400">
+                {totalClicks.toLocaleString()}
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Total tracked clicks</p>
             </div>
           </div>
 
-          {/* Page Views */}
-          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-xl">
-            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-3 mb-8">
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
-                <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
-                  Page Views
-                </h2>
-              </div>
-              <div class="flex items-center gap-2 sm:ml-auto">
-                <span class="text-base sm:text-lg font-bold text-orange-600 dark:text-orange-400 font-mono">{totalViews}</span>
-                <span class="text-sm text-gray-500 dark:text-gray-500">total</span>
-              </div>
-            </div>
-            <div class="space-y-3 sm:space-y-4">
-              {sortedPageViews.map(({ page, count }, index) => (
-                <div key={`${page}-${index}`} class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                  <div class="flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3 min-w-0 flex-1">
-                      <span class="text-xs sm:text-sm font-bold text-orange-600 dark:text-orange-400 font-mono bg-orange-50 dark:bg-orange-950/30 px-2 py-1 rounded-lg w-[2.5rem] text-center flex-shrink-0">
-                        #{(index + 1).toString().padStart(2, '0')}
-                      </span>
-                      <span class="font-medium text-gray-900 dark:text-white text-sm sm:text-base truncate">{page}</span>
-                    </div>
-                    <div class="flex items-center gap-1 flex-shrink-0">
-                      <span class="text-base sm:text-lg font-bold text-orange-600 dark:text-orange-400 font-mono">{count}</span>
-                      <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-500">views</span>
-                    </div>
-                  </div>
+          <div class="space-y-6">
+            <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+              Top pages
+            </h2>
+            <div class="space-y-4">
+              {pageViews.map((item) => (
+                <div key={item.page} class="flex items-center justify-between rounded-xl border border-gray-200 bg-white/80 px-4 py-3 text-sm dark:border-gray-800 dark:bg-gray-900/40">
+                  <span class="text-gray-700 dark:text-gray-300">{item.page}</span>
+                  <span class="font-semibold text-orange-600 dark:text-orange-400">{item.count.toLocaleString()}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Click Events */}
-          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-xl">
-            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-3 mb-8">
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
-                <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
-                  Click Events
-                </h2>
-              </div>
-              <div class="flex items-center gap-2 sm:ml-auto">
-                <span class="text-base sm:text-lg font-bold text-orange-600 dark:text-orange-400 font-mono">{totalClicks}</span>
-                <span class="text-sm text-gray-500 dark:text-gray-500">total</span>
-              </div>
-            </div>
-            <div class="space-y-3 sm:space-y-4">
-              {sortedClicks.map(({ target, type, count }, index) => (
-                <div key={`${target}-${type}-${index}`} class="bg-gray-50/80 dark:bg-gray-800/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                  <div class="flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3 min-w-0 flex-1">
-                      <span class="text-xs sm:text-sm font-bold text-orange-600 dark:text-orange-400 font-mono bg-orange-50 dark:bg-orange-950/30 px-2 py-1 rounded-lg w-[2.5rem] text-center flex-shrink-0">
-                        #{(index + 1).toString().padStart(2, '0')}
-                      </span>
-                      <div class="min-w-0 flex-1">
-                        <div class="flex items-center gap-2">
-                          <span class="font-medium text-gray-900 dark:text-white text-sm sm:text-base truncate">{target}</span>
-                          <span class={`text-xs font-medium px-1.5 py-0.5 rounded flex-shrink-0 ${getTypeStyles(type)}`}>
-                            {type}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex items-center gap-1 flex-shrink-0">
-                      <span class="text-base sm:text-lg font-bold text-orange-600 dark:text-orange-400 font-mono">{count}</span>
-                      <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-500">clicks</span>
-                    </div>
+          <div class="space-y-6">
+            <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+              Interactions
+            </h2>
+            <div class="space-y-4">
+              {clicks.map((item) => (
+                <div key={`${item.target}-${item.type}`} class="flex items-center justify-between gap-4 rounded-xl border border-gray-200 bg-white/80 px-4 py-3 text-sm dark:border-gray-800 dark:bg-gray-900/40">
+                  <div class="flex items-center gap-3">
+                    <span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${TYPE_BADGE[item.type] || TYPE_BADGE.link}`}>
+                      {item.type}
+                    </span>
+                    <span class="text-gray-700 dark:text-gray-300">{item.target}</span>
                   </div>
+                  <span class="font-semibold text-orange-600 dark:text-orange-400">{item.count.toLocaleString()}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
-} 
+}
