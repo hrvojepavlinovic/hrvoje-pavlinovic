@@ -10,7 +10,7 @@
     "phone": "+385976292514",
     "email": "hrvoje@pavlinovic.com",
     "website": "https://hrvoje.pavlinovic.com",
-    "location": "Croatia (EU)",
+    "location": "Split, Croatia (EU)",
     "stats": [
       {
         "value": "12+",
@@ -88,9 +88,22 @@
   "experience": [
     {
       "title": "Senior Backend Engineer",
+      "company": "Tilt",
+      "companyUrl": "https://tilt.app",
+      "period": "2025 - Present",
+      "achievements": [
+        "Building and scaling backend systems powering Tilt's interactive commerce platform, covering livestreams, auctions, payments, and personalization features.",
+        "Architect scalable APIs and event-driven services that keep partner integrations and pricing pipelines responsive under real-world traffic.",
+        "Improve performance, reliability, and developer experience while shaping backend best practices across the engineering team."
+      ],
+      "technologies": ["Node.js", "NestJS", "Hasura", "GraphQL", "PostgreSQL", "AWS", "CDK", "Video Streaming", "Stripe", "System Architecture"],
+      "isHighlight": true
+    },
+    {
+      "title": "Senior Backend Engineer",
       "company": "ReneVerse.io",
       "companyUrl": "https://reneverse.io",
-      "period": "2023 - Present",
+      "period": "2023 - 2025",
       "achievements": [
         "Architect microservices infrastructure supporting interoperable gaming assets across multiple blockchain networks",
         "Scale mobile backend systems to handle 1.7B+ ad impressions monthly with 99.9% uptime and sub-200ms response times",

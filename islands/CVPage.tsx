@@ -1,7 +1,6 @@
 import cvData from "../data/cv.json" with { type: "json" };
 import projectsData from "../data/projects.json" with { type: "json" };
 
-// CV Data Types
 interface Stat {
   value: string;
   label: string;
@@ -58,6 +57,13 @@ interface Education {
   details: string[];
 }
 
+interface Project {
+  name: string;
+  description: string;
+  url: string;
+  technologies: string[];
+}
+
 interface CVData {
   hero: Hero;
   profile: Profile;
@@ -67,188 +73,154 @@ interface CVData {
   education: Education[];
 }
 
-// Projects Data Types
-interface Project {
-  name: string;
-  description: string;
-  url: string;
-  technologies: string[];
-}
-
 interface ProjectsData {
   projects: Project[];
 }
 
-// Type the imported data
 const typedCvData = cvData as unknown as CVData;
 const typedProjectsData = projectsData as unknown as ProjectsData;
 
 export default function CVPage() {
-  // Smooth scroll function
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const elementPosition = element.offsetTop;
-      const offsetPosition = elementPosition - 60; // Scroll 20px less
-      
-      globalThis.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const { hero, profile, professionalSummary, skills, experience, education } =
+    typedCvData;
+  const { projects } = typedProjectsData;
+
+  const techStackEntries =
+    Object.entries(skills.techStack) as Array<[keyof TechStack, string[]]>;
 
   return (
-    <div class="min-h-screen bg-gradient-to-b from-orange-50/30 via-transparent via-40% to-orange-50/30 dark:from-orange-950/10 dark:via-transparent dark:via-40% dark:to-orange-950/10">
-      {/* Hero Section */}
-      <div class="pt-32 pb-20 px-6 sm:px-8">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center space-y-8">
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-b from-gray-900 via-gray-900 to-gray-600 dark:from-white dark:via-white dark:to-gray-400 bg-clip-text text-transparent">
-              {typedCvData.hero.title}
-            </h1>
-            <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 max-w-6xl mx-auto leading-relaxed font-light">
-              {typedCvData.hero.subtitle}
-            </p>
-            
-            {/* Navigation Buttons */}
-            <div class="hidden lg:flex flex-wrap justify-center gap-4 mt-12">
-              <button 
-                type="button"
-                onClick={() => scrollToSection('about')}
-                class="px-6 py-3 bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-xl text-gray-900 dark:text-white font-medium hover:bg-orange-50/80 dark:hover:bg-orange-950/20 hover:border-orange-200/50 dark:hover:border-orange-800/50 transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                About Me
-              </button>
-              <button 
-                type="button"
-                onClick={() => scrollToSection('experience')}
-                class="px-6 py-3 bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-xl text-gray-900 dark:text-white font-medium hover:bg-orange-50/80 dark:hover:bg-orange-950/20 hover:border-orange-200/50 dark:hover:border-orange-800/50 transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                Experience
-              </button>
-              <button 
-                type="button"
-                onClick={() => scrollToSection('projects')}
-                class="px-6 py-3 bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-xl text-gray-900 dark:text-white font-medium hover:bg-orange-50/80 dark:hover:bg-orange-950/20 hover:border-orange-200/50 dark:hover:border-orange-800/50 transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                Personal Projects
-              </button>
-              <button 
-                type="button"
-                onClick={() => scrollToSection('education')}
-                class="px-6 py-3 bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-xl text-gray-900 dark:text-white font-medium hover:bg-orange-50/80 dark:hover:bg-orange-950/20 hover:border-orange-200/50 dark:hover:border-orange-800/50 transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                Education
-              </button>
+    <div class="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+      <section class="max-w-5xl mx-auto px-6 py-24 md:py-32">
+        <div class="space-y-10">
+          <div class="flex items-center gap-4 md:gap-5">
+            <img
+              src={profile.photo}
+              alt={profile.name}
+              class="h-12 w-12 rounded-full object-cover md:h-[52px] md:w-[52px]"
+              loading="eager"
+            />
+            <div>
+              <h1 class="text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[44px]">
+                {hero.title}
+              </h1>
+              <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
+                {profile.name} · {profile.title} · {profile.location}
+              </p>
             </div>
+          </div>
 
-            <div class="flex justify-center mt-8">
-              <a 
-                href="/cv/pdf"
-                target="_blank"
-                class="px-8 py-4 bg-orange-500/90 hover:bg-orange-600 backdrop-blur-sm border border-orange-400/50 rounded-xl text-white font-medium transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3 text-lg [-webkit-appearance:none] [appearance:none]"
+          <p class="max-w-3xl text-base text-gray-600 dark:text-gray-300 md:text-[17px] md:leading-loose">
+            {hero.subtitle}
+          </p>
+
+          <div class="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-300">
+            {profile.stats.map((stat) => (
+              <span
+                key={stat.label}
+                class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-3.5 py-1.5 dark:border-gray-800 dark:bg-gray-900/60"
               >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-                Download PDF
+                <span class="text-gray-900 dark:text-gray-100">{stat.value}</span>
+                <span class="text-gray-500 dark:text-gray-400">{stat.label}</span>
+              </span>
+            ))}
+          </div>
+
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+            <a
+              href="/cv/pdf"
+              target="_blank"
+              class="group inline-flex items-center gap-2 rounded-full border border-gray-900 px-4 py-2 text-sm font-semibold text-gray-900 transition-all hover:-translate-y-0.5 hover:bg-gray-900 hover:text-white dark:border-gray-100 dark:text-gray-100 dark:hover:bg-gray-100 dark:hover:text-gray-900"
+            >
+              Download PDF
+              <svg
+                class="h-4 w-4 transition-transform group-hover:-translate-y-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 5v14" />
+                <path d="M19 12l-7 7-7-7" />
+              </svg>
+            </a>
+            <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+              <a
+                href={`mailto:${profile.email}`}
+                class="transition-colors hover:text-orange-500"
+              >
+                {profile.email}
+              </a>
+              <span>•</span>
+              <a
+                href={profile.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="transition-colors hover:text-orange-500"
+              >
+                {profile.website}
               </a>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Main Content */}
-      <div class="px-6 sm:px-8 pb-24">
-        <div class="max-w-6xl mx-auto space-y-16">
-          
-          {/* Profile Header */}
-          <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 lg:p-12 shadow-xl">
-            <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
-              {/* Profile Photo */}
-              <div class="relative">
-                <div class="absolute inset-0 bg-gradient-to-br from-orange-200 to-orange-100 dark:from-orange-800/30 dark:to-orange-900/20 rounded-full blur-lg opacity-70"></div>
-                <img 
-                  src={typedCvData.profile.photo} 
-                  alt={typedCvData.profile.name}
-                  class="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-white/50 dark:border-gray-800/50"
-                />
-              </div>
+      <section class="border-t border-gray-100 dark:border-gray-800">
+        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-6">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+            Professional summary
+          </h2>
+          <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+            {professionalSummary.description}
+          </p>
+        </div>
+      </section>
 
-              <div class="flex-1 text-center lg:text-left">
-                {/* Name and Title */}
-                <div class="mb-8">
-                  <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3">
-                    {typedCvData.profile.name}
-                  </h2>
-                  <p class="text-lg lg:text-xl text-orange-600 dark:text-orange-400 font-semibold">
-                    {typedCvData.profile.title}
-                  </p>
-                </div>
-
-                {/* Stats Cards */}
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                  {typedCvData.profile.stats.map((stat, index) => (
-                    <div key={index} class="bg-orange-50/80 dark:bg-orange-950/20 backdrop-blur-sm p-6 rounded-xl border border-orange-200/50 dark:border-orange-800/50 text-center">
-                      <div class="text-3xl lg:text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">{stat.value}</div>
-                      <div class="text-sm font-medium text-gray-600 dark:text-gray-400">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+      <section class="border-t border-gray-100 dark:border-gray-800">
+        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
+          <div class="space-y-3">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Skills snapshot
+            </h2>
+            <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+              Core expertise and the toolkits I reach for most often.
+            </p>
           </div>
 
-          {/* Professional Summary Section */}
-          <div id="about" class="space-y-8">
-            <div class="flex items-center gap-3">
-              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
-              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                Professional Summary
-              </h2>
-            </div>
-            <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
-              <div class="space-y-6">
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                  {typedCvData.professionalSummary.description}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Skills Section */}
-          <div class="space-y-8">
-            <div class="flex items-center gap-3">
-              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
-              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                Technical Expertise
-              </h2>
-            </div>
-            
-            {/* Core Expertise - Full Width */}
-            <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
-              <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-6">Core Expertise</h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {typedCvData.skills.coreExpertise.map((skill, index) => (
-                  <div key={index} class="flex items-center gap-3 p-3 bg-orange-50/50 dark:bg-orange-950/10 rounded-lg">
-                    <div class="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
-                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{skill}</span>
-                  </div>
+          <div class="space-y-6">
+            <div class="rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600 dark:hover:bg-gray-900">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-orange-500">
+                Core expertise
+              </h3>
+              <ul class="mt-4 grid gap-3 text-sm text-gray-600 dark:text-gray-400 sm:grid-cols-2">
+                {skills.coreExpertise.map((item) => (
+                  <li key={item} class="flex items-start gap-3">
+                    <span class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300" />
+                    <span>{item}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
-            {/* Tech Stack */}
-            <div class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl">
-              <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-6">Tech Stack</h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {Object.entries(typedCvData.skills.techStack).map(([category, technologies]) => (
-                  <div key={category}>
-                    <h4 class="font-semibold mb-3 text-gray-900 dark:text-white">{category}</h4>
+            <div class="rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600 dark:hover:bg-gray-900">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-orange-500">
+                Tech stack highlights
+              </h3>
+              <div class="mt-4 flex flex-wrap gap-4">
+                {techStackEntries.map(([group, items]) => (
+                  <div key={group} class="min-w-[220px] flex-1 space-y-2">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-500">
+                      {group}
+                    </p>
                     <div class="flex flex-wrap gap-2">
-                      {technologies.map((tech: string, techIndex: number) => (
-                        <span key={techIndex} class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded">{tech}</span>
+                      {items.map((tech) => (
+                        <span
+                          key={tech}
+                          class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                        >
+                          {tech}
+                        </span>
                       ))}
                     </div>
                   </div>
@@ -256,104 +228,156 @@ export default function CVPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Experience Section */}
-          <div id="experience" class="space-y-8">
-            <div class="flex items-center gap-3">
-              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
-              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                Professional Experience
-              </h2>
-            </div>
-            {typedCvData.experience.map((job, index) => (
-              <div key={index} class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                <div class="flex justify-between items-start mb-4">
+      <section class="border-t border-gray-100 dark:border-gray-800">
+        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
+          <div class="space-y-3">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Experience
+            </h2>
+            <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+              Recent roles and the impact behind them.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            {experience.map((role) => (
+              <article
+                key={`${role.company}-${role.period}`}
+                class="group rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600 dark:hover:bg-gray-900"
+              >
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
                   <div>
-                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">{job.title}</h3>
-                    {job.companyUrl ? (
-                      <a 
-                        href={job.companyUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        class="text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors underline"
-                      >
-                        {job.company}
-                      </a>
-                    ) : (
-                      <p class="text-gray-600 dark:text-gray-400">{job.company}</p>
-                    )}
+                    <h3 class="text-base font-semibold text-gray-900 dark:text-gray-100">
+                      {role.title}
+                    </h3>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">
+                      {role.companyUrl ? (
+                        <a
+                          href={role.companyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="transition-colors hover:text-orange-500"
+                        >
+                          {role.company}
+                        </a>
+                      ) : (
+                        role.company
+                      )}
+                    </div>
                   </div>
-                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">{job.period}</span>
+                  <span class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-500">
+                    {role.period}
+                  </span>
                 </div>
-                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300 mb-4">
-                  {job.achievements.map((achievement, achievementIndex) => (
-                    <li key={achievementIndex} class="flex items-start gap-2">
-                      <div class={`${achievementIndex === job.achievements.length - 1 ? 'w-2 h-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mt-1.5' : 'w-1 h-1 bg-orange-500 rounded-full mt-2'} flex-shrink-0`}></div>
-                      <span class={achievementIndex === job.achievements.length - 1 ? 'font-medium' : ''}>{achievement}</span>
+
+                <ul class="mt-4 space-y-3 text-sm text-gray-600 dark:text-gray-400">
+                  {role.achievements.map((achievement) => (
+                    <li key={achievement} class="flex items-start gap-3">
+                      <span class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300 transition-colors group-hover:bg-orange-400" />
+                      <span>{achievement}</span>
                     </li>
                   ))}
                 </ul>
-                {job.technologies && (
-                  <div class="flex flex-wrap gap-2">
-                    {job.technologies.map((tech, techIndex) => (
-                      <span key={techIndex} class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">{tech}</span>
+
+                {role.technologies && role.technologies.length > 0 && (
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {role.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                      >
+                        {tech}
+                      </span>
                     ))}
                   </div>
                 )}
-              </div>
+              </article>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Projects Section */}
-          <div id="projects" class="space-y-8">
-            <div class="flex items-center gap-3">
-              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
-              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                Personal Projects
-              </h2>
-            </div>
-            {typedProjectsData.projects.map((project, index) => (
-              <div key={index} class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                <div class="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">{project.name}</h3>
-                    <p class="text-gray-600 dark:text-gray-400">{project.description}</p>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <a href={project.url} target="_blank" rel="noopener noreferrer" class="text-xs text-gray-500 dark:text-gray-500 hover:text-orange-600 dark:hover:text-orange-400 underline transition-colors">Live</a>
-                  </div>
+      <section class="border-t border-gray-100 dark:border-gray-800">
+        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
+          <div class="space-y-3">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Personal projects
+            </h2>
+            <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+              Selected work I build and maintain outside client engagements.
+            </p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2">
+            {projects.map((project) => (
+              <a
+                key={project.name}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group rounded-2xl border border-gray-100 bg-white/60 p-6 text-left shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600 dark:hover:bg-gray-900"
+              >
+                <div class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-orange-500">
+                  <span class="h-1.5 w-1.5 rounded-full bg-orange-400" />
+                  {project.name}
                 </div>
-                <div class="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span key={techIndex} class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">{tech}</span>
+                <p class="mt-3 text-sm text-gray-600 transition-colors group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-gray-100">
+                  {project.description}
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                    >
+                      {tech}
+                    </span>
                   ))}
                 </div>
-              </div>
+              </a>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Education Section */}
-          <div id="education" class="space-y-8">
-            <div class="flex items-center gap-3">
-              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
-              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                Education
-              </h2>
-            </div>
-            {typedCvData.education.map((edu, index) => (
-              <div key={index} class="bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.08] rounded-2xl p-8 shadow-xl hover:border-orange-200 dark:hover:border-orange-800/50 transition-all duration-300">
-                <div class="flex justify-between items-start mb-4">
+      <section class="border-t border-gray-100 dark:border-gray-800">
+        <div class="max-w-5xl mx-auto px-6 py-12 pb-24 md:py-16 md:pb-28 space-y-10">
+          <div class="space-y-3">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Education
+            </h2>
+            <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+              Formal studies that shaped my engineering foundation.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            {education.map((entry) => (
+              <div
+                key={entry.degree}
+                class="group rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600 dark:hover:bg-gray-900"
+              >
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
                   <div>
-                    <h3 class="text-lg font-semibold text-orange-600 dark:text-orange-400">{edu.degree}</h3>
-                    <p class="text-gray-600 dark:text-gray-400">{edu.institution}</p>
+                    <h3 class="text-base font-semibold text-gray-900 dark:text-gray-100">
+                      {entry.degree}
+                    </h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                      {entry.institution}
+                    </p>
                   </div>
-                  <span class="text-sm text-gray-500 dark:text-gray-500 font-medium">{edu.period}</span>
+                  <span class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-500">
+                    {entry.period}
+                  </span>
                 </div>
-                {edu.details.length > 0 && (
-                  <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                    {edu.details.map((detail, detailIndex) => (
-                      <li key={detailIndex} class="flex items-start gap-2">
-                        <div class="w-1 h-1 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                {entry.details.length > 0 && (
+                  <ul class="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    {entry.details.map((detail) => (
+                      <li key={detail} class="flex items-start gap-3">
+                        <span class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300" />
                         <span>{detail}</span>
                       </li>
                     ))}
@@ -363,7 +387,7 @@ export default function CVPage() {
             ))}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
-} 
+}

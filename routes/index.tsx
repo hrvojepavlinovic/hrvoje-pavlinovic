@@ -6,8 +6,8 @@ export default function Home() {
     <>
       <Head>
         {/* Primary Meta Tags */}
-        <title>Hrvoje Pavlinovic | Senior Software Engineer & Tech Entrepreneur</title>
-        <meta name="title" content="Hrvoje Pavlinovic | Senior Software Engineer & Tech Entrepreneur" />
+        <title>Hrvoje Pavlinovic</title>
+        <meta name="title" content="Hrvoje Pavlinovic" />
         <meta name="description" content="Senior Software Engineer with 12+ years engineering experience. Founder of multiple innovative projects including Memoato, XXI Today, and HILLS Lab. Specializing in AI, blockchain, and Web3 solutions." />
         <meta name="keywords" content="Hrvoje Pavlinovic, Blockchain Developer, Tech Entrepreneur, AI, Web3, Bitcoin, Software Engineering, Startup Founder" />
         <meta name="author" content="Hrvoje Pavlinovic" />
@@ -17,7 +17,7 @@ export default function Home() {
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="profile" />
         <meta property="og:url" content="https://hrvoje.pavlinovic.com/" />
-        <meta property="og:title" content="Hrvoje Pavlinovic | Senior Software Engineer & Tech Entrepreneur" />
+        <meta property="og:title" content="Hrvoje Pavlinovic" />
         <meta property="og:description" content="Senior Software Engineer with 12+ years engineering experience. Founder of multiple innovative projects including Memoato, XXI Today, and HILLS Lab. Specializing in AI, blockchain, and Web3 solutions." />
         <meta property="og:image" content="https://hrvoje.pavlinovic.com/pfptbs.png" />
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
@@ -29,7 +29,7 @@ export default function Home() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@0xhp10" />
         <meta name="twitter:creator" content="@0xhp10" />
-        <meta name="twitter:title" content="Hrvoje Pavlinovic | Senior Software Engineer & Tech Entrepreneur" />
+        <meta name="twitter:title" content="Hrvoje Pavlinovic" />
         <meta name="twitter:description" content="Senior Software Engineer with 12+ years engineering experience. Founder of multiple innovative projects including Memoato, XXI Today, and HILLS Lab. Specializing in AI, blockchain, and Web3 solutions." />
         <meta name="twitter:image" content="https://hrvoje.pavlinovic.com/pfptbs.png" />
         
