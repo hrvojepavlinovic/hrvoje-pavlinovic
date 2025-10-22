@@ -42,7 +42,14 @@
       "name": "XXI Today",
       "url": "https://xxi.today",
       "description": "Bitcoin's intelligence layer: one destination for education, analytics, milestone tracking, and professional-grade data APIs.",
-      "technologies": ["T3", "Postgres", "Vercel", "Bitcoin", "Lightning", "Cloudflare Workers"],
+      "technologies": [
+        "T3",
+        "Postgres",
+        "Vercel",
+        "Bitcoin",
+        "Lightning",
+        "Cloudflare Workers"
+      ],
       "status": "early",
       "featured": true,
       "accent": "orange",
@@ -70,7 +77,7 @@
         ],
         "teamCosts": "Two senior engineers + managing editor + part-time researcher ≈ $18K/month burn.",
         "timeToMarket": "Four months to paid Pro tier launch; 12 months to 10K paying members and 25 institutional API customers.",
-        "currentState": "Alpha live with 1.2K newsletter subscribers, 8 corporate pilots reviewing the API, and partnerships in progress with two Croatian exchanges. Bootstrapped to date." 
+        "currentState": "Alpha live with 1.2K newsletter subscribers, 8 corporate pilots reviewing the API, and partnerships in progress with two Croatian exchanges. Bootstrapped to date."
       }
     },
     {
@@ -105,7 +112,7 @@
         ],
         "teamCosts": "Founder + PM + mobile dev + community lead ≈ $22K/month burn.",
         "timeToMarket": "Six months to Zagreb & Split pilots; 18 months to 25 venues and €1M GMV.",
-        "currentState": "Product design complete, venue partnerships LOIs signed in Croatia, and 400 players pre-registered for beta leagues. Bootstrapped to date." 
+        "currentState": "Product design complete, venue partnerships LOIs signed in Croatia, and 400 players pre-registered for beta leagues. Bootstrapped to date."
       }
     },
     {
@@ -113,7 +120,14 @@
       "name": "Apes Club",
       "url": "https://apes.club",
       "description": "Compliance-aware meme coin launchpad with analytics, KYC'd creator tiers, and community governance on Solana.",
-      "technologies": ["Solana", "Web3", "TypeScript", "DeFi", "Rust", "Cloudflare"],
+      "technologies": [
+        "Solana",
+        "Web3",
+        "TypeScript",
+        "DeFi",
+        "Rust",
+        "Cloudflare"
+      ],
       "status": "early",
       "featured": false,
       "accent": "violet",
@@ -141,7 +155,7 @@
         ],
         "teamCosts": "Two protocol engineers + data scientist + compliance lead ≈ $32K/month burn.",
         "timeToMarket": "Eight months to regulated launch on Solana; 15 months to multi-chain expansion and governance token launch.",
-        "currentState": "Analytics prototype live ingesting 4TB/day, early conversations with two licensed VASPs, and 50+ high-volume traders in private Discord. Bootstrapped to date." 
+        "currentState": "Analytics prototype live ingesting 4TB/day, early conversations with two licensed VASPs, and 50+ high-volume traders in private Discord. Bootstrapped to date."
       }
     },
     {
@@ -166,7 +180,7 @@
           "Template-ready architecture I can productise for others"
         ],
         "pricingModel": "Currently internal. Potential premium template + consulting offer at $3K-5K engagements.",
-        "currentState": "15K+ monthly visitors, direct client acquisition channel, and sandbox for shipping the experiments documented on this page. Bootstrapped to date." 
+        "currentState": "15K+ monthly visitors, direct client acquisition channel, and sandbox for shipping the experiments documented on this page. Bootstrapped to date."
       }
     },
     {
@@ -200,7 +214,7 @@
         ],
         "teamCosts": "Initial pod of 3 principals + ops ≈ €32K/month burn before client revenue.",
         "timeToMarket": "Three months to staffed lab, six months to five retained clients, eighteen months to €3M ARR.",
-        "currentState": "Signed lighthouse engagements in commerce and blockchain, plus inbound pipeline from ReneVerse, Tilt partners, and Croatian enterprise network. Bootstrapped to date." 
+        "currentState": "Signed lighthouse engagements in commerce and blockchain, plus inbound pipeline from ReneVerse, Tilt partners, and Croatian enterprise network. Bootstrapped to date."
       }
     }
   ]

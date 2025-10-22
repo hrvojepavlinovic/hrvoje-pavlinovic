@@ -14,7 +14,15 @@ export const handler: Handlers = {
       }
 
       // Validate template type
-      const validTemplates = ["web3", "bitcoin", "ai", "backend", "fullstack", "lead", "staff"];
+      const validTemplates = [
+        "web3",
+        "bitcoin",
+        "ai",
+        "backend",
+        "fullstack",
+        "lead",
+        "staff",
+      ];
       if (!validTemplates.includes(template)) {
         return new Response("Invalid template type", { status: 400 });
       }
@@ -30,4 +38,4 @@ export const handler: Handlers = {
       return new Response("Error processing request", { status: 500 });
     }
   },
-}; 
+};

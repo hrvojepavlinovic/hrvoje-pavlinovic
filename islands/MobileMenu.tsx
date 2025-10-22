@@ -10,7 +10,7 @@ interface NavLinkProps {
 
 function NavLink({ href, children, onClick, external = false }: NavLinkProps) {
   return (
-    <a 
+    <a
       href={href}
       class="dark:text-white/60 text-black/60 dark:hover:text-white hover:text-black text-2xl py-6 text-center inline-block w-full"
       {...(external && { target: "_blank", rel: "noopener noreferrer" })}
@@ -57,22 +57,36 @@ export default function MobileMenu() {
         class="inline-flex items-center justify-center rounded-md w-9 h-9 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground dark:border-white/10 border-black/10 dark:bg-black/50 bg-white/50 dark:hover:bg-white/5 hover:bg-black/5 backdrop-blur-sm shadow-sm dark:shadow-white/5 shadow-black/5 relative z-50"
         aria-label="Toggle menu"
       >
-        {isOpen.value ? (
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <path d="m18 6-12 12" />
-            <path d="m6 6 12 12" />
-          </svg>
-        ) : (
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <line x1="4" x2="20" y1="12" y2="12" />
-            <line x1="4" x2="20" y1="6" y2="6" />
-            <line x1="4" x2="20" y1="18" y2="18" />
-          </svg>
-        )}
+        {isOpen.value
+          ? (
+            <svg
+              class="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="m18 6-12 12" />
+              <path d="m6 6 12 12" />
+            </svg>
+          )
+          : (
+            <svg
+              class="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <line x1="4" x2="20" y1="12" y2="12" />
+              <line x1="4" x2="20" y1="6" y2="6" />
+              <line x1="4" x2="20" y1="18" y2="18" />
+            </svg>
+          )}
       </button>
 
       {/* Mobile menu overlay */}
-      <div 
+      <div
         class={`fixed inset-0 dark:bg-black/95 bg-white/95 backdrop-blur-md z-40 md:hidden transition-opacity duration-200 ${
           isOpen.value ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
@@ -88,4 +102,4 @@ export default function MobileMenu() {
       </div>
     </>
   );
-} 
+}

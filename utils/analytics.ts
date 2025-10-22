@@ -14,4 +14,4 @@ export async function trackClick(type: string, target: string) {
   } catch (error) {
     console.error("Failed to track click:", error);
   }
-} 
+}

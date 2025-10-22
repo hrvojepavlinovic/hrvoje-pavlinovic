@@ -20,7 +20,9 @@ export const handler: Handlers<BlogPageData> = {
     const kv = await Deno.openKv();
 
     const sortedArticles = (blogData.articles as BlogArticle[])
-      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      .sort((a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
 
     const articles = await Promise.all(
       sortedArticles.map(async (article) => {
@@ -48,9 +50,11 @@ export const handler: Handlers<BlogPageData> = {
 export default function BlogPage({ data }: PageProps<BlogPageData>) {
   const canonicalUrl = "https://hrvoje.pavlinovic.com/blog";
   const title = "Blog | Hrvoje Pavlinovic";
-  const description = "Notes on building resilient backends, leading lean teams, and navigating founder life.";
+  const description =
+    "Notes on building resilient backends, leading lean teams, and navigating founder life.";
   const imageUrl = "https://hrvoje.pavlinovic.com/blog.png";
-  const keywords = "Blog, Software Engineering, Backend, Blockchain, AI, Hrvoje";
+  const keywords =
+    "Blog, Software Engineering, Backend, Blockchain, AI, Hrvoje";
   const author = "Hrvoje Pavlinovic";
 
   return (
@@ -77,7 +81,7 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
         <meta name="twitter:url" content={canonicalUrl} />
       </Head>
 
-      <div class="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+      <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
         <section class="max-w-5xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
           <div class="space-y-8">
             <div class="flex items-center gap-4 md:gap-5">
@@ -92,13 +96,15 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
                   Notes from the build log
                 </h1>
                 <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
-                  Memo-style entries on shipping backend systems, teams, and founder life.
+                  Memo-style entries on shipping backend systems, teams, and
+                  founder life.
                 </p>
               </div>
             </div>
 
             <p class="max-w-3xl text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
-              Essays stay short, tactical, and grounded in real delivery. Browse the archive or subscribe for drops as I ship.
+              Essays stay short, tactical, and grounded in real delivery. Browse
+              the archive or subscribe for drops as I ship.
             </p>
           </div>
         </section>
@@ -108,7 +114,7 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
             {data.articles.map((article) => (
               <article
                 key={article.id}
-                class="rounded-2xl border border-gray-200 bg-white/80 p-6 transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600"
+                class="rounded-2xl border border-gray-200 bg-white/80 p-6 transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600"
               >
                 <a href={`/blog/${article.slug}`} class="space-y-4">
                   <header class="space-y-2">
@@ -135,7 +141,7 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
                       {article.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 dark:border-gray-700 dark:bg-gray-900"
+                          class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 dark:border-gray-700 dark:bg-black"
                         >
                           {tag}
                         </span>

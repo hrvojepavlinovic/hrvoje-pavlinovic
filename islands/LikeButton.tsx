@@ -1,4 +1,4 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { trackEvent } from "../utils/track.ts";
 
 interface ILikeButtonProps {
@@ -13,7 +13,9 @@ export default function LikeButton({ projectId }: ILikeButtonProps) {
   useEffect(() => {
     const fetchLikes = async () => {
       try {
-        const response = await fetch(`/api/likes?project=${encodeURIComponent(projectId)}`);
+        const response = await fetch(
+          `/api/likes?project=${encodeURIComponent(projectId)}`,
+        );
         if (response.ok) {
           const data = await response.json();
           setLikes(data.likes);
@@ -30,12 +32,12 @@ export default function LikeButton({ projectId }: ILikeButtonProps) {
     if (isLoading) return;
 
     setIsLoading(true);
-    
+
     try {
-      const response = await fetch('/api/likes', {
-        method: 'POST',
+      const response = await fetch("/api/likes", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ projectId }),
       });
@@ -48,7 +50,7 @@ export default function LikeButton({ projectId }: ILikeButtonProps) {
         trackEvent({
           type: "click",
           clickType: "like",
-          target: projectId
+          target: projectId,
         });
       }
     } catch (error) {
@@ -68,11 +70,11 @@ export default function LikeButton({ projectId }: ILikeButtonProps) {
         transition-all duration-200 ease-in-out
         text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 
         hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer
-        ${isLoading ? 'opacity-50 cursor-wait' : ''}
+        ${isLoading ? "opacity-50 cursor-wait" : ""}
       `}
       title="Like this project"
     >
-      <svg 
+      <svg
         class="w-4 h-4 transition-all duration-200 stroke-current stroke-2"
         viewBox="0 0 24 24"
         fill="none"
@@ -85,4 +87,4 @@ export default function LikeButton({ projectId }: ILikeButtonProps) {
       </span>
     </button>
   );
-} 
+}

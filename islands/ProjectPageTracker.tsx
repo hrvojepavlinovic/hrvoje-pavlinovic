@@ -5,13 +5,15 @@ interface ProjectPageTrackerProps {
   projectId: string;
 }
 
-export default function ProjectPageTracker({ projectId }: ProjectPageTrackerProps) {
+export default function ProjectPageTracker(
+  { projectId }: ProjectPageTrackerProps,
+) {
   useEffect(() => {
     trackEvent({
       type: "pageview",
-      page: `/projects/${projectId}`
+      page: `/projects/${projectId}`,
     });
   }, [projectId]);
 
   return null; // This component doesn't render anything
-} 
+}

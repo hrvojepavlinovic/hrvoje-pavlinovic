@@ -10,4 +10,4 @@ export default function ComingSoon({ pageName }: ComingSoonProps) {
       </h1>
     </div>
   );
-} 
+}

@@ -1,0 +1,110 @@
+{
+  "name": "Hrvoje Pavlinovic",
+  "title": "Senior backend engineer scaling interactive commerce at {{TILT_URL}}",
+  "avatar": {
+    "src": "/pfptbs.png",
+    "alt": "Hrvoje Pavlinovic"
+  },
+  "heroParagraphs": [
+    "Wannabe fit dad of 2 and a husband to a beautiful wife. I am passionate about programming, which is quite neat considering I do that for a living. As you can imagine, my schedule is quite busy, but I love every second of it.",
+    "Quick workout sessions, occasional football game, and recently padel (don't hate pls, my knees can't put up with football anymore) keep my head clear and stop my body from gaining too much weight (because I'm stealing candies from my kids, for their own good).",
+    "I like building performant software and making complex things simple, currently looking after Tilt's backend by day and exploring new ideas and concepts once the house is quiet (or usually when I'm in bathroom).",
+    "12+ years in the business, paved my way through thick and thin by working in web3, automotive, health care, commerce, media, and whatnot industries.",
+    "When it comes to numbers, I managed to scale systems past 1.7B requests per month. Still curious, still learning, grateful and excited for the future."
+  ],
+  "socialLinks": [
+    {
+      "label": "X (Twitter)",
+      "href": "https://x.com/0xhp10",
+      "icon": "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
+      "trackingTarget": "twitter"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/hpavlino",
+      "icon": "M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z",
+      "trackingTarget": "linkedin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/hrvojepavlinovic",
+      "icon": "M12 .5a11.5 11.5 0 00-3.64 22.42c.57.11.77-.24.77-.54v-1.9c-3.14.69-3.8-1.52-3.8-1.52-.52-1.34-1.27-1.7-1.27-1.7-1.04-.72.08-.71.08-.71 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.67 1.25 3.32.96a2.4 2.4 0 01.71-1.51c-2.5-.28-5.12-1.27-5.12-5.64A4.42 4.42 0 016.4 7.7a4.1 4.1 0 01.11-3s.95-.3 3.1 1.17a10.7 10.7 0 015.64 0c2.15-1.47 3.1-1.17 3.1-1.17a4.1 4.1 0 01.11 3 4.42 4.42 0 011.17 3.06c0 4.39-2.63 5.36-5.14 5.64.41.35.77 1.04.77 2.1v3.12c0 .3.2.66.78.54A11.5 11.5 0 0012 .5z",
+      "trackingTarget": "github"
+    },
+    {
+      "label": "Email",
+      "href": "mailto:hrvoje@pavlinovic.com",
+      "icon": "M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67zM22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z",
+      "trackingTarget": "email"
+    }
+  ],
+  "ctaLinks": [
+    {
+      "label": "Resume",
+      "href": "/cv",
+      "trackingTarget": "resume",
+      "variant": "primary"
+    },
+    {
+      "label": "Personal Projects",
+      "href": "/projects",
+      "trackingTarget": "projects",
+      "variant": "secondary"
+    }
+  ],
+  "sections": {
+    "capabilities": {
+      "heading": "How I help teams",
+      "description": "Systems work best when they disappear into the background. Here's how I keep them simple, sturdy, and aligned with the people using them."
+    },
+    "engagements": {
+      "heading": "Recent engagements",
+      "secondaryCta": {
+        "label": "See additional work",
+        "href": "/projects",
+        "trackingTarget": "projects-secondary"
+      }
+    }
+  },
+  "highlightedWork": [
+    {
+      "name": "Tilt",
+      "summary": "Building and scaling backend systems powering Tilt's interactive commerce platform—from livestream auctions to payments and personalization—while shaping API design, reliability, and engineering best practices across the team.",
+      "href": "https://tilt.app",
+      "status": "Current role",
+      "trackingTarget": "tilt"
+    },
+    {
+      "name": "ReneVerse",
+      "summary": "Architected event-driven infrastructure for interoperable blockchain gaming assets, scaling to billions of ad impressions while maintaining strict uptime targets.",
+      "href": "https://reneverse.io",
+      "status": "Previous engagement",
+      "trackingTarget": "reneverse"
+    }
+  ],
+  "capabilityAreas": [
+    {
+      "title": "Commerce systems that scale",
+      "intro": "12+ years shipping production backends across AI, Bitcoin, Web3, automotive, health care, and commerce.",
+      "points": [
+        "Design end-to-end flows for livestreams, auctions, fulfilment, and payouts that feel instant for the teams running them.",
+        "Scaled ad tech pipelines past 1.7B impressions while tightening performance and reliability guardrails."
+      ]
+    },
+    {
+      "title": "Delivery with guardrails",
+      "intro": "Keep teams close to customers by pairing architecture calls with the day-to-day execution that makes them real.",
+      "points": [
+        "Bundle observability, performance, and developer ergonomics so shipping stays confident without trading off uptime."
+      ]
+    },
+    {
+      "title": "Founder-aligned partnership",
+      "intro": "Partner with founders from first build through compounding hypergrowth.",
+      "points": [
+        "Embed with leads to translate business pressure into lean roadmaps and crisp engineering execution.",
+        "Comfortable weaving legacy stacks and third-party integrations into modern surfaces without slowing velocity."
+      ]
+    }
+  ]
+}

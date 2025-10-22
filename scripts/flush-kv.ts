@@ -23,10 +23,10 @@ if (toDelete.length === 0) {
 console.log(`\n🔥 Deleting ${toDelete.length} entries...`);
 
 // Delete all entries
-const deletePromises = toDelete.map(key => kv.delete(key));
+const deletePromises = toDelete.map((key) => kv.delete(key));
 await Promise.all(deletePromises);
 
 console.log("✅ KV flushed successfully!");
 console.log("📊 All likes data has been cleared.");
 
-kv.close(); 
+kv.close();

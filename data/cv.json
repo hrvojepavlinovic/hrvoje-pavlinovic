@@ -36,7 +36,7 @@
   "skills": {
     "coreExpertise": [
       "Serverless Architecture",
-      "Scalability Solutions", 
+      "Scalability Solutions",
       "Performance Optimization",
       "DevOps Practices",
       "Web3/Blockchain",
@@ -96,7 +96,18 @@
         "Architect scalable APIs and event-driven services that keep partner integrations and pricing pipelines responsive under real-world traffic.",
         "Improve performance, reliability, and developer experience while shaping backend best practices across the engineering team."
       ],
-      "technologies": ["Node.js", "NestJS", "Hasura", "GraphQL", "PostgreSQL", "AWS", "CDK", "Video Streaming", "Stripe", "System Architecture"],
+      "technologies": [
+        "Node.js",
+        "NestJS",
+        "Hasura",
+        "GraphQL",
+        "PostgreSQL",
+        "AWS",
+        "CDK",
+        "Video Streaming",
+        "Stripe",
+        "System Architecture"
+      ],
       "isHighlight": true
     },
     {
@@ -113,7 +124,16 @@
         "Mentor team of 4 developers, contributing to 50% reduction in time-to-productivity for new hires",
         "Consolidate legacy architecture by unifying 6 repositories into monorepo, reducing build time by 50%"
       ],
-      "technologies": ["Node.js", "TypeScript", "GraphQL", "AWS CDK", "ECS", "Docker", "PostgreSQL", "Smart Contracts"],
+      "technologies": [
+        "Node.js",
+        "TypeScript",
+        "GraphQL",
+        "AWS CDK",
+        "ECS",
+        "Docker",
+        "PostgreSQL",
+        "Smart Contracts"
+      ],
       "isHighlight": true
     },
     {
@@ -128,7 +148,15 @@
         "Present complex blockchain voting mechanisms to non-technical stakeholders, securing project approval",
         "Integrate mobile backend for Telegram mini-app supporting 10K+ daily active users"
       ],
-      "technologies": ["Next.js", "MongoDB", "PostgreSQL", "Ethereum", "TonConnect", "AWS CDK", "ECS"],
+      "technologies": [
+        "Next.js",
+        "MongoDB",
+        "PostgreSQL",
+        "Ethereum",
+        "TonConnect",
+        "AWS CDK",
+        "ECS"
+      ],
       "isHighlight": true
     },
     {
@@ -143,7 +171,15 @@
         "Simplify HIPAA compliance requirements for healthcare team, ensuring successful regulatory approval",
         "Optimize database performance for handling thousands of concurrent patient record queries"
       ],
-      "technologies": ["Node.js", "NestJS", "TypeORM", "PostgreSQL", "AWS", "Terraform", "Docker"],
+      "technologies": [
+        "Node.js",
+        "NestJS",
+        "TypeORM",
+        "PostgreSQL",
+        "AWS",
+        "Terraform",
+        "Docker"
+      ],
       "isHighlight": true
     },
     {
@@ -158,7 +194,14 @@
         "Conduct 15+ technical interviews and establish hiring standards, reducing time-to-hire by 30%",
         "Create secure OTA updates system with rollback capabilities, ensuring zero failed deployments"
       ],
-      "technologies": ["TypeScript", "GraphQL", "Apollo Federation", "Kafka", "PostgreSQL", "AWS"],
+      "technologies": [
+        "TypeScript",
+        "GraphQL",
+        "Apollo Federation",
+        "Kafka",
+        "PostgreSQL",
+        "AWS"
+      ],
       "isHighlight": true
     },
     {
@@ -173,7 +216,15 @@
         "Mentor 3 junior developers achieving promotion to mid-level positions within 12 months",
         "Reduce system downtime by 80% through performance optimization and proactive monitoring"
       ],
-      "technologies": ["Node.js", "TypeScript", "Express", "React", "PostgreSQL", "Redis", "Docker"],
+      "technologies": [
+        "Node.js",
+        "TypeScript",
+        "Express",
+        "React",
+        "PostgreSQL",
+        "Redis",
+        "Docker"
+      ],
       "isHighlight": true
     },
     {
@@ -200,7 +251,20 @@
         "Managed ad campaigns, SEO optimization, and server maintenance",
         "Balanced work and studies, graduating with multiple job offers"
       ],
-      "technologies": ["PHP", "Symfony", "jQuery", "Joomla", "WordPress", "Magento", "MySQL", "Linux", "SEO", "Google Analytics", "Google Ads", "Facebook Ads"],
+      "technologies": [
+        "PHP",
+        "Symfony",
+        "jQuery",
+        "Joomla",
+        "WordPress",
+        "Magento",
+        "MySQL",
+        "Linux",
+        "SEO",
+        "Google Analytics",
+        "Google Ads",
+        "Facebook Ads"
+      ],
       "isHighlight": true
     }
   ],
@@ -213,14 +277,14 @@
       "technologies": ["T3", "AI", "Postgres", "Vercel"]
     },
     {
-      "name": "XXI Today", 
+      "name": "XXI Today",
       "url": "https://xxi.today",
       "description": "Comprehensive Bitcoin information hub with wallet explorer, milestone tracking, news curation, and educational resources for the entire Bitcoin ecosystem.",
       "technologies": ["T3", "Postgres", "Bitcoin", "Lightning"]
     },
     {
       "name": "Personal Portfolio",
-      "url": "https://hrvoje.pavlinovic.com", 
+      "url": "https://hrvoje.pavlinovic.com",
       "description": "Modern personal brand platform built with cutting-edge Deno/Fresh stack, featuring real-time analytics, integrated project showcase, and technical depth demonstration.",
       "technologies": ["Deno", "KV", "Fresh", "Tailwind"]
     },
@@ -249,4 +313,4 @@
       "details": []
     }
   ]
-} 
+}

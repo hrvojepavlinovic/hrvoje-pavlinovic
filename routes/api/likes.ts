@@ -7,7 +7,7 @@ export const handler = {
     try {
       const url = new URL(req.url);
       const projectId = url.searchParams.get("project");
-      
+
       if (!projectId) {
         return new Response(JSON.stringify({ error: "Project ID required" }), {
           status: 400,
@@ -34,7 +34,7 @@ export const handler = {
   async POST(req: Request, _ctx: HandlerContext) {
     try {
       const { projectId } = await req.json();
-      
+
       if (!projectId) {
         return new Response(JSON.stringify({ error: "Project ID required" }), {
           status: 400,
@@ -60,10 +60,13 @@ export const handler = {
       });
     } catch (error) {
       console.error("Error incrementing likes:", error);
-      return new Response(JSON.stringify({ error: "Failed to increment likes" }), {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ error: "Failed to increment likes" }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
     }
   },
-}; 
+};

@@ -29,10 +29,10 @@ export const handler: Handlers = {
       if (!hash || !timestamp) {
         return new Response("Hash and timestamp are required", { status: 400 });
       }
-      
+
       // Store the commit info in KV
       await kv.set(["commit_hash"], { hash, timestamp });
-      
+
       return new Response(JSON.stringify({ hash, timestamp }), {
         headers: { "Content-Type": "application/json" },
       });
@@ -71,7 +71,7 @@ export const handler: Handlers = {
         });
         const { stdout: timestampStdout } = await timestampProcess.output();
         const timestamp = new TextDecoder().decode(timestampStdout).trim();
-        
+
         return new Response(JSON.stringify({ hash, timestamp }), {
           headers: { "Content-Type": "application/json" },
         });
@@ -87,5 +87,5 @@ export const handler: Handlers = {
         headers: { "Content-Type": "application/json" },
       });
     }
-  }
-}; 
+  },
+};

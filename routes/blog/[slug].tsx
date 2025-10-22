@@ -19,7 +19,9 @@ interface BlogPostData {
 export const handler: Handlers<BlogPostData> = {
   async GET(_req, ctx) {
     const { slug } = ctx.params;
-    const article = (blogData.articles as BlogArticle[]).find((a) => a.slug === slug);
+    const article = (blogData.articles as BlogArticle[]).find((a) =>
+      a.slug === slug
+    );
 
     if (!article) {
       return ctx.renderNotFound();
@@ -110,7 +112,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
         />
       </Head>
 
-      <div class="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+      <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
         <section class="max-w-3xl mx-auto px-6 py-24 md:py-32 space-y-10">
           <a
             href="/blog"
@@ -142,7 +144,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
                 {article.tags.map((tag) => (
                   <span
                     key={tag}
-                    class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 dark:border-gray-700 dark:bg-gray-900"
+                    class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 dark:border-gray-700 dark:bg-black"
                   >
                     {tag}
                   </span>
@@ -159,7 +161,11 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
           </article>
 
           <footer class="space-y-6 border-t border-gray-200 pt-6 dark:border-gray-800">
-            <SocialActions slug={article.slug} initialLikes={article.likes} seo={article.seo} />
+            <SocialActions
+              slug={article.slug}
+              initialLikes={article.likes}
+              seo={article.seo}
+            />
           </footer>
         </section>
       </div>

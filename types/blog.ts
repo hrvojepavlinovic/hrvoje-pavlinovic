@@ -24,4 +24,4 @@ export interface BlogArticle {
 export interface BlogStore {
   articles: BlogArticle[];
   lastId: number;
-} 
+}

@@ -8,7 +8,10 @@ export const handler: Handlers = {
 
     if (type === "click") {
       const clickType = data.clickType || "link"; // fallback for compatibility
-      await trackClick(clickType as "menu" | "link" | "internal" | "external", target);
+      await trackClick(
+        clickType as "menu" | "link" | "internal" | "external",
+        target,
+      );
     } else if (type === "pageview") {
       await trackPageView(page, userAgent);
     }
@@ -17,4 +20,4 @@ export const handler: Handlers = {
       headers: { "Content-Type": "application/json" },
     });
   },
-}; 
+};

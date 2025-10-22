@@ -10,7 +10,6 @@ import * as $_middleware from "./routes/_middleware.ts";
 import * as $about from "./routes/about.tsx";
 import * as $api_blog_like_slug_ from "./routes/api/blog/like/[slug].ts";
 import * as $api_commit from "./routes/api/commit.ts";
-import * as $api_joke from "./routes/api/joke.ts";
 import * as $api_kv from "./routes/api/kv.ts";
 import * as $api_likes from "./routes/api/likes.ts";
 import * as $api_projects from "./routes/api/projects.ts";
@@ -61,7 +60,6 @@ const manifest = {
     "./routes/about.tsx": $about,
     "./routes/api/blog/like/[slug].ts": $api_blog_like_slug_,
     "./routes/api/commit.ts": $api_commit,
-    "./routes/api/joke.ts": $api_joke,
     "./routes/api/kv.ts": $api_kv,
     "./routes/api/likes.ts": $api_likes,
     "./routes/api/projects.ts": $api_projects,

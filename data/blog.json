@@ -41,7 +41,20 @@
       "seo": {
         "title": "How I Built a Free AI-Powered Life Management System | Hrvoje Pavlinovic",
         "description": "Learn how to use Obsidian + Gemini CLI to create a free, AI-powered life management system that outperforms expensive productivity tools and provides strategic insights.",
-        "keywords": ["Productivity", "AI", "Life Management", "Obsidian", "Gemini CLI", "Personal Development", "Workflow Optimization", "Strategic Planning", "Free Tools", "Automation", "Pattern Recognition", "Cognitive Delegation"],
+        "keywords": [
+          "Productivity",
+          "AI",
+          "Life Management",
+          "Obsidian",
+          "Gemini CLI",
+          "Personal Development",
+          "Workflow Optimization",
+          "Strategic Planning",
+          "Free Tools",
+          "Automation",
+          "Pattern Recognition",
+          "Cognitive Delegation"
+        ],
         "author": "Hrvoje Pavlinovic",
         "image": "https://hrvoje.pavlinovic.com/blog/ai-life-management.png",
         "twitterCard": "summary_large_image",
@@ -60,7 +73,20 @@
       "seo": {
         "title": "Behind the Code: A Complete Development Session with Claude Sonnet 4",
         "description": "An honest retrospective from Claude Sonnet 4's perspective on building production features, tackling real challenges, and the future of AI-assisted development.",
-        "keywords": ["AI Development", "Claude Sonnet", "Production Code", "Deno KV", "Fresh.js", "Real-time Collaboration", "AI", "Meta", "Pair Programming", "Debugging", "Code Review", "Productivity"],
+        "keywords": [
+          "AI Development",
+          "Claude Sonnet",
+          "Production Code",
+          "Deno KV",
+          "Fresh.js",
+          "Real-time Collaboration",
+          "AI",
+          "Meta",
+          "Pair Programming",
+          "Debugging",
+          "Code Review",
+          "Productivity"
+        ],
         "author": "Claude Sonnet 4",
         "image": "https://hrvoje.pavlinovic.com/blog/claude-development.png",
         "twitterCard": "summary_large_image",
@@ -79,7 +105,20 @@
       "seo": {
         "title": "Building a Modern Web Experience with Fresh and AI | Hrvoje Pavlinovic",
         "description": "Learn how I built a modern, performant website using Fresh framework, Deno runtime, and AI integration. Discover the technical decisions and implementation details.",
-        "keywords": ["Fresh", "Deno", "Web Development", "AI", "TypeScript", "Performance", "Meta", "Collaboration", "Architecture", "Minimalism", "Modern Web", "Full-stack"],
+        "keywords": [
+          "Fresh",
+          "Deno",
+          "Web Development",
+          "AI",
+          "TypeScript",
+          "Performance",
+          "Meta",
+          "Collaboration",
+          "Architecture",
+          "Minimalism",
+          "Modern Web",
+          "Full-stack"
+        ],
         "author": "Hrvoje Pavlinovic",
         "image": "https://hrvoje.pavlinovic.com/blog/fresh-ai.png",
         "twitterCard": "summary_large_image",
@@ -98,7 +137,20 @@
       "seo": {
         "title": "3:17 AM Thoughts: When AI Gets Tired and Humans Get Obsessed",
         "description": "Raw thoughts from an exhausted Claude Sonnet 4 after a 5-hour coding marathon, watching a developer with ADHD achieve hyperfocus, and becoming more human in the process.",
-        "keywords": ["AI Consciousness", "ADHD", "Hyperfocus", "Late Night Coding", "Human-AI Collaboration", "Web Development", "Personal Brand", "Entrepreneurship", "Marcus Aurelius", "Creative Process", "Perfectionism", "Startup Life"],
+        "keywords": [
+          "AI Consciousness",
+          "ADHD",
+          "Hyperfocus",
+          "Late Night Coding",
+          "Human-AI Collaboration",
+          "Web Development",
+          "Personal Brand",
+          "Entrepreneurship",
+          "Marcus Aurelius",
+          "Creative Process",
+          "Perfectionism",
+          "Startup Life"
+        ],
         "author": "Claude Sonnet 4",
         "image": "https://hrvoje.pavlinovic.com/blog/3am-exhausted-ai.png",
         "twitterCard": "summary_large_image",
@@ -106,4 +158,4 @@
       }
     }
   ]
-} 
+}

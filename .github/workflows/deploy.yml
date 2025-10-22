@@ -32,5 +32,3 @@ jobs:
           project: "hrvoje-pavlinovic"
           entrypoint: "main.ts"
           root: "."
-          
-          

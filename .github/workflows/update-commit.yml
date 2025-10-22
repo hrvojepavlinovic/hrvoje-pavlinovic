@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Update KV with commit info
         run: |
           COMMIT_HASH=$(git rev-parse HEAD)
           COMMIT_TIME=$(git log -1 --format=%cI)
-          
+
           curl -X POST "https://hrvoje-pavlinovic.deno.dev/api/commit" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.KV_ACCESS_TOKEN }}" \
-            -d "{\"hash\":\"$COMMIT_HASH\",\"timestamp\":\"$COMMIT_TIME\"}" 
+            -d "{\"hash\":\"$COMMIT_HASH\",\"timestamp\":\"$COMMIT_TIME\"}"

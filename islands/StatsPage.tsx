@@ -6,7 +6,7 @@ interface StatCardProps {
 
 function StatCard({ label, value, hint }: StatCardProps) {
   return (
-    <div class="space-y-2 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-gray-800 dark:bg-gray-900/40">
+    <div class="space-y-2 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-gray-800 dark:bg-black/40">
       <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
         {label}
       </p>
@@ -29,11 +29,13 @@ interface ProgressStatProps {
   format?: (value: number) => string;
 }
 
-function ProgressStat({ label, current, goal, format = (v) => `${v}` }: ProgressStatProps) {
+function ProgressStat(
+  { label, current, goal, format = (v) => `${v}` }: ProgressStatProps,
+) {
   const percentage = Math.min(100, Math.round((current / goal) * 100));
 
   return (
-    <div class="space-y-2 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-gray-800 dark:bg-gray-900/40">
+    <div class="space-y-2 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-gray-800 dark:bg-black/40">
       <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
         {label}
       </p>
@@ -55,7 +57,7 @@ function ProgressStat({ label, current, goal, format = (v) => `${v}` }: Progress
 
 export default function StatsPage() {
   return (
-    <div class="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+    <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
       <section class="max-w-5xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
         <div class="space-y-8">
           <div class="flex items-center gap-4 md:gap-5">
@@ -76,7 +78,9 @@ export default function StatsPage() {
           </div>
 
           <p class="max-w-3xl text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
-            October focus: reclaim conditioning while keeping professional pace. Weight trends, push-up volumes, and active calories are the primary signals.
+            October focus: reclaim conditioning while keeping professional pace.
+            Weight trends, push-up volumes, and active calories are the primary
+            signals.
           </p>
         </div>
       </section>
@@ -84,9 +88,21 @@ export default function StatsPage() {
       <section class="border-t border-gray-100 dark:border-gray-800">
         <div class="max-w-5xl mx-auto px-6 py-12 pb-24 md:py-16 md:pb-32 space-y-10">
           <div class="grid gap-6 md:grid-cols-3">
-            <StatCard label="Current weight" value="96.1 kg" hint="Measured October 2025" />
-            <StatCard label="Primary goal" value="50 push-ups unbroken" hint="No timer, strict form" />
-            <StatCard label="Secondary focus" value="Consistency > intensity" hint="Daily movement, sustainable burn" />
+            <StatCard
+              label="Current weight"
+              value="96.1 kg"
+              hint="Measured October 2025"
+            />
+            <StatCard
+              label="Primary goal"
+              value="50 push-ups unbroken"
+              hint="No timer, strict form"
+            />
+            <StatCard
+              label="Secondary focus"
+              value="Consistency > intensity"
+              hint="Daily movement, sustainable burn"
+            />
           </div>
 
           <div class="space-y-4">
@@ -94,9 +110,24 @@ export default function StatsPage() {
               October snapshot
             </h2>
             <div class="grid gap-6 md:grid-cols-3">
-              <ProgressStat label="Push-ups" current={480} goal={1500} format={(v) => `${v} reps`} />
-              <ProgressStat label="Pull-ups" current={140} goal={500} format={(v) => `${v} reps`} />
-              <ProgressStat label="Active kcal" current={4300} goal={10000} format={(v) => `${v.toLocaleString()} kcal`} />
+              <ProgressStat
+                label="Push-ups"
+                current={480}
+                goal={1500}
+                format={(v) => `${v} reps`}
+              />
+              <ProgressStat
+                label="Pull-ups"
+                current={140}
+                goal={500}
+                format={(v) => `${v} reps`}
+              />
+              <ProgressStat
+                label="Active kcal"
+                current={4300}
+                goal={10000}
+                format={(v) => `${v.toLocaleString()} kcal`}
+              />
             </div>
           </div>
         </div>

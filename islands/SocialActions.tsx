@@ -7,7 +7,9 @@ interface SocialActionsProps {
   seo: BlogArticle["seo"];
 }
 
-export default function SocialActions({ slug, initialLikes, seo }: SocialActionsProps) {
+export default function SocialActions(
+  { slug, initialLikes, seo }: SocialActionsProps,
+) {
   const likes = useSignal(initialLikes);
   const showCopied = useSignal(false);
 
@@ -32,7 +34,9 @@ export default function SocialActions({ slug, initialLikes, seo }: SocialActions
     }
 
     try {
-      await globalThis.navigator.clipboard.writeText(`https://hrvoje.pavlinovic.com/blog/${slug}`);
+      await globalThis.navigator.clipboard.writeText(
+        `https://hrvoje.pavlinovic.com/blog/${slug}`,
+      );
       showCopied.value = true;
       setTimeout(() => {
         showCopied.value = false;
@@ -49,13 +53,15 @@ export default function SocialActions({ slug, initialLikes, seo }: SocialActions
     }
 
     const text = encodeURIComponent(`${seo.title}\n\n${seo.description}`);
-    const url = encodeURIComponent(`https://hrvoje.pavlinovic.com/blog/${slug}`);
+    const url = encodeURIComponent(
+      `https://hrvoje.pavlinovic.com/blog/${slug}`,
+    );
     const hashtags = encodeURIComponent(seo.keywords.slice(0, 3).join(","));
     const via = seo.twitterCreator.replace("@", "");
 
     globalThis.open(
       `https://x.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}&via=${via}`,
-      "_blank"
+      "_blank",
     );
   };
 
@@ -78,11 +84,19 @@ export default function SocialActions({ slug, initialLikes, seo }: SocialActions
         class="flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-btc-orange dark:hover:text-btc-orange"
         title="Copy link"
       >
-        {showCopied.value ? (
-          <span class="text-btc-orange">Copied!</span>
-        ) : (
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+        {showCopied.value ? <span class="text-btc-orange">Copied!</span> : (
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
+            />
           </svg>
         )}
       </button>
@@ -94,9 +108,9 @@ export default function SocialActions({ slug, initialLikes, seo }: SocialActions
         title="Share on X"
       >
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
       </button>
     </div>
   );
-} 
+}

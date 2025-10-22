@@ -34,9 +34,20 @@ interface ProjectsListProps {
 }
 
 const statusCopy: Record<Project["status"], { label: string; tone: string }> = {
-  early: { label: "Exploration", tone: "bg-blue-50 text-blue-700 dark:bg-blue-900/40 dark:text-blue-200" },
-  development: { label: "In Build", tone: "bg-orange-50 text-orange-700 dark:bg-orange-900/40 dark:text-orange-200" },
-  live: { label: "In Market", tone: "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-200" },
+  early: {
+    label: "Exploration",
+    tone: "bg-blue-50 text-blue-700 dark:bg-blue-900/40 dark:text-blue-200",
+  },
+  development: {
+    label: "In Build",
+    tone:
+      "bg-orange-50 text-orange-700 dark:bg-orange-900/40 dark:text-orange-200",
+  },
+  live: {
+    label: "In Market",
+    tone:
+      "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-200",
+  },
 };
 
 const accentDot: Record<string, string> = {
@@ -57,7 +68,9 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
         const enriched = await Promise.all(
           projects.map(async (project) => {
             try {
-              const response = await fetch(`/api/likes?project=${encodeURIComponent(project.id)}`);
+              const response = await fetch(
+                `/api/likes?project=${encodeURIComponent(project.id)}`,
+              );
               if (!response.ok) return { ...project, likes: 0 };
               const data = await response.json();
               return { ...project, likes: data.likes };
@@ -87,20 +100,25 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
 
         const infoBlocks = [
           pitch?.problem && { title: "Focus", body: pitch.problem },
-          pitch?.currentState && { title: "Traction", body: pitch.currentState },
+          pitch?.currentState &&
+          { title: "Traction", body: pitch.currentState },
           pitch?.targetFunding && {
             title: "Raise plan",
-            body: `${pitch.targetFunding}${pitch.timeToMarket ? ` · ${pitch.timeToMarket}` : ""}${pitch.teamCosts ? `\n${pitch.teamCosts}` : ""}`,
+            body: `${pitch.targetFunding}${
+              pitch.timeToMarket ? ` · ${pitch.timeToMarket}` : ""
+            }${pitch.teamCosts ? `\n${pitch.teamCosts}` : ""}`,
           },
           pitch?.solution && { title: "Solution", body: pitch.solution },
         ]
-          .filter((block): block is { title: string; body: string } => Boolean(block && block.body))
+          .filter((block): block is { title: string; body: string } =>
+            Boolean(block && block.body)
+          )
           .slice(0, 2);
 
         return (
           <article
             key={project.id}
-            class="space-y-6 rounded-2xl border border-gray-200 bg-white/80 p-6 shadow-sm transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600"
+            class="space-y-6 rounded-2xl border border-gray-200 bg-white/80 p-6 shadow-sm transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600"
           >
             <header class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div class="space-y-2">
@@ -117,7 +135,9 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                   {project.description}
                 </p>
               </div>
-              <span class={`inline-flex min-w-[140px] justify-center h-8 items-center rounded-full px-4 text-xs font-semibold text-center ${status.tone}`}>
+              <span
+                class={`inline-flex min-w-[140px] justify-center h-8 items-center rounded-full px-4 text-xs font-semibold text-center ${status.tone}`}
+              >
                 {status.label}
               </span>
             </header>
@@ -125,7 +145,10 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
             {infoBlocks.length > 0 && (
               <div class="grid gap-4 md:grid-cols-2">
                 {infoBlocks.map((block) => (
-                  <div key={block.title} class="space-y-2 rounded-xl border border-gray-100 bg-white/70 p-4 dark:border-gray-800 dark:bg-gray-900/60">
+                  <div
+                    key={block.title}
+                    class="space-y-2 rounded-xl border border-gray-100 bg-white/70 p-4 dark:border-gray-800 dark:bg-black/60"
+                  >
                     <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                       {block.title}
                     </p>
@@ -142,7 +165,7 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                 {project.technologies?.map((tech) => (
                   <span
                     key={tech}
-                    class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 dark:border-gray-700 dark:bg-gray-900"
+                    class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 dark:border-gray-700 dark:bg-black"
                   >
                     {tech}
                   </span>
@@ -153,12 +176,21 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                 <a
                   href={`/projects/${project.id}`}
                   onClick={() =>
-                    trackEvent({ type: "click", clickType: "link", target: `${project.id}-memo` })
-                  }
+                    trackEvent({
+                      type: "click",
+                      clickType: "link",
+                      target: `${project.id}-memo`,
+                    })}
                   class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-900 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-100 dark:hover:border-gray-100"
                 >
                   Read memo
-                  <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <svg
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
                     <path d="M5 12h14" />
                     <path d="M13 6l6 6-6 6" />
                   </svg>
@@ -169,12 +201,21 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() =>
-                      trackEvent({ type: "click", clickType: "link", target: `${project.id}-live` })
-                    }
+                      trackEvent({
+                        type: "click",
+                        clickType: "link",
+                        target: `${project.id}-live`,
+                      })}
                     class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-100"
                   >
                     Visit product
-                    <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <svg
+                      class="h-3.5 w-3.5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    >
                       <path d="M5 12h14" />
                       <path d="M13 6l6 6-6 6" />
                     </svg>

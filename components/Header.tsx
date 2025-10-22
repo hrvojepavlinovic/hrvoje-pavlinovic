@@ -10,7 +10,7 @@ interface NavLinkProps {
 
 function NavLink({ href, children, external = false }: NavLinkProps) {
   return (
-    <a 
+    <a
       href={href}
       {...(external && { target: "_blank", rel: "noopener noreferrer" })}
       {...(!external && { "data-internal": "true" })}
@@ -31,20 +31,25 @@ export default function Header() {
   };
 
   return (
-    <header 
+    <header
       class="fixed top-0 left-0 right-0 z-50 border-transparent"
-      style={{ backgroundImage: 'linear-gradient(to bottom, var(--theme-background-opaque) 40%, transparent 100%)' }}
+      style={{
+        backgroundImage:
+          "linear-gradient(to bottom, var(--theme-background-opaque) 40%, transparent 100%)",
+      }}
     >
       <nav class="max-w-screen-xl mx-auto flex justify-between items-center px-4">
-        <a 
-          href="/" 
+        <a
+          href="/"
           class="flex items-center space-x-2 text-lg font-semibold tracking-tight py-6 dark:text-white text-black hover:opacity-80 transition-opacity"
           data-internal="true"
           onClick={handleMenuClick}
         >
-          <span>hrvoje<span class="text-btc-orange">.</span>pavlinovic</span>
+          <span>
+            hrvoje<span class="text-btc-orange">.</span>pavlinovic
+          </span>
         </a>
-        
+
         {/* Desktop Navigation */}
         <div class="hidden md:flex items-center space-x-1">
           <nav class="flex items-center space-x-1">
@@ -55,7 +60,7 @@ export default function Header() {
             <NavLink href="/stats">stats</NavLink>
             <NavLink href="/contact">contact</NavLink>
           </nav>
-          
+
           {/* Theme toggle */}
           <div class="flex items-center ml-2 pl-2">
             <ThemeToggle />
@@ -70,4 +75,4 @@ export default function Header() {
       </nav>
     </header>
   );
-} 
+}

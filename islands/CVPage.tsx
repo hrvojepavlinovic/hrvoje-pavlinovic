@@ -85,11 +85,12 @@ export default function CVPage() {
     typedCvData;
   const { projects } = typedProjectsData;
 
-  const techStackEntries =
-    Object.entries(skills.techStack) as Array<[keyof TechStack, string[]]>;
+  const techStackEntries = Object.entries(skills.techStack) as Array<
+    [keyof TechStack, string[]]
+  >;
 
   return (
-    <div class="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+    <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
       <section class="max-w-5xl mx-auto px-6 py-24 md:py-32">
         <div class="space-y-10">
           <div class="flex items-center gap-4 md:gap-5">
@@ -117,10 +118,14 @@ export default function CVPage() {
             {profile.stats.map((stat) => (
               <span
                 key={stat.label}
-                class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-3.5 py-1.5 dark:border-gray-800 dark:bg-gray-900/60"
+                class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-3.5 py-1.5 dark:border-gray-800 dark:bg-black/60"
               >
-                <span class="text-gray-900 dark:text-gray-100">{stat.value}</span>
-                <span class="text-gray-500 dark:text-gray-400">{stat.label}</span>
+                <span class="text-gray-900 dark:text-gray-100">
+                  {stat.value}
+                </span>
+                <span class="text-gray-500 dark:text-gray-400">
+                  {stat.label}
+                </span>
               </span>
             ))}
           </div>
@@ -129,11 +134,11 @@ export default function CVPage() {
             <a
               href="/cv/pdf"
               target="_blank"
-              class="group inline-flex items-center gap-2 rounded-full border border-gray-900 px-4 py-2 text-sm font-semibold text-gray-900 transition-all hover:-translate-y-0.5 hover:bg-gray-900 hover:text-white dark:border-gray-100 dark:text-gray-100 dark:hover:bg-gray-100 dark:hover:text-gray-900"
+              class="group inline-flex items-center gap-2 rounded-full border border-gray-900 px-4 py-2 text-sm font-semibold text-gray-900 transition-all hover:bg-black hover:text-white dark:border-gray-100 dark:text-gray-100 dark:hover:bg-gray-100 dark:hover:text-gray-900"
             >
               Download PDF
               <svg
-                class="h-4 w-4 transition-transform group-hover:-translate-y-0.5"
+                class="h-4 w-4 transition-transform"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -189,7 +194,7 @@ export default function CVPage() {
           </div>
 
           <div class="space-y-6">
-            <div class="rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600 dark:hover:bg-gray-900">
+            <div class="rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600 dark:hover:bg-black">
               <h3 class="text-sm font-semibold uppercase tracking-wide text-orange-500">
                 Core expertise
               </h3>
@@ -203,7 +208,7 @@ export default function CVPage() {
               </ul>
             </div>
 
-            <div class="rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600 dark:hover:bg-gray-900">
+            <div class="rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600 dark:hover:bg-black">
               <h3 class="text-sm font-semibold uppercase tracking-wide text-orange-500">
                 Tech stack highlights
               </h3>
@@ -246,7 +251,7 @@ export default function CVPage() {
             {experience.map((role) => (
               <article
                 key={`${role.company}-${role.period}`}
-                class="group rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600 dark:hover:bg-gray-900"
+                class="group rounded-2xl cursor-default border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600 dark:hover:bg-black"
               >
                 <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
                   <div>
@@ -254,18 +259,20 @@ export default function CVPage() {
                       {role.title}
                     </h3>
                     <div class="text-sm text-gray-600 dark:text-gray-400">
-                      {role.companyUrl ? (
-                        <a
-                          href={role.companyUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="transition-colors hover:text-orange-500"
-                        >
-                          {role.company}
-                        </a>
-                      ) : (
-                        role.company
-                      )}
+                      {role.companyUrl
+                        ? (
+                          <a
+                            href={role.companyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="transition-colors hover:text-orange-500"
+                          >
+                            {role.company}
+                          </a>
+                        )
+                        : (
+                          role.company
+                        )}
                     </div>
                   </div>
                   <span class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-500">
@@ -318,7 +325,7 @@ export default function CVPage() {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group rounded-2xl border border-gray-100 bg-white/60 p-6 text-left shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600 dark:hover:bg-gray-900"
+                class="group rounded-2xl border border-gray-100 bg-white/60 p-6 text-left shadow-sm transition-all hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600 dark:hover:bg-black"
               >
                 <div class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-orange-500">
                   <span class="h-1.5 w-1.5 rounded-full bg-orange-400" />
@@ -358,7 +365,7 @@ export default function CVPage() {
             {education.map((entry) => (
               <div
                 key={entry.degree}
-                class="group rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600 dark:hover:bg-gray-900"
+                class="group rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600 dark:hover:bg-black"
               >
                 <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
                   <div>

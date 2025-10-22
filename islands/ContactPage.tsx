@@ -73,7 +73,7 @@ function LinkIcon({ type }: { type: string }) {
 
 export default function ContactPage() {
   return (
-    <div class="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+    <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
       <section class="max-w-5xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
         <div class="space-y-8">
           <div class="flex items-center gap-4 md:gap-5">
@@ -88,13 +88,16 @@ export default function ContactPage() {
                 Let’s talk
               </h1>
               <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
-                Founder-to-founder conversations, technical deep dives, and lean delivery engagements.
+                Founder-to-founder conversations, technical deep dives, and lean
+                delivery engagements.
               </p>
             </div>
           </div>
 
           <p class="max-w-3xl text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
-            I reply fastest when there’s context. Share the problem, timelines, constraints, and what success looks like. I’ll confirm availability or suggest a better fit.
+            I reply fastest when there’s context. Share the problem, timelines,
+            constraints, and what success looks like. I’ll confirm availability
+            or suggest a better fit.
           </p>
 
           <div class="flex flex-wrap items-center gap-3 pt-2">
@@ -103,8 +106,11 @@ export default function ContactPage() {
                 key={`${link.label}-hero`}
                 href={link.href}
                 onClick={() =>
-                  trackEvent({ type: "click", clickType: "link", target: link.label.toLowerCase() })
-                }
+                  trackEvent({
+                    type: "click",
+                    clickType: "link",
+                    target: link.label.toLowerCase(),
+                  })}
                 class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-100"
                 aria-label={link.label}
               >
@@ -124,9 +130,12 @@ export default function ContactPage() {
                 key={link.label}
                 href={link.href}
                 onClick={() =>
-                  trackEvent({ type: "click", clickType: "link", target: link.label.toLowerCase() })
-                }
-                class="rounded-2xl border border-gray-200 bg-white/80 p-6 transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-gray-900/40 dark:hover:border-gray-600"
+                  trackEvent({
+                    type: "click",
+                    clickType: "link",
+                    target: link.label.toLowerCase(),
+                  })}
+                class="rounded-2xl border border-gray-200 bg-white/80 p-6 transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600"
               >
                 <div class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                   <div class="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800">
@@ -140,7 +149,9 @@ export default function ContactPage() {
                   {link.hint}
                 </p>
                 <p class="mt-2 text-xs text-gray-500 dark:text-gray-500">
-                  {link.href.startsWith("mailto:") ? link.href.replace(/^mailto:/, "") : link.href}
+                  {link.href.startsWith("mailto:")
+                    ? link.href.replace(/^mailto:/, "")
+                    : link.href}
                 </p>
               </a>
             ))}
