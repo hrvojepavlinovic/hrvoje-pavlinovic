@@ -55,7 +55,7 @@
   "sections": {
     "capabilities": {
       "heading": "How I help teams",
-      "description": "Systems work best when they disappear into the background. Here's how I keep them simple, sturdy, and aligned with the people using them."
+      "description": "The best systems are the ones that you forget that they exist. Here's how I keep them simple, performant, and aligned with the people using them."
     },
     "engagements": {
       "heading": "Recent engagements",
@@ -84,7 +84,7 @@
   ],
   "capabilityAreas": [
     {
-      "title": "Commerce systems that scale",
+      "title": "Systems that scale",
       "intro": "12+ years shipping production backends across AI, Bitcoin, Web3, automotive, health care, and commerce.",
       "points": [
         "Design end-to-end flows for livestreams, auctions, fulfilment, and payouts that feel instant for the teams running them.",
@@ -95,7 +95,7 @@
       "title": "Delivery with guardrails",
       "intro": "Keep teams close to customers by pairing architecture calls with the day-to-day execution that makes them real.",
       "points": [
-        "Bundle observability, performance, and developer ergonomics so shipping stays confident without trading off uptime."
+        "Bundle observability, performance, and developer ergonomics so shipping stays confident with clearly communicated trade-offs."
       ]
     },
     {

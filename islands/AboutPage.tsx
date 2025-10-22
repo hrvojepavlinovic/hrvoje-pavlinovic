@@ -57,7 +57,8 @@ export default function AboutPage() {
                 About Hrvoje
               </h1>
               <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
-                Croatia-based senior backend engineer, dad of two, always learning.
+                Croatia-based senior backend engineer, dad of two, always
+                learning.
               </p>
             </div>
           </div>

@@ -27,21 +27,23 @@ export default function HomePage({ data }: HomePageProps) {
     <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
       <section class="max-w-5xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
         <div class="space-y-10">
-          <div class="flex flex-col items-center gap-3 md:flex-row md:items-center md:justify-center md:gap-5">
-            <img
-              src={data.avatar.src}
-              alt={data.avatar.alt}
-              class="h-12 w-12 rounded-full object-cover md:h-[52px] md:w-[52px]"
-              loading="eager"
-            />
-            <h1 class="text-center text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[44px]">
-              {data.name}
-            </h1>
-          </div>
+          <div class="space-y-3">
+            <div class="flex flex-col items-center gap-3 md:flex-row md:items-center md:justify-center md:gap-5">
+              <img
+                src={data.avatar.src}
+                alt={data.avatar.alt}
+                class="h-12 w-12 rounded-full object-cover md:h-[52px] md:w-[52px]"
+                loading="eager"
+              />
+              <h1 class="text-center text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[44px]">
+                {data.name}
+              </h1>
+            </div>
 
-          <p class="text-center text-base text-gray-600 dark:text-gray-300 md:text-lg">
-            {heroTitle}
-          </p>
+            <p class="text-center text-base text-gray-600 dark:text-gray-300 md:text-lg">
+              {heroTitle}
+            </p>
+          </div>
 
           <div class="flex flex-wrap justify-center gap-3">
             {data.socialLinks.map((link) => (
@@ -107,7 +109,7 @@ export default function HomePage({ data }: HomePageProps) {
             <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
               {capabilitiesSection.heading}
             </h2>
-            <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+            <p class="text-sm text-gray-600 dark:text-gray-400">
               {capabilitiesSection.description}
             </p>
           </div>
