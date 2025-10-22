@@ -26,7 +26,7 @@ export default function HomePage({ data }: HomePageProps) {
   return (
     <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
       <section class="max-w-5xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
-        <div class="space-y-10">
+        <div class="space-y-8">
           <div class="space-y-3">
             <div class="flex flex-col items-center gap-3 md:flex-row md:items-center md:justify-center md:gap-5">
               <img
