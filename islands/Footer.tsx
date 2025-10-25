@@ -4,165 +4,172 @@ import { formatTimeAgo } from "../utils/blog.ts";
 
 export default function Footer() {
   const commitHash = useSignal<string | null>(null);
-  const commitTime = useSignal<string | null>(null);
+  const commitTimestamp = useSignal<string | null>(null);
   const timeSince = useSignal<string>("");
   const error = useSignal<string>("");
   const isLoaded = useSignal(false);
 
   useEffect(() => {
-    fetch("/api/commit")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        if (data.error) {
-          throw new Error(data.error);
+    let isMounted = true;
+    let intervalId: number | undefined;
+
+    const loadCommitInfo = async () => {
+      try {
+        const response = await fetch("/api/commit");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        if (data.hash && data.timestamp) {
-          commitHash.value = data.hash;
-          commitTime.value = data.timestamp;
-          timeSince.value = formatTimeAgo(data.timestamp);
-          const interval = setInterval(() => {
-            timeSince.value = formatTimeAgo(data.timestamp);
-          }, 60000);
-          return () => clearInterval(interval);
-        } else {
+        const data = await response.json();
+        if (!data?.hash || !data?.timestamp) {
           throw new Error("Missing hash or timestamp in response");
         }
-      })
-      .catch((error) => {
-        console.error("Failed to fetch commit info:", error);
-        error.value = error.message;
-      })
-      .finally(() => {
+
+        if (!isMounted) return;
+
+        commitHash.value = data.hash;
+        commitTimestamp.value = data.timestamp;
+        timeSince.value = formatTimeAgo(data.timestamp);
+
+        intervalId = globalThis.setInterval(() => {
+          if (commitTimestamp.value) {
+            timeSince.value = formatTimeAgo(commitTimestamp.value);
+          }
+        }, 60000);
+      } catch (err) {
+        console.error("Failed to fetch commit info:", err);
+        if (!isMounted) return;
+        error.value = err instanceof Error ? err.message : String(err);
+      } finally {
         setTimeout(() => {
-          isLoaded.value = true;
-        }, 100);
-      });
+          if (isMounted) {
+            isLoaded.value = true;
+          }
+        }, 120);
+      }
+    };
+
+    loadCommitInfo();
+
+    return () => {
+      isMounted = false;
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
   }, []);
 
   return (
-    <footer
-      class="border-transparent pt-10"
-      style={{
-        backgroundImage:
-          "linear-gradient(to top, var(--theme-background-opaque) 40%, transparent 100%)",
-      }}
-    >
-      <div class="max-w-screen-xl mx-auto px-4 py-4">
-        <div
-          class={`flex items-center justify-center gap-2 sm:gap-4 transition-opacity duration-300 ${
-            isLoaded.value ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          {/* Main Links Section */}
-          <div class="flex items-center gap-1 sm:gap-2">
-            <a
-              href="https://github.com/hrvojepavlinovic/hrvoje-pavlinovic"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center justify-center px-2 sm:px-3 py-1.5 rounded-md text-xs font-medium transition-colors hover:bg-accent hover:text-accent-foreground dark:text-white/60 text-black/60 dark:hover:bg-white/5 hover:bg-black/5 dark:hover:text-white/80 hover:text-black/80"
-              title="View source code"
-            >
-              <svg
-                class="w-3 h-3 mr-1 sm:mr-1.5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>
-              <span class="hidden md:inline">source</span>
-            </a>
-
-            <a
-              href="/webstats"
-              class="inline-flex items-center justify-center px-2 sm:px-3 py-1.5 rounded-md text-xs font-medium transition-colors hover:bg-accent hover:text-accent-foreground dark:text-white/60 text-black/60 dark:hover:bg-white/5 hover:bg-black/5 dark:hover:text-white/80 hover:text-black/80"
-              title="View page statistics"
-            >
-              <svg
-                class="w-3 h-3 mr-1 sm:mr-1.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M3 3v18h18" />
-                <path d="m19 9-5 5-4-4-3 3" />
-              </svg>
-              <span class="hidden md:inline">stats</span>
-            </a>
-          </div>
-
-          {/* Git Info Section */}
-          {commitHash.value && (
-            <div class="flex items-center gap-1 sm:gap-2">
-              <div class="w-px h-3 sm:h-4 dark:bg-white/10 bg-black/10"></div>
-
-              <div class="flex items-center gap-1 sm:gap-2 text-xs">
+    <footer class="mt-20 border-t border-black/10 bg-white/70 backdrop-blur-sm dark:border-white/10 dark:bg-black/70">
+      <div
+        class={`max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-opacity duration-500 ${
+          isLoaded.value ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <div class="flex flex-col gap-6 text-sm text-black/65 dark:text-white/65 sm:flex-row sm:items-center sm:justify-between">
+          <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+            <span class="flex items-center gap-2 text-black/55 dark:text-white/55">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75">
+                </span>
+                <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400">
+                </span>
+              </span>
+              Last release
+            </span>
+            {commitHash.value && commitTimestamp.value && (
+              <>
                 <a
                   href={`https://github.com/hrvojepavlinovic/hrvoje-pavlinovic/commit/${commitHash.value}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center justify-center px-1 sm:px-2 py-1 rounded text-xs font-mono transition-colors dark:text-white/50 text-black/50 dark:hover:text-white/70 hover:text-black/70 dark:hover:bg-white/5 hover:bg-black/5"
-                  title={`Commit: ${commitHash.value}`}
+                  class="font-mono text-black/75 transition hover:text-black/95 dark:text-white/75 dark:hover:text-white"
                 >
-                  <svg
-                    class="w-3 h-3 mr-0.5 sm:mr-1"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
                   {commitHash.value.substring(0, 7)}
                 </a>
-
-                <span class="dark:text-white/40 text-black/40 font-mono hidden md:inline">
+                <span class="text-xs text-black/45 dark:text-white/50">
                   {timeSince.value}
                 </span>
-              </div>
-            </div>
-          )}
-
-          {/* Error State */}
-          {error.value && (
-            <div class="flex items-center">
-              <div class="w-px h-3 sm:h-4 dark:bg-red-500/20 bg-red-500/20">
-              </div>
-              <span class="inline-flex items-center px-1 sm:px-2 py-1 rounded-md text-xs font-medium dark:text-red-400/70 text-red-500/70 dark:bg-red-500/10 bg-red-500/10">
-                <svg
-                  class="w-3 h-3 mr-0.5 sm:mr-1"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
+                <a
+                  href="https://github.com/hrvojepavlinovic/hrvoje-pavlinovic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-1 text-sm font-medium text-black/60 transition hover:text-black/85 dark:text-white/70 dark:hover:text-white"
                 >
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                </svg>
-                <span class="hidden md:inline">{error.value}</span>
-              </span>
-            </div>
-          )}
+                  <svg
+                    class="h-4 w-4"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.57.11.77-.24.77-.54v-1.9c-3.14.69-3.8-1.52-3.8-1.52-.52-1.34-1.27-1.7-1.27-1.7-1.04-.72.08-.71.08-.71 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.67 1.25 3.32.96.21-.67.54-1.25.96-1.6-2.5-.28-5.12-1.27-5.12-5.64A4.42 4.42 0 0 1 6.4 7.7a4.1 4.1 0 0 1 .11-3s.95-.3 3.1 1.17a10.7 10.7 0 0 1 5.64 0c2.15-1.47 3.1-1.17 3.1-1.17a4.1 4.1 0 0 1 .11 3 4.42 4.42 0 0 1 1.17 3.06c0 4.39-2.63 5.36-5.14 5.64.41.35.77 1.04.77 2.1v3.12c0 .3.2.66.78.54A11.5 11.5 0 0 0 12 .5z" />
+                  </svg>
+                  Source
+                </a>
+              </>
+            )}
 
-          {/* Build Info */}
-          <div class="flex items-center gap-1 sm:gap-2">
-            <div class="w-px h-3 sm:h-4 dark:bg-white/10 bg-black/10"></div>
+            {!commitHash.value && !error.value && (
+              <span class="flex items-center gap-2 text-black/45 dark:text-white/50">
+                <span class="h-2.5 w-2.5 rounded-full bg-emerald-300"></span>
+                Syncing release…
+              </span>
+            )}
+
+            {error.value && (
+              <span class="flex items-center gap-2 text-red-500 dark:text-red-300">
+                <span class="h-2.5 w-2.5 rounded-full bg-red-400"></span>
+                {error.value}
+              </span>
+            )}
+          </div>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <a
+              href="/webstats"
+              class="flex items-center gap-2 text-black/60 transition hover:text-black/85 dark:text-white/70 dark:hover:text-white"
+            >
+              <svg
+                class="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M4 19h16" />
+                <path d="M6 16l3-7 3 4 3-6 3 9" />
+              </svg>
+              Web stats
+            </a>
+
+            <a
+              href="/contact"
+              class="flex items-center gap-2 text-black/60 transition hover:text-black/85 dark:text-white/70 dark:hover:text-white"
+            >
+              <svg
+                class="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M4 4h16v16H4z" strokeLinejoin="round" />
+                <path d="m4 7 8 6 8-6" strokeLinejoin="round" />
+              </svg>
+              Contact
+            </a>
+
             <a
               href="https://fresh.deno.dev/"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center px-1 sm:px-2 py-1 rounded text-xs font-mono transition-colors dark:text-white/40 text-black/40 dark:hover:text-white/60 hover:text-black/60 dark:hover:bg-white/5 hover:bg-black/5"
-              title="Built with Fresh"
+              class="flex items-center gap-2 text-black/60 transition hover:text-black/85 dark:text-white/65 dark:hover:text-white"
             >
-              <svg
-                class="w-3 h-3 mr-0.5 sm:mr-1"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-              </svg>
-              fresh
+              Built with
+              <span class="h-2.5 w-2.5 rounded-full bg-amber-300"></span>
+              Fresh
             </a>
           </div>
         </div>
