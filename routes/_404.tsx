@@ -1,4 +1,16 @@
 import { Head } from "$fresh/runtime.ts";
+import { type Handlers } from "$fresh/server.ts";
+
+export const handler: Handlers = {
+  async GET(_req, ctx) {
+    const response = await ctx.render();
+    response.headers.set("X-Robots-Tag", "noindex, nofollow");
+    return new Response(response.body, {
+      status: 404,
+      headers: response.headers,
+    });
+  },
+};
 
 export default function NotFoundPage() {
   return (

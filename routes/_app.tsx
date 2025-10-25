@@ -3,6 +3,7 @@ import Header from "../components/Header.tsx";
 import Footer from "../islands/Footer.tsx";
 
 const SITE_TITLE = "Hrvoje Pavlinovic";
+const SITE_URL = "https://hrvoje.pavlinovic.com";
 
 const deriveDefaultTitle = (pathname: string) => {
   if (pathname === "/" || pathname === "") return SITE_TITLE;
@@ -20,6 +21,11 @@ const deriveDefaultTitle = (pathname: string) => {
   if (words.length === 0) return SITE_TITLE;
 
   return `${words.join(" ")} \u2014 ${SITE_TITLE}`;
+};
+
+const deriveCanonicalUrl = (pathname: string) => {
+  const normalizedPath = pathname === "/" ? "" : pathname.replace(/\/+$/g, "");
+  return `${SITE_URL}${normalizedPath}`;
 };
 
 const THEME_SCRIPT = `
@@ -170,13 +176,20 @@ const THEME_SCRIPT = `
 `;
 
 export default function App({ Component, url }: PageProps) {
+  const canonicalUrl = deriveCanonicalUrl(url.pathname);
+  const defaultTitle = deriveDefaultTitle(url.pathname);
+
   // Check if current URL is a specific route that handles its own SEO
-  const isCustomSEORoute = url.pathname.startsWith("/blog/") ||
+  const isCustomSEORoute = url.pathname === "/" ||
+    url.pathname.startsWith("/blog/") ||
     url.pathname === "/blog" ||
+    url.pathname.startsWith("/projects/") ||
+    url.pathname === "/projects" ||
     url.pathname === "/about" ||
     url.pathname === "/contact" ||
-    url.pathname === "/projects" ||
-    url.pathname === "/cv";
+    url.pathname === "/cv" ||
+    url.pathname === "/webstats" ||
+    url.pathname.startsWith("/branding/");
 
   return (
     <html lang="en" class="dark">
@@ -205,7 +218,7 @@ export default function App({ Component, url }: PageProps) {
         {/* Default SEO tags - only for homepage and routes without custom SEO */}
         {!isCustomSEORoute && (
           <>
-            <title>{deriveDefaultTitle(url.pathname)}</title>
+            <title>{defaultTitle}</title>
             <meta
               name="description"
               content="Software engineer passionate about blockchain innovation and AI. When not coding, you'll find me on the football pitch."
@@ -216,12 +229,13 @@ export default function App({ Component, url }: PageProps) {
             />
             <meta name="author" content="Hrvoje Pavlinovic" />
             <meta name="robots" content="index, follow" />
+            <link rel="canonical" href={canonicalUrl} />
 
             {/* Open Graph Meta Tags */}
             <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://hrvoje.pavlinovic.com" />
+            <meta property="og:url" content={canonicalUrl} />
             <meta property="og:site_name" content="Hrvoje Pavlinovic" />
-            <meta property="og:title" content="Hrvoje Pavlinovic" />
+            <meta property="og:title" content={defaultTitle} />
             <meta
               property="og:description"
               content="Software engineer passionate about blockchain innovation and AI. When not coding, you'll find me on the football pitch."
@@ -238,7 +252,7 @@ export default function App({ Component, url }: PageProps) {
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:site" content="@0xhp10" />
             <meta name="twitter:creator" content="@0xhp10" />
-            <meta name="twitter:title" content="Hrvoje Pavlinovic" />
+            <meta name="twitter:title" content={defaultTitle} />
             <meta
               name="twitter:description"
               content="Software engineer passionate about blockchain innovation and AI. When not coding, you'll find me on the football pitch."
@@ -248,6 +262,7 @@ export default function App({ Component, url }: PageProps) {
               content="https://hrvoje.pavlinovic.com/pfp.png"
             />
             <meta name="twitter:image:alt" content="Hrvoje Pavlinovic" />
+            <meta name="twitter:url" content={canonicalUrl} />
           </>
         )}
 

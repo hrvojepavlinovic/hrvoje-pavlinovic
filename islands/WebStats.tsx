@@ -51,19 +51,24 @@ const SPAM_PATTERNS = [
   /\.(xml|txt|json|yml|yaml)$/,
 ];
 
+const BOT_PATTERNS = [
+  /\/b\/home\//i,
+  /\/www\//i,
+  /\bwp-login\b/i,
+];
+
 const KNOWN_PAGE_PREFIXES = [
   "about",
-  "branding",
   "blog",
   "contact",
-  "cover",
   "cv",
   "greet",
   "homepage",
-  "lightning",
   "projects",
   "webstats",
 ];
+
+const MUTE_KEYWORDS = ["cover", "branding", "lightning"];
 
 const TYPE_BADGE: Record<string, string> = {
   menu:
@@ -109,6 +114,10 @@ const formatPageName = (page: string) => {
   const normalized = page.replace(/^\/+/, "");
   if (!normalized) return "homepage";
 
+  if (BOT_PATTERNS.some((pattern) => pattern.test(normalized))) {
+    return "bots sniffing";
+  }
+
   const matchesKnownPrefix = KNOWN_PAGE_PREFIXES.some((prefix) => {
     if (prefix === "homepage") return false;
     if (normalized === prefix) return true;
@@ -123,6 +132,7 @@ const formatPageName = (page: string) => {
 export default function WebStatsPage() {
   const [loading, setLoading] = useState(true);
   const [pageViews, setPageViews] = useState<SortedStats[]>([]);
+  const [blogStats, setBlogStats] = useState<SortedStats[]>([]);
   const [clicks, setClicks] = useState<ClickStats[]>([]);
   const [totalViews, setTotalViews] = useState(0);
   const [totalClicks, setTotalClicks] = useState(0);
@@ -139,12 +149,23 @@ export default function WebStatsPage() {
         const viewsMap = new Map<string, number>();
         Object.entries(data.pageViews).forEach(([page, count]) => {
           if (isSpam(page)) return;
+          if (
+            MUTE_KEYWORDS.some((keyword) =>
+              page === `/${keyword}` || page.startsWith(`/${keyword}/`)
+            )
+          ) {
+            return;
+          }
           const formatted = formatPageName(page);
           viewsMap.set(formatted, (viewsMap.get(formatted) || 0) + count);
         });
         const sortedViews = Array.from(viewsMap.entries())
           .map(([page, count]) => ({ page, count }))
           .sort((a, b) => b.count - a.count);
+
+        const blogViews = sortedViews.filter((item) =>
+          item.page === "blog" || item.page.startsWith("blog/")
+        );
 
         const clicksMap = new Map<string, { type: string; count: number }>();
         Object.entries(data.clicks).forEach(([key, count]) => {
@@ -180,6 +201,7 @@ export default function WebStatsPage() {
           });
 
         setPageViews(sortedViews);
+        setBlogStats(blogViews);
         setClicks(sortedClicks);
         setTotalViews(sortedViews.reduce((sum, item) => sum + item.count, 0));
         setTotalClicks(sortedClicks.reduce((sum, item) => sum + item.count, 0));
@@ -233,8 +255,8 @@ export default function WebStatsPage() {
           </div>
 
           <p class="max-w-3xl text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
-            Filters out obvious bot traffic, aggregates human interactions, and
-            shows where visitors are spending attention.
+            Filters out obvious bot traffic, tracks human interactions, and
+            spotlights where visitors spend attention.
           </p>
 
           <span class="inline-flex text-xs text-gray-500 dark:text-gray-500">
@@ -284,6 +306,29 @@ export default function WebStatsPage() {
               ))}
             </div>
           </div>
+
+          {blogStats.length > 0 && (
+            <div class="space-y-6">
+              <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                Blog performance
+              </h2>
+              <div class="space-y-4">
+                {blogStats.map((item) => (
+                  <div
+                    key={item.page}
+                    class="flex items-center justify-between rounded-xl border border-gray-200 bg-white/80 px-4 py-3 text-sm dark:border-gray-800 dark:bg-black/40"
+                  >
+                    <span class="text-gray-700 dark:text-gray-300">
+                      {item.page}
+                    </span>
+                    <span class="font-semibold text-orange-600 dark:text-orange-400">
+                      {item.count.toLocaleString()}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div class="space-y-6">
             <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">

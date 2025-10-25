@@ -2,6 +2,8 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import ProjectPageTracker from "../../islands/ProjectPageTracker.tsx";
 
+const SITE_URL = "https://hrvoje.pavlinovic.com";
+
 interface ProjectPitch {
   tagline?: string;
   problem?: string;
@@ -100,6 +102,8 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
 
   const taglineSuffix = pitch.tagline ? ` \u2014 ${pitch.tagline}` : "";
   const pageTitle = `${project.name}${taglineSuffix} \u2014 Hrvoje Pavlinovic`;
+  const description = pitch.problem ?? project.description;
+  const canonicalUrl = `${SITE_URL}/projects/${project.id}`;
 
   return (
     <>
@@ -107,8 +111,30 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
         <title>{pageTitle}</title>
         <meta
           name="description"
-          content={pitch.problem ?? project.description}
+          content={description}
         />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Hrvoje Pavlinovic" />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta
+          property="og:image"
+          content="https://hrvoje.pavlinovic.com/pfptbs.png"
+        />
+        <meta property="og:site_name" content="Hrvoje Pavlinovic" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@0xhp10" />
+        <meta name="twitter:creator" content="@0xhp10" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={description} />
+        <meta
+          name="twitter:image"
+          content="https://hrvoje.pavlinovic.com/pfptbs.png"
+        />
+        <meta name="twitter:url" content={canonicalUrl} />
       </Head>
 
       <ProjectPageTracker projectId={project.id} />

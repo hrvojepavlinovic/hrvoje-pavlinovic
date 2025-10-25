@@ -26,7 +26,7 @@ export default function Home() {
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="profile" />
-        <meta property="og:url" content="https://hrvoje.pavlinovic.com/" />
+        <meta property="og:url" content="https://hrvoje.pavlinovic.com" />
         <meta property="og:title" content="Hrvoje Pavlinovic" />
         <meta
           property="og:description"
@@ -56,7 +56,7 @@ export default function Home() {
         />
 
         {/* Canonical URL */}
-        <link rel="canonical" href="https://hrvoje.pavlinovic.com/" />
+        <link rel="canonical" href="https://hrvoje.pavlinovic.com" />
 
         {/* JSON-LD structured data */}
         <script
