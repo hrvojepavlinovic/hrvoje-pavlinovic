@@ -98,10 +98,13 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
       : undefined,
   ].filter(Boolean) as Array<{ title: string; body?: string; list?: string[] }>;
 
+  const taglineSuffix = pitch.tagline ? ` \u2014 ${pitch.tagline}` : "";
+  const pageTitle = `${project.name}${taglineSuffix} \u2014 Hrvoje Pavlinovic`;
+
   return (
     <>
       <Head>
-        <title>{project.name} | {pitch.tagline ?? "Project memo"}</title>
+        <title>{pageTitle}</title>
         <meta
           name="description"
           content={pitch.problem ?? project.description}

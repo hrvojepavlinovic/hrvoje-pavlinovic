@@ -96,7 +96,6 @@ export default function MobileMenu() {
           <NavLink href="/cv" onClick={toggleMenu}>cv</NavLink>
           <NavLink href="/projects" onClick={toggleMenu}>projects</NavLink>
           <NavLink href="/blog" onClick={toggleMenu}>blog</NavLink>
-          <NavLink href="/stats" onClick={toggleMenu}>stats</NavLink>
           <NavLink href="/contact" onClick={toggleMenu}>contact</NavLink>
         </div>
       </div>

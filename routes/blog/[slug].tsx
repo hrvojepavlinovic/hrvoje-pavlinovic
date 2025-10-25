@@ -59,18 +59,21 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
   const { article } = data;
   const canonicalUrl = `https://hrvoje.pavlinovic.com/blog/${article.slug}`;
   const absoluteImageUrl = "https://hrvoje.pavlinovic.com/blog.png";
+  const pageTitle = article.seo.title.includes("Hrvoje Pavlinovic")
+    ? article.seo.title
+    : `${article.seo.title} \u2014 Hrvoje Pavlinovic`;
 
   return (
     <>
       <Head>
-        <title>{article.seo.title}</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={article.seo.description} />
         <meta name="keywords" content={article.seo.keywords.join(", ")} />
         <meta name="author" content={article.seo.author} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={article.seo.title} />
+        <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={article.seo.description} />
         <meta property="og:image" content={absoluteImageUrl} />
         <meta property="og:url" content={canonicalUrl} />
@@ -79,7 +82,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
         <meta name="twitter:card" content={article.seo.twitterCard} />
         <meta name="twitter:site" content="@0xhp10" />
         <meta name="twitter:creator" content={article.seo.twitterCreator} />
-        <meta name="twitter:title" content={article.seo.title} />
+        <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={article.seo.description} />
         <meta name="twitter:image" content={absoluteImageUrl} />
         <meta name="twitter:url" content={canonicalUrl} />

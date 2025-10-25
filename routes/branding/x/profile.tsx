@@ -4,7 +4,7 @@ export default function XProfile() {
   return (
     <>
       <Head>
-        <title>X Profile Photo - Hrvoje Pavlinovic</title>
+        <title>X Profile Photo &mdash; Hrvoje Pavlinovic</title>
         <meta name="robots" content="noindex, nofollow" />
         <style>
           {`

@@ -40,7 +40,7 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
   return (
     <>
       <Head>
-        <title>Projects | Hrvoje Pavlinovic</title>
+        <title>Projects &mdash; Hrvoje Pavlinovic</title>
         <meta
           name="description"
           content="Explore Hrvoje Pavlinovic's portfolio of projects including Memoato, XXI Today, PLAYGRND, and Apes Club. Blockchain development, web applications, and innovative solutions."
@@ -59,7 +59,10 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
           property="og:url"
           content="https://hrvoje.pavlinovic.com/projects"
         />
-        <meta property="og:title" content="Projects | Hrvoje Pavlinovic" />
+        <meta
+          property="og:title"
+          content="Projects &mdash; Hrvoje Pavlinovic"
+        />
         <meta
           property="og:description"
           content="Explore Hrvoje Pavlinovic's portfolio of projects including Memoato, XXI Today, PLAYGRND, and Apes Club. Blockchain development, web applications, and innovative solutions."
@@ -74,7 +77,10 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@0xhp10" />
         <meta name="twitter:creator" content="@0xhp10" />
-        <meta name="twitter:title" content="Projects | Hrvoje Pavlinovic" />
+        <meta
+          name="twitter:title"
+          content="Projects &mdash; Hrvoje Pavlinovic"
+        />
         <meta
           name="twitter:description"
           content="Explore Hrvoje Pavlinovic's portfolio of projects including Memoato, XXI Today, PLAYGRND, and Apes Club. Blockchain development, web applications, and innovative solutions."

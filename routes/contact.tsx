@@ -5,7 +5,7 @@ export default function Contact() {
   return (
     <>
       <Head>
-        <title>Contact | Hrvoje Pavlinovic</title>
+        <title>Contact &mdash; Hrvoje Pavlinovic</title>
         <meta
           name="description"
           content="Get in touch with Hrvoje Pavlinovic for collaboration, opportunities, or just to say hello. Blockchain development, consulting, or technical leadership inquiries welcome."
@@ -24,7 +24,10 @@ export default function Contact() {
           property="og:url"
           content="https://hrvoje.pavlinovic.com/contact"
         />
-        <meta property="og:title" content="Contact | Hrvoje Pavlinovic" />
+        <meta
+          property="og:title"
+          content="Contact &mdash; Hrvoje Pavlinovic"
+        />
         <meta
           property="og:description"
           content="Get in touch with Hrvoje Pavlinovic for collaboration, opportunities, or just to say hello. Blockchain development, consulting, or technical leadership inquiries welcome."
@@ -39,7 +42,10 @@ export default function Contact() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@0xhp10" />
         <meta name="twitter:creator" content="@0xhp10" />
-        <meta name="twitter:title" content="Contact | Hrvoje Pavlinovic" />
+        <meta
+          name="twitter:title"
+          content="Contact &mdash; Hrvoje Pavlinovic"
+        />
         <meta
           name="twitter:description"
           content="Get in touch with Hrvoje Pavlinovic for collaboration, opportunities, or just to say hello. Blockchain development, consulting, or technical leadership inquiries welcome."

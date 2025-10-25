@@ -5,7 +5,7 @@ export default function CV() {
   return (
     <>
       <Head>
-        <title>CV | Hrvoje Pavlinovic</title>
+        <title>CV &mdash; Hrvoje Pavlinovic</title>
         <meta
           name="description"
           content="Professional experience and skills of Hrvoje Pavlinovic - Senior Software Engineer and Tech Lead with expertise in Bitcoin, blockchain technology, and decentralized systems."
@@ -21,7 +21,10 @@ export default function CV() {
         {/* Open Graph meta tags */}
         <meta property="og:type" content="profile" />
         <meta property="og:url" content="https://hrvoje.pavlinovic.com/cv" />
-        <meta property="og:title" content="CV | Hrvoje Pavlinovic" />
+        <meta
+          property="og:title"
+          content="CV &mdash; Hrvoje Pavlinovic"
+        />
         <meta
           property="og:description"
           content="Professional experience and skills of Hrvoje Pavlinovic - Senior Software Engineer and Tech Lead with expertise in Bitcoin, blockchain technology, and decentralized systems."
@@ -36,7 +39,10 @@ export default function CV() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@0xhp10" />
         <meta name="twitter:creator" content="@0xhp10" />
-        <meta name="twitter:title" content="CV | Hrvoje Pavlinovic" />
+        <meta
+          name="twitter:title"
+          content="CV &mdash; Hrvoje Pavlinovic"
+        />
         <meta
           name="twitter:description"
           content="Professional experience and skills of Hrvoje Pavlinovic - Senior Software Engineer and Tech Lead with expertise in Bitcoin, blockchain technology, and decentralized systems."

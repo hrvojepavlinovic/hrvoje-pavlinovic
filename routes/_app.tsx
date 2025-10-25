@@ -2,6 +2,26 @@ import { type PageProps } from "$fresh/server.ts";
 import Header from "../components/Header.tsx";
 import Footer from "../islands/Footer.tsx";
 
+const SITE_TITLE = "Hrvoje Pavlinovic";
+
+const deriveDefaultTitle = (pathname: string) => {
+  if (pathname === "/" || pathname === "") return SITE_TITLE;
+
+  const cleanedPath = pathname.replace(/^\/+|\/+$/g, "");
+  if (!cleanedPath) return SITE_TITLE;
+
+  const lastSegment = cleanedPath.split("/").pop() ?? "";
+  if (!lastSegment) return SITE_TITLE;
+
+  const words = lastSegment.split(/[-_]/g).map((word) =>
+    word ? word[0].toUpperCase() + word.slice(1) : ""
+  ).filter(Boolean);
+
+  if (words.length === 0) return SITE_TITLE;
+
+  return `${words.join(" ")} \u2014 ${SITE_TITLE}`;
+};
+
 const THEME_SCRIPT = `
 (function() {
   if (typeof globalThis === "undefined") return;
@@ -156,8 +176,7 @@ export default function App({ Component, url }: PageProps) {
     url.pathname === "/about" ||
     url.pathname === "/contact" ||
     url.pathname === "/projects" ||
-    url.pathname === "/cv" ||
-    url.pathname === "/stats";
+    url.pathname === "/cv";
 
   return (
     <html lang="en" class="dark">
@@ -186,7 +205,7 @@ export default function App({ Component, url }: PageProps) {
         {/* Default SEO tags - only for homepage and routes without custom SEO */}
         {!isCustomSEORoute && (
           <>
-            <title>Hrvoje Pavlinovic</title>
+            <title>{deriveDefaultTitle(url.pathname)}</title>
             <meta
               name="description"
               content="Software engineer passionate about blockchain innovation and AI. When not coding, you'll find me on the football pitch."

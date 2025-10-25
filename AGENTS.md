@@ -1,60 +1,68 @@
 # Repository Guidelines
 
-## Project Structure & Module Organization
+## Project Structure & Content Flows
 
-- `routes/` holds Fresh page routes and API handlers; each `.tsx` file maps
-  directly to an endpoint (e.g., `routes/projects.tsx`).
-- `islands/` contains interactive Preact components hydrated on the client; pair
-  them with server-rendered shells in `routes/`.
-- `components/` stores shared presentational pieces; prefer stateless functions
-  and keep data fetching in routes.
-- Assets live in `static/`; anything placed here is served verbatim at the site
-  root.
-- Shared types and helpers live in `types/` and `utils/`; check `utils/track.ts`
-  for analytics patterns before adding new tracking events.
+- `routes/` hosts Fresh entry points. `routes/index.tsx` and `routes/about.tsx`
+  hydrate their islands with JSON payloads from `data/home.json` and
+  `data/about.json`; treat these files as the single source of truth for hero,
+  biography, and engagement copy.
+- `islands/` contains hydrated UI. `HomePage.tsx` renders the intro stack only,
+  while `AboutPage.tsx` now covers work, journey, life, and training sections
+  that formerly lived on Home and Stats. Keep the data shape in sync with
+  `types/home.ts` and `types/about.ts`.
+- Shared behaviour belongs in `utils/`. Tokenised content (e.g. `{{TILT_URL}}`)
+  is resolved through `utils/contentTokens.tsx` and
+  `renderTemplateWithComponents`, which also applies Tailwind classes so design
+  tokens compile.
+- Reusable visual pieces stay in `components/`; client-only analytics and menu
+  logic live in islands such as `Router.tsx` and `MobileMenu.tsx`. Assets remain
+  in `static/`.
 
-## Build, Test & Development Commands
+## Build, Test & Verification Commands
 
-- `deno task start` launches the local dev server with file watching (`static/`,
-  `routes/`, `islands/`, `components/`).
-- `deno task build` generates the production bundle; run before deploying to
-  Deno Deploy.
-- `deno task preview` serves the built output for a final smoke test.
-- `deno task check` runs `deno fmt --check`, `deno lint`, and type-checks all
-  `.ts/.tsx` files; use it in CI or before opening a PR.
-- `deno task manifest` regenerates the Fresh route manifest when adding or
-  renaming pages.
+- `deno task start` launches the dev server with file watching across routes,
+  islands, components, and static assets.
+- `deno task check` runs formatting, linting, and type checking in one shot; run
+  it before opening or updating a PR.
+- `deno task build` followed by `deno task preview` mirrors the production
+  deployment pipeline; use both for final smoke tests.
+- `deno task manifest` regenerates `fresh.gen.ts` whenever routes or islands are
+  added, renamed, or removed.
 
 ## Coding Style & Naming Conventions
 
-- Format with `deno fmt`; keep two-space indentation and trailing commas where
-  the formatter adds them.
-- Follow the Fresh lint configs (`deno lint` with `fresh` + `recommended`
-  rules); resolve warnings rather than silencing them.
-- Name components and islands in PascalCase (`HeroSection.tsx`), routes in
-  lowercase kebab or descriptive filenames (`about.tsx`), and utilities in
-  camelCase.
-- Centralize styling in Tailwind classes; extend tokens in `tailwind.config.ts`
-  instead of inlining hex values repeatedly.
+- Always format with `deno fmt`; no manual tweaks are needed. Avoid explicit
+  `any` types—extend the shared interfaces instead. `react-no-danger` is
+  globally disabled, but prefer structured rendering unless you truly need raw
+  HTML.
+- Use PascalCase for components/islands, camelCase for utilities, and kebab-case
+  file names inside `routes/`. Keep Tailwind classes declarative and centred on
+  layout/spacing tweaks.
+- When introducing new placeholder tokens in JSON, define both the tracking
+  metadata and the JSX fragment in the token registry so analytics continue to
+  fire.
 
-## Testing Guidelines
+## Testing & Review Expectations
 
-- Deno’s built-in test runner is available even though no suites exist yet;
-  place new specs alongside source files as `<name>_test.ts`.
-- Prefer integration-style tests for route handlers and pure unit tests for
-  helpers in `utils/`.
-- Run `deno test` locally; integrate it into `deno task check` if coverage
-  grows.
-- For visual changes, capture before/after screenshots when relevant to ease
-  review.
+- Co-locate Deno tests with sources using the `_test.ts` suffix. Write focused
+  unit tests for helpers like `renderTemplateWithComponents` and consider
+  integration tests for island rendering.
+- Document manual QA in PRs (viewport checks for the Home hero and About
+  sections, plus any analytics affordances). Attach screenshots for notable UI
+  changes and explicitly mention uncovered areas.
+- Commits should be small, imperative, and reference related issues. PRs need a
+  concise summary, verification steps (`deno task check`, manual QA), and any
+  follow-up tasks.
 
-## Commit & Pull Request Guidelines
+## Workspace Status
 
-- Keep commits focused with short, lowercase summaries (see `git log` examples
-  like "complete revamp").
-- Reference issues in the body when applicable and describe user-facing impacts
-  in imperative mood.
-- PRs should include a purpose-oriented description, testing notes (commands
-  run, screenshots), and call out any follow-up tasks.
-- Request review once `deno task check` passes and the preview server has been
-  smoke-tested.
+- Unstaged: `components/Header.tsx`, `data/home.json`, `fresh.gen.ts`,
+  `islands/AboutPage.tsx`, `islands/HomePage.tsx`, `islands/MobileMenu.tsx`,
+  `islands/Router.tsx`, `islands/Footer.tsx`, `islands/WebStats.tsx`,
+  `routes/_app.tsx`, `routes/_404.tsx`, `routes/about.tsx`,
+  `routes/blog/[slug].tsx`, `routes/blog/index.tsx`,
+  `routes/branding/x/cover.tsx`, `routes/branding/x/profile.tsx`,
+  `routes/contact.tsx`, `routes/cv.tsx`, `routes/projects.tsx`,
+  `routes/projects/[id].tsx`, `routes/webstats.tsx`, `types/home.ts`,
+  `islands/StatsPage.tsx` (deleted), `routes/stats.tsx` (deleted).
+- Untracked: `data/about.json`, `types/about.ts`.

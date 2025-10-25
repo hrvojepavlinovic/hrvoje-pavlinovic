@@ -4,7 +4,7 @@ export default function XCover() {
   return (
     <>
       <Head>
-        <title>X Cover - Hrvoje Pavlinovic</title>
+        <title>X Cover &mdash; Hrvoje Pavlinovic</title>
         <meta name="robots" content="noindex, nofollow" />
         <style>
           {`

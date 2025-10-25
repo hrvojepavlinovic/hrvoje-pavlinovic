@@ -3,15 +3,17 @@ import { useEffect } from "preact/hooks";
 import { ComponentType } from "preact";
 import { trackEvent } from "../utils/track.ts";
 import homeDataJson from "../data/home.json" with { type: "json" };
+import aboutDataJson from "../data/about.json" with { type: "json" };
 import { HomeData } from "../types/home.ts";
+import { AboutData } from "../types/about.ts";
 import HomePage, { HomePageProps } from "./HomePage.tsx";
 import AboutPage from "./AboutPage.tsx";
 import CVPage from "./CVPage.tsx";
 import ContactPage from "./ContactPage.tsx";
-import StatsPage from "./StatsPage.tsx";
 import WebStatsPage from "./WebStats.tsx";
 
 const homeData = homeDataJson as HomeData;
+const aboutData = aboutDataJson as AboutData;
 
 // Helper function to update meta tags
 function updateMetaTags(title: string) {
@@ -22,9 +24,18 @@ function updateMetaTags(title: string) {
 
 type HomeRouteConfig = {
   kind: "home";
-  component: typeof HomePage;
+  component: ComponentType<HomePageProps>;
   title: string;
   props: HomePageProps;
+};
+
+type AboutRouteConfig = {
+  kind: "about";
+  component: ComponentType<{ data: AboutData }>;
+  title: string;
+  props: {
+    data: AboutData;
+  };
 };
 
 type GenericRouteConfig = {
@@ -34,7 +45,7 @@ type GenericRouteConfig = {
   props?: Record<string, unknown>;
 };
 
-type RouteConfig = HomeRouteConfig | GenericRouteConfig;
+type RouteConfig = HomeRouteConfig | AboutRouteConfig | GenericRouteConfig;
 
 type Routes = {
   [key: string]: RouteConfig;
@@ -50,9 +61,12 @@ const ROUTES: Routes = {
     },
   },
   "/about": {
-    kind: "generic",
+    kind: "about",
     component: AboutPage,
-    title: "About Hrvoje Pavlinovic | Blockchain Developer & Tech Lead",
+    title: "About Hrvoje Pavlinovic | Systems Partner",
+    props: {
+      data: aboutData,
+    },
   },
   "/cv": {
     kind: "generic",
@@ -63,11 +77,6 @@ const ROUTES: Routes = {
     kind: "generic",
     component: ContactPage,
     title: "Contact | Hrvoje Pavlinovic",
-  },
-  "/stats": {
-    kind: "generic",
-    component: StatsPage,
-    title: "Stats | Hrvoje Pavlinovic",
   },
   "/webstats": {
     kind: "generic",
@@ -163,6 +172,11 @@ export default function Router() {
   const route = ROUTES[currentPath.value] ?? ROUTES["/"];
 
   if (route.kind === "home") {
+    const RouteComponent = route.component;
+    return <RouteComponent {...route.props} />;
+  }
+
+  if (route.kind === "about") {
     const RouteComponent = route.component;
     return <RouteComponent {...route.props} />;
   }

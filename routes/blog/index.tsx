@@ -49,7 +49,7 @@ export const handler: Handlers<BlogPageData> = {
 
 export default function BlogPage({ data }: PageProps<BlogPageData>) {
   const canonicalUrl = "https://hrvoje.pavlinovic.com/blog";
-  const title = "Blog | Hrvoje Pavlinovic";
+  const title = "Blog \u2014 Hrvoje Pavlinovic";
   const description =
     "Notes on building resilient backends, leading lean teams, and navigating founder life.";
   const imageUrl = "https://hrvoje.pavlinovic.com/blog.png";

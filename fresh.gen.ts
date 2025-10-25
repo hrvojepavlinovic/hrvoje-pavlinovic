@@ -30,7 +30,6 @@ import * as $index from "./routes/index.tsx";
 import * as $lightning_callback_username_ from "./routes/lightning/callback/[username].ts";
 import * as $projects from "./routes/projects.tsx";
 import * as $projects_id_ from "./routes/projects/[id].tsx";
-import * as $stats from "./routes/stats.tsx";
 import * as $webstats from "./routes/webstats.tsx";
 import * as $webstats_index from "./routes/webstats/index.tsx";
 import * as $AboutPage from "./islands/AboutPage.tsx";
@@ -45,7 +44,6 @@ import * as $ProjectsList from "./islands/ProjectsList.tsx";
 import * as $Router from "./islands/Router.tsx";
 import * as $SocialActions from "./islands/SocialActions.tsx";
 import * as $StatsLink from "./islands/StatsLink.tsx";
-import * as $StatsPage from "./islands/StatsPage.tsx";
 import * as $ThemeToggle from "./islands/ThemeToggle.tsx";
 import * as $WebStats from "./islands/WebStats.tsx";
 import type { Manifest } from "$fresh/server.ts";
@@ -80,7 +78,6 @@ const manifest = {
     "./routes/lightning/callback/[username].ts": $lightning_callback_username_,
     "./routes/projects.tsx": $projects,
     "./routes/projects/[id].tsx": $projects_id_,
-    "./routes/stats.tsx": $stats,
     "./routes/webstats.tsx": $webstats,
     "./routes/webstats/index.tsx": $webstats_index,
   },
@@ -97,7 +94,6 @@ const manifest = {
     "./islands/Router.tsx": $Router,
     "./islands/SocialActions.tsx": $SocialActions,
     "./islands/StatsLink.tsx": $StatsLink,
-    "./islands/StatsPage.tsx": $StatsPage,
     "./islands/ThemeToggle.tsx": $ThemeToggle,
     "./islands/WebStats.tsx": $WebStats,
   },

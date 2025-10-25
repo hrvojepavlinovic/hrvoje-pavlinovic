@@ -1,25 +1,27 @@
 import { Head } from "$fresh/runtime.ts";
 import AboutPage from "../islands/AboutPage.tsx";
+import aboutDataJson from "../data/about.json" with { type: "json" };
+import { AboutData } from "../types/about.ts";
+
+const aboutData = aboutDataJson as AboutData;
 
 export default function About() {
   return (
     <>
       <Head>
         {/* Primary Meta Tags */}
-        <title>
-          About Hrvoje Pavlinovic | Blockchain Developer & Tech Lead
-        </title>
+        <title>About &mdash; Hrvoje Pavlinovic</title>
         <meta
           name="title"
-          content="About Hrvoje Pavlinovic | Blockchain Developer & Tech Lead"
+          content="About &mdash; Hrvoje Pavlinovic"
         />
         <meta
           name="description"
-          content="Senior Software Engineer and tech lead with 4+ years of experience in decentralized systems. Specializing in Bitcoin, blockchain technology, and scalable software solutions."
+          content="Senior backend engineer partnering with founders to ship reliable commerce, media, and blockchain systems while coaching teams toward resilient delivery."
         />
         <meta
           name="keywords"
-          content="Hrvoje Pavlinovic, Blockchain Developer, Bitcoin Developer, Tech Lead, Software Engineering, Decentralized Systems, Web3, Football"
+          content="Hrvoje Pavlinovic, Backend Engineer, Systems Partner, Tilt, ReneVerse, Commerce Platforms, Web3, Croatia"
         />
         <meta name="author" content="Hrvoje Pavlinovic" />
         <meta name="robots" content="index, follow" />
@@ -30,11 +32,11 @@ export default function About() {
         <meta property="og:url" content="https://hrvoje.pavlinovic.com/about" />
         <meta
           property="og:title"
-          content="About Hrvoje Pavlinovic | Blockchain Developer & Tech Lead"
+          content="About &mdash; Hrvoje Pavlinovic"
         />
         <meta
           property="og:description"
-          content="Senior Software Engineer and tech lead with 4+ years of experience in decentralized systems. Specializing in Bitcoin, blockchain technology, and scalable software solutions."
+          content="Senior backend engineer partnering with founders to deliver reliable systems across commerce, media, and blockchain."
         />
         <meta
           property="og:image"
@@ -51,11 +53,11 @@ export default function About() {
         <meta name="twitter:creator" content="@0xhp10" />
         <meta
           name="twitter:title"
-          content="About Hrvoje Pavlinovic | Blockchain Developer & Tech Lead"
+          content="About &mdash; Hrvoje Pavlinovic"
         />
         <meta
           name="twitter:description"
-          content="Senior Software Engineer and tech lead with 4+ years of experience in decentralized systems. Specializing in Bitcoin, blockchain technology, and scalable software solutions."
+          content="Senior backend engineer partnering with founders to deliver reliable systems across commerce, media, and blockchain."
         />
         <meta
           name="twitter:image"
@@ -76,7 +78,7 @@ export default function About() {
               "name": "Hrvoje Pavlinovic",
               "alternateName": "@0xhp10",
               "description":
-                "Senior Software Engineer and tech lead with 4+ years of experience in decentralized systems.",
+                "Senior backend engineer partnering with founders to deliver reliable commerce, media, and blockchain systems.",
               "image": "https://hrvoje.pavlinovic.com/pfptbs.png",
               "url": "https://hrvoje.pavlinovic.com",
               "sameAs": [
@@ -84,24 +86,24 @@ export default function About() {
                 "https://github.com/hrvoje-pavlinovic",
                 "https://linkedin.com/in/hpavlino",
               ],
-              "jobTitle": "Blockchain Developer & Tech Lead",
+              "jobTitle": "Senior Backend Engineer & Systems Partner",
               "knowsAbout": [
-                "Blockchain Technology",
+                "Backend Engineering",
+                "Interactive Commerce",
+                "Event-Driven Systems",
+                "DevOps",
                 "Bitcoin",
-                "Software Development",
-                "Decentralized Systems",
-                "Web3",
               ],
               "worksFor": {
                 "@type": "Organization",
-                "name": "Independent Contractor",
+                "name": "Tilt",
               },
             }),
           }}
         />
       </Head>
 
-      <AboutPage />
+      <AboutPage data={aboutData} />
     </>
   );
 }

@@ -51,6 +51,20 @@ const SPAM_PATTERNS = [
   /\.(xml|txt|json|yml|yaml)$/,
 ];
 
+const KNOWN_PAGE_PREFIXES = [
+  "about",
+  "branding",
+  "blog",
+  "contact",
+  "cover",
+  "cv",
+  "greet",
+  "homepage",
+  "lightning",
+  "projects",
+  "webstats",
+];
+
 const TYPE_BADGE: Record<string, string> = {
   menu:
     "border-blue-200 bg-blue-100 text-blue-700 dark:border-blue-800/50 dark:bg-blue-900/30 dark:text-blue-200",
@@ -89,6 +103,23 @@ const isSpam = (page: string) => {
   return SPAM_PATTERNS.some((pattern) => pattern.test(clean));
 };
 
+const formatPageName = (page: string) => {
+  if (!page || page === "/") return "homepage";
+
+  const normalized = page.replace(/^\/+/, "");
+  if (!normalized) return "homepage";
+
+  const matchesKnownPrefix = KNOWN_PAGE_PREFIXES.some((prefix) => {
+    if (prefix === "homepage") return false;
+    if (normalized === prefix) return true;
+    return normalized.startsWith(`${prefix}/`);
+  });
+
+  if (matchesKnownPrefix) return normalized;
+
+  return "bots sniffing";
+};
+
 export default function WebStatsPage() {
   const [loading, setLoading] = useState(true);
   const [pageViews, setPageViews] = useState<SortedStats[]>([]);
@@ -108,9 +139,7 @@ export default function WebStatsPage() {
         const viewsMap = new Map<string, number>();
         Object.entries(data.pageViews).forEach(([page, count]) => {
           if (isSpam(page)) return;
-          const formatted = page === "/" || !page
-            ? "homepage"
-            : page.replace(/^\//, "");
+          const formatted = formatPageName(page);
           viewsMap.set(formatted, (viewsMap.get(formatted) || 0) + count);
         });
         const sortedViews = Array.from(viewsMap.entries())

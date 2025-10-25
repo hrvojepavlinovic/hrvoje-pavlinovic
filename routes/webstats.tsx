@@ -5,7 +5,7 @@ export default function WebStats() {
   return (
     <>
       <Head>
-        <title>Web Stats | Hrvoje Pavlinovic</title>
+        <title>Web Stats &mdash; Hrvoje Pavlinovic</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       <WebStatsPage />

@@ -47,7 +47,7 @@ export default function Footer() {
 
   return (
     <footer
-      class="fixed bottom-0 left-0 right-0 z-50 border-transparent"
+      class="border-transparent pt-10"
       style={{
         backgroundImage:
           "linear-gradient(to top, var(--theme-background-opaque) 40%, transparent 100%)",

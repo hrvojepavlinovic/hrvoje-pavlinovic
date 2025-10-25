@@ -4,7 +4,7 @@ export default function NotFoundPage() {
   return (
     <>
       <Head>
-        <title>404 - Page Not Found | Hrvoje Pavlinovic</title>
+        <title>404 Page Not Found &mdash; Hrvoje Pavlinovic</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       <div class="flex flex-col items-center justify-center min-h-screen p-4">

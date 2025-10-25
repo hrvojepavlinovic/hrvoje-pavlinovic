@@ -1,0 +1,146 @@
+{
+  "pageTitle": "About me",
+  "intro": {
+    "heading": "",
+    "summary": "I help founders and product teams turn messy operational pressure into dependable systems that keep compounding.",
+    "paragraphs": [
+      "Tilt is a very cool company that I'm proud to be a part of. I am part of the team that builds the interactive commerce backend that powers livestream auctions, payments, and fulfillment—and make sure it stays fast for the teams running the shows.",
+      "Before that I supported founders across ReneVerse, CryptoToday, Povio, and more: designing event-driven pipelines, stabilising legacy code, and mentoring the people responsible for day-two reliability.",
+      "Twelve-plus years in AI, Bitcoin, Web3, automotive, and health care taught me the same lesson: performant systems are built with equal parts curiosity, empathy, and guardrails."
+    ]
+  },
+  "work": {
+    "heading": "How I help teams win",
+    "description": "My sweet spot is taking ambiguous roadmaps and shaping the backend architecture, delivery practices, and team habits that make them real.",
+    "capabilityAreas": [
+      {
+        "title": "Commerce systems that scale",
+        "intro": "Design end-to-end flows for livestream shopping, auctions, fulfillment, and payouts that feel instant to operators.",
+        "points": [
+          "Grew revenue-critical services at Tilt while keeping customer-facing latency under 150ms.",
+          "Scaled ad-tech pipelines past 1.7B impressions by tightening ingestion, batching, and observability."
+        ]
+      },
+      {
+        "title": "Delivery with guardrails",
+        "intro": "Blend architecture decisions with day-to-day execution so teams ship confidently without gambling uptime.",
+        "points": [
+          "Pair roadmap planning with instrumentation, runbooks, and feedback loops that keep teams close to customers.",
+          "Coach engineers through migrations and incident reviews so lessons stick across the org."
+        ]
+      },
+      {
+        "title": "Founder-aligned partnership",
+        "intro": "Work shoulder-to-shoulder with founders from first build through hypergrowth stages.",
+        "points": [
+          "Translate business pressure into scoped delivery cycles and crisp investment trade-offs.",
+          "Navigate legacy stacks and third-party dependencies without slowing velocity."
+        ]
+      }
+    ],
+    "highlightedWork": [
+      {
+        "name": "Tilt",
+        "summary": "Scaling the backend powering Tilt's interactive commerce—from livestream auctions to payments and personalization—while shaping API design, reliability, and engineering rituals.",
+        "href": "https://tilt.app",
+        "status": "Current role",
+        "trackingTarget": "tilt"
+      },
+      {
+        "name": "ReneVerse",
+        "summary": "Architected event-driven infrastructure for interoperable blockchain gaming assets and ad tech, scaling to billions of impressions with strict uptime targets.",
+        "href": "https://reneverse.io",
+        "status": "Recent engagement",
+        "trackingTarget": "reneverse"
+      }
+    ]
+  },
+  "journey": {
+    "heading": "Trajectory",
+    "summary": "From on-site enterprise delivery to remote founder partnerships, the through-line has been building systems people can trust.",
+    "stops": [
+      {
+        "period": "2013 → 2016",
+        "headline": "Foundation in shipping",
+        "summary": "Clocked over 3,000 hours of hands-on development while finishing my computer science degree—shipping early-stage web and mobile products, learning production discipline, and keeping commitments to real users."
+      },
+      {
+        "period": "2016 → 2021",
+        "headline": "Enterprise and automotive craft",
+        "summary": "Engineering roles with Ericsson, Profico, and Rimac. Led distributed systems work, integrated legacy platforms, and introduced safer delivery practices across automotive and telco teams."
+      },
+      {
+        "period": "2021 → today",
+        "headline": "Remote partner to founders",
+        "summary": "Embedded with Povio, ReneVerse, CryptoToday, and Tilt. Scaled blockchain-first products, reinforced event-driven pipelines, and now guide Tilt's interactive commerce backend."
+      }
+    ]
+  },
+  "life": {
+    "heading": "Beyond the keyboard",
+    "summary": "Family life keeps me honest; movement keeps me focused. I treat recovery, curiosity, and coaching as part of the job.",
+    "focusAreas": [
+      {
+        "title": "Family first",
+        "description": "Two kids, school runs, and evening routines ground every decision. Work flexes around their milestones."
+      },
+      {
+        "title": "Always learning",
+        "description": "I stay close to new tooling—serverless patterns, observability stacks, Bitcoin protocols—and bring the useful parts to the teams I support."
+      },
+      {
+        "title": "Movement as fuel",
+        "description": "Short daily sessions, weekend football or padel, and growing mileage on the bike keep the system balanced."
+      }
+    ]
+  },
+  "principles": {
+    "heading": "Operating principles",
+    "items": [
+      "Build systems that disappear into the background and let people focus on their craft.",
+      "Make architecture decisions with the teammates who own the day-two reality.",
+      "Document, mentor, and leave every team with healthier defaults than I found."
+    ]
+  },
+  "training": {
+    "heading": "Training snapshot",
+    "summary": "Autumn focus: reclaim conditioning while protecting long-term joints. Consistency beats intensity.",
+    "stats": [
+      {
+        "label": "Current weight",
+        "value": "96.1 kg",
+        "hint": "Measured October 2025"
+      },
+      {
+        "label": "Primary goal",
+        "value": "50 push-ups unbroken",
+        "hint": "Strict form, no timer"
+      },
+      {
+        "label": "Secondary focus",
+        "value": "Consistency > intensity",
+        "hint": "Daily movement, sustainable burn"
+      }
+    ],
+    "progress": [
+      {
+        "label": "Push-ups",
+        "current": 480,
+        "goal": 1500,
+        "unit": "reps"
+      },
+      {
+        "label": "Pull-ups",
+        "current": 140,
+        "goal": 500,
+        "unit": "reps"
+      },
+      {
+        "label": "Active kcal",
+        "current": 4300,
+        "goal": 10000,
+        "unit": "kcal"
+      }
+    ]
+  }
+}
