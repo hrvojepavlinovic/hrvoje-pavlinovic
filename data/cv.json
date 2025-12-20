@@ -271,6 +271,12 @@
 
   "personalProjects": [
     {
+      "name": "PLAYGRND",
+      "url": "https://playgrnd.app",
+      "description": "Amateur football leagues and tournaments management platform with player profiles and social features. Aiming to bring back football to the people.",
+      "technologies": ["Go", "Postgres", "Redis", "SvelteKit", "Hetzner"]
+    },
+    {
       "name": "Memoato",
       "url": "https://memoato.com",
       "description": "AI-powered life tracking platform with voice/text input, automated categorization, and intelligent insights dashboard replacing 5+ productivity apps.",
@@ -279,7 +285,7 @@
     {
       "name": "XXI Today",
       "url": "https://xxi.today",
-      "description": "Comprehensive Bitcoin information hub with wallet explorer, milestone tracking, news curation, and educational resources for the entire Bitcoin ecosystem.",
+      "description": "Complete Bitcoin information hub with wallet explorer, milestone tracking, news curation, and educational resources for the entire Bitcoin ecosystem.",
       "technologies": ["T3", "Postgres", "Bitcoin", "Lightning"]
     },
     {
