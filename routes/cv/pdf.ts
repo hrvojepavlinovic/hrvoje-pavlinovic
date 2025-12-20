@@ -141,8 +141,11 @@ export const handler: Handlers = {
       };
 
       // Helper function to add section header with consistent styling
-      const addSectionHeader = (title: string, y: number) => {
-        checkNewPage(15);
+      const addSectionHeader = (title: string, y: number, shouldCheckNewPage: boolean = true) => {
+        if (shouldCheckNewPage) {
+          checkNewPage(15);
+        }
+
         // Consistent spacing before section headers
         y += 3;
         doc.setFontSize(11);
@@ -345,8 +348,6 @@ export const handler: Handlers = {
       yPosition += 1;
 
       typedCvData.personalProjects.forEach((project) => {
-        checkNewPage(15);
-
         // Project header
         yPosition = addText(
           project.name,
@@ -396,7 +397,9 @@ export const handler: Handlers = {
       });
 
       // Education Section
-      yPosition = addSectionHeader("Education", yPosition);
+      // Ensure enough space for header + content to avoid orphan headers
+      checkNewPage(45);
+      yPosition = addSectionHeader("Education", yPosition, false);
 
       yPosition += 1;
 
