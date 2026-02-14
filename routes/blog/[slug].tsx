@@ -17,8 +17,13 @@ interface BlogPostData {
 }
 
 export const handler: Handlers<BlogPostData> = {
-  async GET(_req, ctx) {
+  async GET(req, ctx) {
     const { slug } = ctx.params;
+    if (slug === "phone-first-coding-setup") {
+      const url = new URL(req.url);
+      url.pathname = "/blog/mobile-first-coding-setup";
+      return Response.redirect(url, 301);
+    }
     const article = (blogData.articles as BlogArticle[]).find((a) =>
       a.slug === slug
     );
