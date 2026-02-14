@@ -293,7 +293,7 @@ export default function App({ Component, url }: PageProps) {
         {/* Databuddy Analytics - Only in production */}
         {url.hostname !== "localhost" && (
           <script
-            src="https://app.databuddy.cc/databuddy.js"
+            src="https://cdn.databuddy.cc/databuddy.js"
             data-client-id="M-4ShisWAZcWCPjl6j3u-"
             data-track-screen-views="true"
             data-track-attributes="true"
