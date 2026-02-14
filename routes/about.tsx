@@ -1,11 +1,37 @@
 import { Head } from "$fresh/runtime.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import AboutPage from "../islands/AboutPage.tsx";
 import aboutDataJson from "../data/about.json" with { type: "json" };
 import { AboutData } from "../types/about.ts";
+import {
+  getMemoatoPublicStats,
+  MemoatoPublicStats,
+} from "../utils/memoatoStats.ts";
 
 const aboutData = aboutDataJson as AboutData;
 
-export default function About() {
+interface AboutRouteData {
+  about: AboutData;
+  memoatoStats: MemoatoPublicStats | null;
+}
+
+export const handler: Handlers<AboutRouteData> = {
+  async GET(req, ctx) {
+    const url = new URL(req.url);
+    const host = req.headers.get("host") ?? "";
+    const forceRefresh = url.searchParams.get("refresh") === "1" ||
+      url.hostname === "localhost" ||
+      url.hostname === "127.0.0.1" ||
+      url.hostname === "0.0.0.0" ||
+      host.includes("localhost") ||
+      host.includes("127.0.0.1") ||
+      host.includes("0.0.0.0");
+    const memoatoStats = await getMemoatoPublicStats({ forceRefresh });
+    return ctx.render({ about: aboutData, memoatoStats });
+  },
+};
+
+export default function About({ data }: PageProps<AboutRouteData>) {
   return (
     <>
       <Head>
@@ -103,7 +129,7 @@ export default function About() {
         />
       </Head>
 
-      <AboutPage data={aboutData} />
+      <AboutPage data={data.about} memoatoStats={data.memoatoStats} />
     </>
   );
 }

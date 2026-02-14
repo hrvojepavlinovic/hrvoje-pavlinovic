@@ -12,15 +12,30 @@ web technologies.
 
 ## ⚡ Architecture & Tech Stack
 
-The site is built to be lightweight and fast, utilizing server-side rendering
-and edge deployment.
+The site is built to be lightweight and fast, using Fresh for server-side
+rendering and island hydration.
 
 - **[Fresh](https://fresh.deno.dev/)** - Next-gen edge web framework.
 - **[Deno](https://deno.land/)** - Modern, secure runtime for TypeScript.
 - **[Preact](https://preactjs.com/)** - 3kB React alternative for lightweight UI
   components.
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first styling.
-- **[Deno Deploy](https://deno.com/deploy)** - Global edge deployment.
+
+## 🧱 Content Model
+
+Most copy is JSON-driven.
+
+- Home hero and social links live in `data/home.json` and are rendered by
+  `routes/index.tsx` + `islands/HomePage.tsx`.
+- About content lives in `data/about.json` and is rendered by `routes/about.tsx`
+  - `islands/AboutPage.tsx`.
+- Blog index and posts live in `data/blog.json`. Each post stores `fullText` as
+  HTML, rendered by `routes/blog/index.tsx` and `routes/blog/[slug].tsx`.
+- Projects live in `data/projects.json` and are rendered by
+  `routes/projects.tsx`
+  - `islands/ProjectsList.tsx`.
+
+Tokenized copy like `{{TILT_URL}}` is resolved via `utils/contentTokens.tsx`.
 
 ## 🛠️ Local Development
 
@@ -35,7 +50,7 @@ machine.
 1. Clone the repository:
 
 ```bash
-git clone [https://github.com/hrvoje-pavlinovic/hrvoje-pavlinovic.git](https://github.com/hrvoje-pavlinovic/hrvoje-pavlinovic.git)
+git clone https://github.com/hrvoje-pavlinovic/hrvoje-pavlinovic.git
 cd hrvoje-pavlinovic
 ```
 
@@ -47,6 +62,20 @@ deno task start
 
 The server will watch the project directory and hot-reload automatically upon
 file changes.
+
+### Verification
+
+```bash
+deno task check
+deno task build
+deno task preview
+```
+
+If routes or islands change, regenerate the manifest:
+
+```bash
+deno task manifest
+```
 
 ## 📂 Project Structure
 

@@ -1,221 +1,65 @@
 {
-  "description": "Bootstrap-first ventures I'm shaping into investable companies. Each has live product, measurable traction, and a clear plan for how outside capital compounds the next chapter.",
+  "description": "A few products and side projects I build to stay close to the craft.",
   "projects": [
     {
       "id": "memoato",
       "name": "Memoato",
       "url": "https://memoato.com",
-      "description": "Personal operating system that listens to your voice, messages, and apps, then organises everything into actionable dashboards without you babysitting a dozen tools.",
-      "technologies": ["T3", "AI", "Postgres", "Vercel", "Whisper"],
+      "description": "An AI-powered quantified self and journaling app designed for peak performance and life tracking.",
+      "highlights": [
+        "Fast capture with natural language input",
+        "Organized timelines with actionable insights",
+        "Built for consistency, not spreadsheet rituals"
+      ],
+      "technologies": ["Wasp", "Postgres", "Redis", "Cloudflare"],
       "status": "development",
       "featured": true,
-      "accent": "emerald",
-      "pitch": {
-        "tagline": "The personal operating system that organises itself.",
-        "problem": "Operators, founders, and parents juggle 6-10 fragmented apps to track health, finances, tasks, and notes. The admin work steals time, the data never lines up, and progress gets lost in inboxes.",
-        "solution": "Memoato is a single capture lane for voice, text, and app integrations. An on-device AI agent labels every entry across life domains, builds live dashboards, and produces weekly briefings so people see deltas without ritualistic logging.",
-        "marketOpportunity": "Knowledge-work productivity software is a $60B market growing 14% CAGR. Even a 0.5% wedge of 30M self-quantifying professionals is a multi-hundred-million-dollar ARR opportunity.",
-        "vision": "Start with ambitious parents and operators who already track everything; expand into team retros, health providers, and coaching programs that need longitudinal context without manual spreadsheets.",
-        "competitiveAdvantage": [
-          "Voice-first inbox with automatic cross-domain tagging in <3 seconds",
-          "Private-first architecture with local vector store and optional cloud sync",
-          "Opinionated dashboards focused on change over raw logs",
-          "Extensible schema that plugs into finance, fitness, and calendar APIs",
-          "Weekly review agent that flags anomalies and suggests next actions"
-        ],
-        "pricingModel": "SaaS: Starter free tier, Pro $14/month for unlimited AI insights, Teams $19/seat with shared dashboards and coaching exports.",
-        "targetFunding": "Exploring $1.2M pre-seed (SAFE) to take Memoato from power-user beta to 50K ARR.",
-        "fundsAllocation": [
-          "30% Voice ingestion + on-device AI refinement",
-          "25% Mobile apps (iOS & Android) and offline sync",
-          "20% Growth experiments + community-led onboarding",
-          "15% Security reviews, encryption, and compliance",
-          "10% Founder runway & operational buffer"
-        ],
-        "teamCosts": "Core team of founder + 2 senior engineers + product designer = ~$28K monthly burn.",
-        "timeToMarket": "Nine months to mobile GA with live voice capture and proactive reviews; 18 months to 300 paying teams.",
-        "currentState": "Web beta live with 280-person waitlist, 60 active testers logging 1.5K entries/week, and first revenue through tailored coaching pilots. Bootstrapped to date."
-      }
-    },
-    {
-      "id": "xxi-today",
-      "name": "XXI Today",
-      "url": "https://xxi.today",
-      "description": "Bitcoin's intelligence layer: one destination for education, analytics, milestone tracking, and professional-grade data APIs.",
-      "technologies": [
-        "T3",
-        "Postgres",
-        "Vercel",
-        "Bitcoin",
-        "Lightning",
-        "Cloudflare Workers"
-      ],
-      "status": "early",
-      "featured": true,
-      "accent": "orange",
-      "pitch": {
-        "tagline": "The front page of Bitcoin for the next 21 million users.",
-        "problem": "Bitcoin knowledge is scattered across forums, explorers, newsletters, and Telegram groups. Newcomers churn, professionals spend hours aggregating, and institutions lack a single source of truth.",
-        "solution": "XXI Today curates the entire Bitcoin journey: milestone tracker, multi-level education, on-chain analytics, curated news, and pro APIs in one interface. Think 'Bloomberg for Bitcoin' outcomes with product-led growth.",
-        "marketOpportunity": "Over 106M wallet users with 13K new addresses daily. Even 10K pro subscribers at $29/month is $3.5M ARR; the TAM spans media, education, and data infrastructure for a $850B asset class.",
-        "vision": "Become the default homepage, research terminal, and learning loop for every Bitcoin participant-from first satoshi to institutional desk.",
-        "competitiveAdvantage": [
-          "Skill-level navigation covering beginner to protocol engineer",
-          "First-party analytics pipeline focused on velocity not vanity",
-          "Lightning-native experiences (tipping, micro-subscriptions, API auth)",
-          "Editorial curation by operators deeply embedded in Bitcoin",
-          "Clear bridge between education, data services, and product discovery"
-        ],
-        "pricingModel": "Freemium content + $29/month Pro membership for analytics & alerts + $149/API seat for institutions.",
-        "targetFunding": "Exploring $750K pre-seed to launch Pro membership and institutional data services.",
-        "fundsAllocation": [
-          "30% Data infrastructure + Lightning integrations",
-          "25% Content/editorial team and video formats",
-          "20% Growth loops with ambassadors and podcasts",
-          "15% API productisation and developer relations",
-          "10% Legal, compliance, and treasury"
-        ],
-        "teamCosts": "Two senior engineers + managing editor + part-time researcher ≈ $18K/month burn.",
-        "timeToMarket": "Four months to paid Pro tier launch; 12 months to 10K paying members and 25 institutional API customers.",
-        "currentState": "Alpha live with 1.2K newsletter subscribers, 8 corporate pilots reviewing the API, and partnerships in progress with two Croatian exchanges. Bootstrapped to date."
-      }
+      "accent": "emerald"
     },
     {
       "id": "playgrnd",
       "name": "PLAYGRND",
       "url": "https://playgrnd.app",
-      "description": "Grassroots football OS for organising games, tracking players, and helping venues monetise community leagues.",
-      "technologies": ["T3", "Postgres", "Vercel", "Stripe", "Expo", "Video"],
-      "status": "early",
-      "featured": false,
-      "accent": "green",
-      "pitch": {
-        "tagline": "Book a pitch, form a squad, get the stats.",
-        "problem": "Street football is coordinated through messy WhatsApp groups. Players can't track progress, venues lose money on empty slots, and communities lack professional tools.",
-        "solution": "PLAYGRND digitises local leagues end-to-end: scheduling, payments, player profiles, highlight clips, and sponsorship kits so community football feels as organised as pro clubs.",
-        "marketOpportunity": "265M active footballers worldwide. Capturing 1% of local venues with €199/month SaaS + revenue share unlocks a €60M ARR wedge.",
-        "vision": "Build the world's largest grassroots football network-software, franchise playbook, and community-owned competitions.",
-        "competitiveAdvantage": [
-          "Venue franchise package with equipment, signage, and revenue model",
-          "Real-time stat tracking and highlight reels for social sharing",
-          "Integrated marketplace for kits, physio, and coaching",
-          "Focus on neighbourhood authenticity over corporate leagues"
-        ],
-        "pricingModel": "B2B subscriptions for venues (€199/month) + 12% revenue share on bookings + player premium at €6/month for advanced stats.",
-        "targetFunding": "Planning $500K angel round to run 3-city pilots and launch franchise kits.",
-        "fundsAllocation": [
-          "35% Product + mobile app delivery",
-          "25% Hardware kits (cameras, sensors, signage)",
-          "20% City launcher hires + community marketing",
-          "10% Partnerships with sports retailers",
-          "10% Legal & operations"
-        ],
-        "teamCosts": "Founder + PM + mobile dev + community lead ≈ $22K/month burn.",
-        "timeToMarket": "Six months to Zagreb & Split pilots; 18 months to 25 venues and €1M GMV.",
-        "currentState": "Product design complete, venue partnerships LOIs signed in Croatia, and 400 players pre-registered for beta leagues. Bootstrapped to date."
-      }
-    },
-    {
-      "id": "apes-club",
-      "name": "Apes Club",
-      "url": "https://apes.club",
-      "description": "Compliance-aware meme coin launchpad with analytics, KYC'd creator tiers, and community governance on Solana.",
-      "technologies": [
-        "Solana",
-        "Web3",
-        "TypeScript",
-        "DeFi",
-        "Rust",
-        "Cloudflare"
+      "description": "A community-first football scoreboard for tracking leagues, results, standings, and player stats.",
+      "highlights": [
+        "Leagues, standings, and player stats in one place",
+        "Share match results with a clean public link",
+        "Built for local teams that want structure without bureaucracy"
       ],
-      "status": "early",
-      "featured": false,
-      "accent": "violet",
-      "pitch": {
-        "tagline": "The smart launchpad for speculative markets.",
-        "problem": "Pump.fun channels $100M+ daily but offers zero safety rails-rug pulls, repeat scammers, and zero data. Traders want the upside without blind risk.",
-        "solution": "Apes Club adds intelligence layers: reputation scoring, AML screening, liquidity locks, real-time on-chain analytics, and community governance so speculation feels informed, not reckless.",
-        "marketOpportunity": "$50B+ daily Solana volume with accelerating institutional curiosity. Capturing analytics + launch fees on a fraction of that flow is a multi-million-dollar business.",
-        "vision": "Become the compliance-ready launch stack for meme assets-extensible across Solana, Base, and future high-throughput chains.",
-        "competitiveAdvantage": [
-          "Creator KYC tiers with bonded guarantees",
-          "Risk scoring engine that flags rugs in seconds",
-          "Community council veto + staking-based governance",
-          "APIs for funds and market-makers wanting real-time sentiment",
-          "Legal-first approach with EU VASP partners"
-        ],
-        "pricingModel": "2% launch fee split between treasury and stakers + $39/month pro analytics + institutional API licensing.",
-        "targetFunding": "Planning $900K seed to ship regulated launch stack and compliance partnerships.",
-        "fundsAllocation": [
-          "30% Security audits & compliance",
-          "25% Analytics and risk scoring R&D",
-          "20% Liquidity incentives and market-making",
-          "15% Growth with creators & trading communities",
-          "10% Operations"
-        ],
-        "teamCosts": "Two protocol engineers + data scientist + compliance lead ≈ $32K/month burn.",
-        "timeToMarket": "Eight months to regulated launch on Solana; 15 months to multi-chain expansion and governance token launch.",
-        "currentState": "Analytics prototype live ingesting 4TB/day, early conversations with two licensed VASPs, and 50+ high-volume traders in private Discord. Bootstrapped to date."
-      }
+      "technologies": [],
+      "status": "development",
+      "featured": true,
+      "accent": "orange"
     },
     {
-      "id": "hrvoje-pavlinovic",
-      "name": "Founder Portfolio",
-      "url": "https://hrvoje.pavlinovic.com",
-      "description": "Living proof-of-work portfolio with real-time analytics, growth experiments, and investor memos under one roof.",
-      "technologies": ["Deno", "Fresh", "Tailwind", "Deno KV", "Cloudflare"],
-      "status": "live",
+      "id": "xxi-today",
+      "name": "XXI Today",
+      "url": "https://xxi.today",
+      "description": "A Bitcoin wallet and .btc domain explorer, integrated with the XVerse wallet.",
+      "highlights": [
+        "Fast .btc lookups and basic on-chain context",
+        "Bitcoin-focused UX with simple flows",
+        "Built as a thin product layer over existing wallet infra"
+      ],
+      "technologies": ["Bitcoin", ".btc", "XVerse"],
+      "status": "early",
       "featured": true,
-      "accent": "orange",
-      "pitch": {
-        "tagline": "A technical founder's operating room-public by default.",
-        "problem": "Developers and founders need more than generic templates to win trust. Static portfolios undersell craft, give no telemetry, and fail to convert serious opportunities.",
-        "solution": "This platform ships investor memos, project metrics, and live analytics in a modern stack that doubles as reference architecture for clients.",
-        "marketOpportunity": "50M+ tech professionals monetising their personal brand. High-trust, transparent portfolios convert advisory, investment, and hiring demand.",
-        "vision": "Show the industry what founder-led delivery looks like-transparent, fast, and measurable.",
-        "competitiveAdvantage": [
-          "Built on Deno/Fresh with streaming analytics",
-          "Deployed experiments weekly with measurable lift",
-          "Integrated memos so investors can self-serve diligence",
-          "Template-ready architecture I can productise for others"
-        ],
-        "pricingModel": "Currently internal. Potential premium template + consulting offer at $3K-5K engagements.",
-        "currentState": "15K+ monthly visitors, direct client acquisition channel, and sandbox for shipping the experiments documented on this page. Bootstrapped to date."
-      }
+      "accent": "orange"
     },
     {
       "id": "hills-lab",
       "name": "HILLS Lab",
       "url": "https://hills-lab.hr",
-      "description": "Independent R&D studio delivering applied AI, blockchain, and commerce systems for EU companies that need more than slide decks.",
-      "technologies": ["Deno", "Fresh", "Tailwind", "AI", "Blockchain", "AWS"],
+      "description": "An independent R&D studio focused on applied AI, Bitcoin, and commerce systems.",
+      "highlights": [
+        "Hands-on engineering, not slide decks",
+        "Small teams, clear ownership, production discipline",
+        "Focused on shipping and operating real systems"
+      ],
+      "technologies": ["Backend", "Infra", "AI", "Bitcoin"],
       "status": "development",
-      "featured": true,
-      "accent": "orange",
-      "pitch": {
-        "tagline": "Decoding tomorrow for teams that have to ship today.",
-        "problem": "Mid-market companies want AI/blockchain leverage but don't trust vendors who've never run production systems. They need partners who design, build, and operate in one loop.",
-        "solution": "HILLS Lab embeds senior engineers alongside leadership to run discovery, prototypes, and go-live. Boutique studio capacity with principal-level accountability.",
-        "marketOpportunity": "European digital transformation spend exceeds €150B. Carving out even 10 long-term innovation retainers is €7-10M ARR with strong margin.",
-        "vision": "Become the go-to applied research partner for CEE scale-ups tackling AI, advanced commerce, and Web3.",
-        "competitiveAdvantage": [
-          "Founder-led team with track record scaling systems to billions of events",
-          "Integrated research + delivery pods",
-          "Transparent runway reporting and shared telemetry",
-          "Trusted network for compliance, security, and go-to-market support"
-        ],
-        "pricingModel": "Retainers (€18-25K/month) plus delivery sprints (€35K+) and venture co-build equity options.",
-        "targetFunding": "Exploring $400K strategic capital to open dedicated lab space and hire two additional principals.",
-        "fundsAllocation": [
-          "40% Senior engineering hires",
-          "25% Lab infrastructure + experimentation budget",
-          "20% Market development in DACH & Nordics",
-          "15% Operating buffer"
-        ],
-        "teamCosts": "Initial pod of 3 principals + ops ≈ €32K/month burn before client revenue.",
-        "timeToMarket": "Three months to staffed lab, six months to five retained clients, eighteen months to €3M ARR.",
-        "currentState": "Signed lighthouse engagements in commerce and blockchain, plus inbound pipeline from ReneVerse, Tilt partners, and Croatian enterprise network. Bootstrapped to date."
-      }
+      "featured": false,
+      "accent": "orange"
     }
   ]
 }

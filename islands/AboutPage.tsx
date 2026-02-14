@@ -1,57 +1,31 @@
 import { trackEvent } from "../utils/track.ts";
-import { AboutData, TrainingProgress, TrainingStat } from "../types/about.ts";
+import { AboutData } from "../types/about.ts";
+import { MemoatoPublicStats } from "../utils/memoatoStats.ts";
 
 interface AboutPageProps {
   data: AboutData;
+  memoatoStats?: MemoatoPublicStats | null;
 }
 
-function StatCard({ label, value, hint }: TrainingStat) {
-  return (
-    <div class="space-y-2 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-gray-800 dark:bg-black/40">
-      <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-        {label}
-      </p>
-      <p class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-        {value}
-      </p>
-      {hint && (
-        <p class="text-xs text-gray-500 dark:text-gray-500">
-          {hint}
-        </p>
-      )}
-    </div>
-  );
-}
+export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
+  const categories = memoatoStats?.categories ?? [];
+  const integerFormatter = new Intl.NumberFormat("en-US");
+  const decimalFormatter = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 2,
+  });
 
-function ProgressCard({ label, current, goal, unit }: TrainingProgress) {
-  const percentage = Math.min(100, Math.round((current / goal) * 100));
+  const formatValue = (value: number | null, unit: string | null) => {
+    if (value == null) return "–";
+    const formatted = unit === "kg"
+      ? decimalFormatter.format(value)
+      : integerFormatter.format(value);
+    return unit ? `${formatted} ${unit}` : formatted;
+  };
 
-  return (
-    <div class="space-y-3 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-gray-800 dark:bg-black/40">
-      <div class="flex items-baseline justify-between gap-4">
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-            {label}
-          </p>
-          <p class="text-sm text-gray-700 dark:text-gray-300">
-            {current.toLocaleString()} {unit}
-          </p>
-        </div>
-        <p class="text-xs text-gray-500 dark:text-gray-500">
-          Target {goal.toLocaleString()} {unit}
-        </p>
-      </div>
-      <div class="h-1.5 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
-        <div
-          class="h-full rounded-full bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-400 dark:to-orange-500 transition-all"
-          style={`width: ${percentage}%`}
-        />
-      </div>
-    </div>
-  );
-}
+  const generatedAtUtc = memoatoStats?.generatedAt
+    ? `${memoatoStats.generatedAt.slice(0, 16).replace("T", " ")} UTC`
+    : null;
 
-export default function AboutPage({ data }: AboutPageProps) {
   return (
     <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
       <section class="max-w-4xl mx-auto px-6 pt-32 pb-16 space-y-6 md:pt-40">
@@ -61,7 +35,10 @@ export default function AboutPage({ data }: AboutPageProps) {
         <h1 class="text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[44px]">
           {data.intro.heading}
         </h1>
-        <p class="text-base text-gray-600 dark:text-gray-300 md:text-lg">
+        <p class="text-base font-semibold text-gray-700 dark:text-gray-200 md:text-lg">
+          Peak productivity: Family · Software · Fitness
+        </p>
+        <p class="text-sm text-gray-600 dark:text-gray-300 md:text-base">
           {data.intro.summary}
         </p>
         <div class="space-y-4 text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
@@ -70,6 +47,105 @@ export default function AboutPage({ data }: AboutPageProps) {
           ))}
         </div>
       </section>
+
+      {categories.length > 0 && (
+        <section class="border-t border-gray-100 dark:border-gray-900">
+          <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-8">
+            <div class="space-y-3">
+              <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                Live stats
+              </h2>
+              <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
+                Live training and health metrics exported from Memoato.
+              </p>
+              {generatedAtUtc && (
+                <p class="text-xs text-gray-500 dark:text-gray-500">
+                  Updated {generatedAtUtc}
+                </p>
+              )}
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-2">
+              {categories.map((category) => (
+                <div
+                  key={category.slug}
+                  class="space-y-4 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-gray-800 dark:bg-black/40"
+                >
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        {category.title}
+                      </p>
+                      {category.unit && (
+                        <p class="text-xs text-gray-500 dark:text-gray-500">
+                          Unit: {category.unit}
+                        </p>
+                      )}
+                    </div>
+                    <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                      {formatValue(category.today, category.unit)}
+                    </p>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-3">
+                    <div class="rounded-xl border border-gray-100 bg-white/70 p-4 dark:border-gray-800 dark:bg-black/60">
+                      <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        Today
+                      </p>
+                      <p class="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100">
+                        {formatValue(category.today, category.unit)}
+                      </p>
+                    </div>
+                    <div class="rounded-xl border border-gray-100 bg-white/70 p-4 dark:border-gray-800 dark:bg-black/60">
+                      <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        Week
+                      </p>
+                      <p class="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100">
+                        {formatValue(category.week, category.unit)}
+                      </p>
+                    </div>
+                    <div class="rounded-xl border border-gray-100 bg-white/70 p-4 dark:border-gray-800 dark:bg-black/60">
+                      <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        Month
+                      </p>
+                      <p class="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100">
+                        {formatValue(category.month, category.unit)}
+                      </p>
+                    </div>
+                    <div class="rounded-xl border border-gray-100 bg-white/70 p-4 dark:border-gray-800 dark:bg-black/60">
+                      <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        Year
+                      </p>
+                      <p class="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100">
+                        {formatValue(category.year, category.unit)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p class="text-center text-xs text-gray-500 dark:text-gray-500">
+              Live stats shared from{" "}
+              <a
+                href="https://memoato.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
+                onClick={() =>
+                  trackEvent({
+                    type: "click",
+                    clickType: "link",
+                    target: "memoato-stats",
+                  })}
+              >
+                memoato.com
+              </a>
+              .
+            </p>
+          </div>
+        </section>
+      )}
 
       <section class="border-t border-gray-100 dark:border-gray-900">
         <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
@@ -250,31 +326,6 @@ export default function AboutPage({ data }: AboutPageProps) {
                   {area.description}
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section class="border-t border-gray-100 dark:border-gray-900">
-        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
-          <div class="space-y-3">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              {data.training.heading}
-            </h2>
-            <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
-              {data.training.summary}
-            </p>
-          </div>
-
-          <div class="grid gap-6 md:grid-cols-3">
-            {data.training.stats.map((stat) => (
-              <StatCard key={stat.label} {...stat} />
-            ))}
-          </div>
-
-          <div class="grid gap-6 md:grid-cols-3">
-            {data.training.progress.map((item) => (
-              <ProgressCard key={item.label} {...item} />
             ))}
           </div>
         </div>

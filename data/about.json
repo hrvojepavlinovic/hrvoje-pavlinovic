@@ -1,12 +1,13 @@
 {
   "pageTitle": "About me",
   "intro": {
-    "heading": "",
-    "summary": "I help founders and product teams turn messy operational pressure into dependable systems that keep compounding.",
+    "heading": "Building stable backends at scale",
+    "summary": "I specialize in building performant software and making complex systems simple.",
     "paragraphs": [
-      "Tilt is a very cool company that I'm proud to be a part of. I am part of the team that builds the interactive commerce backend that powers livestream auctions, payments, and fulfillment—and make sure it stays fast for the teams running the shows.",
-      "Before that I supported founders across ReneVerse, CryptoToday, Povio, and more: designing event-driven pipelines, stabilising legacy code, and mentoring the people responsible for day-two reliability.",
-      "Twelve-plus years in AI, Bitcoin, Web3, automotive, and health care taught me the same lesson: performant systems are built with equal parts curiosity, empathy, and guardrails."
+      "With over 12 years of experience across Web3, automotive, health care, media, and commerce, I focus on stability, scale, and speed.",
+      "Currently, I am heading the backend infrastructure at Tilt, keeping livestream auctions, payments, and fulfillment fast and reliable.",
+      "Outside of the terminal, my life revolves around family, health, and sound money. I am a proud father of two, an active fitness enthusiast (football, padel, gym, cycling), and a firm believer that Bitcoin can change the world for the better.",
+      "I remain curious and focused on the future. My current goals are achieving financial independence, building impactful personal products, and traveling the world with my wife and kids."
     ]
   },
   "work": {
@@ -78,19 +79,19 @@
   },
   "life": {
     "heading": "Beyond the keyboard",
-    "summary": "Family life keeps me honest; movement keeps me focused. I treat recovery, curiosity, and coaching as part of the job.",
+    "summary": "My life revolves around family, software, and fitness. Sound money keeps the long-term view honest.",
     "focusAreas": [
       {
         "title": "Family first",
         "description": "Two kids, school runs, and evening routines ground every decision. Work flexes around their milestones."
       },
       {
-        "title": "Always learning",
-        "description": "I stay close to new tooling—serverless patterns, observability stacks, Bitcoin protocols—and bring the useful parts to the teams I support."
+        "title": "Movement as fuel",
+        "description": "Football, padel, gym, cycling, and short daily sessions keep the system balanced."
       },
       {
-        "title": "Movement as fuel",
-        "description": "Short daily sessions, weekend football or padel, and growing mileage on the bike keep the system balanced."
+        "title": "Sound money",
+        "description": "Bitcoin is the highest signal macro trend I follow. I keep my personal and product decisions aligned with that reality."
       }
     ]
   },

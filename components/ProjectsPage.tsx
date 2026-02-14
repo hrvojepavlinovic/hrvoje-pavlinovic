@@ -5,6 +5,7 @@ interface Project {
   name: string;
   url?: string;
   description: string;
+  highlights?: string[];
   technologies?: string[];
   status: "early" | "development" | "live";
   featured: boolean;
@@ -35,11 +36,10 @@ export default function ProjectsPage({ projectsData }: ProjectsPageProps) {
             />
             <div>
               <h1 class="text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[44px]">
-                Founder projects & experiments
+                Projects
               </h1>
               <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
-                Working sessions that grow into products, labs, and
-                venture-scale bets.
+                Products and side projects I ship outside my day job.
               </p>
             </div>
           </div>
@@ -47,21 +47,6 @@ export default function ProjectsPage({ projectsData }: ProjectsPageProps) {
           <p class="max-w-3xl text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
             {projectsData.description}
           </p>
-
-          <div class="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-400">
-            <span class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-3.5 py-1.5 dark:border-gray-800 dark:bg-black/60">
-              <span class="h-1.5 w-1.5 rounded-full bg-orange-400" />
-              Founder-funded to date
-            </span>
-            <span class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-3.5 py-1.5 dark:border-gray-800 dark:bg-black/60">
-              <span class="h-1.5 w-1.5 rounded-full bg-orange-400" />
-              Live traction & roadmap snapshots
-            </span>
-            <span class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-3.5 py-1.5 dark:border-gray-800 dark:bg-black/60">
-              <span class="h-1.5 w-1.5 rounded-full bg-orange-400" />
-              Full memos available for diligence
-            </span>
-          </div>
         </div>
       </section>
 

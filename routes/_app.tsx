@@ -186,7 +186,6 @@ export default function App({ Component, url }: PageProps) {
     url.pathname.startsWith("/projects/") ||
     url.pathname === "/projects" ||
     url.pathname === "/about" ||
-    url.pathname === "/contact" ||
     url.pathname === "/cv" ||
     url.pathname === "/webstats" ||
     url.pathname.startsWith("/branding/");

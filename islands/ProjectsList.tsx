@@ -1,32 +1,17 @@
 import { useEffect, useState } from "preact/hooks";
 import { trackEvent } from "../utils/track.ts";
 
-interface ProjectPitch {
-  tagline?: string;
-  problem?: string;
-  solution?: string;
-  marketOpportunity?: string;
-  vision?: string;
-  competitiveAdvantage?: string[];
-  pricingModel?: string;
-  targetFunding?: string;
-  fundsAllocation?: string[];
-  teamCosts?: string;
-  timeToMarket?: string;
-  currentState?: string;
-}
-
 interface Project {
   id: string;
   name: string;
   url?: string;
   description: string;
+  highlights?: string[];
   technologies?: string[];
   status: "early" | "development" | "live";
   featured: boolean;
   likes?: number;
   accent?: string;
-  pitch?: ProjectPitch;
 }
 
 interface ProjectsListProps {
@@ -96,24 +81,6 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
       {sortedProjects.map((project) => {
         const status = statusCopy[project.status];
         const dot = accentDot[project.accent ?? ""] ?? "bg-gray-300";
-        const pitch = project.pitch;
-
-        const infoBlocks = [
-          pitch?.problem && { title: "Focus", body: pitch.problem },
-          pitch?.currentState &&
-          { title: "Traction", body: pitch.currentState },
-          pitch?.targetFunding && {
-            title: "Raise plan",
-            body: `${pitch.targetFunding}${
-              pitch.timeToMarket ? ` · ${pitch.timeToMarket}` : ""
-            }${pitch.teamCosts ? `\n${pitch.teamCosts}` : ""}`,
-          },
-          pitch?.solution && { title: "Solution", body: pitch.solution },
-        ]
-          .filter((block): block is { title: string; body: string } =>
-            Boolean(block && block.body)
-          )
-          .slice(0, 2);
 
         return (
           <article
@@ -126,11 +93,6 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                   <span class={`h-1.5 w-1.5 rounded-full ${dot}`} />
                   {project.name}
                 </div>
-                {pitch?.tagline && (
-                  <p class="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                    {pitch.tagline}
-                  </p>
-                )}
                 <p class="text-sm text-gray-600 dark:text-gray-400">
                   {project.description}
                 </p>
@@ -142,35 +104,30 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
               </span>
             </header>
 
-            {infoBlocks.length > 0 && (
-              <div class="grid gap-4 md:grid-cols-2">
-                {infoBlocks.map((block) => (
-                  <div
-                    key={block.title}
-                    class="space-y-2 rounded-xl border border-gray-100 bg-white/70 p-4 dark:border-gray-800 dark:bg-black/60"
-                  >
-                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                      {block.title}
-                    </p>
-                    <p class="text-sm leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-line">
-                      {block.body}
-                    </p>
-                  </div>
+            {project.highlights && project.highlights.length > 0 && (
+              <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                {project.highlights.slice(0, 3).map((item) => (
+                  <li key={item} class="flex items-start gap-3">
+                    <span class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300" />
+                    <span>{item}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             )}
 
             <footer class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div class="flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-400">
-                {project.technologies?.map((tech) => (
-                  <span
-                    key={tech}
-                    class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 dark:border-gray-700 dark:bg-black"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+              {project.technologies && project.technologies.length > 0 && (
+                <div class="flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-400">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 dark:border-gray-700 dark:bg-black"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
 
               <div class="flex flex-wrap gap-2">
                 <a
@@ -179,11 +136,11 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                     trackEvent({
                       type: "click",
                       clickType: "link",
-                      target: `${project.id}-memo`,
+                      target: `${project.id}-details`,
                     })}
                   class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-900 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-100 dark:hover:border-gray-100"
                 >
-                  Read memo
+                  Details
                   <svg
                     class="h-3.5 w-3.5"
                     viewBox="0 0 24 24"

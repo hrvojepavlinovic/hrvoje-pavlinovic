@@ -7,6 +7,7 @@ interface Project {
   name: string;
   url?: string;
   description: string;
+  highlights?: string[];
   technologies?: string[];
   status: "early" | "development" | "live";
   featured: boolean;
@@ -43,11 +44,11 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         <title>Projects &mdash; Hrvoje Pavlinovic</title>
         <meta
           name="description"
-          content="Explore Hrvoje Pavlinovic's portfolio of projects including Memoato, XXI Today, PLAYGRND, and Apes Club. Blockchain development, web applications, and innovative solutions."
+          content="A small selection of products and side projects by Hrvoje Pavlinovic, including Memoato, PLAYGRND, and XXI Today."
         />
         <meta
           name="keywords"
-          content="Hrvoje Pavlinovic Projects, Memoato, XXI Today, PLAYGRND, Apes Club, Blockchain Projects, Web Development Portfolio"
+          content="Hrvoje Pavlinovic projects, Memoato, PLAYGRND, XXI Today, backend engineering, Bitcoin"
         />
         <meta name="author" content="Hrvoje Pavlinovic" />
         <meta name="robots" content="index, follow" />
@@ -65,7 +66,7 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         />
         <meta
           property="og:description"
-          content="Explore Hrvoje Pavlinovic's portfolio of projects including Memoato, XXI Today, PLAYGRND, and Apes Club. Blockchain development, web applications, and innovative solutions."
+          content="A small selection of products and side projects by Hrvoje Pavlinovic, including Memoato, PLAYGRND, and XXI Today."
         />
         <meta
           property="og:image"
@@ -83,7 +84,7 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         />
         <meta
           name="twitter:description"
-          content="Explore Hrvoje Pavlinovic's portfolio of projects including Memoato, XXI Today, PLAYGRND, and Apes Club. Blockchain development, web applications, and innovative solutions."
+          content="A small selection of products and side projects by Hrvoje Pavlinovic, including Memoato, PLAYGRND, and XXI Today."
         />
         <meta
           name="twitter:image"

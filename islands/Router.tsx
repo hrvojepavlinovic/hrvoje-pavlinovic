@@ -9,7 +9,6 @@ import { AboutData } from "../types/about.ts";
 import HomePage, { HomePageProps } from "./HomePage.tsx";
 import AboutPage from "./AboutPage.tsx";
 import CVPage from "./CVPage.tsx";
-import ContactPage from "./ContactPage.tsx";
 import WebStatsPage from "./WebStats.tsx";
 
 const homeData = homeDataJson as HomeData;
@@ -72,11 +71,6 @@ const ROUTES: Routes = {
     kind: "generic",
     component: CVPage,
     title: "CV | Hrvoje Pavlinovic",
-  },
-  "/contact": {
-    kind: "generic",
-    component: ContactPage,
-    title: "Contact | Hrvoje Pavlinovic",
   },
   "/webstats": {
     kind: "generic",

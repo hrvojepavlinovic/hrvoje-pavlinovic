@@ -144,24 +144,6 @@ export default function Footer() {
             </a>
 
             <a
-              href="/contact"
-              class="flex items-center gap-2 text-black/60 transition hover:text-black/85 dark:text-white/70 dark:hover:text-white"
-            >
-              <svg
-                class="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path d="M4 4h16v16H4z" strokeLinejoin="round" />
-                <path d="m4 7 8 6 8-6" strokeLinejoin="round" />
-              </svg>
-              Contact
-            </a>
-
-            <a
               href="https://fresh.deno.dev/"
               target="_blank"
               rel="noopener noreferrer"

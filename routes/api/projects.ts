@@ -5,6 +5,7 @@ interface Project {
   name: string;
   url?: string;
   description: string;
+  highlights?: string[];
   technologies?: string[];
   status: "early" | "development" | "live";
   featured: boolean;

@@ -19,7 +19,6 @@ import * as $blog_slug_ from "./routes/blog/[slug].tsx";
 import * as $blog_index from "./routes/blog/index.tsx";
 import * as $branding_x_cover from "./routes/branding/x/cover.tsx";
 import * as $branding_x_profile from "./routes/branding/x/profile.tsx";
-import * as $contact from "./routes/contact.tsx";
 import * as $cover from "./routes/cover.tsx";
 import * as $cover_type_ from "./routes/cover/[type].ts";
 import * as $cover_generate from "./routes/cover/generate.ts";
@@ -34,7 +33,6 @@ import * as $webstats from "./routes/webstats.tsx";
 import * as $webstats_index from "./routes/webstats/index.tsx";
 import * as $AboutPage from "./islands/AboutPage.tsx";
 import * as $CVPage from "./islands/CVPage.tsx";
-import * as $ContactPage from "./islands/ContactPage.tsx";
 import * as $Footer from "./islands/Footer.tsx";
 import * as $HomePage from "./islands/HomePage.tsx";
 import * as $LikeButton from "./islands/LikeButton.tsx";
@@ -67,7 +65,6 @@ const manifest = {
     "./routes/blog/index.tsx": $blog_index,
     "./routes/branding/x/cover.tsx": $branding_x_cover,
     "./routes/branding/x/profile.tsx": $branding_x_profile,
-    "./routes/contact.tsx": $contact,
     "./routes/cover.tsx": $cover,
     "./routes/cover/[type].ts": $cover_type_,
     "./routes/cover/generate.ts": $cover_generate,
@@ -84,7 +81,6 @@ const manifest = {
   islands: {
     "./islands/AboutPage.tsx": $AboutPage,
     "./islands/CVPage.tsx": $CVPage,
-    "./islands/ContactPage.tsx": $ContactPage,
     "./islands/Footer.tsx": $Footer,
     "./islands/HomePage.tsx": $HomePage,
     "./islands/LikeButton.tsx": $LikeButton,

@@ -1,9 +1,11 @@
 import { trackEvent } from "../utils/track.ts";
 import { renderTemplateWithComponents } from "../utils/contentTokens.tsx";
 import { HomeData } from "../types/home.ts";
+import { MemoatoPublicStats } from "../utils/memoatoStats.ts";
 
 export interface HomePageProps {
   data: HomeData;
+  memoatoStats?: MemoatoPublicStats | null;
 }
 
 const handleTrackedLink = (target: string) => {
@@ -17,29 +19,154 @@ const ctaClasses = {
     "group inline-flex items-center gap-2 text-sm font-semibold text-gray-600 transition-all hover:text-orange-500 dark:text-gray-300",
 } as const;
 
-export default function HomePage({ data }: HomePageProps) {
+export default function HomePage({ data, memoatoStats }: HomePageProps) {
   const heroTitle = renderTemplateWithComponents(data.title);
+  const heroStat = renderTemplateWithComponents(data.heroStat);
+  const formatter = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 1,
+  });
+  const integerFormatter = new Intl.NumberFormat("en-US");
+
+  const memoatoCategories = memoatoStats?.categories ?? [];
+  const findCategory = (slug: string) =>
+    memoatoCategories.find((category) => category.slug === slug) ?? null;
+
+  type MemoatoPeriod = "today" | "week" | "month" | "year";
+  const periodLabels: Record<MemoatoPeriod, string> = {
+    today: "Today",
+    week: "This week",
+    month: "This month",
+    year: "This year",
+  };
+
+  const pickValue = (
+    category: { [K in MemoatoPeriod]: number | null },
+    order: MemoatoPeriod[],
+  ) => {
+    for (const period of order) {
+      const value = category[period];
+      if (value != null && value !== 0) return { period, value };
+    }
+    for (const period of order) {
+      const value = category[period];
+      if (value != null) return { period, value };
+    }
+    return null;
+  };
+
+  const weight = findCategory("weight");
+  const activeKcal = findCategory("active-kcal");
+  const indoorBike = findCategory("indoor-bike-kcal");
+  const pushUps = findCategory("push-ups");
+  const pullUps = findCategory("pull-ups");
+  const football = findCategory("football");
+
+  const heroMetrics = [
+    weight
+      ? (() => {
+        const picked = pickValue(weight, ["today", "week", "month", "year"]);
+        if (!picked) return null;
+        return {
+          label: "Weight",
+          value: `${formatter.format(picked.value)}${
+            weight.unit ? ` ${weight.unit}` : ""
+          }`,
+          hint: periodLabels[picked.period],
+        };
+      })()
+      : null,
+    activeKcal
+      ? (() => {
+        const picked = pickValue(activeKcal, [
+          "week",
+          "month",
+          "year",
+          "today",
+        ]);
+        if (!picked) return null;
+        return {
+          label: activeKcal.title,
+          value: `${integerFormatter.format(picked.value)}${
+            activeKcal.unit ? ` ${activeKcal.unit}` : ""
+          }`,
+          hint: periodLabels[picked.period],
+        };
+      })()
+      : null,
+    indoorBike
+      ? (() => {
+        const picked = pickValue(indoorBike, [
+          "week",
+          "month",
+          "year",
+          "today",
+        ]);
+        if (!picked) return null;
+        return {
+          label: indoorBike.title,
+          value: `${integerFormatter.format(picked.value)}${
+            indoorBike.unit ? ` ${indoorBike.unit}` : ""
+          }`,
+          hint: periodLabels[picked.period],
+        };
+      })()
+      : null,
+    pushUps
+      ? (() => {
+        const picked = pickValue(pushUps, ["year", "month", "week", "today"]);
+        if (!picked) return null;
+        return {
+          label: pushUps.title,
+          value: integerFormatter.format(picked.value),
+          hint: periodLabels[picked.period],
+        };
+      })()
+      : null,
+    pullUps
+      ? (() => {
+        const picked = pickValue(pullUps, ["year", "month", "week", "today"]);
+        if (!picked) return null;
+        return {
+          label: pullUps.title,
+          value: integerFormatter.format(picked.value),
+          hint: periodLabels[picked.period],
+        };
+      })()
+      : null,
+    football
+      ? (() => {
+        const picked = pickValue(football, ["year", "month", "week", "today"]);
+        if (!picked) return null;
+        return {
+          label: football.title,
+          value: integerFormatter.format(picked.value),
+          hint: periodLabels[picked.period],
+        };
+      })()
+      : null,
+  ].filter(Boolean) as Array<{ label: string; value: string; hint: string }>;
 
   return (
     <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
       <section class="max-w-5xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
         <div class="space-y-8">
-          <div class="space-y-1">
-            <div class="flex flex-col items-center gap-3 md:flex-row md:items-center md:justify-center md:gap-5">
-              <img
-                src={data.avatar.src}
-                alt={data.avatar.alt}
-                class="h-12 w-12 rounded-full object-cover md:h-[52px] md:w-[52px]"
-                loading="eager"
-              />
-              <h1 class="text-center text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[44px]">
-                {data.name}
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <div class="flex justify-center">
+                <img
+                  src={data.avatar.src}
+                  alt={data.avatar.alt}
+                  class="h-12 w-12 rounded-full object-cover ring-1 ring-black/10 dark:ring-white/10 md:h-14 md:w-14"
+                  loading="eager"
+                />
+              </div>
+              <h1 class="mx-auto text-center text-[24px] font-semibold leading-tight tracking-tight text-gray-900 dark:text-gray-100 sm:text-[28px] md:text-[48px]">
+                {heroTitle}
               </h1>
+              <p class="mx-auto text-center text-[13px] font-semibold text-gray-700 dark:text-gray-200 sm:text-[15px] md:text-lg">
+                {heroStat}
+              </p>
             </div>
-
-            <p class="text-center text-base text-gray-600 dark:text-gray-300 md:text-lg">
-              {heroTitle}
-            </p>
           </div>
 
           <div class="flex flex-wrap justify-center gap-3">
@@ -97,6 +224,43 @@ export default function HomePage({ data }: HomePageProps) {
               </a>
             ))}
           </div>
+
+          {heroMetrics.length > 0 && (
+            <div class="space-y-3 pt-8">
+              <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
+                {heroMetrics.map((metric) => (
+                  <div
+                    key={metric.label}
+                    class="rounded-2xl border border-gray-200 bg-white/80 p-3 text-center shadow-sm dark:border-gray-800 dark:bg-black/40"
+                  >
+                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                      {metric.label}
+                    </p>
+                    <p class="mt-1 text-base font-semibold text-gray-900 dark:text-gray-100 md:text-lg">
+                      {metric.value}
+                    </p>
+                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-500">
+                      {metric.hint}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <p class="text-center text-xs text-gray-500 dark:text-gray-500">
+                Live stats shared from{" "}
+                <a
+                  href="https://memoato.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
+                  onClick={() => handleTrackedLink("memoato-stats")}
+                >
+                  memoato.com
+                </a>
+                .
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </div>

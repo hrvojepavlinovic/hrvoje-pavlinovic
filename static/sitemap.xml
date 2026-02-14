@@ -37,18 +37,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hrvoje.pavlinovic.com/projects/apes-club</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hrvoje.pavlinovic.com/projects/hrvoje-pavlinovic</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://hrvoje.pavlinovic.com/projects/hills-lab</loc>
     <lastmod>2025-10-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -77,12 +65,6 @@
     <lastmod>2025-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hrvoje.pavlinovic.com/contact</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hrvoje.pavlinovic.com/cv</loc>

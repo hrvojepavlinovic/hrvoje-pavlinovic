@@ -17,6 +17,7 @@ export interface CtaLink {
 export interface HomeData {
   name: string;
   title: string;
+  heroStat: string;
   avatar: {
     src: string;
     alt: string;
