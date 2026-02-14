@@ -28,6 +28,48 @@ html {
   color: #d1d5db;
 }
 
+.blog-content figure {
+  margin: 2rem 0;
+}
+
+.blog-content img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.dark .blog-content img {
+  border-color: #374151;
+  background: #111827;
+}
+
+.blog-content figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+.dark .blog-content figcaption {
+  color: #9ca3af;
+}
+
+.blog-content .image-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .blog-content .image-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .blog-content h2 {
   font-size: 1.875rem;
   font-weight: 700;

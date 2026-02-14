@@ -141,7 +141,11 @@ export const handler: Handlers = {
       };
 
       // Helper function to add section header with consistent styling
-      const addSectionHeader = (title: string, y: number, shouldCheckNewPage: boolean = true) => {
+      const addSectionHeader = (
+        title: string,
+        y: number,
+        shouldCheckNewPage: boolean = true,
+      ) => {
         if (shouldCheckNewPage) {
           checkNewPage(15);
         }

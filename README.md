@@ -1,29 +1,41 @@
-# Personal Website
+# Hrvoje Pavlinovic — Personal Website
 
-This is my personal website built with Fresh, a web framework for Deno.
+[![Website](https://img.shields.io/badge/Website-hrvoje.pavlinovic.com-blue?style=flat-square)](https://hrvoje.pavlinovic.com)
+[![X/Twitter](https://img.shields.io/badge/X-@0xHP10-black?style=flat-square)](https://x.com/0xHP10)
 
-## Technology Stack
+> **Senior Backend Engineer.** Scaling interactive commerce systems and building
+> performant software. Peak productivity: Family · Software · Fitness 🇭🇷
 
-- [Fresh](https://fresh.deno.dev/) - The next-gen web framework for Deno
-- [Deno](https://deno.land/) - A modern runtime for JavaScript and TypeScript
-- [Deno Deploy](https://deno.com/deploy) - Global deployment platform for Deno
-  applications
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Preact](https://preactjs.com/)
+This repository contains the source code for my personal website and portfolio.
+It is engineered for speed, simplicity, and edge-ready performance using modern
+web technologies.
 
-## Development
+## ⚡ Architecture & Tech Stack
+
+The site is built to be lightweight and fast, utilizing server-side rendering
+and edge deployment.
+
+- **[Fresh](https://fresh.deno.dev/)** - Next-gen edge web framework.
+- **[Deno](https://deno.land/)** - Modern, secure runtime for TypeScript.
+- **[Preact](https://preactjs.com/)** - 3kB React alternative for lightweight UI
+  components.
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first styling.
+- **[Deno Deploy](https://deno.com/deploy)** - Global edge deployment.
+
+## 🛠️ Local Development
 
 ### Prerequisites
 
-Make sure to install Deno: https://deno.land/manual/getting_started/installation
+Ensure you have the latest version of
+[Deno installed](https://deno.land/manual/getting_started/installation) on your
+machine.
 
 ### Getting Started
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/hrvoje-pavlinovic/hrvoje-pavlinovic.git
+git clone [https://github.com/hrvoje-pavlinovic/hrvoje-pavlinovic.git](https://github.com/hrvoje-pavlinovic/hrvoje-pavlinovic.git)
 cd hrvoje-pavlinovic
 ```
 
@@ -33,21 +45,24 @@ cd hrvoje-pavlinovic
 deno task start
 ```
 
-This will watch the project directory and restart as necessary.
+The server will watch the project directory and hot-reload automatically upon
+file changes.
 
-## Project Structure
+## 📂 Project Structure
 
-- `/routes` - Page routes and API endpoints
-- `/components` - Reusable UI components
-- `/islands` - Interactive components with client-side JavaScript
-- `/static` - Static assets
-- `/utils` - Utility functions and helpers
+```text
+├── /routes       # Page routes and core API endpoints
+├── /components   # Reusable, stateless UI components
+├── /islands      # Interactive components requiring client-side JS
+├── /static       # Public assets (images, fonts, icons)
+└── /utils        # Core utility functions and helpers
+```
 
-## License
+## 📄 License
 
 MIT License
 
-Copyright (c) 2025 Hrvoje Pavlinovic
+Copyright (c) 2026 Hrvoje Pavlinovic
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

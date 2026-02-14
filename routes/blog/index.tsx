@@ -82,35 +82,33 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
       </Head>
 
       <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
-        <section class="max-w-5xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
-          <div class="space-y-8">
-            <div class="flex items-center gap-4 md:gap-5">
+        <header class="max-w-4xl mx-auto px-6 pt-20 pb-10 md:pt-24 md:pb-12">
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
               <img
                 src="/pfptbs.png"
                 alt="Hrvoje Pavlinovic"
-                class="h-12 w-12 rounded-full object-cover md:h-[52px] md:w-[52px]"
+                class="h-10 w-10 rounded-full object-cover md:h-12 md:w-12"
                 loading="eager"
               />
               <div>
-                <h1 class="text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[44px]">
-                  Notes from the build log
+                <h1 class="text-3xl font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-4xl">
+                  Blog
                 </h1>
                 <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
-                  Memo-style entries on shipping backend systems, teams, and
-                  founder life.
+                  Short notes on shipping systems, product, and founder life.
                 </p>
               </div>
             </div>
-
             <p class="max-w-3xl text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
-              Essays stay short, tactical, and grounded in real delivery. Browse
-              the archive or subscribe for drops as I ship.
+              Tactical entries, minimal fluff. If something here feels useful,
+              steal the pattern.
             </p>
           </div>
-        </section>
+        </header>
 
-        <section class="border-t border-gray-100 dark:border-gray-800">
-          <div class="max-w-4xl mx-auto px-6 py-12 pb-24 md:py-16 md:pb-28 space-y-6">
+        <main class="border-t border-gray-100 dark:border-gray-800">
+          <div class="max-w-4xl mx-auto px-6 py-10 pb-24 md:py-12 md:pb-28 space-y-6">
             {data.articles.map((article) => (
               <article
                 key={article.id}
@@ -118,14 +116,14 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
               >
                 <a href={`/blog/${article.slug}`} class="space-y-4">
                   <header class="space-y-2">
-                    <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                      <span class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1 dark:border-gray-700">
+                    <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide">
+                      <span class="inline-flex items-center gap-2 rounded-full bg-orange-50 px-3 py-1 text-orange-700 dark:bg-orange-950/30 dark:text-orange-200">
                         Essay
                       </span>
-                      <span class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1 dark:border-gray-700">
+                      <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
                         {article.timeAgo}
                       </span>
-                      <span class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1 dark:border-gray-700">
+                      <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
                         {article.readingTime} min read
                       </span>
                     </div>
@@ -137,11 +135,11 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
                     {article.shortDescription}
                   </p>
                   {article.tags.length > 0 && (
-                    <div class="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-500">
+                    <div class="flex flex-wrap gap-2 text-xs">
                       {article.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 dark:border-gray-700 dark:bg-black"
+                          class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 text-gray-600 dark:border-gray-700 dark:bg-black dark:text-gray-300"
                         >
                           {tag}
                         </span>
@@ -152,7 +150,7 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
               </article>
             ))}
           </div>
-        </section>
+        </main>
       </div>
     </>
   );

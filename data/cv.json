@@ -118,10 +118,10 @@
       "achievements": [
         "Architect microservices infrastructure supporting interoperable gaming assets across multiple blockchain networks",
         "Scale mobile backend systems to handle 1.7B+ ad impressions monthly with 99.9% uptime and sub-200ms response times",
-        "Lead third-party API integration projects with Unity and UE SDKs, reducing integration time by 40%",
+        "Lead third-party API integration projects with Unity and UE SDKs, significantly reducing integration time",
         "Explain blockchain concepts to gaming partners and stakeholders, enabling successful technical integrations",
         "Execute DevOps practices using AWS CDK, improving deployment frequency by 3x and reducing deployment time by 50%",
-        "Mentor team of 4 developers, contributing to 50% reduction in time-to-productivity for new hires",
+        "Mentor team of 4 developers, contributing to a significant reduction in time-to-productivity for new hires",
         "Consolidate legacy architecture by unifying 6 repositories into monorepo, reducing build time by 50%"
       ],
       "technologies": [
@@ -143,10 +143,10 @@
       "period": "2024 - 2025",
       "achievements": [
         "Architect scalable AWS infrastructure using CDK, ECS, and serverless functions for crypto discovery platform",
-        "Optimize database performance for real-time price scraping from 20+ exchanges, improving query speed by 70%",
+        "Optimize database performance for real-time price scraping from 20+ exchanges, use smart caching and indexing to improve query speed",
         "Build Ethereum-based decentralized voting engine with zero downtime",
         "Present complex blockchain voting mechanisms to non-technical stakeholders, securing project approval",
-        "Integrate mobile backend for Telegram mini-app supporting 10K+ daily active users"
+        "Integrate mobile backend for Telegram mini-app battle-tested for 10K+ daily active users"
       ],
       "technologies": [
         "Next.js",
@@ -191,7 +191,7 @@
         "Contribute to Telemetry API and OTA updates system for world's fastest electric hypercar",
         "Implement microservices architecture using TypeScript, GraphQL, and event-driven design with Kafka",
         "Design scalability solutions handling real-time telemetry data from 100+ vehicle sensors",
-        "Conduct 15+ technical interviews and establish hiring standards, reducing time-to-hire by 30%",
+        "Conduct 15+ technical interviews and establish hiring standards for the team",
         "Create secure OTA updates system with rollback capabilities, ensuring zero failed deployments"
       ],
       "technologies": [
@@ -280,7 +280,7 @@
       "name": "Memoato",
       "url": "https://memoato.com",
       "description": "AI-powered life tracking platform with voice/text input, automated categorization, and intelligent insights dashboard replacing 5+ productivity apps.",
-      "technologies": ["T3", "AI", "Postgres", "Vercel"]
+      "technologies": ["SvelteKit", "AI", "Postgres", "Redis", "Stripe"]
     },
     {
       "name": "XXI Today",

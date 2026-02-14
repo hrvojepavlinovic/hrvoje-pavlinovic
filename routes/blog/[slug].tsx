@@ -58,7 +58,8 @@ export const handler: Handlers<BlogPostData> = {
 export default function BlogPost({ data }: PageProps<BlogPostData>) {
   const { article } = data;
   const canonicalUrl = `https://hrvoje.pavlinovic.com/blog/${article.slug}`;
-  const absoluteImageUrl = "https://hrvoje.pavlinovic.com/blog.png";
+  const absoluteImageUrl = article.seo.image ||
+    "https://hrvoje.pavlinovic.com/blog.png";
   const pageTitle = article.seo.title.includes("Hrvoje Pavlinovic")
     ? article.seo.title
     : `${article.seo.title} \u2014 Hrvoje Pavlinovic`;
@@ -76,6 +77,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={article.seo.description} />
         <meta property="og:image" content={absoluteImageUrl} />
+        <meta property="og:image:alt" content={article.title} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
         <meta property="article:published_time" content={article.createdAt} />
@@ -126,13 +128,13 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
 
           <header class="space-y-4">
             <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-              <span class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1 dark:border-gray-700">
+              <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
                 {article.timeAgo}
               </span>
-              <span class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1 dark:border-gray-700">
+              <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
                 {article.readingTime} min read
               </span>
-              <span class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1 dark:border-gray-700">
+              <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
                 {article.views} views
               </span>
             </div>
