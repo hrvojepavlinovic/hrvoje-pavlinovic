@@ -64,7 +64,11 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
   const heroMetrics = [
     weight
       ? (() => {
-        const picked = pickValue(weight, ["today", "week", "month", "year"]);
+        const picked = weight.today != null
+          ? { period: "today" as const, value: weight.today }
+          : weight.week != null
+          ? { period: "week" as const, value: weight.week }
+          : null;
         if (!picked) return null;
         return {
           label: "Weight",
