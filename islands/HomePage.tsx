@@ -40,15 +40,14 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
   };
 
   const pickStatValue = (category: { [K in MemoatoPeriod]: number | null }) => {
-    if (category.today != null) {
-      return { period: "today" as const, value: category.today };
+    const orderedPeriods: MemoatoPeriod[] = ["today", "week", "month", "year"];
+    for (const period of orderedPeriods) {
+      const value = category[period];
+      if (value != null && value !== 0) {
+        return { period, value };
+      }
     }
-    if (category.week != null) {
-      return { period: "week" as const, value: category.week };
-    }
-    if (category.month != null) {
-      return { period: "month" as const, value: category.month };
-    }
+
     return { period: "year" as const, value: category.year ?? 0 };
   };
 
