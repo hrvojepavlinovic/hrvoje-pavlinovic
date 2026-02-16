@@ -17,21 +17,6 @@
       "accent": "emerald"
     },
     {
-      "id": "playgrnd",
-      "name": "PLAYGRND",
-      "url": "https://playgrnd.app",
-      "description": "A community-first football scoreboard for tracking leagues, results, standings, and player stats.",
-      "highlights": [
-        "Leagues, standings, and player stats in one place",
-        "Share match results with a clean public link",
-        "Built for local teams that want structure without bureaucracy"
-      ],
-      "technologies": [],
-      "status": "development",
-      "featured": true,
-      "accent": "orange"
-    },
-    {
       "id": "xxi-today",
       "name": "XXI Today",
       "url": "https://xxi.today",
@@ -43,6 +28,21 @@
       ],
       "technologies": ["Bitcoin", ".btc", "XVerse"],
       "status": "early",
+      "featured": true,
+      "accent": "orange"
+    },
+    {
+      "id": "playgrnd",
+      "name": "PLAYGRND",
+      "url": "https://playgrnd.app",
+      "description": "A community-first football scoreboard for tracking leagues, results, standings, and player stats.",
+      "highlights": [
+        "Leagues, standings, and player stats in one place",
+        "Share match results with a clean public link",
+        "Built for local teams that want structure without bureaucracy"
+      ],
+      "technologies": ["Go", "Postgres", "Redis", "SvelteKit", "Hetzner"],
+      "status": "development",
       "featured": true,
       "accent": "orange"
     },

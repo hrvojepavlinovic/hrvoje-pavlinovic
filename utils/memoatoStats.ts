@@ -35,6 +35,7 @@ const MEMOATO_PUBLIC_STATS_URL =
 
 const CACHE_KEY = ["memoato", "public_stats", "v2"];
 const CACHE_TTL_MS = 10 * 60 * 1000;
+const MEMOATO_FETCH_TIMEOUT_MS = 800;
 
 function isMemoatoPublicStats(value: unknown): value is MemoatoPublicStats {
   if (!value || typeof value !== "object") return false;
@@ -62,26 +63,39 @@ export async function getMemoatoPublicStats(
 export async function refreshMemoatoPublicStats(
   fallback?: MemoatoPublicStats | null,
 ): Promise<MemoatoPublicStats | null> {
-  const response = await fetch(MEMOATO_PUBLIC_STATS_URL, {
-    headers: {
-      "Accept": "application/json",
-      "User-Agent": "hrvoje.pavlinovic.com",
-    },
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => {
+    controller.abort();
+  }, MEMOATO_FETCH_TIMEOUT_MS);
 
-  if (!response.ok) {
-    console.warn(
-      `Memoato stats fetch failed: ${response.status} ${response.statusText}`,
-    );
+  try {
+    const response = await fetch(MEMOATO_PUBLIC_STATS_URL, {
+      headers: {
+        "Accept": "application/json",
+        "User-Agent": "hrvoje.pavlinovic.com",
+      },
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      console.warn(
+        `Memoato stats fetch failed: ${response.status} ${response.statusText}`,
+      );
+      return fallback ?? null;
+    }
+
+    const data = await response.json();
+    if (!isMemoatoPublicStats(data)) {
+      console.warn("Memoato stats returned unexpected shape");
+      return fallback ?? null;
+    }
+
+    await kv.set(CACHE_KEY, data, { expireIn: CACHE_TTL_MS });
+    return data;
+  } catch (error) {
+    console.warn("Memoato stats fetch threw an error", error);
     return fallback ?? null;
+  } finally {
+    clearTimeout(timeoutId);
   }
-
-  const data = await response.json();
-  if (!isMemoatoPublicStats(data)) {
-    console.warn("Memoato stats returned unexpected shape");
-    return fallback ?? null;
-  }
-
-  await kv.set(CACHE_KEY, data, { expireIn: CACHE_TTL_MS });
-  return data;
 }

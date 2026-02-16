@@ -235,63 +235,58 @@ export default function WebStatsPage() {
 
   return (
     <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
-      <section class="max-w-5xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
-        <div class="space-y-6">
-          <div class="flex items-center gap-4 md:gap-5">
-            <img
-              src="/pfptbs.png"
-              alt="Hrvoje Pavlinovic"
-              class="h-12 w-12 rounded-full object-cover md:h-[52px] md:w-[52px]"
-              loading="eager"
-            />
-            <div>
-              <h1 class="text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[44px]">
-                Site analytics
-              </h1>
-              <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
-                Internal dashboard for traffic trends and interaction hot spots.
-              </p>
-            </div>
+      <section class="max-w-5xl mx-auto px-6 pt-28 pb-24 md:pt-32 md:pb-28 space-y-10">
+        <span class="inline-flex text-xs text-gray-500 dark:text-gray-500">
+          Last updated: {updatedAt}
+        </span>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="rounded-2xl border border-gray-200 bg-white/80 p-6 text-center dark:border-gray-800 dark:bg-black/40">
+            <p class="text-3xl font-semibold text-orange-600 dark:text-orange-400">
+              {totalViews.toLocaleString()}
+            </p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Total page views
+            </p>
           </div>
-
-          <p class="max-w-3xl text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
-            Filters out obvious bot traffic, tracks human interactions, and
-            spotlights where visitors spend attention.
-          </p>
-
-          <span class="inline-flex text-xs text-gray-500 dark:text-gray-500">
-            Last updated: {updatedAt}
-          </span>
+          <div class="rounded-2xl border border-gray-200 bg-white/80 p-6 text-center dark:border-gray-800 dark:bg-black/40">
+            <p class="text-3xl font-semibold text-orange-600 dark:text-orange-400">
+              {totalClicks.toLocaleString()}
+            </p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Total tracked clicks
+            </p>
+          </div>
         </div>
-      </section>
 
-      <section class="border-t border-gray-100 dark:border-gray-800">
-        <div class="max-w-5xl mx-auto px-6 py-12 pb-24 md:py-16 md:pb-28 space-y-10">
-          <div class="grid gap-6 md:grid-cols-2">
-            <div class="rounded-2xl border border-gray-200 bg-white/80 p-6 text-center dark:border-gray-800 dark:bg-black/40">
-              <p class="text-3xl font-semibold text-orange-600 dark:text-orange-400">
-                {totalViews.toLocaleString()}
-              </p>
-              <p class="text-sm text-gray-600 dark:text-gray-400">
-                Total page views
-              </p>
-            </div>
-            <div class="rounded-2xl border border-gray-200 bg-white/80 p-6 text-center dark:border-gray-800 dark:bg-black/40">
-              <p class="text-3xl font-semibold text-orange-600 dark:text-orange-400">
-                {totalClicks.toLocaleString()}
-              </p>
-              <p class="text-sm text-gray-600 dark:text-gray-400">
-                Total tracked clicks
-              </p>
-            </div>
+        <div class="space-y-6">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+            Top pages
+          </h2>
+          <div class="space-y-4">
+            {pageViews.map((item) => (
+              <div
+                key={item.page}
+                class="flex items-center justify-between rounded-xl border border-gray-200 bg-white/80 px-4 py-3 text-sm dark:border-gray-800 dark:bg-black/40"
+              >
+                <span class="text-gray-700 dark:text-gray-300">
+                  {item.page}
+                </span>
+                <span class="font-semibold text-orange-600 dark:text-orange-400">
+                  {item.count.toLocaleString()}
+                </span>
+              </div>
+            ))}
           </div>
+        </div>
 
+        {blogStats.length > 0 && (
           <div class="space-y-6">
             <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-              Top pages
+              Blog performance
             </h2>
             <div class="space-y-4">
-              {pageViews.map((item) => (
+              {blogStats.map((item) => (
                 <div
                   key={item.page}
                   class="flex items-center justify-between rounded-xl border border-gray-200 bg-white/80 px-4 py-3 text-sm dark:border-gray-800 dark:bg-black/40"
@@ -306,58 +301,35 @@ export default function WebStatsPage() {
               ))}
             </div>
           </div>
+        )}
 
-          {blogStats.length > 0 && (
-            <div class="space-y-6">
-              <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                Blog performance
-              </h2>
-              <div class="space-y-4">
-                {blogStats.map((item) => (
-                  <div
-                    key={item.page}
-                    class="flex items-center justify-between rounded-xl border border-gray-200 bg-white/80 px-4 py-3 text-sm dark:border-gray-800 dark:bg-black/40"
+        <div class="space-y-6">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+            Interactions
+          </h2>
+          <div class="space-y-4">
+            {clicks.map((item) => (
+              <div
+                key={`${item.target}-${item.type}`}
+                class="flex items-center justify-between gap-4 rounded-xl border border-gray-200 bg-white/80 px-4 py-3 text-sm dark:border-gray-800 dark:bg-black/40"
+              >
+                <div class="flex items-center gap-3">
+                  <span
+                    class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${
+                      TYPE_BADGE[item.type] || TYPE_BADGE.link
+                    }`}
                   >
-                    <span class="text-gray-700 dark:text-gray-300">
-                      {item.page}
-                    </span>
-                    <span class="font-semibold text-orange-600 dark:text-orange-400">
-                      {item.count.toLocaleString()}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div class="space-y-6">
-            <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-              Interactions
-            </h2>
-            <div class="space-y-4">
-              {clicks.map((item) => (
-                <div
-                  key={`${item.target}-${item.type}`}
-                  class="flex items-center justify-between gap-4 rounded-xl border border-gray-200 bg-white/80 px-4 py-3 text-sm dark:border-gray-800 dark:bg-black/40"
-                >
-                  <div class="flex items-center gap-3">
-                    <span
-                      class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${
-                        TYPE_BADGE[item.type] || TYPE_BADGE.link
-                      }`}
-                    >
-                      {item.type}
-                    </span>
-                    <span class="text-gray-700 dark:text-gray-300">
-                      {item.target}
-                    </span>
-                  </div>
-                  <span class="font-semibold text-orange-600 dark:text-orange-400">
-                    {item.count.toLocaleString()}
+                    {item.type}
+                  </span>
+                  <span class="text-gray-700 dark:text-gray-300">
+                    {item.target}
                   </span>
                 </div>
-              ))}
-            </div>
+                <span class="font-semibold text-orange-600 dark:text-orange-400">
+                  {item.count.toLocaleString()}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

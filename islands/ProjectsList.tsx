@@ -65,7 +65,6 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
           }),
         );
 
-        enriched.sort((a, b) => (b.likes || 0) - (a.likes || 0));
         setSortedProjects(enriched);
       } catch (error) {
         console.error("Error hydrating projects list", error);
@@ -165,7 +164,7 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                       })}
                     class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-100"
                   >
-                    Visit product
+                    Check it out
                     <svg
                       class="h-3.5 w-3.5"
                       viewBox="0 0 24 24"
