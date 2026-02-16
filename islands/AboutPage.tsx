@@ -144,6 +144,21 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
               >
                 memoato.com
               </a>
+              {" · "}
+              <a
+                href="https://app.memoato.com/u/0xhp10"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
+                onClick={() =>
+                  trackEvent({
+                    type: "click",
+                    clickType: "link",
+                    target: "memoato-profile-stats",
+                  })}
+              >
+                View stats on Memoato
+              </a>
               .
             </p>
           </div>
