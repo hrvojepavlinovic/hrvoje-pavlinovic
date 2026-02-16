@@ -17,21 +17,6 @@
       "accent": "emerald"
     },
     {
-      "id": "xxi-today",
-      "name": "XXI Today",
-      "url": "https://xxi.today",
-      "description": "A Bitcoin wallet and .btc domain explorer, integrated with the XVerse wallet.",
-      "highlights": [
-        "Fast .btc lookups and basic on-chain context",
-        "Bitcoin-focused UX with simple flows",
-        "Built as a thin product layer over existing wallet infra"
-      ],
-      "technologies": ["Bitcoin", ".btc", "XVerse"],
-      "status": "early",
-      "featured": true,
-      "accent": "orange"
-    },
-    {
       "id": "playgrnd",
       "name": "PLAYGRND",
       "url": "https://playgrnd.app",
@@ -43,6 +28,21 @@
       ],
       "technologies": ["Go", "Postgres", "Redis", "SvelteKit", "Hetzner"],
       "status": "development",
+      "featured": true,
+      "accent": "orange"
+    },
+    {
+      "id": "xxi-today",
+      "name": "XXI Today",
+      "url": "https://xxi.today",
+      "description": "A Bitcoin wallet and .btc domain explorer, integrated with the XVerse wallet.",
+      "highlights": [
+        "Fast .btc lookups and basic on-chain context",
+        "Bitcoin-focused UX with simple flows",
+        "Built as a thin product layer over existing wallet infra"
+      ],
+      "technologies": ["Bitcoin", ".btc", "XVerse"],
+      "status": "early",
       "featured": true,
       "accent": "orange"
     },

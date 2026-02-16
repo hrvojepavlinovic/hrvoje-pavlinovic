@@ -13,6 +13,18 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
   const decimalFormatter = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 2,
   });
+  type StatPeriod = "today" | "week" | "month" | "year";
+  const statPeriods: Array<{ key: StatPeriod; label: string }> = [
+    { key: "today", label: "Today" },
+    { key: "week", label: "Week" },
+    { key: "month", label: "Month" },
+  ];
+  const statPeriodLabels: Record<StatPeriod, string> = {
+    today: "Today",
+    week: "This week",
+    month: "This month",
+    year: "This year",
+  };
 
   const formatValue = (value: number | null, unit: string | null) => {
     if (value == null) return "–";
@@ -25,6 +37,23 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
   const generatedAtUtc = memoatoStats?.generatedAt
     ? `${memoatoStats.generatedAt.slice(0, 16).replace("T", " ")} UTC`
     : null;
+  const pickPrimaryStat = (
+    category: { [K in StatPeriod]: number | null },
+  ) => {
+    if (category.today != null) {
+      return { period: "today" as const, value: category.today };
+    }
+    if (category.week != null) {
+      return { period: "week" as const, value: category.week };
+    }
+    if (category.month != null) {
+      return { period: "month" as const, value: category.month };
+    }
+    if (category.year != null) {
+      return { period: "year" as const, value: category.year };
+    }
+    return null;
+  };
 
   return (
     <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
@@ -66,63 +95,47 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
             </div>
 
             <div class="grid gap-6 md:grid-cols-2">
-              {categories.map((category) => (
-                <div
-                  key={category.slug}
-                  class="space-y-4 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-gray-800 dark:bg-black/40"
-                >
-                  <div class="flex items-start justify-between gap-4">
-                    <div>
+              {categories.map((category) => {
+                const primary = pickPrimaryStat(category);
+                return (
+                  <div
+                    key={category.slug}
+                    class="space-y-4 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-gray-800 dark:bg-black/40"
+                  >
+                    <div class="space-y-2">
                       <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                         {category.title}
                       </p>
-                      {category.unit && (
-                        <p class="text-xs text-gray-500 dark:text-gray-500">
-                          Unit: {category.unit}
-                        </p>
-                      )}
+                      <p class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+                        {primary
+                          ? formatValue(primary.value, category.unit)
+                          : "–"}
+                      </p>
+                      <p class="text-xs text-gray-500 dark:text-gray-500">
+                        {primary
+                          ? statPeriodLabels[primary.period]
+                          : "No recent data"}
+                      </p>
                     </div>
-                    <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                      {formatValue(category.today, category.unit)}
-                    </p>
-                  </div>
 
-                  <div class="grid grid-cols-2 gap-3">
-                    <div class="rounded-xl border border-gray-100 bg-white/70 p-4 dark:border-gray-800 dark:bg-black/60">
-                      <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                        Today
-                      </p>
-                      <p class="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100">
-                        {formatValue(category.today, category.unit)}
-                      </p>
-                    </div>
-                    <div class="rounded-xl border border-gray-100 bg-white/70 p-4 dark:border-gray-800 dark:bg-black/60">
-                      <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                        Week
-                      </p>
-                      <p class="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100">
-                        {formatValue(category.week, category.unit)}
-                      </p>
-                    </div>
-                    <div class="rounded-xl border border-gray-100 bg-white/70 p-4 dark:border-gray-800 dark:bg-black/60">
-                      <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                        Month
-                      </p>
-                      <p class="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100">
-                        {formatValue(category.month, category.unit)}
-                      </p>
-                    </div>
-                    <div class="rounded-xl border border-gray-100 bg-white/70 p-4 dark:border-gray-800 dark:bg-black/60">
-                      <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                        Year
-                      </p>
-                      <p class="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100">
-                        {formatValue(category.year, category.unit)}
-                      </p>
-                    </div>
+                    <dl class="divide-y divide-gray-100 text-sm dark:divide-gray-800">
+                      {statPeriods.map((period) => (
+                        <div
+                          key={`${category.slug}-${period.key}`}
+                          class="flex items-center justify-between py-2 first:pt-0 last:pb-0"
+                        >
+                          <dt class="text-gray-500 dark:text-gray-400">
+                            {period.label}
+                          </dt>
+                          <dd class="font-medium text-gray-900 dark:text-gray-100">
+                            {formatValue(category[period.key], category.unit)}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             <p class="text-center text-xs text-gray-500 dark:text-gray-500">
