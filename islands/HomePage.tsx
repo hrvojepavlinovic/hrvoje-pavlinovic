@@ -220,12 +220,12 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                 <a
                   key={cta.label}
                   href={cta.href}
-                  class="rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 p-4 text-left shadow-sm dark:border-gray-800 dark:from-black dark:to-gray-950"
+                  class="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-800 shadow-sm dark:border-gray-800 dark:bg-black dark:text-gray-100"
                   onClick={() => handleTrackedLink(cta.trackingTarget)}
                 >
-                  <span class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 dark:border-gray-700 dark:bg-black dark:text-gray-200">
+                  <span class="inline-flex h-6 w-6 items-center justify-center text-gray-600 dark:text-gray-300">
                     <svg
-                      class="h-4 w-4"
+                      class="h-3.5 w-3.5"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -241,9 +241,7 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                       ))}
                     </svg>
                   </span>
-                  <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                    {cta.label}
-                  </p>
+                  <span>{cta.label}</span>
                 </a>
               );
             })}
