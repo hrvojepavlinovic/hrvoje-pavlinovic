@@ -211,7 +211,7 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
             ))}
           </div>
 
-          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div class="grid grid-cols-2 gap-3 sm:hidden">
             {data.ctaLinks.map((cta) => {
               const meta = ctaMeta[cta.trackingTarget] ?? {
                 iconPaths: ["M5 12h14", "m13 5 7 7-7 7"],
