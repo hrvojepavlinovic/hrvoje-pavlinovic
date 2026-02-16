@@ -38,18 +38,20 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
   const pickPrimaryStat = (
     category: { [K in StatPeriod]: number | null },
   ) => {
-    if (category.today != null) {
-      return { period: "today" as const, value: category.today };
+    for (const period of statPeriods) {
+      const value = category[period.key];
+      if (value != null && value !== 0) {
+        return { period: period.key, value };
+      }
     }
-    if (category.week != null) {
-      return { period: "week" as const, value: category.week };
+
+    for (const period of statPeriods) {
+      const value = category[period.key];
+      if (value != null) {
+        return { period: period.key, value };
+      }
     }
-    if (category.month != null) {
-      return { period: "month" as const, value: category.month };
-    }
-    if (category.year != null) {
-      return { period: "year" as const, value: category.year };
-    }
+
     return null;
   };
 
