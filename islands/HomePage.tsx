@@ -12,11 +12,36 @@ const handleTrackedLink = (target: string) => {
   trackEvent({ type: "click", clickType: "link", target });
 };
 
-const ctaClasses = {
-  primary:
-    "group inline-flex items-center gap-2 text-sm font-semibold text-gray-900 transition-all hover:text-orange-500 dark:text-gray-100",
-  secondary:
-    "group inline-flex items-center gap-2 text-sm font-semibold text-gray-600 transition-all hover:text-orange-500 dark:text-gray-300",
+const ctaMeta: Record<string, { description: string; iconPaths: string[] }> = {
+  about: {
+    description: "Who I am",
+    iconPaths: [
+      "M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z",
+      "M4 20a8 8 0 0 1 16 0",
+    ],
+  },
+  resume: {
+    description: "Experience and impact",
+    iconPaths: [
+      "M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z",
+      "M14 3v5h5",
+    ],
+  },
+  projects: {
+    description: "Built products",
+    iconPaths: [
+      "m9 18 6-6-6-6",
+      "M5 6h14",
+      "M5 18h3",
+    ],
+  },
+  blog: {
+    description: "Notes and writing",
+    iconPaths: [
+      "M4 20h4l10-10-4-4L4 16v4Z",
+      "m12 6 4 4",
+    ],
+  },
 } as const;
 
 export default function HomePage({ data, memoatoStats }: HomePageProps) {
@@ -39,16 +64,25 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
     year: "This year",
   };
 
+  const toFiniteNumber = (value: number | null): number | null => {
+    if (value == null) return null;
+    const parsed = typeof value === "number" ? value : Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+  };
+
   const pickStatValue = (category: { [K in MemoatoPeriod]: number | null }) => {
     const orderedPeriods: MemoatoPeriod[] = ["today", "week", "month", "year"];
     for (const period of orderedPeriods) {
-      const value = category[period];
+      const value = toFiniteNumber(category[period]);
       if (value != null && value !== 0) {
         return { period, value };
       }
     }
 
-    return { period: "year" as const, value: category.year ?? 0 };
+    return {
+      period: "year" as const,
+      value: toFiniteNumber(category.year) ?? 0,
+    };
   };
 
   const weight = findCategory("weight");
@@ -181,33 +215,64 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
             ))}
           </div>
 
-          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-6">
-            {data.ctaLinks.map((cta) => (
-              <a
-                key={cta.label}
-                href={cta.href}
-                class={ctaClasses[cta.variant]}
-                onClick={() => handleTrackedLink(cta.trackingTarget)}
-              >
-                {cta.label}
-                <svg
-                  class="h-4 w-4 transition-transform group-hover:translate-x-1"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {data.ctaLinks.map((cta) => {
+              const meta = ctaMeta[cta.trackingTarget] ?? {
+                description: "Open section",
+                iconPaths: ["M5 12h14", "m13 5 7 7-7 7"],
+              };
+              return (
+                <a
+                  key={cta.label}
+                  href={cta.href}
+                  class="group rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md dark:border-gray-800 dark:from-black dark:to-gray-950 dark:hover:border-gray-600"
+                  onClick={() => handleTrackedLink(cta.trackingTarget)}
                 >
-                  <path d="M5 12h14" />
-                  <path d="M13 6l6 6-6 6" />
-                </svg>
-              </a>
-            ))}
+                  <span class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 transition-colors group-hover:border-orange-300 group-hover:text-orange-500 dark:border-gray-700 dark:bg-black dark:text-gray-200 dark:group-hover:border-orange-700">
+                    <svg
+                      class="h-4 w-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      {meta.iconPaths.map((iconPath, index) => (
+                        <path
+                          key={`${cta.trackingTarget}-${index}`}
+                          d={iconPath}
+                        />
+                      ))}
+                    </svg>
+                  </span>
+                  <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                    {cta.label}
+                  </p>
+                  <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                    {meta.description}
+                  </p>
+                </a>
+              );
+            })}
           </div>
 
           {heroMetrics.length > 0 && (
             <div class="space-y-3 pt-8">
+              <p class="text-center text-xs text-gray-500 dark:text-gray-500">
+                Live stats shared from{" "}
+                <a
+                  href="https://memoato.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
+                  onClick={() => handleTrackedLink("memoato-stats")}
+                >
+                  memoato.com
+                </a>
+                .
+              </p>
+
               <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
                 {heroMetrics.map((metric) => (
                   <div
@@ -228,17 +293,6 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
               </div>
 
               <p class="text-center text-xs text-gray-500 dark:text-gray-500">
-                Live stats shared from{" "}
-                <a
-                  href="https://memoato.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
-                  onClick={() => handleTrackedLink("memoato-stats")}
-                >
-                  memoato.com
-                </a>
-                {" · "}
                 <a
                   href="https://app.memoato.com/u/0xhp10"
                   target="_blank"

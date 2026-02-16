@@ -46,18 +46,65 @@ function isMemoatoPublicStats(value: unknown): value is MemoatoPublicStats {
     Array.isArray(obj.categories);
 }
 
+function toNullableNumber(value: unknown): number | null {
+  if (value == null) return null;
+  if (typeof value === "number") {
+    return Number.isFinite(value) ? value : null;
+  }
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+}
+
+function normalizeMemoatoPublicStats(
+  value: unknown,
+): MemoatoPublicStats | null {
+  if (!isMemoatoPublicStats(value)) return null;
+  const obj = value as unknown as Record<string, unknown>;
+  const rawCategories = Array.isArray(obj.categories) ? obj.categories : [];
+  const categories: MemoatoCategory[] = rawCategories.flatMap((category) => {
+    if (!category || typeof category !== "object") return [];
+    const cat = category as Record<string, unknown>;
+    if (typeof cat.slug !== "string" || typeof cat.title !== "string") {
+      return [];
+    }
+    return [{
+      slug: cat.slug,
+      title: cat.title,
+      unit: typeof cat.unit === "string" ? cat.unit : null,
+      aggregation: typeof cat.aggregation === "string"
+        ? cat.aggregation
+        : undefined,
+      today: toNullableNumber(cat.today),
+      week: toNullableNumber(cat.week),
+      month: toNullableNumber(cat.month),
+      year: toNullableNumber(cat.year),
+    }];
+  });
+
+  return {
+    generatedAt: obj.generatedAt as string,
+    aggregation: obj.aggregation as string,
+    calendar: obj.calendar as MemoatoCalendar,
+    categories,
+  };
+}
+
 export async function getMemoatoPublicStats(
   options: { forceRefresh?: boolean } = {},
 ): Promise<MemoatoPublicStats | null> {
   const cached = await kv.get<MemoatoPublicStats>(CACHE_KEY);
+  const normalizedCached = normalizeMemoatoPublicStats(cached.value);
 
   if (options.forceRefresh) {
-    return await refreshMemoatoPublicStats(cached.value);
+    return await refreshMemoatoPublicStats(normalizedCached);
   }
 
-  if (cached.value) return cached.value;
+  if (normalizedCached) return normalizedCached;
 
-  return await refreshMemoatoPublicStats(cached.value);
+  return await refreshMemoatoPublicStats(normalizedCached);
 }
 
 export async function refreshMemoatoPublicStats(
@@ -85,13 +132,14 @@ export async function refreshMemoatoPublicStats(
     }
 
     const data = await response.json();
-    if (!isMemoatoPublicStats(data)) {
+    const normalizedData = normalizeMemoatoPublicStats(data);
+    if (!normalizedData) {
       console.warn("Memoato stats returned unexpected shape");
       return fallback ?? null;
     }
 
-    await kv.set(CACHE_KEY, data, { expireIn: CACHE_TTL_MS });
-    return data;
+    await kv.set(CACHE_KEY, normalizedData, { expireIn: CACHE_TTL_MS });
+    return normalizedData;
   } catch (error) {
     console.warn("Memoato stats fetch threw an error", error);
     return fallback ?? null;

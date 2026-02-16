@@ -39,15 +39,27 @@
   ],
   "ctaLinks": [
     {
+      "label": "About",
+      "href": "/about",
+      "trackingTarget": "about",
+      "variant": "primary"
+    },
+    {
       "label": "Resume",
       "href": "/cv",
       "trackingTarget": "resume",
       "variant": "primary"
     },
     {
-      "label": "Personal Projects",
+      "label": "Projects",
       "href": "/projects",
       "trackingTarget": "projects",
+      "variant": "secondary"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog",
+      "trackingTarget": "blog",
       "variant": "secondary"
     }
   ]
