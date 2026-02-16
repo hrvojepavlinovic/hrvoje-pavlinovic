@@ -18,6 +18,7 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
     { key: "today", label: "Today" },
     { key: "week", label: "Week" },
     { key: "month", label: "Month" },
+    { key: "year", label: "Year" },
   ];
   const statPeriodLabels: Record<StatPeriod, string> = {
     today: "Today",
@@ -34,9 +35,6 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
     return unit ? `${formatted} ${unit}` : formatted;
   };
 
-  const generatedAtUtc = memoatoStats?.generatedAt
-    ? `${memoatoStats.generatedAt.slice(0, 16).replace("T", " ")} UTC`
-    : null;
   const pickPrimaryStat = (
     category: { [K in StatPeriod]: number | null },
   ) => {
@@ -84,14 +82,6 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
               <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
                 Live stats
               </h2>
-              <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
-                Live training and health metrics exported from Memoato.
-              </p>
-              {generatedAtUtc && (
-                <p class="text-xs text-gray-500 dark:text-gray-500">
-                  Updated {generatedAtUtc}
-                </p>
-              )}
             </div>
 
             <div class="grid gap-6 md:grid-cols-2">
