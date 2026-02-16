@@ -39,19 +39,17 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
     year: "This year",
   };
 
-  const pickValue = (
-    category: { [K in MemoatoPeriod]: number | null },
-    order: MemoatoPeriod[],
-  ) => {
-    for (const period of order) {
-      const value = category[period];
-      if (value != null && value !== 0) return { period, value };
+  const pickStatValue = (category: { [K in MemoatoPeriod]: number | null }) => {
+    if (category.today != null) {
+      return { period: "today" as const, value: category.today };
     }
-    for (const period of order) {
-      const value = category[period];
-      if (value != null) return { period, value };
+    if (category.week != null) {
+      return { period: "week" as const, value: category.week };
     }
-    return null;
+    if (category.month != null) {
+      return { period: "month" as const, value: category.month };
+    }
+    return { period: "year" as const, value: category.year ?? 0 };
   };
 
   const weight = findCategory("weight");
@@ -64,12 +62,7 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
   const heroMetrics = [
     weight
       ? (() => {
-        const picked = weight.today != null
-          ? { period: "today" as const, value: weight.today }
-          : weight.week != null
-          ? { period: "week" as const, value: weight.week }
-          : null;
-        if (!picked) return null;
+        const picked = pickStatValue(weight);
         return {
           label: "Weight",
           value: `${formatter.format(picked.value)}${
@@ -81,13 +74,7 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
       : null,
     activeKcal
       ? (() => {
-        const picked = pickValue(activeKcal, [
-          "week",
-          "month",
-          "year",
-          "today",
-        ]);
-        if (!picked) return null;
+        const picked = pickStatValue(activeKcal);
         return {
           label: activeKcal.title,
           value: `${integerFormatter.format(picked.value)}${
@@ -99,13 +86,7 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
       : null,
     indoorBike
       ? (() => {
-        const picked = pickValue(indoorBike, [
-          "week",
-          "month",
-          "year",
-          "today",
-        ]);
-        if (!picked) return null;
+        const picked = pickStatValue(indoorBike);
         return {
           label: indoorBike.title,
           value: `${integerFormatter.format(picked.value)}${
@@ -117,8 +98,7 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
       : null,
     pushUps
       ? (() => {
-        const picked = pickValue(pushUps, ["year", "month", "week", "today"]);
-        if (!picked) return null;
+        const picked = pickStatValue(pushUps);
         return {
           label: pushUps.title,
           value: integerFormatter.format(picked.value),
@@ -128,8 +108,7 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
       : null,
     pullUps
       ? (() => {
-        const picked = pickValue(pullUps, ["year", "month", "week", "today"]);
-        if (!picked) return null;
+        const picked = pickStatValue(pullUps);
         return {
           label: pullUps.title,
           value: integerFormatter.format(picked.value),
@@ -139,8 +118,7 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
       : null,
     football
       ? (() => {
-        const picked = pickValue(football, ["year", "month", "week", "today"]);
-        if (!picked) return null;
+        const picked = pickStatValue(football);
         return {
           label: football.title,
           value: integerFormatter.format(picked.value),
