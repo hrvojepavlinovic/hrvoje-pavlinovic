@@ -12,31 +12,27 @@ const handleTrackedLink = (target: string) => {
   trackEvent({ type: "click", clickType: "link", target });
 };
 
-const ctaMeta: Record<string, { description: string; iconPaths: string[] }> = {
+const ctaMeta: Record<string, { iconPaths: string[] }> = {
   about: {
-    description: "Who I am",
     iconPaths: [
       "M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z",
       "M4 20a8 8 0 0 1 16 0",
     ],
   },
   resume: {
-    description: "Experience and impact",
     iconPaths: [
       "M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z",
       "M14 3v5h5",
     ],
   },
   projects: {
-    description: "Built products",
     iconPaths: [
-      "m9 18 6-6-6-6",
-      "M5 6h14",
-      "M5 18h3",
+      "M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z",
+      "m9 13 2 2-2 2",
+      "m15 13-2 2 2 2",
     ],
   },
   blog: {
-    description: "Notes and writing",
     iconPaths: [
       "M4 20h4l10-10-4-4L4 16v4Z",
       "m12 6 4 4",
@@ -218,17 +214,16 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
           <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {data.ctaLinks.map((cta) => {
               const meta = ctaMeta[cta.trackingTarget] ?? {
-                description: "Open section",
                 iconPaths: ["M5 12h14", "m13 5 7 7-7 7"],
               };
               return (
                 <a
                   key={cta.label}
                   href={cta.href}
-                  class="group rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md dark:border-gray-800 dark:from-black dark:to-gray-950 dark:hover:border-gray-600"
+                  class="rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 p-4 text-left shadow-sm dark:border-gray-800 dark:from-black dark:to-gray-950"
                   onClick={() => handleTrackedLink(cta.trackingTarget)}
                 >
-                  <span class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 transition-colors group-hover:border-orange-300 group-hover:text-orange-500 dark:border-gray-700 dark:bg-black dark:text-gray-200 dark:group-hover:border-orange-700">
+                  <span class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 dark:border-gray-700 dark:bg-black dark:text-gray-200">
                     <svg
                       class="h-4 w-4"
                       viewBox="0 0 24 24"
@@ -248,9 +243,6 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                   </span>
                   <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">
                     {cta.label}
-                  </p>
-                  <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                    {meta.description}
                   </p>
                 </a>
               );
