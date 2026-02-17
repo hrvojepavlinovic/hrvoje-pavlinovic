@@ -98,6 +98,8 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
             weight.unit ? ` ${weight.unit}` : ""
           }`,
           hint: periodLabels[picked.period],
+          url: weight.url,
+          trackingTarget: `memoato-category-${weight.slug}`,
         };
       })()
       : null,
@@ -110,6 +112,8 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
             activeKcal.unit ? ` ${activeKcal.unit}` : ""
           }`,
           hint: periodLabels[picked.period],
+          url: activeKcal.url,
+          trackingTarget: `memoato-category-${activeKcal.slug}`,
         };
       })()
       : null,
@@ -122,6 +126,8 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
             indoorBike.unit ? ` ${indoorBike.unit}` : ""
           }`,
           hint: periodLabels[picked.period],
+          url: indoorBike.url,
+          trackingTarget: `memoato-category-${indoorBike.slug}`,
         };
       })()
       : null,
@@ -132,6 +138,8 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
           label: pushUps.title,
           value: integerFormatter.format(picked.value),
           hint: periodLabels[picked.period],
+          url: pushUps.url,
+          trackingTarget: `memoato-category-${pushUps.slug}`,
         };
       })()
       : null,
@@ -142,6 +150,8 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
           label: pullUps.title,
           value: integerFormatter.format(picked.value),
           hint: periodLabels[picked.period],
+          url: pullUps.url,
+          trackingTarget: `memoato-category-${pullUps.slug}`,
         };
       })()
       : null,
@@ -152,10 +162,18 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
           label: football.title,
           value: integerFormatter.format(picked.value),
           hint: periodLabels[picked.period],
+          url: football.url,
+          trackingTarget: `memoato-category-${football.slug}`,
         };
       })()
       : null,
-  ].filter(Boolean) as Array<{ label: string; value: string; hint: string }>;
+  ].filter(Boolean) as Array<{
+    label: string;
+    value: string;
+    hint: string;
+    url?: string;
+    trackingTarget?: string;
+  }>;
 
   return (
     <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
@@ -264,22 +282,48 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
               </p>
 
               <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
-                {heroMetrics.map((metric) => (
-                  <div
-                    key={metric.label}
-                    class="rounded-2xl border border-gray-200 bg-white/80 p-3 text-center shadow-sm dark:border-gray-800 dark:bg-black/40"
-                  >
-                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                      {metric.label}
-                    </p>
-                    <p class="mt-1 text-base font-semibold text-gray-900 dark:text-gray-100 md:text-lg">
-                      {metric.value}
-                    </p>
-                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-500">
-                      {metric.hint}
-                    </p>
-                  </div>
-                ))}
+                {heroMetrics.map((metric) =>
+                  metric.url
+                    ? (
+                      <a
+                        key={metric.label}
+                        href={metric.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="rounded-2xl border border-gray-200 bg-white/80 p-3 text-center shadow-sm transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600"
+                        onClick={() =>
+                          handleTrackedLink(
+                            metric.trackingTarget ?? "memoato-category",
+                          )}
+                      >
+                        <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                          {metric.label}
+                        </p>
+                        <p class="mt-1 text-base font-semibold text-gray-900 dark:text-gray-100 md:text-lg">
+                          {metric.value}
+                        </p>
+                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-500">
+                          {metric.hint}
+                        </p>
+                      </a>
+                    )
+                    : (
+                      <div
+                        key={metric.label}
+                        class="rounded-2xl border border-gray-200 bg-white/80 p-3 text-center shadow-sm dark:border-gray-800 dark:bg-black/40"
+                      >
+                        <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                          {metric.label}
+                        </p>
+                        <p class="mt-1 text-base font-semibold text-gray-900 dark:text-gray-100 md:text-lg">
+                          {metric.value}
+                        </p>
+                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-500">
+                          {metric.hint}
+                        </p>
+                      </div>
+                    )
+                )}
               </div>
 
               <p class="text-center text-xs text-gray-500 dark:text-gray-500">

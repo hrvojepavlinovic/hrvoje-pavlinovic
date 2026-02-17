@@ -89,11 +89,8 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
             <div class="grid gap-6 md:grid-cols-2">
               {categories.map((category) => {
                 const primary = pickPrimaryStat(category);
-                return (
-                  <div
-                    key={category.slug}
-                    class="space-y-4 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-gray-800 dark:bg-black/40"
-                  >
+                const cardContent = (
+                  <>
                     <div class="space-y-2">
                       <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                         {category.title}
@@ -125,6 +122,35 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
                         </div>
                       ))}
                     </dl>
+                  </>
+                );
+
+                if (category.url) {
+                  return (
+                    <a
+                      key={category.slug}
+                      href={category.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="space-y-4 rounded-2xl border border-gray-200 bg-white/80 p-6 transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600"
+                      onClick={() =>
+                        trackEvent({
+                          type: "click",
+                          clickType: "link",
+                          target: `memoato-category-${category.slug}`,
+                        })}
+                    >
+                      {cardContent}
+                    </a>
+                  );
+                }
+
+                return (
+                  <div
+                    key={category.slug}
+                    class="space-y-4 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-gray-800 dark:bg-black/40"
+                  >
+                    {cardContent}
                   </div>
                 );
               })}

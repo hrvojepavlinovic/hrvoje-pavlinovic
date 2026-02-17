@@ -17,6 +17,7 @@ export interface MemoatoCategory {
   title: string;
   unit: string | null;
   aggregation?: string;
+  url?: string;
   today: number | null;
   week: number | null;
   month: number | null;
@@ -26,6 +27,8 @@ export interface MemoatoCategory {
 export interface MemoatoPublicStats {
   generatedAt: string;
   aggregation: string;
+  username?: string;
+  dashboardUrl?: string;
   calendar: MemoatoCalendar;
   categories: MemoatoCategory[];
 }
@@ -77,6 +80,7 @@ function normalizeMemoatoPublicStats(
       aggregation: typeof cat.aggregation === "string"
         ? cat.aggregation
         : undefined,
+      url: typeof cat.url === "string" ? cat.url : undefined,
       today: toNullableNumber(cat.today),
       week: toNullableNumber(cat.week),
       month: toNullableNumber(cat.month),
@@ -87,6 +91,10 @@ function normalizeMemoatoPublicStats(
   return {
     generatedAt: obj.generatedAt as string,
     aggregation: obj.aggregation as string,
+    username: typeof obj.username === "string" ? obj.username : undefined,
+    dashboardUrl: typeof obj.dashboardUrl === "string"
+      ? obj.dashboardUrl
+      : undefined,
     calendar: obj.calendar as MemoatoCalendar,
     categories,
   };
