@@ -156,23 +156,25 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
               })}
             </div>
 
-            <p class="text-center text-xs text-gray-500 dark:text-gray-500">
-              Live stats shared from{" "}
-              <a
-                href="https://memoato.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
-                onClick={() =>
-                  trackEvent({
-                    type: "click",
-                    clickType: "link",
-                    target: "memoato-stats",
-                  })}
-              >
-                memoato.com
-              </a>
-              {" · "}
+            <div class="mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-1 text-center text-xs text-gray-500 dark:text-gray-500 sm:flex-row sm:gap-3">
+              <p>
+                Live stats from{" "}
+                <a
+                  href="https://memoato.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
+                  onClick={() =>
+                    trackEvent({
+                      type: "click",
+                      clickType: "link",
+                      target: "memoato-stats",
+                    })}
+                >
+                  memoato.com
+                </a>
+                .
+              </p>
               <a
                 href="https://app.memoato.com/u/0xhp10"
                 target="_blank"
@@ -185,10 +187,9 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
                     target: "memoato-profile-stats",
                   })}
               >
-                View stats on Memoato
+                View all stats.
               </a>
-              .
-            </p>
+            </div>
           </div>
         </section>
       )}

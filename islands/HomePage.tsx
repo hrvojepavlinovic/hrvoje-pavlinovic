@@ -267,20 +267,6 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
 
           {heroMetrics.length > 0 && (
             <div class="space-y-3 pt-8">
-              <p class="text-center text-xs text-gray-500 dark:text-gray-500">
-                Live stats shared from{" "}
-                <a
-                  href="https://memoato.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
-                  onClick={() => handleTrackedLink("memoato-stats")}
-                >
-                  memoato.com
-                </a>
-                .
-              </p>
-
               <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
                 {heroMetrics.map((metric) =>
                   metric.url
@@ -326,7 +312,20 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                 )}
               </div>
 
-              <p class="text-center text-xs text-gray-500 dark:text-gray-500">
+              <div class="mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-1 text-center text-xs text-gray-500 dark:text-gray-500 sm:flex-row sm:gap-3">
+                <p>
+                  Live stats from{" "}
+                  <a
+                    href="https://memoato.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
+                    onClick={() => handleTrackedLink("memoato-stats")}
+                  >
+                    memoato.com
+                  </a>
+                  .
+                </p>
                 <a
                   href="https://app.memoato.com/u/0xhp10"
                   target="_blank"
@@ -334,10 +333,9 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                   class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
                   onClick={() => handleTrackedLink("memoato-profile-stats")}
                 >
-                  View stats on Memoato
+                  View all stats.
                 </a>
-                .
-              </p>
+              </div>
             </div>
           )}
         </div>
