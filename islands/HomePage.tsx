@@ -312,7 +312,7 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                 )}
               </div>
 
-              <div class="mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-1 text-center text-xs text-gray-500 dark:text-gray-500 sm:flex-row sm:gap-3">
+              <div class="mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-0 text-center text-xs text-gray-500 dark:text-gray-500 sm:flex-row sm:gap-2">
                 <p>
                   Live stats from{" "}
                   <a
@@ -324,8 +324,8 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                   >
                     memoato.com
                   </a>
-                  .
                 </p>
+                <span class="hidden sm:inline" aria-hidden="true">·</span>
                 <a
                   href="https://app.memoato.com/u/0xhp10"
                   target="_blank"
