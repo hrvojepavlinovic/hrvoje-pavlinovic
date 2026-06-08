@@ -205,3 +205,4 @@ console.log("Import complete:");
 console.log(`  KV entries written: ${written}`);
 console.log(`  old click KV entries skipped: ${skippedClicks}`);
 console.log(`  recent clicks imported: ${clickEntries.length}`);
+Deno.exit(0);
