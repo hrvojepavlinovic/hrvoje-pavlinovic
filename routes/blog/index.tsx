@@ -3,6 +3,7 @@ import { Head } from "$fresh/runtime.ts";
 import { BlogArticle } from "../../types/blog.ts";
 import { calculateReadingTime, formatTimeAgo } from "../../utils/blog.ts";
 import blogData from "../../data/blog.json" with { type: "json" };
+import { getValue } from "../../utils/store.ts";
 
 interface BlogPageData {
   articles: (BlogArticle & {
@@ -17,8 +18,6 @@ interface BlogPageData {
 
 export const handler: Handlers<BlogPageData> = {
   async GET(_req, ctx) {
-    const kv = await Deno.openKv();
-
     const sortedArticles = (blogData.articles as BlogArticle[])
       .sort((a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -27,14 +26,14 @@ export const handler: Handlers<BlogPageData> = {
     const articles = await Promise.all(
       sortedArticles.map(async (article) => {
         const [viewsRes, likesRes] = await Promise.all([
-          kv.get<number>([`blog:views:${article.slug}`]),
-          kv.get<number>([`blog:likes:${article.slug}`]),
+          getValue<number>([`blog:views:${article.slug}`]),
+          getValue<number>([`blog:likes:${article.slug}`]),
         ]);
 
         return {
           ...article,
-          views: viewsRes.value || 0,
-          likes: likesRes.value || 0,
+          views: viewsRes || 0,
+          likes: likesRes || 0,
           readingTime: calculateReadingTime(article.fullText),
           timeAgo: formatTimeAgo(article.createdAt),
           author: article.author || "Unknown",

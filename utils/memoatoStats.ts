@@ -1,4 +1,4 @@
-import { kv } from "./kv_db.ts";
+import { getValue, setValue } from "./store.ts";
 
 export interface MemoatoCalendarRange {
   from: string;
@@ -103,8 +103,8 @@ function normalizeMemoatoPublicStats(
 export async function getMemoatoPublicStats(
   options: { forceRefresh?: boolean } = {},
 ): Promise<MemoatoPublicStats | null> {
-  const cached = await kv.get<MemoatoPublicStats>(CACHE_KEY);
-  const normalizedCached = normalizeMemoatoPublicStats(cached.value);
+  const cached = await getValue<MemoatoPublicStats>(CACHE_KEY);
+  const normalizedCached = normalizeMemoatoPublicStats(cached);
 
   if (options.forceRefresh) {
     return await refreshMemoatoPublicStats(normalizedCached);
@@ -146,7 +146,7 @@ export async function refreshMemoatoPublicStats(
       return fallback ?? null;
     }
 
-    await kv.set(CACHE_KEY, normalizedData, { expireIn: CACHE_TTL_MS });
+    await setValue(CACHE_KEY, normalizedData, { expireIn: CACHE_TTL_MS });
     return normalizedData;
   } catch (error) {
     console.warn("Memoato stats fetch threw an error", error);

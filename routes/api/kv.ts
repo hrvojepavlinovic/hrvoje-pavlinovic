@@ -1,5 +1,5 @@
 import { Handlers } from "$fresh/server.ts";
-import { kv } from "../../utils/kv_db.ts";
+import { listAll } from "../../utils/store.ts";
 
 // Helper function to safely serialize values including BigInt
 function serializeValue(value: unknown): unknown {
@@ -20,8 +20,17 @@ function serializeValue(value: unknown): unknown {
 }
 
 export const handler: Handlers = {
-  async GET() {
+  async GET(req) {
     try {
+      const expectedToken = Deno.env.get("KV_ACCESS_TOKEN");
+      const authHeader = req.headers.get("Authorization");
+      const token = authHeader?.startsWith("Bearer ")
+        ? authHeader.slice(7)
+        : null;
+      if (!expectedToken || token !== expectedToken) {
+        return new Response("Unauthorized", { status: 401 });
+      }
+
       console.log("Fetching KV summary...");
 
       const results = {
@@ -33,8 +42,8 @@ export const handler: Handlers = {
       };
 
       // List all entries in the KV store
-      const allEntriesIter = kv.list({ prefix: [] });
-      for await (const entry of allEntriesIter) {
+      const allEntriesIter = await listAll();
+      for (const entry of allEntriesIter) {
         const keyInfo = {
           key: entry.key,
           value: serializeValue(entry.value), // Safely serialize the value

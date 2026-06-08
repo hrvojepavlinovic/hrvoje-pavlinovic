@@ -4,6 +4,7 @@ import { BlogArticle } from "../../types/blog.ts";
 import { calculateReadingTime, formatTimeAgo } from "../../utils/blog.ts";
 import blogData from "../../data/blog.json" with { type: "json" };
 import SocialActions from "../../islands/SocialActions.tsx";
+import { getValue, incrementValue } from "../../utils/store.ts";
 
 interface BlogPostData {
   article: BlogArticle & {
@@ -32,24 +33,17 @@ export const handler: Handlers<BlogPostData> = {
       return ctx.renderNotFound();
     }
 
-    const kv = await Deno.openKv();
     const viewsKey = [`blog:views:${slug}`];
     const likesKey = [`blog:likes:${slug}`];
 
-    const [viewsRes, likesRes] = await Promise.all([
-      kv.get<number>(viewsKey),
-      kv.get<number>(likesKey),
-    ]);
-
-    const currentViews = viewsRes.value || 0;
-    const currentLikes = likesRes.value || 0;
-
-    await kv.atomic().check(viewsRes).set(viewsKey, currentViews + 1).commit();
+    const likesRes = await getValue<number>(likesKey);
+    const currentLikes = likesRes || 0;
+    const updatedViews = await incrementValue(viewsKey);
 
     return ctx.render({
       article: {
         ...article,
-        views: currentViews + 1,
+        views: updatedViews,
         likes: currentLikes,
         readingTime: calculateReadingTime(article.fullText),
         timeAgo: formatTimeAgo(article.createdAt),

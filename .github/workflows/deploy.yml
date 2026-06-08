@@ -1,34 +1,107 @@
-name: Deploy
+name: Deploy to Hetzner
+
 on:
   push:
-    branches: main
+    branches:
+      - main
   pull_request:
-    branches: main
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hrvoje-pavlinovic-production
+  cancel-in-progress: false
 
 jobs:
-  deploy:
-    name: Deploy
+  build:
+    name: Check and build
     runs-on: ubuntu-latest
 
-    permissions:
-      id-token: write # Needed for auth with Deno Deploy
-      contents: read # Needed to clone the repository
-
     steps:
-      - name: Clone repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Deno
+      - name: Setup Deno
         uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
 
-      - name: Build step
-        run: "deno task build"
+      - name: Check
+        run: deno task check
 
-      - name: Upload to Deno Deploy
-        uses: denoland/deployctl@v1
+      - name: Build
+        run: deno task build
+
+  deploy:
+    name: Deploy
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
         with:
-          project: "hrvoje-pavlinovic"
-          entrypoint: "main.ts"
-          root: "."
+          deno-version: v2.x
+
+      - name: Build release
+        run: |
+          deno task build
+          printf '{"hash":"%s","timestamp":"%s"}\n' \
+            "${GITHUB_SHA}" \
+            "$(git log -1 --format=%cI)" > .release.json
+
+      - name: Configure SSH key
+        shell: bash
+        run: |
+          install -m 700 -d ~/.ssh
+          cat > ~/.ssh/id_ed25519 <<'EOF'
+          ${{ secrets.HETZNER_DEPLOY_KEY }}
+          EOF
+          chmod 600 ~/.ssh/id_ed25519
+          cat > ~/.ssh/known_hosts <<'EOF'
+          91.98.33.74 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJtEQGEnJjXGo63dmaqcN//112Rw6zIaMyX7uMsKdvHq
+          EOF
+
+      - name: Publish release
+        env:
+          REMOTE_USER: hrvojesite
+          REMOTE_HOST: 91.98.33.74
+          APP_SLUG: hrvoje-pavlinovic
+          SERVICE_NAME: hrvoje-pavlinovic.service
+          KEEP_RELEASES: 5
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          release_id="$(date +%Y%m%d%H%M%S)-${GITHUB_SHA::7}"
+          remote_base="/srv/apps/${APP_SLUG}"
+          remote_release="${remote_base}/releases/${release_id}"
+
+          ssh -i ~/.ssh/id_ed25519 -o BatchMode=yes -o IdentitiesOnly=yes "${REMOTE_USER}@${REMOTE_HOST}" \
+            "mkdir -p '${remote_base}/releases' '${remote_release}'"
+
+          rsync -a --delete \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude '.env*' \
+            --exclude 'node_modules/' \
+            -e "ssh -i ~/.ssh/id_ed25519 -o BatchMode=yes -o IdentitiesOnly=yes" \
+            ./ "${REMOTE_USER}@${REMOTE_HOST}:${remote_release}/"
+
+          ssh -i ~/.ssh/id_ed25519 -o BatchMode=yes -o IdentitiesOnly=yes "${REMOTE_USER}@${REMOTE_HOST}" <<EOF
+          set -euo pipefail
+          ln -sfn '${remote_release}' '${remote_base}/current'
+          sudo systemctl restart '${SERVICE_NAME}'
+          current_target="\$(readlink -f '${remote_base}/current')"
+          find '${remote_base}/releases' -mindepth 1 -maxdepth 1 -type d | sort -r | awk 'NR>${KEEP_RELEASES}' | while read -r old_release; do
+            if [ "\$old_release" != "\$current_target" ]; then
+              rm -rf "\$old_release"
+            fi
+          done
+          echo "Current release: \${current_target}"
+          EOF

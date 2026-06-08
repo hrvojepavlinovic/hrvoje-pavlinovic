@@ -11,7 +11,7 @@ export default function Footer() {
 
   useEffect(() => {
     let isMounted = true;
-    let intervalId: number | undefined;
+    let intervalId: ReturnType<typeof globalThis.setInterval> | undefined;
 
     const loadCommitInfo = async () => {
       try {

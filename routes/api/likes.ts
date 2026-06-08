@@ -1,6 +1,17 @@
 import { HandlerContext } from "$fresh/server.ts";
+import { getValue, incrementValue } from "../../utils/store.ts";
 
-const kv = await Deno.openKv();
+function toCount(value: unknown): number {
+  if (typeof value === "number") return value;
+  if (typeof value === "bigint") return Number(value);
+  if (
+    value && typeof value === "object" && "value" in value &&
+    typeof value.value === "number"
+  ) {
+    return value.value;
+  }
+  return 0;
+}
 
 export const handler = {
   async GET(req: Request, _ctx: HandlerContext) {
@@ -15,9 +26,8 @@ export const handler = {
         });
       }
 
-      const result = await kv.get([projectId]);
-      // Convert BigInt to number for JSON serialization
-      const likes = result.value ? Number(result.value) : 0;
+      const result = await getValue([projectId]);
+      const likes = toCount(result);
 
       return new Response(JSON.stringify({ likes }), {
         headers: { "Content-Type": "application/json" },
@@ -42,18 +52,7 @@ export const handler = {
         });
       }
 
-      // Increment the likes count atomically
-      const result = await kv.atomic()
-        .sum([projectId], 1n)
-        .commit();
-
-      if (!result.ok) {
-        throw new Error("Failed to increment likes");
-      }
-
-      // Get the updated count and convert BigInt to number
-      const updatedResult = await kv.get([projectId]);
-      const likes = updatedResult.value ? Number(updatedResult.value) : 1;
+      const likes = await incrementValue([projectId]);
 
       return new Response(JSON.stringify({ likes }), {
         headers: { "Content-Type": "application/json" },

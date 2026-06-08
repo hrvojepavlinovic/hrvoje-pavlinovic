@@ -1,30 +1,16 @@
-import { kv } from "./kv_db.ts";
+import { flushStore, listAll } from "./store.ts";
 
 export async function flushKV() {
-  console.log("Flushing KV store...");
-
-  let deletedCount = 0;
-
-  // Get all entries and delete them
-  const allEntries = kv.list({ prefix: [] });
-
-  for await (const entry of allEntries) {
-    await kv.delete(entry.key);
-    deletedCount++;
-
-    // Log progress every 50 deletions
-    if (deletedCount % 50 === 0) {
-      console.log(`Deleted ${deletedCount} entries...`);
-    }
-  }
-
-  console.log(`✅ KV store flushed! Deleted ${deletedCount} total entries.`);
-  return { deletedCount };
+  console.log("Flushing configured store...");
+  const result = await flushStore();
+  console.log(`Store flushed. Deleted ${result.deletedCount} KV entries.`);
+  return result;
 }
 
 // Run flush if this file is executed directly
 if (import.meta.main) {
-  console.log("🔥 FLUSHING KV STORE - THIS WILL DELETE ALL DATA!");
+  const entries = await listAll();
+  console.log(`FLUSHING STORE - THIS WILL DELETE ${entries.length} ENTRIES!`);
   console.log("Press Ctrl+C to cancel, or wait 3 seconds to proceed...");
 
   // Give user a chance to cancel

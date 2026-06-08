@@ -1,32 +1,17 @@
-#!/usr/bin/env -S deno run -A --unstable-kv
+#!/usr/bin/env -S deno run -A
 
-// Script to flush all likes data from KV
-const kv = await Deno.openKv();
+import { flushStore, listAll } from "../utils/store.ts";
 
-console.log("🗑️  Flushing production KV...");
+console.log("Flushing configured store...");
 
-// List all entries to see what we're deleting
-console.log("📋 Current KV entries:");
-const entries = kv.list({ prefix: [] });
-const toDelete = [];
+const entries = await listAll();
 
-for await (const entry of entries) {
-  console.log(`   Key: ${JSON.stringify(entry.key)} → Value: ${entry.value}`);
-  toDelete.push(entry.key);
-}
-
-if (toDelete.length === 0) {
-  console.log("✅ KV is already empty!");
+if (entries.length === 0) {
+  console.log("Store is already empty.");
   Deno.exit(0);
 }
 
-console.log(`\n🔥 Deleting ${toDelete.length} entries...`);
-
-// Delete all entries
-const deletePromises = toDelete.map((key) => kv.delete(key));
-await Promise.all(deletePromises);
-
-console.log("✅ KV flushed successfully!");
-console.log("📊 All likes data has been cleared.");
-
-kv.close();
+console.log(`Deleting ${entries.length} entries in 3 seconds. Ctrl+C to stop.`);
+await new Promise((resolve) => setTimeout(resolve, 3000));
+const result = await flushStore();
+console.log(`Store flushed. Deleted ${result.deletedCount} KV entries.`);

@@ -1,16 +1,32 @@
 /// <reference lib="deno.unstable" />
 import { Handlers } from "$fresh/server.ts";
-
-// Only try to open KV if we have the required token
-const kv = Deno.env.get("KV_ACCESS_TOKEN") ? await Deno.openKv() : null;
+import { getValue, setValue } from "../../utils/store.ts";
 
 // Check if we're running on Deno Deploy
 const isDenoDeployment = Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined;
 
+async function getReleaseInfo() {
+  const hash = Deno.env.get("RELEASE_COMMIT_HASH");
+  const timestamp = Deno.env.get("RELEASE_COMMIT_TIMESTAMP");
+  if (hash && timestamp) return { hash, timestamp };
+
+  try {
+    const raw = await Deno.readTextFile(".release.json");
+    const parsed = JSON.parse(raw);
+    if (parsed?.hash && parsed?.timestamp) {
+      return { hash: parsed.hash, timestamp: parsed.timestamp };
+    }
+  } catch {
+    // Older local/dev releases may not have a release metadata file.
+  }
+
+  return null;
+}
+
 export const handler: Handlers = {
   async POST(req) {
     // Only allow updates if we have KV access
-    if (!kv) {
+    if (!Deno.env.get("KV_ACCESS_TOKEN")) {
       return new Response("KV store not available", { status: 503 });
     }
 
@@ -30,8 +46,7 @@ export const handler: Handlers = {
         return new Response("Hash and timestamp are required", { status: 400 });
       }
 
-      // Store the commit info in KV
-      await kv.set(["commit_hash"], { hash, timestamp });
+      await setValue(["commit_hash"], { hash, timestamp });
 
       return new Response(JSON.stringify({ hash, timestamp }), {
         headers: { "Content-Type": "application/json" },
@@ -44,16 +59,23 @@ export const handler: Handlers = {
 
   async GET(_req) {
     try {
+      const releaseInfo = await getReleaseInfo();
+      if (releaseInfo) {
+        return new Response(JSON.stringify(releaseInfo), {
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+
       // If on Deno Deploy, only use KV
       if (isDenoDeployment) {
-        if (!kv) {
+        if (!Deno.env.get("KV_ACCESS_TOKEN")) {
           return new Response(JSON.stringify(null), {
             headers: { "Content-Type": "application/json" },
           });
         }
 
-        const result = await kv.get(["commit_hash"]);
-        return new Response(JSON.stringify(result.value || null), {
+        const result = await getValue(["commit_hash"]);
+        return new Response(JSON.stringify(result || null), {
           headers: { "Content-Type": "application/json" },
         });
       }
