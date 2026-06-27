@@ -1,6 +1,42 @@
 {
-  "lastId": 6,
+  "lastId": 7,
   "articles": [
+    {
+      "id": 7,
+      "title": "The AI Agent Problem Is Not the Model. It Is the Context.",
+      "slug": "ai-agent-problem-is-context",
+      "author": "Hrvoje Pavlinovic",
+      "tags": [
+        "AI",
+        "Agents",
+        "Context",
+        "Software Engineering"
+      ],
+      "shortDescription": "Why the long-term advantage in AI-assisted software work is not picking the winning model, but building reliable context systems around any model or tool.",
+      "fullText": "<p>Most conversations about AI-assisted development still start with the model. Which one writes better code? Which one has the bigger context window? Which one is cheaper? Which IDE has the best agent this month?</p>\n\n<p>Those questions matter, but I do not think they are the durable problem.</p>\n\n<p>Models will keep getting better. Tools will keep changing. Today it is Claude, Cursor, Codex, Copilot, and a handful of other agents. Tomorrow the names may change again. The thing that will not disappear is the need for a system that gives these tools the right context before they act.</p>\n\n<h2>The real bottleneck is not intelligence</h2>\n\n<p>A strong model can write code, explain a stack trace, summarize a pull request, and propose a migration. But in a real software team, that is not enough.</p>\n\n<p>The model needs to know which GitHub PR changed the old behavior, which Linear or Jira ticket defines the current acceptance criteria, which Slack thread contains the actual decision, which Sentry issue represents production pain, which runbook is still valid, and which README is now a lie.</p>\n\n<p>That is not just more text. That is context quality.</p>\n\n<p>The hard question is not <em>can the model understand this if we paste it in?</em> The hard question is <em>which context should the system put in front of the model, with what confidence, from which source, under which permissions, for this exact task?</em></p>\n\n<h2>Context window is not a knowledge base</h2>\n\n<p>A larger context window helps, but it does not solve truth, freshness, provenance, or permissions.</p>\n\n<p>If you put stale docs, old ticket comments, half-remembered architectural decisions, and private customer data into a giant context window, you did not build an agent memory system. You built a bigger confusion machine.</p>\n\n<p>Good context systems need to answer boring questions very well:</p>\n\n<ul>\n  <li>Where did this fact come from?</li>\n  <li>Is it still current?</li>\n  <li>Who is allowed to see it?</li>\n  <li>Which newer decision supersedes it?</li>\n  <li>Should the agent use it automatically or ask for review?</li>\n  <li>How do we know it improved the outcome?</li>\n</ul>\n\n<p>This is why I am more interested in context infrastructure than generic AI memory. Memory is one part of it. The system around memory matters more.</p>\n\n<h2>Read-first before autonomy</h2>\n\n<p>I think the safest first step for most teams is not to let agents write everywhere. It is to make them better readers.</p>\n\n<p>Give an agent read access to the right tools first: GitHub, Linear, Jira, Slack, Sentry, docs, CI, incidents, and deployment notes. Then make that access scoped, logged, and source-backed. Only after that does it make sense to expand toward write actions.</p>\n\n<p>An agent that can read the right Slack thread and Sentry issue before touching code is already more useful. An agent that can also explain <em>why</em> it believes something, and point to the source, is much easier to trust.</p>\n\n<h2>What I think a good system needs</h2>\n\n<p>At a minimum, I want an AI-assisted software workflow to have these pieces:</p>\n\n<ul>\n  <li><strong>Tool map:</strong> where engineering context lives across repos, tickets, chat, docs, monitoring, and deploy systems.</li>\n  <li><strong>Provenance:</strong> every durable memory item points back to a PR, commit, ticket, doc, chat, incident, or human decision.</li>\n  <li><strong>Freshness:</strong> the system can mark context as stale, superseded, deprecated, or needs review.</li>\n  <li><strong>Permissions:</strong> private context does not leak into the wrong project, team, customer, or user scope.</li>\n  <li><strong>Memory diffs:</strong> after a PR, incident, ticket update, or Slack decision, the system proposes what it learned and asks a human to approve, reject, or correct it.</li>\n  <li><strong>Evals:</strong> the same task should be tested with and without the context layer so we can measure whether the agent actually performs better.</li>\n</ul>\n\n<p>This is not glamorous. It is not a viral demo. But it is the kind of work that makes agents useful in production engineering teams.</p>\n\n<h2>A simple example</h2>\n\n<p>Imagine an agent is asked to fix a payment webhook bug.</p>\n\n<p>A weak setup gives it the repo and maybe a README.</p>\n\n<p>A better setup gives it the repo, the relevant files, the Linear ticket, the last related PR, the Sentry issue, the incident note from last month, the current deployment rule, and a warning that an old retry script is deprecated.</p>\n\n<p>The best setup also tells it where every piece of context came from, what may be stale, and which actions require human approval.</p>\n\n<p>The code output may look similar at first glance. The difference is whether the agent is making lucky guesses or operating inside a trustworthy context system.</p>\n\n<h2>Why I care about this</h2>\n\n<p>I have spent years building backend systems where reliability matters: commerce, payments, ad tech, Web3 infrastructure, and production systems with real users. The pattern is always the same. The code is only one part of the system. The surrounding operational context decides whether the team can move safely.</p>\n\n<p>AI makes that more obvious. If we give agents poor context, they will confidently amplify poor assumptions. If we give them source-backed, permission-aware, fresh context, they become much more useful.</p>\n\n<p>That is the area I want to go deeper into: reliable context systems for AI-assisted software teams. Not because one tool is perfect, but because every tool will need this layer.</p>\n\n<h2>The bet</h2>\n\n<p>My bet is simple.</p>\n\n<p>The winning teams will not be the ones that blindly adopt the most aggressive AI agent. They will be the ones that build the best context infrastructure around whichever agents they use.</p>\n\n<p>Models will change. IDEs will change. Pricing will change. The durable advantage is knowing how to make context work: what to retrieve, what to remember, what to forget, what to verify, what to hide, and how to measure whether it helped.</p>\n\n<p>That is the work I am interested in now.</p>",
+      "createdAt": "2026-06-27T14:45:00.000Z",
+      "seo": {
+        "title": "The AI Agent Problem Is Not the Model. It Is the Context. | Hrvoje Pavlinovic",
+        "description": "Why the long-term advantage in AI-assisted software work is building reliable context systems around models and tools: provenance, permissions, freshness, memory diffs, and evals.",
+        "keywords": [
+          "AI Agents",
+          "Context Engineering",
+          "Software Engineering",
+          "Agent Memory",
+          "AI Context",
+          "Claude",
+          "Cursor",
+          "Codex",
+          "GitHub Copilot",
+          "Provenance",
+          "Agent Evals"
+        ],
+        "author": "Hrvoje Pavlinovic",
+        "image": "https://hrvoje.pavlinovic.com/blog.png",
+        "twitterCard": "summary_large_image",
+        "twitterCreator": "@0xHP10"
+      }
+    },
     {
       "id": 6,
       "title": "I Ship to Production From My Phone With an Old Laptop and Wasp",
