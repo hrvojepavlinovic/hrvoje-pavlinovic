@@ -9,7 +9,7 @@ interface Project {
   description: string;
   highlights?: string[];
   technologies?: string[];
-  status: "early" | "development" | "live";
+  status: "early" | "development" | "live" | "sunsetted";
   featured: boolean;
   accent?: string;
 }
@@ -44,11 +44,11 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         <title>Projects &mdash; Hrvoje Pavlinovic</title>
         <meta
           name="description"
-          content="A small selection of products and side projects by Hrvoje Pavlinovic, including Memoato, PLAYGRND, and XXI Today."
+          content="A small selection of products and side projects by Hrvoje Pavlinovic, including Memoato, PLAYGRND, and PLAYGRND Draft."
         />
         <meta
           name="keywords"
-          content="Hrvoje Pavlinovic projects, Memoato, PLAYGRND, XXI Today, backend engineering, Bitcoin"
+          content="Hrvoje Pavlinovic projects, Memoato, PLAYGRND, PLAYGRND Draft, backend engineering, Bitcoin"
         />
         <meta name="author" content="Hrvoje Pavlinovic" />
         <meta name="robots" content="index, follow" />
@@ -66,7 +66,7 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         />
         <meta
           property="og:description"
-          content="A small selection of products and side projects by Hrvoje Pavlinovic, including Memoato, PLAYGRND, and XXI Today."
+          content="A small selection of products and side projects by Hrvoje Pavlinovic, including Memoato, PLAYGRND, and PLAYGRND Draft."
         />
         <meta
           property="og:image"
@@ -84,7 +84,7 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         />
         <meta
           name="twitter:description"
-          content="A small selection of products and side projects by Hrvoje Pavlinovic, including Memoato, PLAYGRND, and XXI Today."
+          content="A small selection of products and side projects by Hrvoje Pavlinovic, including Memoato, PLAYGRND, and PLAYGRND Draft."
         />
         <meta
           name="twitter:image"

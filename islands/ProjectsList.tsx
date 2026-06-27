@@ -8,7 +8,7 @@ interface Project {
   description: string;
   highlights?: string[];
   technologies?: string[];
-  status: "early" | "development" | "live";
+  status: "early" | "development" | "live" | "sunsetted";
   featured: boolean;
   likes?: number;
   accent?: string;
@@ -33,6 +33,17 @@ const statusCopy: Record<Project["status"], { label: string; tone: string }> = {
     tone:
       "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-200",
   },
+  sunsetted: {
+    label: "Sunsetted",
+    tone: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
+  },
+};
+
+const statusRank: Record<Project["status"], number> = {
+  early: 0,
+  development: 0,
+  live: 0,
+  sunsetted: 1,
 };
 
 const accentDot: Record<string, string> = {
@@ -65,10 +76,18 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
           }),
         );
 
-        setSortedProjects(enriched);
+        setSortedProjects(
+          enriched.toSorted((a, b) =>
+            statusRank[a.status] - statusRank[b.status]
+          ),
+        );
       } catch (error) {
         console.error("Error hydrating projects list", error);
-        setSortedProjects(projects);
+        setSortedProjects(
+          projects.toSorted((a, b) =>
+            statusRank[a.status] - statusRank[b.status]
+          ),
+        );
       }
     };
 

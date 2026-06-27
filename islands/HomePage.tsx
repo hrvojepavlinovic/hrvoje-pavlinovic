@@ -238,6 +238,8 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                 <a
                   key={cta.label}
                   href={cta.href}
+                  target={cta.external ? "_blank" : undefined}
+                  rel={cta.external ? "noopener noreferrer" : undefined}
                   class="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-800 shadow-sm dark:border-gray-800 dark:bg-black dark:text-gray-100"
                   onClick={() => handleTrackedLink(cta.trackingTarget)}
                 >

@@ -277,16 +277,16 @@
       "technologies": ["Go", "Postgres", "Redis", "SvelteKit", "Hetzner"]
     },
     {
+      "name": "PLAYGRND Draft",
+      "url": "https://draft.playgrnd.app",
+      "description": "Fast football draft game where users spin iconic national-team tournament squads, build a World XI, simulate a tournament, and share the result.",
+      "technologies": ["Next.js", "TypeScript", "Postgres", "Hetzner"]
+    },
+    {
       "name": "Memoato",
       "url": "https://memoato.com",
       "description": "AI-powered life tracking platform with voice/text input, automated categorization, and intelligent insights dashboard replacing 5+ productivity apps.",
       "technologies": ["SvelteKit", "AI", "Postgres", "Redis", "Stripe"]
-    },
-    {
-      "name": "XXI Today",
-      "url": "https://xxi.today",
-      "description": "Complete Bitcoin information hub with wallet explorer, milestone tracking, news curation, and educational resources for the entire Bitcoin ecosystem.",
-      "technologies": ["T3", "Postgres", "Bitcoin", "Lightning"]
     },
     {
       "name": "Personal Portfolio",
@@ -295,9 +295,15 @@
       "technologies": ["Deno", "KV", "Fresh", "Tailwind"]
     },
     {
+      "name": "XXI Today",
+      "url": "https://xxi.today",
+      "description": "Sunsetted Bitcoin wallet and .btc domain explorer experiment, built around XVerse integration and simple lookup flows.",
+      "technologies": ["T3", "Postgres", "Bitcoin", "Lightning"]
+    },
+    {
       "name": "Apes Club",
       "url": "https://apes.club",
-      "description": "Solana token launcher with advanced dashboards, creator leaderboards, risk analytics, and community governance for intelligent meme coin discovery.",
+      "description": "Sunsetted Solana token-launcher experiment focused on dashboards, creator rankings, and risk-aware meme-coin discovery.",
       "technologies": ["Solana", "Web3", "TypeScript", "DeFi", "Rust"]
     }
   ],

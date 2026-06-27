@@ -314,7 +314,8 @@ export default function CVPage() {
               Personal projects
             </h2>
             <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-              Selected work I build and maintain outside client engagements.
+              Selected products and experiments I have built outside client
+              engagements.
             </p>
           </div>
 

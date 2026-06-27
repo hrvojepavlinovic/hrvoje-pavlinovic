@@ -12,6 +12,7 @@ export interface CtaLink {
   href: string;
   trackingTarget: string;
   variant: CtaVariant;
+  external?: boolean;
 }
 
 export interface HomeData {

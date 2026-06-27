@@ -7,7 +7,7 @@ interface Project {
   description: string;
   highlights?: string[];
   technologies?: string[];
-  status: "early" | "development" | "live";
+  status: "early" | "development" | "live" | "sunsetted";
   featured: boolean;
   likes?: number;
   accent?: string;

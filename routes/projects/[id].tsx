@@ -11,7 +11,7 @@ interface Project {
   description: string;
   highlights?: string[];
   technologies?: string[];
-  status: "early" | "development" | "live";
+  status: "early" | "development" | "live" | "sunsetted";
   featured: boolean;
   likes?: number;
   accent?: string;
@@ -45,6 +45,14 @@ const statusCopy: Record<Project["status"], string> = {
   early: "Exploration",
   development: "In Build",
   live: "In Market",
+  sunsetted: "Sunsetted",
+};
+
+const statusDot: Record<Project["status"], string> = {
+  early: "bg-blue-400",
+  development: "bg-orange-400",
+  live: "bg-emerald-400",
+  sunsetted: "bg-gray-400",
 };
 
 export default function ProjectPage({ data: project }: PageProps<Project>) {
@@ -110,7 +118,11 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
           <div class="space-y-4">
             <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
               <span class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1 dark:border-gray-700">
-                <span class="h-1.5 w-1.5 rounded-full bg-orange-400" />
+                <span
+                  class={`h-1.5 w-1.5 rounded-full ${
+                    statusDot[project.status]
+                  }`}
+                />
                 {statusCopy[project.status]}
               </span>
             </div>

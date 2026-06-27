@@ -14,31 +14,43 @@
   </url>
   <url>
     <loc>https://hrvoje.pavlinovic.com/projects</loc>
-    <lastmod>2025-10-25</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hrvoje.pavlinovic.com/projects/memoato</loc>
-    <lastmod>2025-10-25</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hrvoje.pavlinovic.com/projects/xxi-today</loc>
-    <lastmod>2025-10-25</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hrvoje.pavlinovic.com/projects/playgrnd</loc>
-    <lastmod>2025-10-25</lastmod>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hrvoje.pavlinovic.com/projects/playgrnd-draft</loc>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hrvoje.pavlinovic.com/projects/hills-lab</loc>
-    <lastmod>2025-10-25</lastmod>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hrvoje.pavlinovic.com/projects/apes-club</loc>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

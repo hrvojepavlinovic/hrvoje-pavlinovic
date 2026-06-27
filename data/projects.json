@@ -32,19 +32,19 @@
       "accent": "orange"
     },
     {
-      "id": "xxi-today",
-      "name": "XXI Today",
-      "url": "https://xxi.today",
-      "description": "A Bitcoin wallet and .btc domain explorer, integrated with the XVerse wallet.",
+      "id": "playgrnd-draft",
+      "name": "PLAYGRND Draft",
+      "url": "https://draft.playgrnd.app",
+      "description": "A fast football draft game where you spin iconic national-team tournament squads, build an XI, simulate a tournament, and share the result.",
       "highlights": [
-        "Fast .btc lookups and basic on-chain context",
-        "Bitcoin-focused UX with simple flows",
-        "Built as a thin product layer over existing wallet infra"
+        "World XI draft loop built for quick mobile sessions",
+        "Local-first gameplay with non-blocking share and stats",
+        "Fan-made PLAYGRND experiment with careful rights boundaries"
       ],
-      "technologies": ["Bitcoin", ".btc", "XVerse"],
-      "status": "early",
+      "technologies": ["Next.js", "TypeScript", "Postgres", "Hetzner"],
+      "status": "development",
       "featured": true,
-      "accent": "orange"
+      "accent": "green"
     },
     {
       "id": "hills-lab",
@@ -60,6 +60,36 @@
       "status": "development",
       "featured": false,
       "accent": "orange"
+    },
+    {
+      "id": "xxi-today",
+      "name": "XXI Today",
+      "url": "https://xxi.today",
+      "description": "A sunsetted Bitcoin wallet and .btc domain explorer experiment, built around XVerse integration and simple lookup flows.",
+      "highlights": [
+        "Fast .btc lookups and basic on-chain context",
+        "Bitcoin-focused UX with simple flows",
+        "Useful learning project, no longer an active product bet"
+      ],
+      "technologies": ["Bitcoin", ".btc", "XVerse"],
+      "status": "sunsetted",
+      "featured": false,
+      "accent": "orange"
+    },
+    {
+      "id": "apes-club",
+      "name": "Apes Club",
+      "url": "https://apes.club",
+      "description": "A sunsetted Solana token-launcher experiment focused on dashboards, creator rankings, and risk-aware meme-coin discovery.",
+      "highlights": [
+        "Explored token-launch mechanics and creator analytics",
+        "Combined Web3 UX, dashboards, and discovery workflows",
+        "Archived as an experiment rather than an active roadmap item"
+      ],
+      "technologies": ["Solana", "Web3", "TypeScript", "DeFi"],
+      "status": "sunsetted",
+      "featured": false,
+      "accent": "violet"
     }
   ]
 }

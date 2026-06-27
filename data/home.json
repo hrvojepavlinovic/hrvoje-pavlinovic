@@ -54,7 +54,8 @@
       "label": "HILLS Lab",
       "href": "https://hills-lab.hr",
       "trackingTarget": "hills_lab",
-      "variant": "secondary"
+      "variant": "secondary",
+      "external": true
     },
     {
       "label": "Blog",
