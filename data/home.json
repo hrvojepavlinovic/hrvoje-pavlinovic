@@ -1,15 +1,15 @@
 {
   "name": "Hrvoje Pavlinovic",
-  "title": "Senior backend engineer at {{TILT_URL}}",
-  "heroStat": "12+ years. Scaled systems to billions of requests per month.",
+  "title": "Building reliable context systems for AI-assisted software teams",
+  "heroStat": "12+ years in software. Now focused on agent context, memory, provenance, and evals.",
   "avatar": {
     "src": "/pfptbs.png",
     "alt": "Hrvoje Pavlinovic"
   },
   "heroParagraphs": [
-    "I build backend infrastructure for interactive commerce, optimizing for latency and reliability. My focus is scale, stability, and delivery habits to maximize output.",
-    "Outside work, my priorities are family, software, and fitness. I train most days and I am long Bitcoin.",
-    "If you want to talk about distributed systems, performance, or anything else, reach out to me on X or email."
+    "I am a senior software engineer currently working with {{TILT_URL}}, and my deeper focus is the context layer around tools like Claude, Cursor, Codex, and Copilot.",
+    "Models are getting stronger, but teams still need systems that know which Slack thread, Linear ticket, GitHub PR, Sentry incident, runbook, or deployment rule is true, current, relevant, and allowed.",
+    "I write and build around agent context infrastructure: memory policy, provenance, permissions, stale-context detection, and evals for real software workflows."
   ],
   "socialLinks": [
     {
@@ -51,9 +51,9 @@
       "variant": "primary"
     },
     {
-      "label": "Projects",
-      "href": "/projects",
-      "trackingTarget": "projects",
+      "label": "HILLS Lab",
+      "href": "https://hills-lab.hr",
+      "trackingTarget": "hills_lab",
       "variant": "secondary"
     },
     {

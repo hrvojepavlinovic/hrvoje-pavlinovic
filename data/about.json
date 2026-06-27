@@ -1,41 +1,42 @@
 {
   "pageTitle": "About me",
   "intro": {
-    "heading": "Building stable backends at scale",
-    "summary": "I specialize in building performant software and making complex systems simple.",
+    "heading": "Building reliable context systems for AI-assisted teams",
+    "summary": "I specialize in making complex software workflows understandable to humans and AI agents.",
     "paragraphs": [
-      "With over 12 years of experience across Web3, automotive, health care, media, and commerce, I focus on stability, scale, and speed.",
-      "Currently, I am heading the backend infrastructure at Tilt, keeping livestream auctions, payments, and fulfillment fast and reliable.",
+      "With over 12 years of experience across Web3, automotive, health care, media, and commerce, I focus on stability, scale, and systems that teams can trust.",
+      "Currently, I work on backend infrastructure at Tilt, keeping livestream auctions, payments, and fulfillment fast and reliable.",
+      "My current specialization is reliable context infrastructure for AI-assisted software teams: connecting tools like GitHub, Slack, Linear, Jira, Sentry, docs, and production runbooks so agents can work with source-backed context instead of guesses.",
       "Outside of the terminal, my life revolves around family, health, and sound money. I am a proud father of two, an active fitness enthusiast (football, padel, gym, cycling), and a firm believer that Bitcoin can change the world for the better.",
-      "I remain curious and focused on the future. My current goals are achieving financial independence, building impactful personal products, and traveling the world with my wife and kids."
+      "I remain curious and focused on the future. My current goals are building useful products, growing HILLS Lab, and publishing practical field notes on agent context systems."
     ]
   },
   "work": {
-    "heading": "How I help teams win",
-    "description": "My sweet spot is taking ambiguous roadmaps and shaping the backend architecture, delivery practices, and team habits that make them real.",
+    "heading": "How I help teams work with AI",
+    "description": "My sweet spot is taking messy engineering workflows and shaping the architecture, context, and delivery habits that make humans and agents more reliable together.",
     "capabilityAreas": [
       {
-        "title": "Commerce systems that scale",
-        "intro": "Design end-to-end flows for livestream shopping, auctions, fulfillment, and payouts that feel instant to operators.",
+        "title": "Reliable production systems",
+        "intro": "Design backend and operational flows that stay understandable under real business pressure.",
         "points": [
-          "Grew revenue-critical services at Tilt while keeping customer-facing latency under 150ms.",
+          "Work on revenue-critical services at Tilt where latency, reliability, and delivery discipline matter.",
           "Scaled ad-tech pipelines past 1.7B impressions by tightening ingestion, batching, and observability."
         ]
       },
       {
-        "title": "Delivery with guardrails",
-        "intro": "Blend architecture decisions with day-to-day execution so teams ship confidently without gambling uptime.",
+        "title": "Agent context with guardrails",
+        "intro": "Blend tool access, provenance, memory policy, and evals so AI assistants are informed before they act.",
         "points": [
-          "Pair roadmap planning with instrumentation, runbooks, and feedback loops that keep teams close to customers.",
-          "Coach engineers through migrations and incident reviews so lessons stick across the org."
+          "Map context across GitHub, Linear/Jira, Slack, Sentry, docs, and production runbooks.",
+          "Design reviewable memory diffs, permission scopes, and stale-context checks."
         ]
       },
       {
-        "title": "Founder-aligned partnership",
-        "intro": "Work shoulder-to-shoulder with founders from first build through hypergrowth stages.",
+        "title": "Model-agnostic implementation",
+        "intro": "Build systems that keep working as teams move between Claude, Cursor, Codex, Copilot, and future tools.",
         "points": [
-          "Translate business pressure into scoped delivery cycles and crisp investment trade-offs.",
-          "Navigate legacy stacks and third-party dependencies without slowing velocity."
+          "Translate business pressure into scoped delivery cycles and crisp technical trade-offs.",
+          "Keep the durable asset in the context system, not in one vendor's feature set."
         ]
       }
     ],
