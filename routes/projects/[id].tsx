@@ -1,6 +1,5 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-import ProjectPageTracker from "../../islands/ProjectPageTracker.tsx";
 
 const SITE_URL = "https://hrvoje.pavlinovic.com";
 
@@ -110,8 +109,6 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
         />
         <meta name="twitter:url" content={canonicalUrl} />
       </Head>
-
-      <ProjectPageTracker projectId={project.id} />
 
       <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
         <section class="max-w-5xl mx-auto px-6 py-24 md:py-32 space-y-10">

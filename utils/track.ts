@@ -1,6 +1,6 @@
 export async function trackEvent(data: {
   type: "click" | "pageview";
-  clickType?: "menu" | "link" | "like";
+  clickType?: "menu" | "link" | "internal" | "external" | "like" | "cta";
   target?: string;
   page?: string;
   userAgent?: string;

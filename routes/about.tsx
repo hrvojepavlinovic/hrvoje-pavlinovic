@@ -43,11 +43,11 @@ export default function About({ data }: PageProps<AboutRouteData>) {
         />
         <meta
           name="description"
-          content="Senior backend engineer partnering with founders to ship reliable commerce, media, and blockchain systems while coaching teams toward resilient delivery."
+          content="About Hrvoje Pavlinovic, a software engineer building reliable context systems for AI-assisted software teams and production-grade backend systems."
         />
         <meta
           name="keywords"
-          content="Hrvoje Pavlinovic, Backend Engineer, Systems Partner, Tilt, ReneVerse, Commerce Platforms, Web3, Croatia"
+          content="Hrvoje Pavlinovic, Software Engineer, AI Context Systems, Backend Engineering, Agent Memory, Provenance, Evals, Croatia"
         />
         <meta name="author" content="Hrvoje Pavlinovic" />
         <meta name="robots" content="index, follow" />
@@ -62,7 +62,7 @@ export default function About({ data }: PageProps<AboutRouteData>) {
         />
         <meta
           property="og:description"
-          content="Senior backend engineer partnering with founders to deliver reliable systems across commerce, media, and blockchain."
+          content="Software engineer building reliable context systems for AI-assisted software teams."
         />
         <meta
           property="og:image"
@@ -83,7 +83,7 @@ export default function About({ data }: PageProps<AboutRouteData>) {
         />
         <meta
           name="twitter:description"
-          content="Senior backend engineer partnering with founders to deliver reliable systems across commerce, media, and blockchain."
+          content="Software engineer building reliable context systems for AI-assisted software teams."
         />
         <meta
           name="twitter:image"
@@ -104,7 +104,7 @@ export default function About({ data }: PageProps<AboutRouteData>) {
               "name": "Hrvoje Pavlinovic",
               "alternateName": "@0xhp10",
               "description":
-                "Senior backend engineer partnering with founders to deliver reliable commerce, media, and blockchain systems.",
+                "Software engineer building reliable context systems for AI-assisted software teams.",
               "image": "https://hrvoje.pavlinovic.com/pfptbs.png",
               "url": "https://hrvoje.pavlinovic.com",
               "sameAs": [
@@ -112,13 +112,13 @@ export default function About({ data }: PageProps<AboutRouteData>) {
                 "https://github.com/hrvoje-pavlinovic",
                 "https://linkedin.com/in/hpavlino",
               ],
-              "jobTitle": "Senior Backend Engineer & Systems Partner",
+              "jobTitle": "Software Engineer",
               "knowsAbout": [
+                "AI Context Systems",
+                "Agent Memory",
                 "Backend Engineering",
-                "Interactive Commerce",
-                "Event-Driven Systems",
-                "DevOps",
-                "Bitcoin",
+                "Provenance",
+                "Evals",
               ],
               "worksFor": {
                 "@type": "Organization",

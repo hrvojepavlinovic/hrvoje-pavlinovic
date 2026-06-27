@@ -57,8 +57,6 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
   const [sortedProjects, setSortedProjects] = useState<Project[]>(projects);
 
   useEffect(() => {
-    trackEvent({ type: "pageview", page: "projects" });
-
     const fetchLikes = async () => {
       try {
         const enriched = await Promise.all(

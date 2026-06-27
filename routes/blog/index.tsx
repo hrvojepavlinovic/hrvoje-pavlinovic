@@ -50,10 +50,10 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
   const canonicalUrl = "https://hrvoje.pavlinovic.com/blog";
   const title = "Blog \u2014 Hrvoje Pavlinovic";
   const description =
-    "Notes on building resilient backends, leading lean teams, and navigating founder life.";
+    "Notes on AI-assisted software work, context systems, backend engineering, self-hosting, and building small products.";
   const imageUrl = "https://hrvoje.pavlinovic.com/blog.png";
   const keywords =
-    "Blog, Software Engineering, Backend, Blockchain, AI, Hrvoje";
+    "Blog, AI Context Systems, Software Engineering, Backend, Agent Memory, Self Hosting, Hrvoje";
   const author = "Hrvoje Pavlinovic";
 
   return (

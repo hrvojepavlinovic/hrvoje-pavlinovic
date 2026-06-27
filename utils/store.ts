@@ -9,7 +9,7 @@ export interface KvEntry<T = unknown> {
 }
 
 export interface ClickEvent {
-  type: "menu" | "link" | "internal" | "external";
+  type: "menu" | "link" | "internal" | "external" | "like" | "cta";
   target: string;
   timestamp: number;
 }

@@ -29,6 +29,7 @@ import * as $index from "./routes/index.tsx";
 import * as $lightning_callback_username_ from "./routes/lightning/callback/[username].ts";
 import * as $projects from "./routes/projects.tsx";
 import * as $projects_id_ from "./routes/projects/[id].tsx";
+import * as $sitemap_xml from "./routes/sitemap.xml.ts";
 import * as $webstats from "./routes/webstats.tsx";
 import * as $webstats_index from "./routes/webstats/index.tsx";
 import * as $AboutPage from "./islands/AboutPage.tsx";
@@ -37,11 +38,8 @@ import * as $Footer from "./islands/Footer.tsx";
 import * as $HomePage from "./islands/HomePage.tsx";
 import * as $LikeButton from "./islands/LikeButton.tsx";
 import * as $MobileMenu from "./islands/MobileMenu.tsx";
-import * as $ProjectPageTracker from "./islands/ProjectPageTracker.tsx";
 import * as $ProjectsList from "./islands/ProjectsList.tsx";
-import * as $Router from "./islands/Router.tsx";
 import * as $SocialActions from "./islands/SocialActions.tsx";
-import * as $StatsLink from "./islands/StatsLink.tsx";
 import * as $ThemeToggle from "./islands/ThemeToggle.tsx";
 import * as $WebStats from "./islands/WebStats.tsx";
 import type { Manifest } from "$fresh/server.ts";
@@ -75,6 +73,7 @@ const manifest = {
     "./routes/lightning/callback/[username].ts": $lightning_callback_username_,
     "./routes/projects.tsx": $projects,
     "./routes/projects/[id].tsx": $projects_id_,
+    "./routes/sitemap.xml.ts": $sitemap_xml,
     "./routes/webstats.tsx": $webstats,
     "./routes/webstats/index.tsx": $webstats_index,
   },
@@ -85,11 +84,8 @@ const manifest = {
     "./islands/HomePage.tsx": $HomePage,
     "./islands/LikeButton.tsx": $LikeButton,
     "./islands/MobileMenu.tsx": $MobileMenu,
-    "./islands/ProjectPageTracker.tsx": $ProjectPageTracker,
     "./islands/ProjectsList.tsx": $ProjectsList,
-    "./islands/Router.tsx": $Router,
     "./islands/SocialActions.tsx": $SocialActions,
-    "./islands/StatsLink.tsx": $StatsLink,
     "./islands/ThemeToggle.tsx": $ThemeToggle,
     "./islands/WebStats.tsx": $WebStats,
   },

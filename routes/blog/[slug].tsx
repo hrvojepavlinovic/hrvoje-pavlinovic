@@ -4,6 +4,7 @@ import { BlogArticle } from "../../types/blog.ts";
 import { calculateReadingTime, formatTimeAgo } from "../../utils/blog.ts";
 import blogData from "../../data/blog.json" with { type: "json" };
 import SocialActions from "../../islands/SocialActions.tsx";
+import { isLikelyBot } from "../../utils/kv.ts";
 import { getValue, incrementValue } from "../../utils/store.ts";
 
 interface BlogPostData {
@@ -36,9 +37,14 @@ export const handler: Handlers<BlogPostData> = {
     const viewsKey = [`blog:views:${slug}`];
     const likesKey = [`blog:likes:${slug}`];
 
-    const likesRes = await getValue<number>(likesKey);
+    const [viewsRes, likesRes] = await Promise.all([
+      getValue<number>(viewsKey),
+      getValue<number>(likesKey),
+    ]);
     const currentLikes = likesRes || 0;
-    const updatedViews = await incrementValue(viewsKey);
+    const updatedViews = isLikelyBot(req.headers.get("user-agent") || undefined)
+      ? viewsRes || 0
+      : await incrementValue(viewsKey);
 
     return ctx.render({
       article: {

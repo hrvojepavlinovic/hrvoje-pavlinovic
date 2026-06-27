@@ -8,11 +8,11 @@ export default function CV() {
         <title>CV &mdash; Hrvoje Pavlinovic</title>
         <meta
           name="description"
-          content="Professional experience and skills of Hrvoje Pavlinovic - Senior Software Engineer and Tech Lead with expertise in Bitcoin, blockchain technology, and decentralized systems."
+          content="Professional experience and projects by Hrvoje Pavlinovic, a software engineer focused on backend systems, AI-assisted engineering workflows, context infrastructure, and reliable delivery."
         />
         <meta
           name="keywords"
-          content="Hrvoje Pavlinovic, Resume, CV, Blockchain Developer, Bitcoin Developer, Tech Lead, Software Engineering"
+          content="Hrvoje Pavlinovic, Resume, CV, Software Engineer, AI Context Systems, Backend Engineering, Tech Lead, PLAYGRND, Memoato"
         />
         <meta name="author" content="Hrvoje Pavlinovic" />
         <meta name="robots" content="index, follow" />
@@ -27,7 +27,7 @@ export default function CV() {
         />
         <meta
           property="og:description"
-          content="Professional experience and skills of Hrvoje Pavlinovic - Senior Software Engineer and Tech Lead with expertise in Bitcoin, blockchain technology, and decentralized systems."
+          content="Professional experience and projects by Hrvoje Pavlinovic, focused on backend systems, AI-assisted engineering workflows, and reliable delivery."
         />
         <meta
           property="og:image"
@@ -45,7 +45,7 @@ export default function CV() {
         />
         <meta
           name="twitter:description"
-          content="Professional experience and skills of Hrvoje Pavlinovic - Senior Software Engineer and Tech Lead with expertise in Bitcoin, blockchain technology, and decentralized systems."
+          content="Professional experience and projects by Hrvoje Pavlinovic, focused on backend systems, AI-assisted engineering workflows, and reliable delivery."
         />
         <meta
           name="twitter:image"

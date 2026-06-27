@@ -8,12 +8,30 @@ import {
 import blogData from "../data/blog.json" with { type: "json" };
 
 export interface ClickEvent {
-  type: "menu" | "link" | "internal" | "external";
+  type: ClickType;
   target: string;
   timestamp: number;
 }
 
-export async function trackPageView(page: string, _userAgent?: string) {
+export type ClickType =
+  | "menu"
+  | "link"
+  | "internal"
+  | "external"
+  | "like"
+  | "cta";
+
+export function isLikelyBot(userAgent?: string) {
+  if (!userAgent) return false;
+  return /bot|crawler|spider|crawling|facebookexternalhit|twitterbot|linkedinbot|slurp|bingpreview|discordbot|whatsapp|telegrambot|google-inspectiontool|pagespeed|lighthouse/i
+    .test(userAgent);
+}
+
+export async function trackPageView(page: string, userAgent?: string) {
+  if (isLikelyBot(userAgent)) {
+    return;
+  }
+
   // Filter out spam/bot requests
   const spamPatterns = [
     /^\/wp-/, // WordPress paths (wp-admin, wp-content, wp-includes, etc.)
@@ -66,7 +84,7 @@ export async function trackPageView(page: string, _userAgent?: string) {
 }
 
 export async function trackClick(
-  type: "menu" | "link" | "internal" | "external",
+  type: ClickType,
   target: string,
 ) {
   const click: ClickEvent = {

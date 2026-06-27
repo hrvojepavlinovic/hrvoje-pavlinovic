@@ -40,11 +40,11 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
         <meta name="title" content="Hrvoje Pavlinovic" />
         <meta
           name="description"
-          content="Senior backend engineer scaling interactive commerce at Tilt. 12+ years building stable, high-throughput systems across commerce, media, automotive, and health care."
+          content="Hrvoje Pavlinovic builds reliable context systems for AI-assisted software teams, with a focus on memory, provenance, permissions, stale-context detection, and evals."
         />
         <meta
           name="keywords"
-          content="Hrvoje Pavlinovic, Senior Backend Engineer, backend infrastructure, distributed systems, interactive commerce, performance engineering, reliability, event-driven architecture, Bitcoin"
+          content="Hrvoje Pavlinovic, AI context systems, agent memory, context engineering, software engineering, backend systems, provenance, evals, Codex, Claude, Cursor"
         />
         <meta name="author" content="Hrvoje Pavlinovic" />
         <meta name="robots" content="index, follow" />
@@ -56,7 +56,7 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
         <meta property="og:title" content="Hrvoje Pavlinovic" />
         <meta
           property="og:description"
-          content="Senior backend engineer scaling interactive commerce at Tilt. 12+ years building stable, high-throughput systems across commerce, media, automotive, and health care."
+          content="Building reliable context systems for AI-assisted software teams."
         />
         <meta
           property="og:image"
@@ -74,7 +74,7 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
         <meta name="twitter:title" content="Hrvoje Pavlinovic" />
         <meta
           name="twitter:description"
-          content="Senior backend engineer scaling interactive commerce at Tilt. 12+ years building stable, high-throughput systems across commerce, media, automotive, and health care."
+          content="Building reliable context systems for AI-assisted software teams."
         />
         <meta
           name="twitter:image"
@@ -95,7 +95,7 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
               "name": "Hrvoje Pavlinovic",
               "alternateName": "@0xhp10",
               "description":
-                "Senior backend engineer with 12+ years engineering experience.",
+                "Software engineer building reliable context systems for AI-assisted software teams.",
               "image": "https://hrvoje.pavlinovic.com/pfptbs.png",
               "url": "https://hrvoje.pavlinovic.com",
               "sameAs": [
@@ -103,14 +103,15 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
                 "https://github.com/hrvoje-pavlinovic",
                 "https://linkedin.com/in/hpavlino",
               ],
-              "jobTitle": "Senior Backend Engineer",
+              "jobTitle": "Software Engineer",
               "knowsAbout": [
-                "Blockchain Technology",
-                "Bitcoin",
-                "Artificial Intelligence",
-                "Software Development",
-                "Event-driven Architecture",
-                "Distributed Systems",
+                "AI Context Systems",
+                "Agent Memory",
+                "Context Engineering",
+                "Software Engineering",
+                "Provenance",
+                "Evals",
+                "Backend Systems",
               ],
               "foundingLocation": {
                 "@type": "Place",

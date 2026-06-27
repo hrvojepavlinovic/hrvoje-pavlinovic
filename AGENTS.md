@@ -14,9 +14,12 @@
   is resolved through `utils/contentTokens.tsx` and
   `renderTemplateWithComponents`, which also applies Tailwind classes so design
   tokens compile.
-- Reusable visual pieces stay in `components/`; client-only analytics and menu
-  logic live in islands such as `Router.tsx` and `MobileMenu.tsx`. Assets remain
-  in `static/`.
+- Reusable visual pieces stay in `components/`; client-only menu and interaction
+  logic lives in focused islands such as `MobileMenu.tsx`, `ThemeToggle.tsx`,
+  `HomePage.tsx`, and `ProjectsList.tsx`. Assets remain in `static/`.
+- `routes/sitemap.xml.ts` generates the sitemap from `data/blog.json` and
+  `data/projects.json`; do not reintroduce a hand-maintained
+  `static/sitemap.xml`.
 
 ## Build, Test & Verification Commands
 
@@ -53,16 +56,3 @@
 - Commits should be small, imperative, and reference related issues. PRs need a
   concise summary, verification steps (`deno task check`, manual QA), and any
   follow-up tasks.
-
-## Workspace Status
-
-- Unstaged: `components/Header.tsx`, `data/home.json`, `fresh.gen.ts`,
-  `islands/AboutPage.tsx`, `islands/HomePage.tsx`, `islands/MobileMenu.tsx`,
-  `islands/Router.tsx`, `islands/Footer.tsx`, `islands/WebStats.tsx`,
-  `routes/_app.tsx`, `routes/_404.tsx`, `routes/about.tsx`,
-  `routes/blog/[slug].tsx`, `routes/blog/index.tsx`,
-  `routes/branding/x/cover.tsx`, `routes/branding/x/profile.tsx`,
-  `routes/contact.tsx`, `routes/cv.tsx`, `routes/projects.tsx`,
-  `routes/projects/[id].tsx`, `routes/webstats.tsx`, `types/home.ts`,
-  `islands/StatsPage.tsx` (deleted), `routes/stats.tsx` (deleted).
-- Untracked: `data/about.json`, `types/about.ts`.
