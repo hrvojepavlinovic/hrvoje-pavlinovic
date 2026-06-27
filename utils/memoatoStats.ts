@@ -36,7 +36,7 @@ export interface MemoatoPublicStats {
 const MEMOATO_PUBLIC_STATS_URL =
   "https://api.memoato.com/public/stats/8AdNcaiVxGJtMBk1MWcbrUz-SV-cs0OUJEIGcdhHlwY";
 
-const CACHE_KEY = ["memoato", "public_stats", "v2"];
+const CACHE_KEY = ["memoato", "public_stats", "v3"];
 const CACHE_TTL_MS = 10 * 60 * 1000;
 const MEMOATO_FETCH_TIMEOUT_MS = 800;
 
@@ -61,6 +61,21 @@ function toNullableNumber(value: unknown): number | null {
   return null;
 }
 
+function toCategoryStatValue(
+  value: unknown,
+  aggregation?: string,
+): number | null {
+  const numericValue = toNullableNumber(value);
+  if (aggregation === "last" && numericValue === 0) return null;
+  return numericValue;
+}
+
+function isFreshStats(value: MemoatoPublicStats): boolean {
+  const generatedAt = Date.parse(value.generatedAt);
+  return Number.isFinite(generatedAt) &&
+    Date.now() - generatedAt < CACHE_TTL_MS;
+}
+
 function normalizeMemoatoPublicStats(
   value: unknown,
 ): MemoatoPublicStats | null {
@@ -73,18 +88,19 @@ function normalizeMemoatoPublicStats(
     if (typeof cat.slug !== "string" || typeof cat.title !== "string") {
       return [];
     }
+    const aggregation = typeof cat.aggregation === "string"
+      ? cat.aggregation
+      : undefined;
     return [{
       slug: cat.slug,
       title: cat.title,
       unit: typeof cat.unit === "string" ? cat.unit : null,
-      aggregation: typeof cat.aggregation === "string"
-        ? cat.aggregation
-        : undefined,
+      aggregation,
       url: typeof cat.url === "string" ? cat.url : undefined,
-      today: toNullableNumber(cat.today),
-      week: toNullableNumber(cat.week),
-      month: toNullableNumber(cat.month),
-      year: toNullableNumber(cat.year),
+      today: toCategoryStatValue(cat.today, aggregation),
+      week: toCategoryStatValue(cat.week, aggregation),
+      month: toCategoryStatValue(cat.month, aggregation),
+      year: toCategoryStatValue(cat.year, aggregation),
     }];
   });
 
@@ -110,7 +126,9 @@ export async function getMemoatoPublicStats(
     return await refreshMemoatoPublicStats(normalizedCached);
   }
 
-  if (normalizedCached) return normalizedCached;
+  if (normalizedCached && isFreshStats(normalizedCached)) {
+    return normalizedCached;
+  }
 
   return await refreshMemoatoPublicStats(normalizedCached);
 }
