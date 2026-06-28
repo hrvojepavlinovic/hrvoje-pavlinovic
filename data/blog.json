@@ -1,6 +1,40 @@
 {
-  "lastId": 7,
+  "lastId": 8,
   "articles": [
+    {
+      "id": 8,
+      "title": "Memory Is Not Enforcement",
+      "slug": "memory-is-not-enforcement",
+      "author": "Hrvoje Pavlinovic",
+      "tags": [
+        "AI",
+        "Agents",
+        "Memory",
+        "Context"
+      ],
+      "shortDescription": "Why agent memory is useful, but not enough. The real work is source-backed context, permissions, stale-context detection, and eval traces.",
+      "fullText": "<p>I keep seeing the same mistake in AI agent discussions: people talk about memory as if remembering something is the same as enforcing it.</p>\n\n<p>It is not.</p>\n\n<p>A memory item can say that a repo uses a certain deploy flow. It can remember that a customer has a special rule. It can store a summary of a Slack decision from three weeks ago. That may be useful. But none of that proves the information is current, allowed, complete, or safe to use for the task in front of the agent.</p>\n\n<p>This is the part I think software teams will have to get serious about.</p>\n\n<h2>Memory can become folklore</h2>\n\n<p>Every engineering team already has folklore. Someone remembers why a service works a certain way. Someone knows the hidden production rule. Someone knows which README is outdated. Someone remembers the real reason a feature was abandoned.</p>\n\n<p>AI memory can accidentally automate that folklore.</p>\n\n<p>If an agent stores a sentence like <em>payments must use the old retry path</em>, that sentence becomes dangerous the moment the retry path changes. If the agent cannot tell where the sentence came from, when it was last confirmed, and what newer decision might replace it, the memory is just a confident rumor.</p>\n\n<p>That is why I do not think memory should be treated as a magic notebook. A durable memory item should look more like a small record in a system:</p>\n\n<ul>\n  <li>source: which PR, ticket, doc, incident, or human decision created it</li>\n  <li>scope: which repo, team, customer, user, or environment it applies to</li>\n  <li>time: when it was written and when it was last verified</li>\n  <li>status: current, stale, superseded, deprecated, or needs review</li>\n  <li>permission: who or what is allowed to use it</li>\n</ul>\n\n<p>Without that, the agent is not operating with memory. It is operating with vibes.</p>\n\n<h2>Permissions are context too</h2>\n\n<p>People usually separate context from permissions. I think that is wrong for agents.</p>\n\n<p>If an agent can read a fact, call a tool, and act on the result, permission is part of the context. The model should not get to see every internal note just because it might be useful. A coding agent fixing a public landing page does not need private customer support history. A sales agent does not need arbitrary production access. A personal assistant does not need every note from every area of life for every task.</p>\n\n<p>The system around the agent needs to know what is allowed before the model starts reasoning.</p>\n\n<p>This matters even more as tool protocols like MCP make integration easier. Easier tool access is good, but it also increases the blast radius of sloppy permissions. The safer default is boring: least privilege, explicit approval for sensitive actions, audit logs, and clear boundaries between read and write operations.</p>\n\n<h2>Read-first is underrated</h2>\n\n<p>I still think most teams should start with read-first agents.</p>\n\n<p>Before giving an agent broad write access, make it excellent at reading the right sources. Let it inspect the repo, the ticket, the incident, the relevant docs, recent PRs, and deployment constraints. Then make it explain its sources.</p>\n\n<p>The best version of this workflow is not an agent that says <em>I remember this</em>. It is an agent that says: I found this rule in this runbook, it was last updated after this incident, this ticket confirms the current behavior, and this older Slack decision appears to be superseded.</p>\n\n<p>That is a very different trust level.</p>\n\n<h2>Evals should check the path, not only the answer</h2>\n\n<p>A final answer can look correct for the wrong reason. That is one of the annoying parts of AI-assisted work.</p>\n\n<p>If an agent fixes a bug, I want to know more than whether the patch compiles. I want to know which context it used. Did it read the current ticket? Did it rely on a stale memory? Did it call a tool it should not have called? Did it ignore a newer source? Could a human replay the path?</p>\n\n<p>This is why traces matter. A useful eval for agents should include the path: memory reads, source retrieval, tool calls, permission checks, rejected context, and final output. The question is not only <em>did it work?</em> The question is <em>did it work for a reason we can trust?</em></p>\n\n<h2>What I want from agent infrastructure</h2>\n\n<p>The infrastructure I want is not flashy.</p>\n\n<ul>\n  <li>Every durable memory has a source.</li>\n  <li>Every source has freshness and scope.</li>\n  <li>Every sensitive fact has permission metadata.</li>\n  <li>Every agent run leaves a trace.</li>\n  <li>Every important decision can be superseded by a newer one.</li>\n  <li>Every risky write action has a review boundary.</li>\n</ul>\n\n<p>That is not as exciting as a demo where an agent builds an app from one prompt. But it is the kind of system I would trust near production.</p>\n\n<h2>The bet</h2>\n\n<p>My bet is that agent memory will become less like a notes app and more like a small operating layer for context.</p>\n\n<p>It will need provenance, permissions, expiration, evals, and observability. It will need to know what to forget. It will need to know when to ask. It will need to make source quality visible instead of hiding it behind a fluent answer.</p>\n\n<p>Memory is useful. But memory is not enforcement.</p>\n\n<p>The real work is building the context system around it.</p>\n\n<h2>Related references</h2>\n\n<ul>\n  <li><a href='https://developers.openai.com/cookbook/examples/agents_sdk/context_personalization' target='_blank' rel='noopener noreferrer'>OpenAI Cookbook: Context Engineering for Personalization</a></li>\n  <li><a href='https://developers.openai.com/codex/memories/chronicle' target='_blank' rel='noopener noreferrer'>OpenAI Chronicle</a></li>\n  <li><a href='https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices' target='_blank' rel='noopener noreferrer'>MCP Security Best Practices</a></li>\n  <li><a href='https://www.braintrust.dev/articles/agent-observability-tracing-tool-calls-memory' target='_blank' rel='noopener noreferrer'>Braintrust on tracing tool calls and memory</a></li>\n</ul>",
+      "createdAt": "2026-06-28T17:15:00.000Z",
+      "seo": {
+        "title": "Memory Is Not Enforcement | Hrvoje Pavlinovic",
+        "description": "Agent memory is useful, but not enough. Reliable AI-assisted software work needs source-backed context, permissions, stale-context detection, and eval traces.",
+        "keywords": [
+          "AI Agents",
+          "Agent Memory",
+          "Context Engineering",
+          "AI Context",
+          "Software Engineering",
+          "MCP Security",
+          "Agent Evals",
+          "AI Observability",
+          "Provenance"
+        ],
+        "author": "Hrvoje Pavlinovic",
+        "image": "https://hrvoje.pavlinovic.com/blog.png",
+        "twitterCard": "summary_large_image",
+        "twitterCreator": "@0xHP10"
+      }
+    },
     {
       "id": 7,
       "title": "The AI Agent Problem Is Not the Model. It Is the Context.",
