@@ -88,12 +88,12 @@ export const handler: Handlers = {
       const pageHeight = 297;
       const contentWidth = pageWidth - margin * 2;
       const bottom = 282;
-      let yPosition = 14;
+      let yPosition = 16;
 
       const ensurePage = (requiredSpace = 12) => {
         if (yPosition + requiredSpace > bottom) {
           doc.addPage();
-          yPosition = 14;
+          yPosition = 16;
         }
       };
 
@@ -104,29 +104,58 @@ export const handler: Handlers = {
         indent = 0,
         extraAfter = 1.5,
       ) => {
-        ensurePage(8);
         doc.setFont("helvetica", fontStyle);
         doc.setFontSize(fontSize);
         doc.setTextColor(0, 0, 0);
         const lines = doc.splitTextToSize(text, contentWidth - indent);
+        const textHeight = lines.length * (fontSize * 0.46) + extraAfter;
+        ensurePage(textHeight);
         doc.text(lines, margin + indent, yPosition);
-        yPosition += lines.length * (fontSize * 0.43) + extraAfter;
+        yPosition += textHeight;
       };
 
-      const addSection = (title: string) => {
-        ensurePage(14);
-        yPosition += yPosition === 14 ? 0 : 2;
+      const estimateTextHeight = (
+        text: string,
+        fontSize = 9,
+        indent = 0,
+        extraAfter = 1.5,
+      ) => {
+        const lines = doc.splitTextToSize(text, contentWidth - indent);
+        return lines.length * (fontSize * 0.46) + extraAfter;
+      };
+
+      const addSection = (title: string, requiredSpace = 28) => {
+        ensurePage(requiredSpace);
+        yPosition += yPosition === 16 ? 0 : 4;
         doc.setFont("helvetica", "bold");
         doc.setFontSize(11);
         doc.setTextColor(0, 0, 0);
         doc.text(title.toUpperCase(), margin, yPosition);
-        yPosition += 4.5;
+        yPosition += 2.5;
+        doc.setDrawColor(190, 190, 190);
+        doc.setLineWidth(0.2);
+        doc.line(margin, yPosition, pageWidth - margin, yPosition);
+        yPosition += 5;
       };
 
-      const addLink = (text: string, url: string) => {
+      const addLink = (
+        text: string,
+        url: string,
+        fontSize = 8.5,
+        fontStyle = "normal",
+        extraAfter = 1.4,
+      ) => {
         const linkY = yPosition;
-        addText(text, 8, "normal", 0, 1);
-        doc.link(margin, linkY - 3, doc.getTextWidth(text), 4, { url });
+        addText(text, fontSize, fontStyle, 0, extraAfter);
+        doc.link(
+          margin,
+          linkY - 3,
+          Math.min(doc.getTextWidth(text), contentWidth),
+          4,
+          {
+            url,
+          },
+        );
       };
 
       const { profile, professionalSummary, skills, experience } = typedCvData;
@@ -145,10 +174,10 @@ export const handler: Handlers = {
         2,
       );
 
-      addSection("Professional Summary");
+      addSection("Professional Summary", 30);
       addText(professionalSummary.description, 9);
 
-      addSection("Core Skills");
+      addSection("Core Skills", 42);
       addText(`Core expertise: ${skills.coreExpertise.join(", ")}`, 9);
       Object.entries(skills.techStack).forEach(([category, items]) => {
         addText(`${category}: ${items.join(", ")}`, 9);
@@ -158,53 +187,97 @@ export const handler: Handlers = {
         8,
       );
 
-      addSection("Professional Experience");
+      addSection("Professional Experience", 48);
       experience.forEach((role) => {
-        ensurePage(24);
-        addText(`${role.title} | ${role.company} | ${role.period}`, 10, "bold");
+        ensurePage(28);
+        addText(
+          `${role.title} | ${role.company} | ${role.period}`,
+          10,
+          "bold",
+          0,
+          2.2,
+        );
         role.achievements.forEach((achievement) => {
-          addText(`- ${achievement}`, 8.5, "normal", 2);
+          addText(`- ${achievement}`, 8.6, "normal", 2, 1.6);
         });
         if (role.technologies?.length) {
-          addText(`Technologies: ${role.technologies.join(", ")}`, 8);
+          addText(
+            `Technologies: ${role.technologies.join(", ")}`,
+            8,
+            "normal",
+            0,
+            2,
+          );
         }
-        yPosition += 1;
+        yPosition += 2;
       });
 
-      addSection("Selected Projects");
+      addSection("Selected Projects", 44);
       typedCvData.personalProjects.forEach((project) => {
-        ensurePage(16);
-        addText(`${project.name} | ${project.url}`, 9, "bold");
-        addText(project.description, 8.5);
-        addText(`Technologies: ${project.technologies.join(", ")}`, 8);
-      });
-
-      addSection("Education");
-      typedCvData.education.forEach((entry) => {
-        addText(`${entry.degree} | ${entry.institution} | ${entry.period}`, 9);
-        entry.details.forEach((detail) =>
-          addText(`- ${detail}`, 8.5, "normal", 2)
+        ensurePage(20);
+        addText(`${project.name} | ${project.url}`, 9.2, "bold", 0, 1.5);
+        addText(project.description, 8.6, "normal", 0, 1.4);
+        addText(
+          `Technologies: ${project.technologies.join(", ")}`,
+          8,
+          "normal",
+          0,
+          2.4,
         );
       });
 
-      addSection("References");
+      addSection("Education", 34);
+      typedCvData.education.forEach((entry) => {
+        addText(
+          `${entry.degree} | ${entry.institution} | ${entry.period}`,
+          9,
+          "normal",
+          0,
+          1.6,
+        );
+        entry.details.forEach((detail) =>
+          addText(`- ${detail}`, 8.5, "normal", 2, 1.4)
+        );
+      });
+
+      addSection("References", 50);
       addText(
         "Written recommendations from engineering leaders and founders I have worked with.",
         9,
+        "normal",
+        0,
+        2.2,
       );
-      typedCvData.references.filter((reference) => reference.person !== "Abhi")
-        .forEach((reference) => {
-          ensurePage(24);
-          addLink(
-            `${reference.person} - ${reference.company} - ${reference.title}`,
-            reference.url,
+      typedCvData.references.forEach((reference) => {
+        const referenceHeight =
+          estimateTextHeight(reference.person, 9.2, 0, 0.8) +
+          estimateTextHeight(reference.title, 8.3, 0, 0.8) +
+          estimateTextHeight(`LinkedIn: ${reference.url}`, 8, 0, 0.8) +
+          estimateTextHeight(
+            `Company: ${reference.company} - ${reference.companyUrl}`,
+            8,
+            0,
+            1.2,
+          ) +
+          estimateTextHeight(
+            `Recommendation: "${reference.quote}"`,
+            8.6,
+            0,
+            3,
           );
-          addText(`Recommendation: "${reference.quote}"`, 8.5, "normal", 0, 1);
-          addLink(
-            `Company: ${reference.companyUrl}`,
-            reference.companyUrl,
-          );
-        });
+        ensurePage(referenceHeight);
+        addText(reference.person, 9.2, "bold", 0, 0.8);
+        addText(reference.title, 8.3, "normal", 0, 0.8);
+        addLink(`LinkedIn: ${reference.url}`, reference.url, 8, "normal", 0.8);
+        addLink(
+          `Company: ${reference.company} - ${reference.companyUrl}`,
+          reference.companyUrl,
+          8,
+          "normal",
+          1.2,
+        );
+        addText(`Recommendation: "${reference.quote}"`, 8.6, "normal", 0, 3);
+      });
 
       const pageCount = doc.getNumberOfPages();
       for (let page = 1; page <= pageCount; page += 1) {
