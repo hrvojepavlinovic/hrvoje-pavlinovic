@@ -395,26 +395,30 @@ export default function CVPage() {
                 </p>
                 <div class="mt-7 border-t border-gray-100 pt-6 dark:border-gray-800">
                   <div class="space-y-1.5">
-                    <a
-                      href={reference.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="flex w-fit items-center gap-1.5 text-sm font-semibold text-gray-900 transition-colors hover:text-orange-500 dark:text-gray-100"
-                      aria-label={`${reference.person} on LinkedIn`}
-                    >
-                      <span>{reference.person}</span>
-                      <ExternalLinkIcon />
-                    </a>
-                    <a
-                      href={reference.companyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="flex w-fit items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 transition-colors hover:text-orange-600"
-                      aria-label={`${reference.company} website`}
-                    >
-                      <span>{reference.company}</span>
-                      <ExternalLinkIcon />
-                    </a>
+                    <div>
+                      <a
+                        href={reference.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 transition-colors hover:text-orange-500 dark:text-gray-100"
+                        aria-label={`${reference.person} on LinkedIn`}
+                      >
+                        <span>{reference.person}</span>
+                        <ExternalLinkIcon />
+                      </a>
+                    </div>
+                    <div>
+                      <a
+                        href={reference.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-orange-500 transition-colors hover:text-orange-600"
+                        aria-label={`${reference.company} website`}
+                      >
+                        <span>{reference.company}</span>
+                        <ExternalLinkIcon />
+                      </a>
+                    </div>
                   </div>
                   <p class="mt-3 text-xs leading-relaxed text-gray-500 dark:text-gray-500">
                     {reference.title}
