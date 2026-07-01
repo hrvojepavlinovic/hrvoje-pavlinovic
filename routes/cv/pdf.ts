@@ -400,7 +400,7 @@ export const handler: Handlers = {
       yPosition += 1;
 
       typedCvData.references.forEach((reference) => {
-        checkNewPage(26);
+        checkNewPage(30);
 
         yPosition = addText(
           `${reference.person} - ${reference.company}`,
@@ -435,23 +435,20 @@ export const handler: Handlers = {
         doc.setFont("helvetica", "normal");
         doc.setTextColor(100, 100, 100);
 
-        const linkedinText = "LinkedIn profile";
-        const separatorText = " | ";
-        const companyText = "Company website";
-        const linkY = yPosition;
-        doc.text(linkedinText, margin, linkY);
-        const linkedinWidth = doc.getTextWidth(linkedinText);
-        doc.link(margin, linkY - 3, linkedinWidth, 3, { url: reference.url });
+        const linkedinText = `LinkedIn: ${reference.url}`;
+        const companyText = `Company: ${reference.companyUrl}`;
+        const linkedinY = yPosition;
+        doc.text(linkedinText, margin, linkedinY);
+        doc.link(margin, linkedinY - 3, doc.getTextWidth(linkedinText), 3, {
+          url: reference.url,
+        });
 
-        const companyX = margin + linkedinWidth +
-          doc.getTextWidth(separatorText);
-        doc.text(separatorText, margin + linkedinWidth, linkY);
-        doc.text(companyText, companyX, linkY);
-        const companyWidth = doc.getTextWidth(companyText);
-        doc.link(companyX, linkY - 3, companyWidth, 3, {
+        const companyY = linkedinY + 3.5;
+        doc.text(companyText, margin, companyY);
+        doc.link(margin, companyY - 3, doc.getTextWidth(companyText), 3, {
           url: reference.companyUrl,
         });
-        yPosition += 4;
+        yPosition += 7.5;
 
         yPosition += 1;
       });
