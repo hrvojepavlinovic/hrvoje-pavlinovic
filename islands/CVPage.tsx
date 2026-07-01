@@ -400,7 +400,7 @@ export default function CVPage() {
                   "{reference.quote}"
                 </p>
                 <div class="mt-7 border-t border-gray-100 pt-6 dark:border-gray-800">
-                  <div class="space-y-1.5">
+                  <div class="space-y-1">
                     <div>
                       <a
                         href={reference.url}
@@ -413,6 +413,9 @@ export default function CVPage() {
                         <ExternalLinkIcon />
                       </a>
                     </div>
+                    <p class="text-xs leading-relaxed text-gray-500 dark:text-gray-500">
+                      {reference.title}
+                    </p>
                     <div>
                       <a
                         href={reference.companyUrl}
@@ -426,9 +429,6 @@ export default function CVPage() {
                       </a>
                     </div>
                   </div>
-                  <p class="mt-3 text-xs leading-relaxed text-gray-500 dark:text-gray-500">
-                    {reference.title}
-                  </p>
                 </div>
               </article>
             ))}
