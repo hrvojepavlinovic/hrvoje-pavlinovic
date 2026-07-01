@@ -177,7 +177,7 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
 
   return (
     <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
-      <section class="max-w-5xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
+      <section class="max-w-6xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
         <div class="space-y-8">
           <div class="space-y-4">
             <div class="space-y-2">
@@ -189,10 +189,10 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                   loading="eager"
                 />
               </div>
-              <h1 class="mx-auto text-center text-[24px] font-semibold leading-tight tracking-tight text-gray-900 dark:text-gray-100 sm:text-[28px] md:text-[48px]">
+              <h1 class="mx-auto text-center text-[24px] font-semibold leading-tight tracking-tight text-gray-900 [text-wrap:balance] dark:text-gray-100 sm:text-[28px] md:text-[42px] xl:text-[48px]">
                 {heroTitle}
               </h1>
-              <p class="mx-auto text-center text-[13px] font-semibold text-gray-700 dark:text-gray-200 sm:text-[15px] md:text-lg">
+              <p class="mx-auto text-center text-[13px] font-semibold text-gray-700 [text-wrap:balance] dark:text-gray-200 sm:text-[15px] md:text-base xl:text-lg">
                 {heroStat}
               </p>
             </div>
