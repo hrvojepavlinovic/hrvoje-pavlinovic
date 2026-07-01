@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Resume",
-    "subtitle": "12+ years of building scalable software and blockchain solutions"
+    "subtitle": "13+ years building backend platforms, commerce systems, and AI-assisted engineering workflows"
   },
   "profile": {
     "name": "Hrvoje Pavlinovic",
@@ -13,11 +13,11 @@
     "location": "Split, Croatia (EU)",
     "stats": [
       {
-        "value": "12+",
+        "value": "13+",
         "label": "Years Experience"
       },
       {
-        "value": "15+",
+        "value": "20+",
         "label": "Projects"
       },
       {
@@ -31,57 +31,65 @@
     ]
   },
   "professionalSummary": {
-    "description": "Senior Backend Engineer with 12+ years developing scalable serverless architecture and leading technical teams. Expertise in AWS infrastructure, distributed systems, and Web3/blockchain technologies. Proven track record scaling systems to 1.7B+ ad impressions, optimizing performance for thousands of concurrent requests, and implementing security best practices. Experience mentoring teams and translating complex technical concepts for stakeholders."
+    "description": "Senior Software Engineer with 13+ years of experience building backend platforms, distributed commerce systems, and production workflows for small, fast-moving teams. Strong track record across live commerce, auctions, payments, shipping, real-time video, search, event-driven services, and AWS infrastructure. Currently building complex backend systems at Tilt while using Codex, Cursor, Claude, MCPs, and carefully scoped credentials to make AI-assisted delivery faster without weakening production safety. Known for independent ownership, clear communication, reliable delivery, and turning ambiguous product problems into shipped systems."
   },
   "skills": {
     "coreExpertise": [
-      "Serverless Architecture",
-      "Scalability Solutions",
-      "Performance Optimization",
-      "DevOps Practices",
-      "Web3/Blockchain",
+      "Backend Platform Engineering",
+      "Distributed Commerce Systems",
+      "AI-Assisted Engineering Workflows",
+      "Payments and Shipping Integrations",
+      "Performance and Reliability",
       "System Design"
     ],
     "techStack": {
       "Backend": [
         "Node.js",
         "TypeScript",
-        "Express",
         "Nest.js",
+        "Express",
         "GraphQL",
+        "Hasura",
         "REST APIs"
       ],
       "Infrastructure": [
-        "AWS (CDK, Lambda, ECS)",
+        "AWS CDK",
+        "ECS",
+        "Lambda",
+        "SNS/SQS",
         "CI/CD",
-        "Docker",
-        "Kubernetes",
-        "Terraform"
+        "Docker"
       ],
       "Databases": [
         "PostgreSQL",
         "MongoDB",
         "Redis",
+        "OpenSearch",
+        "Typesense",
         "Query Optimization"
       ],
       "Security": [
-        "OWASP",
-        "Smart Contracts Audit",
         "Auth",
+        "Scoped Credentials",
+        "Webhook Verification",
+        "Production Guardrails",
         "Data Protection"
       ],
-      "Web3/Blockchain": [
-        "Ethereum",
-        "Bitcoin",
-        "Smart Contracts",
-        "TonConnect",
-        "Ethers"
+      "AI/Workflow": [
+        "Codex",
+        "Cursor",
+        "Claude",
+        "MCP",
+        "Linear",
+        "Slack"
       ],
       "Frontend": [
         "React",
         "Next.js",
+        "SvelteKit",
+        "Vue",
         "Tailwind CSS",
-        "Static Site Generation"
+        "Fresh"
       ]
     }
   },
@@ -92,20 +100,35 @@
       "companyUrl": "https://tilt.app",
       "period": "2025 - Present",
       "achievements": [
-        "Building and scaling backend systems powering Tilt's interactive commerce platform, covering livestreams, auctions, payments, and personalization features.",
-        "Architect scalable APIs and event-driven services that keep partner integrations and pricing pipelines responsive under real-world traffic.",
-        "Improve performance, reliability, and developer experience while shaping backend best practices across the engineering team."
+        "Build and operate backend systems for Tilt's live commerce platform across livestreaming, auctions, product inventory, payments, shipping, seller tooling, and real-time buyer workflows.",
+        "Ship changes inside a large TypeScript backend monorepo with 50+ services and shared libraries, spanning NestJS, Express, Hasura, PostgreSQL, Redis, AWS ECS/Lambda, SNS/SQS, S3, and AppConfig.",
+        "Delivered complex commerce integrations and operational fixes across Stripe, Shippo, Royal Mail, InPost, Hasura schema exposure, auction events, live rooms, product ingestion, and mobile seller workflows.",
+        "Used Codex, Cursor, Claude, MCPs, Linear, Slack, Sentry, Stripe, Shippo, and AWS tooling to accelerate implementation, debugging, and release work while keeping credentials scoped and production actions explicit.",
+        "Introduced and improved AI-assisted engineering workflows, including Claude/Codex repo skills, ticket-to-implementation experiments, CI feedback loops, and safer handoff patterns for a fast-moving distributed team.",
+        "Recognized internally as a reliable engineer who moves quickly, collaborates well across product and engineering, and handles ambiguous backend problems with strong ownership."
       ],
       "technologies": [
         "Node.js",
+        "TypeScript",
         "NestJS",
+        "Express",
         "Hasura",
         "GraphQL",
         "PostgreSQL",
+        "Redis",
         "AWS",
         "CDK",
+        "ECS",
+        "Lambda",
+        "SNS/SQS",
         "Video Streaming",
         "Stripe",
+        "Shippo",
+        "Sentry",
+        "Codex",
+        "Cursor",
+        "Claude",
+        "MCP",
         "System Architecture"
       ],
       "isHighlight": true
@@ -116,13 +139,11 @@
       "companyUrl": "https://reneverse.io",
       "period": "2023 - 2025",
       "achievements": [
-        "Architect microservices infrastructure supporting interoperable gaming assets across multiple blockchain networks",
-        "Scale mobile backend systems to handle 1.7B+ ad impressions monthly with 99.9% uptime and sub-200ms response times",
-        "Lead third-party API integration projects with Unity and UE SDKs, significantly reducing integration time",
-        "Explain blockchain concepts to gaming partners and stakeholders, enabling successful technical integrations",
-        "Execute DevOps practices using AWS CDK, improving deployment frequency by 3x and reducing deployment time by 50%",
-        "Mentor team of 4 developers, contributing to a significant reduction in time-to-productivity for new hires",
-        "Consolidate legacy architecture by unifying 6 repositories into monorepo, reducing build time by 50%"
+        "Architected backend services for an in-game advertising and gaming assets platform used by mobile game integrations.",
+        "Scaled ad engagement and targeting systems to handle 1.7B+ monthly impressions at peak traffic with real-time reporting needs.",
+        "Led integrations for Unity and Unreal Engine SDKs, translating partner requirements into reliable backend APIs and data flows.",
+        "Built AWS CDK infrastructure, GraphQL APIs, background processing, and operational tooling for a small startup engineering team.",
+        "Mentored developers, improved delivery practices, and consolidated legacy repositories into a more maintainable monorepo."
       ],
       "technologies": [
         "Node.js",
@@ -132,7 +153,8 @@
         "ECS",
         "Docker",
         "PostgreSQL",
-        "Smart Contracts"
+        "Serverless",
+        "Monorepo"
       ],
       "isHighlight": true
     },
@@ -142,17 +164,15 @@
       "companyUrl": "https://cryptotoday.com",
       "period": "2024 - 2025",
       "achievements": [
-        "Architect scalable AWS infrastructure using CDK, ECS, and serverless functions for crypto discovery platform",
-        "Optimize database performance for real-time price scraping from 20+ exchanges, use smart caching and indexing to improve query speed",
-        "Build Ethereum-based decentralized voting engine with zero downtime",
-        "Present complex blockchain voting mechanisms to non-technical stakeholders, securing project approval",
-        "Integrate mobile backend for Telegram mini-app battle-tested for 10K+ daily active users"
+        "Built backend and infrastructure for a crypto discovery product, covering real-time market data ingestion, ranking, and Telegram mini-app support.",
+        "Optimized database access for price scraping from 20+ exchanges with indexing, caching, and query improvements.",
+        "Implemented voting and community mechanisms while keeping non-technical stakeholders aligned on trade-offs and delivery scope.",
+        "Integrated a mobile backend for Telegram mini-app workflows used by a high-traffic consumer audience."
       ],
       "technologies": [
         "Next.js",
         "MongoDB",
         "PostgreSQL",
-        "Ethereum",
         "TonConnect",
         "AWS CDK",
         "ECS"
@@ -271,9 +291,27 @@
 
   "personalProjects": [
     {
+      "name": "Trustworthy Agent Memory",
+      "url": "https://github.com/hrvojepavlinovic/trustworthy-agent-memory",
+      "description": "Research notebook on reliable context systems for AI-assisted software teams, focused on provenance, freshness, permissions, contradiction handling, memory policy, and evals.",
+      "technologies": [
+        "AI",
+        "Context Systems",
+        "Evals",
+        "GitHub",
+        "Documentation"
+      ]
+    },
+    {
+      "name": "Memoato",
+      "url": "https://memoato.com",
+      "description": "AI-powered personal memory and life tracking platform with natural-language capture, automated categorization, searchable history, and insight dashboards.",
+      "technologies": ["Wasp", "Postgres", "Redis", "AI", "Stripe"]
+    },
+    {
       "name": "PLAYGRND",
       "url": "https://playgrnd.app",
-      "description": "Amateur football leagues and tournaments management platform with player profiles and social features. Aiming to bring back football to the people.",
+      "description": "Amateur football league and tournament platform with player profiles, standings, match results, and community-first local sports workflows.",
       "technologies": ["Go", "Postgres", "Redis", "SvelteKit", "Hetzner"]
     },
     {
@@ -283,28 +321,61 @@
       "technologies": ["Next.js", "TypeScript", "Postgres", "Hetzner"]
     },
     {
-      "name": "Memoato",
-      "url": "https://memoato.com",
-      "description": "AI-powered life tracking platform with voice/text input, automated categorization, and intelligent insights dashboard replacing 5+ productivity apps.",
-      "technologies": ["SvelteKit", "AI", "Postgres", "Redis", "Stripe"]
-    },
-    {
       "name": "Personal Portfolio",
       "url": "https://hrvoje.pavlinovic.com",
-      "description": "Modern personal brand platform built with cutting-edge Deno/Fresh stack, featuring real-time analytics, integrated project showcase, and technical depth demonstration.",
+      "description": "Personal platform with configurable CV/PDF generation, writing, analytics, project showcase, and experiments around developer tooling and AI-assisted workflows.",
       "technologies": ["Deno", "KV", "Fresh", "Tailwind"]
     },
     {
-      "name": "XXI Today",
-      "url": "https://xxi.today",
-      "description": "Sunsetted Bitcoin wallet and .btc domain explorer experiment, built around XVerse integration and simple lookup flows.",
-      "technologies": ["T3", "Postgres", "Bitcoin", "Lightning"]
+      "name": "HILLS Lab",
+      "url": "https://hills-lab.hr",
+      "description": "Independent engineering studio for backend systems, applied AI workflows, infrastructure experiments, and small product bets.",
+      "technologies": ["Backend", "Infra", "AI", "Product"]
+    }
+  ],
+
+  "references": [
+    {
+      "company": "Ericsson Nikola Tesla",
+      "person": "Ivica Vidovic",
+      "title": "Senior Software Engineering Manager, Head of UDM Operations at Ericsson Nikola Tesla; currently board member at Abysalto",
+      "url": "https://www.linkedin.com/in/ivica-vidovic/",
+      "quote": "Hrvoje stood out early in his career because he was always eager to learn, challenge the status quo, and take on responsibilities beyond his role. His curiosity, initiative, and drive to improve things made it clear that he had the potential to grow into a strong engineering leader."
     },
     {
-      "name": "Apes Club",
-      "url": "https://apes.club",
-      "description": "Sunsetted Solana token-launcher experiment focused on dashboards, creator rankings, and risk-aware meme-coin discovery.",
-      "technologies": ["Solana", "Web3", "TypeScript", "DeFi", "Rust"]
+      "company": "Profico",
+      "person": "Ante Matijaca",
+      "title": "Co-founder of Profico",
+      "url": "https://www.linkedin.com/in/antematijaca/",
+      "quote": "During his time at Profico, Hrvoje proved to be someone we could truly rely on. He was not afraid to take responsibility, step outside his comfort zone, and push new initiatives that helped move things forward."
+    },
+    {
+      "company": "Rimac Automobili",
+      "person": "Denis Grahovac",
+      "title": "Engineering Manager at Rimac then; now Director of Software Engineering at Toming",
+      "url": "https://www.linkedin.com/in/denis-grahovac/",
+      "quote": "Hrvoje was a reliable and hard-working engineer who adapted well to the demanding and fast-moving environment at Rimac. What stood out was not only his ability to get things done, but also how easygoing and collaborative he was with the people around him."
+    },
+    {
+      "company": "Povio",
+      "person": "Goran Mladenovic",
+      "title": "Head of Freelance at Povio",
+      "url": "https://www.linkedin.com/in/goran-mladenovic/",
+      "quote": "Hrvoje is a pleasure to work with, open, professional, and transparent in his communication, and someone who reliably delivered on every agreed scope."
+    },
+    {
+      "company": "ReneVerse",
+      "person": "Vladan Petrovic",
+      "title": "CTO at ReneVerse; currently Software Architect at Incode",
+      "url": "https://www.linkedin.com/in/vladanpetrovic/",
+      "quote": "Hrvoje is a top-tier software engineer who makes a next-level impact. At ReneVerse, he was key to developing our core Web2 and Web3 services, most notably architecting a sophisticated ad engagement data system on AWS that powered our real-time targeting. His mastery of serverless, GraphQL, and blockchain integration is matched by his excellent problem-solving and communication skills. He is also a proactive collaborator and a natural mentor who elevates the entire team. Any team would be lucky to have him."
+    },
+    {
+      "company": "Tilt",
+      "person": "Abhi",
+      "title": "CEO at Tilt",
+      "url": "https://www.linkedin.com/in/abhinavant",
+      "quote": "Current-client reference available on request. Internal feedback has repeatedly highlighted the quality and speed of Hrvoje's work across several projects."
     }
   ],
 

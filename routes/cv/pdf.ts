@@ -27,14 +27,7 @@ interface ProfessionalSummary {
   description: string;
 }
 
-interface TechStack {
-  Backend: string[];
-  Infrastructure: string[];
-  Databases: string[];
-  Security: string[];
-  "Web3/Blockchain": string[];
-  Frontend: string[];
-}
+type TechStack = Record<string, string[]>;
 
 interface Skills {
   coreExpertise: string[];
@@ -65,6 +58,14 @@ interface PersonalProject {
   technologies: string[];
 }
 
+interface Reference {
+  company: string;
+  person: string;
+  title: string;
+  url: string;
+  quote: string;
+}
+
 interface CVData {
   hero: Hero;
   profile: Profile;
@@ -72,21 +73,11 @@ interface CVData {
   skills: Skills;
   experience: Experience[];
   personalProjects: PersonalProject[];
+  references: Reference[];
   education: Education[];
 }
 
 // Projects Data Types
-interface Project {
-  name: string;
-  description: string;
-  url: string;
-  technologies: string[];
-}
-
-interface ProjectsData {
-  projects: Project[];
-}
-
 // Type the imported data
 const typedCvData = cvData as unknown as CVData;
 
@@ -352,6 +343,8 @@ export const handler: Handlers = {
       yPosition += 1;
 
       typedCvData.personalProjects.forEach((project) => {
+        checkNewPage(20);
+
         // Project header
         yPosition = addText(
           project.name,
@@ -400,9 +393,62 @@ export const handler: Handlers = {
         yPosition += 2.5;
       });
 
+      // References Section
+      yPosition = addSectionHeader("References", yPosition);
+
+      yPosition += 1;
+
+      typedCvData.references.forEach((reference) => {
+        checkNewPage(26);
+
+        yPosition = addText(
+          `${reference.person} - ${reference.company}`,
+          margin,
+          yPosition,
+          contentWidth,
+          10,
+          "bold",
+        );
+
+        yPosition = addText(
+          reference.title,
+          margin,
+          yPosition,
+          contentWidth,
+          8,
+          "normal",
+          [247, 147, 26],
+        );
+
+        yPosition = addText(
+          reference.quote,
+          margin,
+          yPosition + 1,
+          contentWidth,
+          8,
+          "normal",
+          [50, 50, 50],
+        );
+
+        yPosition = addText(
+          reference.url,
+          margin,
+          yPosition,
+          contentWidth,
+          7,
+          "normal",
+          [100, 100, 100],
+        );
+
+        const linkWidth = doc.getTextWidth(reference.url);
+        doc.link(margin, yPosition - 4, linkWidth, 3, { url: reference.url });
+
+        yPosition += 2;
+      });
+
       // Education Section
       // Ensure enough space for header + content to avoid orphan headers
-      checkNewPage(45);
+      checkNewPage(28);
       yPosition = addSectionHeader("Education", yPosition, false);
 
       yPosition += 1;

@@ -1,5 +1,4 @@
 import cvData from "../data/cv.json" with { type: "json" };
-import projectsData from "../data/projects.json" with { type: "json" };
 
 interface Stat {
   value: string;
@@ -26,14 +25,7 @@ interface ProfessionalSummary {
   description: string;
 }
 
-interface TechStack {
-  Backend: string[];
-  Infrastructure: string[];
-  Databases: string[];
-  Security: string[];
-  "Web3/Blockchain": string[];
-  Frontend: string[];
-}
+type TechStack = Record<string, string[]>;
 
 interface Skills {
   coreExpertise: string[];
@@ -64,30 +56,40 @@ interface Project {
   technologies: string[];
 }
 
+interface Reference {
+  company: string;
+  person: string;
+  title: string;
+  url: string;
+  quote: string;
+}
+
 interface CVData {
   hero: Hero;
   profile: Profile;
   professionalSummary: ProfessionalSummary;
   skills: Skills;
   experience: Experience[];
+  personalProjects: Project[];
+  references: Reference[];
   education: Education[];
 }
 
-interface ProjectsData {
-  projects: Project[];
-}
-
 const typedCvData = cvData as unknown as CVData;
-const typedProjectsData = projectsData as unknown as ProjectsData;
 
 export default function CVPage() {
-  const { hero, profile, professionalSummary, skills, experience, education } =
-    typedCvData;
-  const { projects } = typedProjectsData;
+  const {
+    hero,
+    profile,
+    professionalSummary,
+    skills,
+    experience,
+    personalProjects,
+    references,
+    education,
+  } = typedCvData;
 
-  const techStackEntries = Object.entries(skills.techStack) as Array<
-    [keyof TechStack, string[]]
-  >;
+  const techStackEntries = Object.entries(skills.techStack);
 
   return (
     <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
@@ -148,6 +150,28 @@ export default function CVPage() {
               >
                 <path d="M12 5v14" />
                 <path d="M19 12l-7 7-7-7" />
+              </svg>
+            </a>
+            <a
+              href="/cv/ats"
+              target="_blank"
+              class="group inline-flex items-center gap-2 rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-all hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-100 dark:hover:text-gray-100"
+            >
+              ATS PDF
+              <svg
+                class="h-4 w-4 transition-transform"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <path d="M14 2v6h6" />
+                <path d="M9 15h6" />
+                <path d="M9 18h6" />
+                <path d="M9 12h2" />
               </svg>
             </a>
             <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
@@ -320,7 +344,7 @@ export default function CVPage() {
           </div>
 
           <div class="grid gap-6 md:grid-cols-2">
-            {projects.map((project) => (
+            {personalProjects.map((project) => (
               <a
                 key={project.name}
                 href={project.url}
@@ -346,6 +370,49 @@ export default function CVPage() {
                   ))}
                 </div>
               </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="border-t border-gray-100 dark:border-gray-800">
+        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
+          <div class="space-y-3">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              References
+            </h2>
+            <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+              Recommendations from engineering leaders and founders I have
+              worked with.
+            </p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2">
+            {references.map((reference) => (
+              <article
+                key={`${reference.company}-${reference.person}`}
+                class="group rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600 dark:hover:bg-black"
+              >
+                <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                  "{reference.quote}"
+                </p>
+                <div class="mt-5 border-t border-gray-100 pt-4 dark:border-gray-800">
+                  <a
+                    href={reference.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm font-semibold text-gray-900 transition-colors hover:text-orange-500 dark:text-gray-100"
+                  >
+                    {reference.person}
+                  </a>
+                  <p class="mt-1 text-xs uppercase tracking-wide text-orange-500">
+                    {reference.company}
+                  </p>
+                  <p class="mt-2 text-xs leading-relaxed text-gray-500 dark:text-gray-500">
+                    {reference.title}
+                  </p>
+                </div>
+              </article>
             ))}
           </div>
         </div>

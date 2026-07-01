@@ -23,6 +23,7 @@ import * as $cover from "./routes/cover.tsx";
 import * as $cover_type_ from "./routes/cover/[type].ts";
 import * as $cover_generate from "./routes/cover/generate.ts";
 import * as $cv from "./routes/cv.tsx";
+import * as $cv_ats from "./routes/cv/ats.ts";
 import * as $cv_pdf from "./routes/cv/pdf.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
@@ -67,6 +68,7 @@ const manifest = {
     "./routes/cover/[type].ts": $cover_type_,
     "./routes/cover/generate.ts": $cover_generate,
     "./routes/cv.tsx": $cv,
+    "./routes/cv/ats.ts": $cv_ats,
     "./routes/cv/pdf.ts": $cv_pdf,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
