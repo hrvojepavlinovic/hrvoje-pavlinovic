@@ -189,19 +189,20 @@ export const handler: Handlers = {
 
       addSection("References");
       addText(
-        "References and recommendations available from Ericsson Nikola Tesla, Profico, Rimac Automobili, Povio, ReneVerse, and Tilt.",
+        "References and recommendations available from Ericsson Nikola Tesla, Profico, Rimac Automobili, Povio, and ReneVerse.",
         9,
       );
-      typedCvData.references.forEach((reference) => {
-        addLink(
-          `${reference.person} - ${reference.company} - ${reference.title}`,
-          reference.url,
-        );
-        addLink(
-          `${reference.company} website - ${reference.companyUrl}`,
-          reference.companyUrl,
-        );
-      });
+      typedCvData.references.filter((reference) => reference.person !== "Abhi")
+        .forEach((reference) => {
+          addLink(
+            `${reference.person} - ${reference.company} - ${reference.title}`,
+            reference.url,
+          );
+          addLink(
+            `${reference.company} website - ${reference.companyUrl}`,
+            reference.companyUrl,
+          );
+        });
 
       const pageCount = doc.getNumberOfPages();
       for (let page = 1; page <= pageCount; page += 1) {
@@ -210,7 +211,7 @@ export const handler: Handlers = {
         doc.setFontSize(7);
         doc.setTextColor(120, 120, 120);
         doc.text(
-          `Hrvoje Pavlinovic - ATS Resume - Page ${page} of ${pageCount}`,
+          `Hrvoje Pavlinovic - Resume - Page ${page} of ${pageCount}`,
           margin,
           pageHeight - 8,
         );
@@ -222,7 +223,7 @@ export const handler: Handlers = {
         headers: {
           "Content-Type": "application/pdf",
           "Content-Disposition":
-            'attachment; filename="Hrvoje_Pavlinovic_ATS_Resume.pdf"',
+            'attachment; filename="Hrvoje_Pavlinovic_Resume.pdf"',
           "Cache-Control": "no-cache",
         },
       });
