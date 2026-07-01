@@ -337,6 +337,7 @@
   "references": [
     {
       "company": "Ericsson Nikola Tesla",
+      "companyUrl": "https://ericsson.hr",
       "person": "Ivica Vidovic",
       "title": "Senior Software Engineering Manager, Head of UDM Operations at Ericsson Nikola Tesla; currently board member at Abysalto",
       "url": "https://www.linkedin.com/in/ivica-vidovic/",
@@ -344,6 +345,7 @@
     },
     {
       "company": "Profico",
+      "companyUrl": "https://profi.co",
       "person": "Ante Matijaca",
       "title": "Co-founder of Profico",
       "url": "https://www.linkedin.com/in/antematijaca/",
@@ -351,6 +353,7 @@
     },
     {
       "company": "Rimac Automobili",
+      "companyUrl": "https://rimac-automobili.com",
       "person": "Denis Grahovac",
       "title": "Engineering Manager at Rimac then; now Director of Software Engineering at Toming",
       "url": "https://www.linkedin.com/in/denis-grahovac/",
@@ -358,6 +361,7 @@
     },
     {
       "company": "Povio",
+      "companyUrl": "https://povio.com",
       "person": "Goran Mladenovic",
       "title": "Head of Freelance at Povio",
       "url": "https://www.linkedin.com/in/goran-mladenovic/",
@@ -365,6 +369,7 @@
     },
     {
       "company": "ReneVerse",
+      "companyUrl": "https://reneverse.io",
       "person": "Vladan Petrovic",
       "title": "CTO at ReneVerse; currently Software Architect at Incode",
       "url": "https://www.linkedin.com/in/vladanpetrovic/",
@@ -372,10 +377,11 @@
     },
     {
       "company": "Tilt",
+      "companyUrl": "https://tilt.app",
       "person": "Abhi",
       "title": "CEO at Tilt",
       "url": "https://www.linkedin.com/in/abhinavant",
-      "quote": "Current-client reference available on request. Internal feedback has repeatedly highlighted the quality and speed of Hrvoje's work across several projects."
+      "quote": "I have been personally messaged various times about the quality and speed of his work across several projects. Everyone is happy having him onboard."
     }
   ],
 

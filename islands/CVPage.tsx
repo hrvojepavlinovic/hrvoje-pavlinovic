@@ -58,6 +58,7 @@ interface Project {
 
 interface Reference {
   company: string;
+  companyUrl: string;
   person: string;
   title: string;
   url: string;
@@ -150,28 +151,6 @@ export default function CVPage() {
               >
                 <path d="M12 5v14" />
                 <path d="M19 12l-7 7-7-7" />
-              </svg>
-            </a>
-            <a
-              href="/cv/ats"
-              target="_blank"
-              class="group inline-flex items-center gap-2 rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-all hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-100 dark:hover:text-gray-100"
-            >
-              ATS PDF
-              <svg
-                class="h-4 w-4 transition-transform"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <path d="M14 2v6h6" />
-                <path d="M9 15h6" />
-                <path d="M9 18h6" />
-                <path d="M9 12h2" />
               </svg>
             </a>
             <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
@@ -396,19 +375,42 @@ export default function CVPage() {
                 <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
                   "{reference.quote}"
                 </p>
-                <div class="mt-5 border-t border-gray-100 pt-4 dark:border-gray-800">
+                <div class="mt-7 border-t border-gray-100 pt-6 dark:border-gray-800">
                   <a
                     href={reference.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-sm font-semibold text-gray-900 transition-colors hover:text-orange-500 dark:text-gray-100"
+                    class="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 transition-colors hover:text-orange-500 dark:text-gray-100"
+                    aria-label={`${reference.person} on LinkedIn`}
                   >
                     {reference.person}
+                    <span class="inline-flex h-4 min-w-4 items-center justify-center rounded-sm border border-blue-500 px-1 text-[10px] font-bold leading-none text-blue-600 dark:border-blue-400 dark:text-blue-400">
+                      in
+                    </span>
                   </a>
-                  <p class="mt-1 text-xs uppercase tracking-wide text-orange-500">
+                  <a
+                    href={reference.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 transition-colors hover:text-orange-600"
+                    aria-label={`${reference.company} website`}
+                  >
                     {reference.company}
-                  </p>
-                  <p class="mt-2 text-xs leading-relaxed text-gray-500 dark:text-gray-500">
+                    <svg
+                      class="h-3.5 w-3.5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07L11.5 4.43" />
+                      <path d="M14 11a5 5 0 0 0-7.07 0L3.39 14.54a5 5 0 0 0 7.07 7.07l2.04-2.04" />
+                    </svg>
+                  </a>
+                  <p class="mt-3 text-xs leading-relaxed text-gray-500 dark:text-gray-500">
                     {reference.title}
                   </p>
                 </div>

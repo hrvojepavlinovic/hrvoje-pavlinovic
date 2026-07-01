@@ -7,5 +7,6 @@ Disallow: /api/
 Disallow: /_fresh/
 Disallow: /cover/generate
 Disallow: /cv/pdf
+Disallow: /cv/ats
 
 Sitemap: https://hrvoje.pavlinovic.com/sitemap.xml

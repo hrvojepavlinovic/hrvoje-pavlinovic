@@ -44,6 +44,7 @@ interface PersonalProject {
 
 interface Reference {
   company: string;
+  companyUrl: string;
   person: string;
   title: string;
   url: string;
@@ -195,6 +196,10 @@ export const handler: Handlers = {
         addLink(
           `${reference.person} - ${reference.company} - ${reference.title}`,
           reference.url,
+        );
+        addLink(
+          `${reference.company} website - ${reference.companyUrl}`,
+          reference.companyUrl,
         );
       });
 

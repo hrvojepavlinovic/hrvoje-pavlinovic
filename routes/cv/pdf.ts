@@ -60,6 +60,7 @@ interface PersonalProject {
 
 interface Reference {
   company: string;
+  companyUrl: string;
   person: string;
   title: string;
   url: string;
@@ -430,20 +431,29 @@ export const handler: Handlers = {
           [50, 50, 50],
         );
 
-        yPosition = addText(
-          reference.url,
-          margin,
-          yPosition,
-          contentWidth,
-          7,
-          "normal",
-          [100, 100, 100],
-        );
+        doc.setFontSize(7);
+        doc.setFont("helvetica", "normal");
+        doc.setTextColor(100, 100, 100);
 
-        const linkWidth = doc.getTextWidth(reference.url);
-        doc.link(margin, yPosition - 4, linkWidth, 3, { url: reference.url });
+        const linkedinText = "LinkedIn profile";
+        const separatorText = " | ";
+        const companyText = "Company website";
+        const linkY = yPosition;
+        doc.text(linkedinText, margin, linkY);
+        const linkedinWidth = doc.getTextWidth(linkedinText);
+        doc.link(margin, linkY - 3, linkedinWidth, 3, { url: reference.url });
 
-        yPosition += 2;
+        const companyX = margin + linkedinWidth +
+          doc.getTextWidth(separatorText);
+        doc.text(separatorText, margin + linkedinWidth, linkY);
+        doc.text(companyText, companyX, linkY);
+        const companyWidth = doc.getTextWidth(companyText);
+        doc.link(companyX, linkY - 3, companyWidth, 3, {
+          url: reference.companyUrl,
+        });
+        yPosition += 4;
+
+        yPosition += 1;
       });
 
       // Education Section
