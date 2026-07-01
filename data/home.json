@@ -1,15 +1,15 @@
 {
   "name": "Hrvoje Pavlinovic",
-  "title": "Building reliable context systems for AI-assisted software teams",
-  "heroStat": "12+ years in software. Now focused on agent context, memory, provenance, and evals.",
+  "title": "Senior backend engineer building reliable systems for real businesses",
+  "heroStat": "13+ years in software. Live commerce, payments, logistics, AWS, and product-minded delivery.",
   "avatar": {
     "src": "/pfptbs.png",
     "alt": "Hrvoje Pavlinovic"
   },
   "heroParagraphs": [
-    "I am a senior software engineer currently working with {{TILT_URL}}, and my deeper focus is the context layer around modern AI tooling.",
-    "Models are getting stronger, but teams still need systems that know which Slack thread, Linear ticket, GitHub PR, Sentry incident, runbook, or deployment rule is true, current, relevant, and allowed.",
-    "I write and build around agent context infrastructure: memory policy, provenance, permissions, stale-context detection, and evals for real software workflows."
+    "I am a senior software engineer currently working with {{TILT_URL}}, where I build backend systems for live commerce across auctions, payments, shipping, seller tooling, and real-time buyer workflows.",
+    "My strongest work is taking ambiguous, domain-heavy problems and turning them into dependable production systems: clear trade-offs, careful releases, scoped operational access, and engineering judgment that holds up when the pressure is real.",
+    "Family first, software close behind, and always trying to stay fit enough to keep up with both. I like teams that move fast, communicate plainly, and care about the boring details that make complex systems reliable."
   ],
   "socialLinks": [
     {

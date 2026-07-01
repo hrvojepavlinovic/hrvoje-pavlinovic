@@ -22,7 +22,7 @@ Keep the main headline: "Senior backend engineer scaling interactive commerce at
 Tilt."
 
 Add a high-impact subheadline (Hero section): Immediately below the main
-headline, add the most impressive statistic from my current about page: "12+
+headline, add the most impressive statistic from my current about page: "13+
 years of experience. Scaled systems past 1.7B requests per month." This needs to
 be visually prominent (bolded or larger font).
 
@@ -38,7 +38,7 @@ my kids," and the apology about my bad knees ("don't hate pls"). Delete the word
 
 Rewrite the Intro (Professional): Structure the first paragraph to highlight my
 expertise. Use this draft as a baseline: "I specialize in building performant
-software and making complex systems simple. With over 12 years of experience
+software and making complex systems simple. With over 13 years of experience
 across Web3, automotive, health care, media, and commerce, I focus on stability,
 scale, and speed. Currently, I am heading the backend infrastructure at Tilt."
 

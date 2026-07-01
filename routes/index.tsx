@@ -40,11 +40,11 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
         <meta name="title" content="Hrvoje Pavlinovic" />
         <meta
           name="description"
-          content="Hrvoje Pavlinovic builds reliable context systems for AI-assisted software teams, with a focus on memory, provenance, permissions, stale-context detection, and evals."
+          content="Hrvoje Pavlinovic is a senior backend engineer with 13+ years of experience building reliable production systems across live commerce, payments, logistics, AWS, and complex product domains."
         />
         <meta
           name="keywords"
-          content="Hrvoje Pavlinovic, AI context systems, agent memory, context engineering, software engineering, backend systems, provenance, evals, modern AI tooling"
+          content="Hrvoje Pavlinovic, senior backend engineer, software engineering, backend systems, TypeScript, Node.js, AWS, PostgreSQL, live commerce, payments, logistics"
         />
         <meta name="author" content="Hrvoje Pavlinovic" />
         <meta name="robots" content="index, follow" />
@@ -56,7 +56,7 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
         <meta property="og:title" content="Hrvoje Pavlinovic" />
         <meta
           property="og:description"
-          content="Building reliable context systems for AI-assisted software teams."
+          content="Senior backend engineer building reliable systems for real businesses."
         />
         <meta
           property="og:image"
@@ -74,7 +74,7 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
         <meta name="twitter:title" content="Hrvoje Pavlinovic" />
         <meta
           name="twitter:description"
-          content="Building reliable context systems for AI-assisted software teams."
+          content="Senior backend engineer building reliable systems for real businesses."
         />
         <meta
           name="twitter:image"
@@ -95,7 +95,7 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
               "name": "Hrvoje Pavlinovic",
               "alternateName": "@0xhp10",
               "description":
-                "Software engineer building reliable context systems for AI-assisted software teams.",
+                "Senior backend engineer with 13+ years of experience building reliable production systems across live commerce, payments, logistics, AWS, and complex product domains.",
               "image": "https://hrvoje.pavlinovic.com/pfptbs.png",
               "url": "https://hrvoje.pavlinovic.com",
               "sameAs": [
@@ -105,13 +105,13 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
               ],
               "jobTitle": "Software Engineer",
               "knowsAbout": [
-                "AI Context Systems",
-                "Agent Memory",
-                "Context Engineering",
                 "Software Engineering",
-                "Provenance",
-                "Evals",
                 "Backend Systems",
+                "TypeScript",
+                "Node.js",
+                "AWS",
+                "PostgreSQL",
+                "Live Commerce",
               ],
               "foundingLocation": {
                 "@type": "Place",

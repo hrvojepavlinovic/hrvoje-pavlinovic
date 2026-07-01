@@ -3,9 +3,9 @@
 [![Website](https://img.shields.io/badge/Website-hrvoje.pavlinovic.com-blue?style=flat-square)](https://hrvoje.pavlinovic.com)
 [![X/Twitter](https://img.shields.io/badge/X-@0xHP10-black?style=flat-square)](https://x.com/0xHP10)
 
-> **Software engineer.** Building reliable context systems for AI-assisted
-> software teams, plus small products around memory, provenance, evals, and
-> everyday workflows.
+> **Senior backend engineer.** Building reliable production systems for live
+> commerce, payments, logistics, and complex product workflows, plus small
+> personal products around memory, writing, and everyday life.
 
 This repository contains the source code for my personal website and portfolio.
 It is engineered for speed, simplicity, and server-side rendering using modern

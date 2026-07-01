@@ -11,7 +11,7 @@ interface CoverLetterTemplate {
 const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
   web3: {
     opening:
-      "I am writing to express my strong interest in the {position} position at {companyName}. With over 12 years of software engineering experience and specialized expertise in blockchain technologies, I am excited about the opportunity to contribute to your innovative Web3 initiatives.",
+      "I am writing to express my strong interest in the {position} position at {companyName}. With over 13 years of software engineering experience and specialized expertise in blockchain technologies, I am excited about the opportunity to contribute to your innovative Web3 initiatives.",
     body: [
       "My experience at ReneVerse.io has given me deep hands-on experience with blockchain development, where I architected serverless infrastructure supporting interoperable gaming assets across multiple blockchain networks. I successfully scaled systems to handle 1.7B+ ad impressions while maintaining 99.9% uptime, demonstrating my ability to build robust Web3 applications at scale.",
       "At CryptoToday, I built Ethereum-based decentralized voting engine with zero downtime and integrated TON and ETH payment processing systems. My technical stack includes Ethereum, Bitcoin, Smart Contracts, TonConnect, Ethers, and Wagmi, making me well-equipped to tackle complex Web3 challenges.",
@@ -30,7 +30,7 @@ const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
   },
   bitcoin: {
     opening:
-      "I am excited to apply for the {position} position at {companyName}. As a dedicated Bitcoin enthusiast since 2017 and seasoned software engineer with 12+ years of experience, I am passionate about contributing to Bitcoin's mission of financial sovereignty and innovation.",
+      "I am excited to apply for the {position} position at {companyName}. As a dedicated Bitcoin enthusiast since 2017 and seasoned software engineer with 13+ years of experience, I am passionate about contributing to Bitcoin's mission of financial sovereignty and innovation.",
     body: [
       "My journey with Bitcoin began in 2017, and since then I have been deeply involved in the ecosystem both professionally and personally. At ReneVerse.io, I developed blockchain infrastructure that handles massive scale, processing 1.7B+ ad impressions while maintaining sub-200ms response times, demonstrating my ability to build robust systems that Bitcoin applications require.",
       "I founded XXI Today, a comprehensive Bitcoin portal tracking the historic journey to 21 million coins, showcasing my commitment to Bitcoin education and community building. This project reflects my deep understanding of Bitcoin's fundamentals, Lightning Network integration for instant payments, and my dedication to making Bitcoin accessible to everyone from beginners to experts.",
@@ -49,7 +49,7 @@ const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
   },
   ai: {
     opening:
-      "I am writing to express my strong interest in the {position} position at {companyName}. With 12+ years of software engineering experience and hands-on expertise in AI/LLM integration, vector databases, and intelligent pipeline architecture, I am excited about the opportunity to drive artificial intelligence innovation and implementation at your organization.",
+      "I am writing to express my strong interest in the {position} position at {companyName}. With 13+ years of software engineering experience and hands-on expertise in AI/LLM integration, vector databases, and intelligent pipeline architecture, I am excited about the opportunity to drive artificial intelligence innovation and implementation at your organization.",
     body: [
       "My AI expertise spans the full spectrum of modern AI implementation, from LLM integration to vector database architectures. In Memoato, I built an AI-powered life tracking and journaling product, focusing on fast capture, structured categorization, and insight generation. I've also experimented with vector databases like Qdrant for semantic search and similarity matching, including ingesting document data for intelligent retrieval workflows.",
       "I specialize in implementing complex LLM pipeline architectures, designing systems where ChatGPT Turbo serves as an entry assistant that intelligently routes requests to more specialized assistants based on context and requirements. These pipelines leverage vector databases for context retrieval and semantic understanding, creating sophisticated AI workflows that can handle diverse user inputs while maintaining conversation context and delivering highly relevant responses.",
@@ -70,7 +70,7 @@ const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
   },
   backend: {
     opening:
-      "I am writing to apply for the {position} position at {companyName}. With 12+ years of experience developing scalable serverless and event-driven architecture and a proven track record of optimizing systems for thousands of concurrent requests, I am confident I can make significant contributions to your backend infrastructure.",
+      "I am writing to apply for the {position} position at {companyName}. With 13+ years of experience developing scalable serverless and event-driven architecture and a proven track record of optimizing systems for thousands of concurrent requests, I am confident I can make significant contributions to your backend infrastructure.",
     body: [
       "My expertise lies in building robust, scalable backend systems that handle massive traffic loads. At ReneVerse.io, I architected serverless infrastructure that scales to 1.7B+ monthly ad impressions with 99.9% uptime and sub-200ms response times. This experience has given me deep knowledge of performance optimization, caching strategies, and load balancing techniques essential for modern backend systems.",
       "I excel in database optimization and concurrent request handling, having optimized PostgreSQL databases for real-time data processing from 20+ sources with 70% query speed improvements. My technical stack includes Node.js, TypeScript, Express, Nest.js, GraphQL, REST APIs, and extensive experience with AWS infrastructure including CDK, Lambda, and ECS.",
@@ -89,7 +89,7 @@ const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
   },
   fullstack: {
     opening:
-      "I am interested in the {position} position at {companyName}. With 12+ years of comprehensive software development experience spanning backend architecture, frontend development, and everything in between, I am well-positioned to contribute across your entire technology stack.",
+      "I am interested in the {position} position at {companyName}. With 13+ years of comprehensive software development experience spanning backend architecture, frontend development, and everything in between, I am well-positioned to contribute across your entire technology stack.",
     body: [
       "My full-stack expertise is demonstrated through projects like Memoato, where I am building an AI-powered life tracking and journaling app with a coherent workflow across capture, storage, and insights. It spans backend APIs, reliable data modeling, and a clean, responsive UI.",
       "At ReneVerse.io, I built complete solutions from backend services handling 1.7B+ ad impressions to frontend SDKs for Unity and Unreal Engine integration. My technical versatility spans Node.js, TypeScript, React, Next.js, PostgreSQL, AWS infrastructure, and modern development practices including CI/CD and Infrastructure as Code.",
@@ -108,7 +108,7 @@ const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
   },
   lead: {
     opening:
-      "I am writing to express my interest in the {position} position at {companyName}. With 12+ years of software engineering experience and a proven track record of leading technical teams, establishing development standards, and scaling systems to handle billions of requests, I am excited about the opportunity to drive technical excellence at your organization.",
+      "I am writing to express my interest in the {position} position at {companyName}. With 13+ years of software engineering experience and a proven track record of leading technical teams, establishing development standards, and scaling systems to handle billions of requests, I am excited about the opportunity to drive technical excellence at your organization.",
     body: [
       "My leadership experience spans multiple organizations where I have successfully built and mentored high-performing engineering teams. At ReneVerse.io, I mentor a team of 4 developers and conduct technical interviews, contributing to a 50% reduction in time-to-productivity for new hires. I established development standards that improved deployment frequency by 3x while maintaining 99.9% system uptime.",
       "At Profico, I led development standards meetings with C-level executives, establishing company-wide coding practices adopted by 20+ developers. I mentored 3 junior developers who achieved promotion to mid-level positions within 12 months and reduced system downtime by 80% through strategic architecture decisions and proactive monitoring implementation.",
@@ -127,7 +127,7 @@ const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
   },
   staff: {
     opening:
-      "I am writing to express my strong interest in the {position} position at {companyName}. With 12+ years of software engineering experience, extensive experience in scalable architecture design, and a proven track record of leading technical initiatives across multiple organizations, I am excited about the opportunity to drive technical excellence and innovation at {companyName}.",
+      "I am writing to express my strong interest in the {position} position at {companyName}. With 13+ years of software engineering experience, extensive experience in scalable architecture design, and a proven track record of leading technical initiatives across multiple organizations, I am excited about the opportunity to drive technical excellence and innovation at {companyName}.",
     body: [
       "As a senior technical contributor, I have consistently delivered high-impact solutions that scale to massive traffic loads. At ReneVerse.io, I architected serverless and event-driven infrastructure supporting 1.7B+ monthly ad impressions with 99.9% uptime and sub-200ms response times. My expertise spans distributed systems engineering, AWS infrastructure, and performance optimization strategies that handle thousands of concurrent requests.",
       "My technical influence extends beyond individual contributions to shaping engineering culture and practices. I've established development standards adopted by 20+ developers, reduced system downtime by 80% through strategic architecture decisions, and mentored engineering teams while conducting 15+ technical interviews. My experience consolidating legacy systems by unifying 6 repositories into a monorepo reduced build times by 40%.",

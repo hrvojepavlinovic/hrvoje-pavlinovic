@@ -73,11 +73,11 @@ export default function App({ Component, url }: PageProps) {
             <title>{defaultTitle}</title>
             <meta
               name="description"
-              content="Hrvoje Pavlinovic builds reliable context systems for AI-assisted software teams, with a focus on memory, provenance, permissions, and evals."
+              content="Hrvoje Pavlinovic is a senior backend engineer with 13+ years of experience building reliable production systems across live commerce, payments, logistics, AWS, and complex product domains."
             />
             <meta
               name="keywords"
-              content="Hrvoje Pavlinovic, AI context systems, agent memory, provenance, evals, software engineering, backend systems, PLAYGRND, Memoato"
+              content="Hrvoje Pavlinovic, senior backend engineer, software engineering, backend systems, TypeScript, Node.js, AWS, PostgreSQL, live commerce, payments, logistics, PLAYGRND, Memoato"
             />
             <meta name="author" content="Hrvoje Pavlinovic" />
             <meta name="robots" content="index, follow" />
@@ -90,7 +90,7 @@ export default function App({ Component, url }: PageProps) {
             <meta property="og:title" content={defaultTitle} />
             <meta
               property="og:description"
-              content="Building reliable context systems for AI-assisted software teams."
+              content="Senior backend engineer building reliable systems for real businesses."
             />
             <meta
               property="og:image"
@@ -107,7 +107,7 @@ export default function App({ Component, url }: PageProps) {
             <meta name="twitter:title" content={defaultTitle} />
             <meta
               name="twitter:description"
-              content="Building reliable context systems for AI-assisted software teams."
+              content="Senior backend engineer building reliable systems for real businesses."
             />
             <meta
               name="twitter:image"

@@ -1,14 +1,14 @@
 {
   "pageTitle": "About me",
   "intro": {
-    "heading": "Building reliable context systems for AI-assisted teams",
-    "summary": "I specialize in making complex software workflows understandable to humans and AI agents.",
+    "heading": "Building reliable backend systems for complex products",
+    "summary": "I specialize in making complex software workflows understandable, operable, and dependable.",
     "paragraphs": [
-      "With over 12 years of experience across Web3, automotive, health care, media, and commerce, I focus on stability, scale, and systems that teams can trust.",
+      "With over 13 years of experience across Web3, automotive, health care, media, and commerce, I focus on stability, scale, and systems that teams can trust.",
       "Currently, I work on backend infrastructure at Tilt, keeping livestream auctions, payments, and fulfillment fast and reliable.",
       "My current specialization is reliable context infrastructure for AI-assisted software teams: connecting tools like GitHub, Slack, Linear, Jira, Sentry, docs, and production runbooks so agents can work with source-backed context instead of guesses.",
       "Outside of the terminal, my life revolves around family, health, and sound money. I am a proud father of two, an active fitness enthusiast (football, padel, gym, cycling), and a firm believer that Bitcoin can change the world for the better.",
-      "I remain curious and focused on the future. My current goals are building useful products, growing HILLS Lab, and publishing practical field notes on agent context systems."
+      "I remain curious and focused on the future. My current goals are building useful products, growing HILLS Lab, and publishing practical field notes from real software work."
     ]
   },
   "work": {
