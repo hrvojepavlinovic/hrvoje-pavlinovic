@@ -222,7 +222,10 @@ export default function CVPage() {
               <ul class="mt-4 grid gap-3 text-sm text-gray-600 dark:text-gray-400 sm:grid-cols-2">
                 {skills.coreExpertise.map((item) => (
                   <li key={item} class="flex items-start gap-3">
-                    <span class="mt-[0.55em] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300" />
+                    <span
+                      class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300"
+                      style={{ marginTop: "0.55em" }}
+                    />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -304,7 +307,10 @@ export default function CVPage() {
                 <ul class="mt-4 space-y-3 text-sm text-gray-600 dark:text-gray-400">
                   {role.achievements.map((achievement) => (
                     <li key={achievement} class="flex items-start gap-3">
-                      <span class="mt-[0.55em] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300 transition-colors group-hover:bg-orange-400" />
+                      <span
+                        class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300 transition-colors group-hover:bg-orange-400"
+                        style={{ marginTop: "0.55em" }}
+                      />
                       <span>{achievement}</span>
                     </li>
                   ))}
@@ -464,7 +470,10 @@ export default function CVPage() {
                   <ul class="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-400">
                     {entry.details.map((detail) => (
                       <li key={detail} class="flex items-start gap-3">
-                        <span class="mt-[0.55em] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300" />
+                        <span
+                          class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300"
+                          style={{ marginTop: "0.55em" }}
+                        />
                         <span>{detail}</span>
                       </li>
                     ))}
