@@ -78,6 +78,24 @@ interface CVData {
 
 const typedCvData = cvData as unknown as CVData;
 
+function ExternalLinkIcon() {
+  return (
+    <svg
+      class="h-3.5 w-3.5 flex-shrink-0"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M7 17 17 7" />
+      <path d="M9 7h8v8" />
+    </svg>
+  );
+}
+
 export default function CVPage() {
   const {
     hero,
@@ -376,40 +394,28 @@ export default function CVPage() {
                   "{reference.quote}"
                 </p>
                 <div class="mt-7 border-t border-gray-100 pt-6 dark:border-gray-800">
-                  <a
-                    href={reference.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 transition-colors hover:text-orange-500 dark:text-gray-100"
-                    aria-label={`${reference.person} on LinkedIn`}
-                  >
-                    {reference.person}
-                    <span class="inline-flex h-4 min-w-4 items-center justify-center rounded-sm border border-blue-500 px-1 text-[10px] font-bold leading-none text-blue-600 dark:border-blue-400 dark:text-blue-400">
-                      in
-                    </span>
-                  </a>
-                  <a
-                    href={reference.companyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 transition-colors hover:text-orange-600"
-                    aria-label={`${reference.company} website`}
-                  >
-                    {reference.company}
-                    <svg
-                      class="h-3.5 w-3.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
+                  <div class="space-y-1.5">
+                    <a
+                      href={reference.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex w-fit items-center gap-1.5 text-sm font-semibold text-gray-900 transition-colors hover:text-orange-500 dark:text-gray-100"
+                      aria-label={`${reference.person} on LinkedIn`}
                     >
-                      <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07L11.5 4.43" />
-                      <path d="M14 11a5 5 0 0 0-7.07 0L3.39 14.54a5 5 0 0 0 7.07 7.07l2.04-2.04" />
-                    </svg>
-                  </a>
+                      <span>{reference.person}</span>
+                      <ExternalLinkIcon />
+                    </a>
+                    <a
+                      href={reference.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex w-fit items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-orange-500 transition-colors hover:text-orange-600"
+                      aria-label={`${reference.company} website`}
+                    >
+                      <span>{reference.company}</span>
+                      <ExternalLinkIcon />
+                    </a>
+                  </div>
                   <p class="mt-3 text-xs leading-relaxed text-gray-500 dark:text-gray-500">
                     {reference.title}
                   </p>
