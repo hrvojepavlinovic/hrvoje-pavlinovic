@@ -189,17 +189,19 @@ export const handler: Handlers = {
 
       addSection("References");
       addText(
-        "References and recommendations available from Ericsson Nikola Tesla, Profico, Rimac Automobili, Povio, and ReneVerse.",
+        "Written recommendations from engineering leaders and founders I have worked with.",
         9,
       );
       typedCvData.references.filter((reference) => reference.person !== "Abhi")
         .forEach((reference) => {
+          ensurePage(24);
           addLink(
             `${reference.person} - ${reference.company} - ${reference.title}`,
             reference.url,
           );
+          addText(`Recommendation: "${reference.quote}"`, 8.5, "normal", 0, 1);
           addLink(
-            `${reference.company} website - ${reference.companyUrl}`,
+            `Company: ${reference.companyUrl}`,
             reference.companyUrl,
           );
         });
