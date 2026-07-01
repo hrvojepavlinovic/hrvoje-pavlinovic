@@ -35,10 +35,8 @@ export default function CV() {
         />
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
 
-        {/* Twitter Card meta tags */}
+        {/* Social preview meta tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@0xhp10" />
-        <meta name="twitter:creator" content="@0xhp10" />
         <meta
           name="twitter:title"
           content="CV &mdash; Hrvoje Pavlinovic"

@@ -138,7 +138,7 @@ export const handler: Handlers = {
 
       addText(profile.title, 11, "normal", 0, 1);
       addText(
-        `${profile.email} | ${profile.phone} | ${profile.website} | ${profile.location} | x.com/0xhp10`,
+        `${profile.email} | ${profile.phone} | ${profile.website} | ${profile.location}`,
         9,
         "normal",
         0,
