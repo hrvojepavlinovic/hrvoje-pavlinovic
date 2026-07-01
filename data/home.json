@@ -7,7 +7,7 @@
     "alt": "Hrvoje Pavlinovic"
   },
   "heroParagraphs": [
-    "I am a senior software engineer currently working with {{TILT_URL}}, and my deeper focus is the context layer around tools like Claude, Cursor, Codex, and Copilot.",
+    "I am a senior software engineer currently working with {{TILT_URL}}, and my deeper focus is the context layer around modern AI tooling.",
     "Models are getting stronger, but teams still need systems that know which Slack thread, Linear ticket, GitHub PR, Sentry incident, runbook, or deployment rule is true, current, relevant, and allowed.",
     "I write and build around agent context infrastructure: memory policy, provenance, permissions, stale-context detection, and evals for real software workflows."
   ],

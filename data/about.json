@@ -33,7 +33,7 @@
       },
       {
         "title": "Model-agnostic implementation",
-        "intro": "Build systems that keep working as teams move between Claude, Cursor, Codex, Copilot, and future tools.",
+        "intro": "Build systems that keep working as teams move between current and future AI tooling.",
         "points": [
           "Translate business pressure into scoped delivery cycles and crisp technical trade-offs.",
           "Keep the durable asset in the context system, not in one vendor's feature set."

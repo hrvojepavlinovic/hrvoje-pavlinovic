@@ -31,7 +31,7 @@
     ]
   },
   "professionalSummary": {
-    "description": "Senior Software Engineer with 13+ years of experience building backend platforms, distributed commerce systems, and production workflows for small, fast-moving teams. Strong track record across live commerce, auctions, payments, shipping, real-time video, search, event-driven services, and AWS infrastructure. Currently building complex backend systems at Tilt while using Codex, Cursor, Claude, MCPs, and carefully scoped credentials to make AI-assisted delivery faster without weakening production safety. Known for independent ownership, clear communication, reliable delivery, and turning ambiguous product problems into shipped systems."
+    "description": "Senior Software Engineer with 13+ years of experience building backend platforms, distributed commerce systems, and production workflows for small, fast-moving teams. Strong track record across live commerce, auctions, payments, shipping, real-time video, search, event-driven services, and AWS infrastructure. Currently building complex backend systems at Tilt while using modern AI tooling and carefully scoped credentials to make delivery faster without weakening production safety. Known for independent ownership, clear communication, reliable delivery, and turning ambiguous product problems into shipped systems."
   },
   "skills": {
     "coreExpertise": [
@@ -76,12 +76,12 @@
         "Data Protection"
       ],
       "AI/Workflow": [
-        "Codex",
-        "Cursor",
-        "Claude",
-        "MCP",
-        "Linear",
-        "Slack"
+        "Modern AI Tooling",
+        "AI-Assisted Delivery",
+        "Agentic Workflows",
+        "Safe Tool Access",
+        "Context Handoffs",
+        "CI Feedback Loops"
       ],
       "Frontend": [
         "React",
@@ -103,8 +103,8 @@
         "Build and operate backend systems for Tilt's live commerce platform across livestreaming, auctions, product inventory, payments, shipping, seller tooling, and real-time buyer workflows.",
         "Ship changes inside a large TypeScript backend monorepo with 50+ services and shared libraries, spanning NestJS, Express, Hasura, PostgreSQL, Redis, AWS ECS/Lambda, SNS/SQS, S3, and AppConfig.",
         "Delivered complex commerce integrations and operational fixes across Stripe, Shippo, Royal Mail, InPost, Hasura schema exposure, auction events, live rooms, product ingestion, and mobile seller workflows.",
-        "Used Codex, Cursor, Claude, MCPs, Linear, Slack, Sentry, Stripe, Shippo, and AWS tooling to accelerate implementation, debugging, and release work while keeping credentials scoped and production actions explicit.",
-        "Introduced and improved AI-assisted engineering workflows, including Claude/Codex repo skills, ticket-to-implementation experiments, CI feedback loops, and safer handoff patterns for a fast-moving distributed team.",
+        "Used modern AI tooling and connected operational context across Linear, Slack, Sentry, Stripe, Shippo, and AWS workflows to accelerate implementation, debugging, and release work while keeping credentials scoped and production actions explicit.",
+        "Introduced and improved AI-assisted engineering workflows, including repo-specific agent guidance, ticket-to-implementation experiments, CI feedback loops, and safer handoff patterns for a fast-moving distributed team.",
         "Recognized internally as a reliable engineer who moves quickly, collaborates well across product and engineering, and handles ambiguous backend problems with strong ownership."
       ],
       "technologies": [
@@ -125,10 +125,7 @@
         "Stripe",
         "Shippo",
         "Sentry",
-        "Codex",
-        "Cursor",
-        "Claude",
-        "MCP",
+        "Modern AI Tooling",
         "System Architecture"
       ],
       "isHighlight": true

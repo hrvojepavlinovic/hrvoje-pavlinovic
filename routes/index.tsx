@@ -44,7 +44,7 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
         />
         <meta
           name="keywords"
-          content="Hrvoje Pavlinovic, AI context systems, agent memory, context engineering, software engineering, backend systems, provenance, evals, Codex, Claude, Cursor"
+          content="Hrvoje Pavlinovic, AI context systems, agent memory, context engineering, software engineering, backend systems, provenance, evals, modern AI tooling"
         />
         <meta name="author" content="Hrvoje Pavlinovic" />
         <meta name="robots" content="index, follow" />
