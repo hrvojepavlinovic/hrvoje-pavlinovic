@@ -291,18 +291,6 @@
 
   "personalProjects": [
     {
-      "name": "Trustworthy Agent Memory",
-      "url": "https://github.com/hrvojepavlinovic/trustworthy-agent-memory",
-      "description": "Research notebook on reliable context systems for AI-assisted software teams, focused on provenance, freshness, permissions, contradiction handling, memory policy, and evals.",
-      "technologies": [
-        "AI",
-        "Context Systems",
-        "Evals",
-        "GitHub",
-        "Documentation"
-      ]
-    },
-    {
       "name": "Memoato",
       "url": "https://memoato.com",
       "description": "AI-powered personal memory and life tracking platform with natural-language capture, automated categorization, searchable history, and insight dashboards.",
@@ -331,6 +319,21 @@
       "url": "https://hills-lab.hr",
       "description": "Independent engineering studio for backend systems, applied AI workflows, infrastructure experiments, and small product bets.",
       "technologies": ["Backend", "Infra", "AI", "Product"]
+    }
+  ],
+  "_disabledPersonalProjects": [
+    {
+      "name": "Trustworthy Agent Memory",
+      "url": "https://github.com/hrvojepavlinovic/trustworthy-agent-memory",
+      "description": "Research notebook on reliable context systems for AI-assisted software teams, focused on provenance, freshness, permissions, contradiction handling, memory policy, and evals.",
+      "technologies": [
+        "AI",
+        "Context Systems",
+        "Evals",
+        "GitHub",
+        "Documentation"
+      ],
+      "note": "Temporarily hidden from the public CV, regular PDF, ATS PDF, and tailored NLC materials. Bring this back when there is a more tangible shipped artifact or evidence to point to."
     }
   ],
 
