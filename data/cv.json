@@ -306,10 +306,10 @@
       "technologies": ["Next.js", "TypeScript", "Postgres", "Hetzner"]
     },
     {
-      "name": "Personal Portfolio",
+      "name": "Personal Website",
       "url": "https://hrvoje.pavlinovic.com",
-      "description": "Personal platform with configurable CV/PDF generation, writing, analytics, project showcase, and experiments around developer tooling and AI-assisted workflows.",
-      "technologies": ["Deno", "KV", "Fresh", "Tailwind"]
+      "description": "Personal publishing and project hub with blog posts, lightweight traffic stats, Memoato profile integration, public project notes, and self-hosted Fresh/Deno delivery.",
+      "technologies": ["Deno", "Fresh", "KV", "Analytics", "Memoato"]
     },
     {
       "name": "HILLS Lab",
