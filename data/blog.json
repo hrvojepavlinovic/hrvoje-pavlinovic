@@ -1,6 +1,139 @@
 {
-  "lastId": 8,
+  "lastId": 12,
   "articles": [
+    {
+      "id": 12,
+      "title": "Making PLAYGRND Aggregates Fast Without Lying to Myself With Cache",
+      "slug": "playgrnd-cache-query-optimization",
+      "author": "Hrvoje Pavlinovic",
+      "tags": [
+        "Performance",
+        "Postgres",
+        "Cache",
+        "PLAYGRND"
+      ],
+      "shortDescription": "How I moved stable PLAYGRND season aggregates from raw query paths into persisted derived tables and Redis snapshots, while keeping raw fallback intact.",
+      "createdAt": "2026-07-06T15:15:00.000Z",
+      "fullText": "<p>PLAYGRND has a problem that almost every sports product eventually runs into: the data wants to be relational, but the pages people open most often want aggregates.</p>\n\n<p>The raw model is the right place for truth. Matches, player appearances, goals, cards, and match events should stay normalized because that makes ingestion, corrections, and auditability much easier. But that same model is not always the right shape for every hot read path.</p>\n\n<p>If a season page, player profile, or featured player list rebuilds the same answer from <code>matches</code>, <code>match_players</code>, and <code>match_events</code> on every request, I am paying the same cost again and again. PLAYGRND is server-rendered, so the public web app calls a Go API, the Go API reads Postgres, and the user waits for work that often could have been prepared ahead of time.</p>\n\n<p>That was the motivation for a recent backend pass on PLAYGRND. I focused on the repeated paths: season standings, scorer lists, player season stats, featured players, and the global upcoming/finished match lists.</p>\n\n<h2>The line I did not want to cross</h2>\n\n<p>I did not want to turn cache into architecture.</p>\n\n<p>Cache is useful, but it is dangerous when it hides the real model. If nobody knows where the cached value came from, how to rebuild it, or what happens when it is missing, then the cache becomes a second truth. That is exactly the kind of system that feels fast until the first confusing production issue.</p>\n\n<p>So the rule was simple: raw data stays the source of truth. Derived data is allowed only when it can be recomputed. Missing derived data should not break the endpoint. It should fall back to the raw path, even if that path is slower.</p>\n\n<p>That rule fits PLAYGRND well because finished seasons are mostly stable. Active seasons still move. Finished seasons are a good candidate for derived state.</p>\n\n<h2>What changed</h2>\n\n<p>The optimization had two layers.</p>\n\n<p>The first layer was Postgres. I added and tightened indexes for the hot paths, then persisted deterministic derived tables for finished-season standings, scorers, and player season stats. These tables are not a replacement for raw data. They are a prepared view of something that can be recalculated.</p>\n\n<p>The second layer was Redis snapshot caching for season responses. That removes repeated work from the Go API and Postgres when the same season response is requested in the same shape.</p>\n\n<p>The important part is the maintenance path behind it. Recompute is explicit. For player season stats, recompute is transactional: delete the old derived rows and insert the new ones inside the same transaction. That avoids a half-refreshed season where some rows describe the old picture and some rows describe the new one.</p>\n\n<p>I also added a read-only <code>EXPLAIN ANALYZE</code> helper for the hot paths. I do not want that as permanent runtime overhead, but I do want a safe way to inspect actual query behavior when I am measuring production-like data.</p>\n\n<h2>The backfill</h2>\n\n<p>Before the production backfill, I took a database backup. That is not interesting writing, but it is the kind of boring operational step that matters.</p>\n\n<p>The backfill produced:</p>\n\n<ul>\n  <li>33 fully scraped seasons</li>\n  <li>8,479 derived player stat rows</li>\n  <li>5,331 scorer rows</li>\n  <li>0 missing seasons that have raw player data</li>\n  <li>3 empty 2019-2020 seasons without derived player rows because they have no raw player rows</li>\n</ul>\n\n<p>After that, the read-only measurements looked like this:</p>\n\n<ul>\n  <li>global upcoming league matches: <code>0.165 ms</code></li>\n  <li>global finished league matches: <code>0.530 ms</code></li>\n  <li>persisted season table: <code>0.401 ms</code></li>\n  <li>player season stats: <code>0.945 ms</code></li>\n  <li>featured players by goals: <code>35.483 ms</code></li>\n</ul>\n\n<p>The featured players path is the best example of the difference. Before the backfill, it was around <code>77 ms</code> when fallback had to read raw data for most seasons. After the backfill, it was around <code>35 ms</code>. That is not a universal claim that every page got dramatically faster. It is a specific improvement on aggregate-heavy, player-heavy paths.</p>\n\n<h2>The lesson</h2>\n\n<p>The best cache work does not start with Redis. It starts with deciding what the source of truth is.</p>\n\n<p>For PLAYGRND, the pattern that feels right is:</p>\n\n<ul>\n  <li>keep raw data normalized and auditable</li>\n  <li>persist stable, deterministic aggregates for finished seasons</li>\n  <li>snapshot common season responses when they are repeatedly read</li>\n  <li>keep a recompute path for every derived value</li>\n  <li>fall back to raw queries when derived state is missing</li>\n  <li>measure query plans with tools, not vibes</li>\n</ul>\n\n<p>This is the kind of backend work that rarely looks impressive from the outside. It does not add a new screen. It does make the product feel more predictable. The public sports record stays fast, but I still know where the numbers came from and how to rebuild them.</p>",
+      "seo": {
+        "title": "Making PLAYGRND Aggregates Fast Without Lying to Myself With Cache | Hrvoje Pavlinovic",
+        "description": "How I optimized PLAYGRND hot paths with Postgres derived tables, Redis snapshots, controlled recompute, and raw fallback instead of blind caching.",
+        "keywords": [
+          "PLAYGRND",
+          "Postgres",
+          "Redis",
+          "Cache",
+          "Backend Performance",
+          "Derived Data",
+          "Go API",
+          "Sports Data",
+          "EXPLAIN ANALYZE"
+        ],
+        "author": "Hrvoje Pavlinovic",
+        "image": "https://hrvoje.pavlinovic.com/blog.png",
+        "twitterCard": "summary_large_image",
+        "twitterCreator": "@0xHP10"
+      }
+    },
+    {
+      "id": 11,
+      "title": "Why I Use WhatsApp for PLAYGRND Login and Claims",
+      "slug": "playgrnd-whatsapp-auth-login-claims",
+      "author": "Hrvoje Pavlinovic",
+      "tags": [
+        "Auth",
+        "WhatsApp",
+        "Product",
+        "PLAYGRND"
+      ],
+      "shortDescription": "For PLAYGRND, WhatsApp is not a gimmick. It is the channel users already trust, so login and profile claims should meet them there.",
+      "createdAt": "2026-07-06T15:05:00.000Z",
+      "fullText": "<p>On PLAYGRND, I use WhatsApp for login, profile claims, and the organizer workflows I am building next.</p>\n\n<p>That is not because WhatsApp is technically exciting. It is because local and amateur football already lives there.</p>\n\n<p>Players do not wake up wanting another account. They want to find their profile, confirm it is theirs, fix a detail, or send a correction. Organizers do not want to keep one more admin panel open all day. They already coordinate through groups, messages, match sheets, and quick decisions in chat.</p>\n\n<p>If the product ignores that, it creates a clean-looking workflow that is wrong for the actual user.</p>\n\n<h2>Auth is part of the product loop</h2>\n\n<p>The default auth diagram is easy: email, password, reset password, email verification, maybe 2FA later.</p>\n\n<p>That can be fine. But it is not automatically right.</p>\n\n<p>In the PLAYGRND context, email is often not the user's main channel for amateur sport. Some users will not check it. Some will see the message too late. Some will forget which address they used. A password reset flow can easily become the first meaningful interaction with the product, which is a bad sign.</p>\n\n<p>SMS is more direct, but it is narrow. It can deliver a code, but it does not carry much context after that. Which profile is being claimed? Which match needs a correction? Which organizer sent the result?</p>\n\n<p>WhatsApp is different because it is both an identity signal and a conversation. The user can receive a magic link, open a web session, and then continue the same product loop around the profile, match, or organizer action.</p>\n\n<h2>No passwords in the first flow</h2>\n\n<p>PLAYGRND does not need a password to start.</p>\n\n<p>The user receives a magic link through WhatsApp. Opening it creates a browser session. From there, the user can complete a profile, claim an existing profile, or move into an organizer/admin flow if they have the right permissions.</p>\n\n<p>I like this because it removes the wrong kind of friction. It does not mean removing control. A claim can still require review. Sensitive changes can still require confirmation. The official sports record does not have to change just because someone opened a link.</p>\n\n<p>The point is to avoid asking users to create credentials before they understand why the account matters.</p>\n\n<h2>Why it fits profile claims</h2>\n\n<p>Claiming a profile is not the same as registering for a generic SaaS product.</p>\n\n<p>The goal is to connect a public sports record with a real person saying: this is me.</p>\n\n<p>WhatsApp helps because:</p>\n\n<ul>\n  <li>the user does not have to invent and remember a new password</li>\n  <li>the phone number is confirmed through a channel they already use</li>\n  <li>the claim carries context about the profile being linked</li>\n  <li>an admin can review the request before the public record becomes confirmed</li>\n  <li>the same channel can later support corrections, notifications, and organizer actions</li>\n</ul>\n\n<p>This is not a universal best practice. A bank, enterprise SSO product, or developer platform may need a completely different answer. But for local sport, where identity and coordination often sit around a phone number and a chat thread, WhatsApp is a reasonable default.</p>\n\n<h2>The bigger organizer loop</h2>\n\n<p>Login is only the entry point.</p>\n\n<p>The larger product bet is that WhatsApp can become the operating channel for things organizers already do manually:</p>\n\n<ul>\n  <li>send a result</li>\n  <li>send a match-sheet photo</li>\n  <li>correct a scorer</li>\n  <li>confirm lineups</li>\n  <li>resolve uncertainty after a match</li>\n</ul>\n\n<p>AI can help prepare those updates, but it should not become the source of truth. If an organizer sends a message or a match sheet, AI can extract a proposed result, scorers, and lineups. The system still needs to show what it understood and ask for confirmation before the public record changes.</p>\n\n<p>That is the same philosophy as the auth flow: listen to the user's channel, but keep verification where it matters.</p>\n\n<h2>What I would not copy blindly</h2>\n\n<p>I would not use WhatsApp-first auth everywhere.</p>\n\n<p>I would use it when the product really matches these conditions:</p>\n\n<ul>\n  <li>users already coordinate in WhatsApp</li>\n  <li>a phone number is a reasonable identity anchor</li>\n  <li>the workflow needs a continuing conversation, not just a one-time code</li>\n  <li>email is slower or less reliable for this audience</li>\n  <li>there is still a fallback for people who do not use WhatsApp</li>\n</ul>\n\n<p>PLAYGRND keeps email as a fallback, but WhatsApp is the path that fits the behavior I see in the real world.</p>\n\n<p>The general lesson is simple: do not design auth as an isolated screen. Design it from the channel where the user already trusts the work to happen.</p>",
+      "seo": {
+        "title": "Why I Use WhatsApp for PLAYGRND Login and Claims | Hrvoje Pavlinovic",
+        "description": "Why PLAYGRND uses WhatsApp magic links for login and profile claims, and why auth should follow real user behavior instead of generic account flows.",
+        "keywords": [
+          "PLAYGRND",
+          "WhatsApp Auth",
+          "Magic Links",
+          "Product Design",
+          "Authentication",
+          "Profile Claims",
+          "Amateur Football",
+          "UX"
+        ],
+        "author": "Hrvoje Pavlinovic",
+        "image": "https://hrvoje.pavlinovic.com/blog.png",
+        "twitterCard": "summary_large_image",
+        "twitterCreator": "@0xHP10"
+      }
+    },
+    {
+      "id": 10,
+      "title": "What PLAYGRND Is Teaching Me About Building Faster With AI",
+      "slug": "playgrnd-building-faster-with-ai",
+      "author": "Hrvoje Pavlinovic",
+      "tags": [
+        "AI",
+        "Product",
+        "Engineering",
+        "PLAYGRND"
+      ],
+      "shortDescription": "PLAYGRND is my practical example of how a small team can move faster with AI without letting AI replace product and engineering judgment.",
+      "createdAt": "2026-07-06T14:55:00.000Z",
+      "fullText": "<p>PLAYGRND is becoming a public record for local and amateur football: matches, tables, scorers, teams, players, venues, tournaments, and the history that usually disappears after a season ends.</p>\n\n<p>There are four of us from HILLS Lab working on it, three engineers included. That is a small team for a product that already has a real surface area: public pages, two languages, live data, player and team profiles, profile claiming, admin foundations, search, match pages, league pages, and a dedicated organizer direction.</p>\n\n<p>The interesting part for me is not only what is being built. It is how quickly the loop closes from idea to implementation, verification, and deployment.</p>\n\n<h2>It is already more than a landing page</h2>\n\n<p><a href=\"https://playgrnd.app\" target=\"_blank\" rel=\"noopener noreferrer\">PLAYGRND</a> already has the shape of a product, not a brochure.</p>\n\n<ul>\n  <li>a home dashboard with results, activity, tables, scorers, and featured players</li>\n  <li>league and season pages with standings, scorers, matches, rounds, and season switching</li>\n  <li>match pages with results, linked teams, goals, lineups, and a correction entry point</li>\n  <li>player profiles with seasons, appearances, goals, trophies, sharing, and profile claiming</li>\n  <li>team profiles with seasons, players, matches, standings, and honors</li>\n  <li>search with suggestions, recent searches, and popular results</li>\n  <li>venue, organization, about, status, legal, and privacy pages</li>\n</ul>\n\n<p>The idea is simple: amateur football deserves a better public record. For organizers, the bigger promise is that a league or tournament should not lose its story inside spreadsheets, chats, and half-manual archives.</p>\n\n<p>The product direction is not abstract. I want schedules, results, standings, scorers, lineups, team profiles, player profiles, and competition history to live in one place. I also want familiar input channels, like WhatsApp, to reduce organizer work without letting unverified AI updates rewrite the official record.</p>\n\n<h2>What AI changes</h2>\n\n<p>Before AI, this kind of product would usually move in heavier phases.</p>\n\n<p>First the data model. Then imports. Then public pages. Then auth. Then admin. Then bilingual copy. Then a bug list that sends everyone back into another round.</p>\n\n<p>That is not a joke. That is how many real products get built: a lot of waiting between phases, a lot of manual translation from product notes into code, and many small decisions deferred because every change is expensive.</p>\n\n<p>AI changes the rhythm.</p>\n\n<p>Not because AI builds the product by itself. It does not. But it compresses the small loops:</p>\n\n<ul>\n  <li>turning a product note into a route, component, or copy draft</li>\n  <li>comparing a new request with the existing codebase</li>\n  <li>drafting migrations, handlers, SSR loads, and tests</li>\n  <li>localizing copy in Croatian and English</li>\n  <li>reading logs, errors, edge cases, and regressions faster</li>\n  <li>capturing why a decision was made</li>\n</ul>\n\n<p>PLAYGRND's local git history showed roughly 100 small commits from July 1, 2026, during one recent stretch. That number is not a quality metric by itself. It does show the shape of work: small changes, constant checks, and fast returns to detail.</p>\n\n<p>Before AI, a lot of that energy would have gone into mechanical work. With AI, more of it can stay on the product question: is this the right loop for the user?</p>\n\n<h2>The architecture has to keep up</h2>\n\n<p>PLAYGRND is intentionally server-rendered. The public web app is SSR. The backend is a separate Go service behind the web layer. The data is relational. Cache is used for expensive and repeated reads. Public assets live in object storage.</p>\n\n<p>That setup matters because it lets the product stay fast while the surface area grows.</p>\n\n<ul>\n  <li>public pages are fast and indexable</li>\n  <li>Croatian and English are part of the product, not an afterthought</li>\n  <li>public reads are separated from private write/admin flows</li>\n  <li>profile claims and corrections are built around verification</li>\n  <li>WhatsApp can be an operating channel without becoming the source of truth</li>\n</ul>\n\n<p>The technical choices and product choices are not separate here. If the public record needs to be fast, reliable, and correctable, the architecture has to support low-friction reading, verified writing, and a clear enough trail when something changes.</p>\n\n<h2>The part I care about most</h2>\n\n<p>PLAYGRND is also a test case for the way I think software teams will work with AI.</p>\n\n<p>A small team can build a wider product when it has a strong context layer:</p>\n\n<ul>\n  <li>what already exists</li>\n  <li>which decisions are still current</li>\n  <li>where the safety boundaries are</li>\n  <li>which parts are public and which are private</li>\n  <li>what AI can suggest but not change directly</li>\n  <li>how a change is tested before deployment</li>\n</ul>\n\n<p>That is the same reason I keep writing about context infrastructure for AI-assisted software work. Speed is not just generating more code. Speed comes from keeping context reliable while the product changes quickly.</p>\n\n<p>PLAYGRND is still being built. Organizer tools are not final. Claim and correction loops still need more hardening. But the direction is clear: a fast public sports record first, then workflows that reduce real organizer work.</p>\n\n<p>In the pre-AI era, this scope would have meant much more waiting for a small team. In the AI era, it can mean more iterations, more product evidence, and more time left for decisions that actually need people.</p>",
+      "seo": {
+        "title": "What PLAYGRND Is Teaching Me About Building Faster With AI | Hrvoje Pavlinovic",
+        "description": "How PLAYGRND shows a practical way for a small team to build faster with AI while keeping product judgment, verification, and architecture intact.",
+        "keywords": [
+          "PLAYGRND",
+          "AI Assisted Development",
+          "Software Engineering",
+          "Product Development",
+          "SSR",
+          "Go Backend",
+          "Context Engineering",
+          "Amateur Football"
+        ],
+        "author": "Hrvoje Pavlinovic",
+        "image": "https://hrvoje.pavlinovic.com/blog.png",
+        "twitterCard": "summary_large_image",
+        "twitterCreator": "@0xHP10"
+      }
+    },
+    {
+      "id": 9,
+      "title": "Which Context Should Win?",
+      "slug": "which-context-should-win",
+      "author": "Hrvoje Pavlinovic",
+      "tags": [
+        "AI",
+        "Agents",
+        "Context",
+        "Memory"
+      ],
+      "shortDescription": "Agent reliability is not only retrieval. The hard part is deciding which source is allowed to control the next action when context conflicts.",
+      "createdAt": "2026-07-06T14:45:00.000Z",
+      "fullText": "<p>Most agent failures in software teams will not look like a spectacular model collapse.</p>\n\n<p>They will look like an ordinary task completed from the wrong context.</p>\n\n<p>A repository still contains an old compatibility layer. A ticket says a billing API is supported. A Slack thread from three weeks later says the team decided to remove it after migration. A design document was never updated. An incident note changed the rollout order.</p>\n\n<p>An agent can retrieve all of this.</p>\n\n<p>That is the problem.</p>\n\n<p>Retrieval does not decide which source should win.</p>\n\n<h2>Context conflicts are normal</h2>\n\n<p>Human teams live with conflicting context every day.</p>\n\n<ul>\n  <li>code says one thing</li>\n  <li>tickets say another</li>\n  <li>chat contains the real decision</li>\n  <li>docs are half stale</li>\n  <li>incidents create temporary exceptions</li>\n  <li>access rules differ between teams and environments</li>\n</ul>\n\n<p>Humans resolve this through social and operational knowledge. They know who owns the service, which document is dead, which Slack thread was the actual decision, and when to ask before touching production code.</p>\n\n<p>Agents do not get that judgment for free.</p>\n\n<p>If the context layer only returns similar text, the model has to infer authority from fragments. It may pick the newest sentence. It may pick the most specific sentence. It may pick the sentence that looks easiest to act on.</p>\n\n<p>None of those is a governance rule.</p>\n\n<h2>Memory is not authority</h2>\n\n<p>A memory item can say: use billing API v1 for enterprise customers.</p>\n\n<p>That may have been true when it was stored. It may still be true for one customer segment. It may be false after a migration. It may be true for read paths but false for new writes. It may be something an agent is allowed to mention but not allowed to act on.</p>\n\n<p>The memory is useful only if it carries operational shape:</p>\n\n<ul>\n  <li>source</li>\n  <li>owner</li>\n  <li>timestamp</li>\n  <li>scope</li>\n  <li>confidence</li>\n  <li>supersession path</li>\n  <li>permission to influence action</li>\n</ul>\n\n<p>Without that, memory is remembered authority with no audit trail.</p>\n\n<h2>The missing primitive is precedence</h2>\n\n<p>The question I care about is practical:</p>\n\n<p><em>When sources disagree, which one is allowed to control the next action?</em></p>\n\n<p>That means precedence has to be represented explicitly.</p>\n\n<p>A production incident may override a stale design document. A code owner decision may override a generated summary. A security policy may override a user preference. A current ticket may override a memory from last month. A private document may match the query but still be out of scope for the agent.</p>\n\n<p>This is not a prompt-format problem. It is a control-surface problem.</p>\n\n<p>The agent needs context that is:</p>\n\n<ul>\n  <li>source-backed</li>\n  <li>time-aware</li>\n  <li>permission-aware</li>\n  <li>scoped to the task and actor</li>\n  <li>able to mark older claims as superseded</li>\n  <li>visible in the trace after the agent acts</li>\n</ul>\n\n<h2>Bigger context windows make this sharper</h2>\n\n<p>Large context windows help the model see more.</p>\n\n<p>They do not tell it what should matter.</p>\n\n<p>As agents get access to more repositories, tickets, docs, chat history, deployment records, incidents, and observability data, the central problem shifts. It is no longer only: can the model find context? It becomes: can the system govern which context the model is allowed to use?</p>\n\n<p>That is where I think reliable agent infrastructure will be built.</p>\n\n<p>Not around memory as a pile of notes.</p>\n\n<p>Around context as a governed operational layer.</p>",
+      "seo": {
+        "title": "Which Context Should Win? | Hrvoje Pavlinovic",
+        "description": "Why AI agent reliability needs precedence, permissions, freshness, ownership, and source-backed context instead of retrieval alone.",
+        "keywords": [
+          "AI Agents",
+          "Context Engineering",
+          "Agent Memory",
+          "Precedence",
+          "Permissions",
+          "Software Engineering",
+          "AI Reliability",
+          "Agent Infrastructure"
+        ],
+        "author": "Hrvoje Pavlinovic",
+        "image": "https://hrvoje.pavlinovic.com/blog.png",
+        "twitterCard": "summary_large_image",
+        "twitterCreator": "@0xHP10"
+      }
+    },
     {
       "id": 8,
       "title": "Memory Is Not Enforcement",
