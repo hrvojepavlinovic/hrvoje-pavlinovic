@@ -40,11 +40,11 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
         <meta name="title" content="Hrvoje Pavlinovic" />
         <meta
           name="description"
-          content="Hrvoje Pavlinovic is a senior backend engineer with 13+ years of experience building reliable production systems across live commerce, payments, logistics, AWS, and complex product domains."
+          content="Hrvoje Pavlinovic is a senior backend engineer building reliable production systems for complex products, with practical AI-assisted workflows for context, delivery, and safety."
         />
         <meta
           name="keywords"
-          content="Hrvoje Pavlinovic, senior backend engineer, software engineering, backend systems, TypeScript, Node.js, AWS, PostgreSQL, live commerce, payments, logistics"
+          content="Hrvoje Pavlinovic, senior backend engineer, backend systems, AI-assisted engineering, context systems, TypeScript, Node.js, AWS, PostgreSQL, live commerce, payments, logistics"
         />
         <meta name="author" content="Hrvoje Pavlinovic" />
         <meta name="robots" content="index, follow" />
@@ -56,11 +56,11 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
         <meta property="og:title" content="Hrvoje Pavlinovic" />
         <meta
           property="og:description"
-          content="Senior backend engineer building reliable systems for real businesses."
+          content="Senior backend engineer building reliable systems and practical AI-assisted engineering workflows."
         />
         <meta
           property="og:image"
-          content="https://hrvoje.pavlinovic.com/pfptbs.png"
+          content="https://hrvoje.pavlinovic.com/blog.png"
         />
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
         <meta property="profile:first_name" content="Hrvoje" />
@@ -74,11 +74,11 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
         <meta name="twitter:title" content="Hrvoje Pavlinovic" />
         <meta
           name="twitter:description"
-          content="Senior backend engineer building reliable systems for real businesses."
+          content="Senior backend engineer building reliable systems and practical AI-assisted engineering workflows."
         />
         <meta
           name="twitter:image"
-          content="https://hrvoje.pavlinovic.com/pfptbs.png"
+          content="https://hrvoje.pavlinovic.com/blog.png"
         />
 
         {/* Canonical URL */}
@@ -95,7 +95,7 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
               "name": "Hrvoje Pavlinovic",
               "alternateName": "@0xhp10",
               "description":
-                "Senior backend engineer with 13+ years of experience building reliable production systems across live commerce, payments, logistics, AWS, and complex product domains.",
+                "Senior backend engineer building reliable production systems for complex products, with practical AI-assisted workflows for context, delivery, and safety.",
               "image": "https://hrvoje.pavlinovic.com/pfptbs.png",
               "url": "https://hrvoje.pavlinovic.com",
               "sameAs": [
@@ -107,6 +107,8 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
               "knowsAbout": [
                 "Software Engineering",
                 "Backend Systems",
+                "AI-Assisted Engineering",
+                "Context Systems",
                 "TypeScript",
                 "Node.js",
                 "AWS",

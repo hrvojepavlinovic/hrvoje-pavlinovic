@@ -87,7 +87,7 @@ export default function Footer() {
                 >
                   {commitHash.value.substring(0, 7)}
                 </a>
-                <span class="text-xs text-black/45 dark:text-white/50">
+                <span class="text-xs text-black/65 dark:text-white/70">
                   {timeSince.value}
                 </span>
                 <a
@@ -110,7 +110,7 @@ export default function Footer() {
             )}
 
             {!commitHash.value && !error.value && (
-              <span class="flex items-center gap-2 text-black/45 dark:text-white/50">
+              <span class="flex items-center gap-2 text-black/65 dark:text-white/70">
                 <span class="h-2.5 w-2.5 rounded-full bg-emerald-300"></span>
                 Syncing release…
               </span>

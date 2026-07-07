@@ -70,7 +70,7 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         />
         <meta
           property="og:image"
-          content="https://hrvoje.pavlinovic.com/pfp.png"
+          content="https://hrvoje.pavlinovic.com/blog.png"
         />
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
 
@@ -88,7 +88,7 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         />
         <meta
           name="twitter:image"
-          content="https://hrvoje.pavlinovic.com/pfp.png"
+          content="https://hrvoje.pavlinovic.com/blog.png"
         />
       </Head>
 

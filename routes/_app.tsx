@@ -73,11 +73,11 @@ export default function App({ Component, url }: PageProps) {
             <title>{defaultTitle}</title>
             <meta
               name="description"
-              content="Hrvoje Pavlinovic is a senior backend engineer with 13+ years of experience building reliable production systems across live commerce, payments, logistics, AWS, and complex product domains."
+              content="Hrvoje Pavlinovic builds reliable backend systems for complex products, with practical AI-assisted workflows for context, delivery, and production safety."
             />
             <meta
               name="keywords"
-              content="Hrvoje Pavlinovic, senior backend engineer, software engineering, backend systems, TypeScript, Node.js, AWS, PostgreSQL, live commerce, payments, logistics, PLAYGRND, Memoato"
+              content="Hrvoje Pavlinovic, senior backend engineer, backend systems, AI-assisted engineering, context systems, TypeScript, Node.js, AWS, PostgreSQL, live commerce, PLAYGRND, Memoato"
             />
             <meta name="author" content="Hrvoje Pavlinovic" />
             <meta name="robots" content="index, follow" />
@@ -90,11 +90,11 @@ export default function App({ Component, url }: PageProps) {
             <meta property="og:title" content={defaultTitle} />
             <meta
               property="og:description"
-              content="Senior backend engineer building reliable systems for real businesses."
+              content="Senior backend engineer building reliable systems and practical AI-assisted engineering workflows."
             />
             <meta
               property="og:image"
-              content="https://hrvoje.pavlinovic.com/pfp.png"
+              content="https://hrvoje.pavlinovic.com/blog.png"
             />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
@@ -107,11 +107,11 @@ export default function App({ Component, url }: PageProps) {
             <meta name="twitter:title" content={defaultTitle} />
             <meta
               name="twitter:description"
-              content="Senior backend engineer building reliable systems for real businesses."
+              content="Senior backend engineer building reliable systems and practical AI-assisted engineering workflows."
             />
             <meta
               name="twitter:image"
-              content="https://hrvoje.pavlinovic.com/pfp.png"
+              content="https://hrvoje.pavlinovic.com/blog.png"
             />
             <meta name="twitter:image:alt" content="Hrvoje Pavlinovic" />
             <meta name="twitter:url" content={canonicalUrl} />
@@ -131,16 +131,6 @@ export default function App({ Component, url }: PageProps) {
         {/* Preload and Resource Hints */}
         <link rel="preload" href="/styles.css" as="style" />
         <link rel="stylesheet" href="/styles.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
 
         {/* Databuddy Analytics - Only in production */}
         {url.hostname !== "localhost" && (

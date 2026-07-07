@@ -6,6 +6,7 @@ import {
   recordRecentClick,
 } from "./store.ts";
 import blogData from "../data/blog.json" with { type: "json" };
+import projectsData from "../data/projects.json" with { type: "json" };
 
 export interface ClickEvent {
   type: ClickType;
@@ -27,8 +28,31 @@ export function isLikelyBot(userAgent?: string) {
     .test(userAgent);
 }
 
+const currentPublicPages = new Set<string>([
+  "/",
+  "/about",
+  "/blog",
+  "/cv",
+  "/projects",
+  "/webstats",
+  ...(projectsData.projects as Array<{ id: string }>).map((project) =>
+    `/projects/${project.id}`
+  ),
+  ...(blogData.articles as Array<{ slug: string }>).map((article) =>
+    `/blog/${article.slug}`
+  ),
+]);
+
+function isCurrentPublicPage(page: string) {
+  return currentPublicPages.has(page);
+}
+
 export async function trackPageView(page: string, userAgent?: string) {
   if (isLikelyBot(userAgent)) {
+    return;
+  }
+
+  if (!isCurrentPublicPage(page)) {
     return;
   }
 
@@ -107,13 +131,18 @@ export async function trackClick(
 
 export async function getStats() {
   const pageViewCounters: Record<string, number> = {};
+  const legacyPageViewCounters: Record<string, number> = {};
   const clickCounters: Record<string, number> = {};
 
   // Get page view counters
   const pageViewCountersIter = await listPrefix<number>(["page_views"]);
   for (const entry of pageViewCountersIter) {
     const page = entry.key[1] as string;
-    pageViewCounters[page] = entry.value;
+    if (isCurrentPublicPage(page)) {
+      pageViewCounters[page] = entry.value;
+    } else {
+      legacyPageViewCounters[page] = entry.value;
+    }
   }
 
   // Get blog article view counters (format: ["blog:views:slug"])
@@ -138,6 +167,7 @@ export async function getStats() {
 
   return {
     pageViews: pageViewCounters,
+    legacyPageViews: legacyPageViewCounters,
     clicks: clickCounters,
     recentClicks: recentClicks,
   };

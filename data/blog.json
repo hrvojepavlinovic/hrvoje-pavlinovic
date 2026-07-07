@@ -1,6 +1,99 @@
 {
-  "lastId": 13,
+  "lastId": 16,
   "articles": [
+    {
+      "id": 16,
+      "title": "Every AI Coding Workflow Needs a Runbook Layer",
+      "slug": "ai-coding-workflow-needs-runbook-layer",
+      "author": "Hrvoje Pavlinovic",
+      "tags": [
+        "AI",
+        "Runbooks",
+        "DevOps",
+        "Software Engineering"
+      ],
+      "shortDescription": "Why AI-assisted development gets safer when agents can read the operational runbooks before they make code or deployment decisions.",
+      "createdAt": "2026-07-07T12:30:00.000Z",
+      "fullText": "<p>Most teams introduce AI coding tools at the editor layer. That is useful, but it is not enough.</p>\n\n<p>The editor knows the code. The agent may know the prompt. But production systems are governed by runbooks, deployment habits, incident history, service ownership, and small operational rules that rarely live inside the file being edited.</p>\n\n<p>That is why every serious AI coding workflow needs a runbook layer.</p>\n\n<h2>Code is not the whole system</h2>\n\n<p>A backend change can look correct in isolation and still be wrong operationally.</p>\n\n<p>Maybe a queue consumer needs a manual drain step. Maybe a migration must happen before a deploy. Maybe one endpoint is used by a mobile app version that cannot be forced to upgrade. Maybe a provider webhook has a replay tool that should be used in staging before production.</p>\n\n<p>Those details are often in runbooks, incident notes, Slack decisions, or the heads of engineers who have been burned before.</p>\n\n<p>If an agent cannot see that layer, it will make clean-looking changes with incomplete judgment.</p>\n\n<h2>What belongs in the runbook layer</h2>\n\n<p>I do not mean a giant wiki nobody reads. I mean small, source-backed operational facts that agents and humans can retrieve at the right moment.</p>\n\n<ul>\n  <li>Deploy rules for each service</li>\n  <li>Rollback steps and known failure modes</li>\n  <li>Provider-specific gotchas for Stripe, shipping, email, auth, or cloud services</li>\n  <li>Migration ordering rules</li>\n  <li>Smoke tests that actually matter</li>\n  <li>Ownership and escalation paths</li>\n  <li>Staging data or replay tools</li>\n  <li>Incidents that changed how the team operates</li>\n</ul>\n\n<p>The point is not documentation theater. The point is to put operational truth close to the agent before it acts.</p>\n\n<h2>Read-first autonomy</h2>\n\n<p>The safest first step is read access.</p>\n\n<p>Before an agent writes code, it should be able to read the relevant runbook. Before it touches deploy scripts, it should know how rollback works. Before it edits a payment flow, it should know which incident or provider constraint shaped the current implementation.</p>\n\n<p>This does not make agents slow. It makes their speed less reckless.</p>\n\n<h2>Runbooks as tests for judgment</h2>\n\n<p>A good runbook layer also gives you a way to evaluate the agent.</p>\n\n<p>Ask the same task with and without runbook context. Does the agent choose a safer migration path? Does it add the right smoke test? Does it avoid the deprecated script? Does it explain the operational risk more clearly?</p>\n\n<p>If the answer is yes, the runbook layer is not just documentation. It is part of the execution system.</p>\n\n<h2>The boring advantage</h2>\n\n<p>None of this is flashy. It will not look like a viral demo.</p>\n\n<p>But boring operational context is what separates toy AI workflows from production engineering. The agent that can read the right runbook before changing code is more useful than the agent that writes faster while missing the reason the code was shaped that way.</p>\n\n<p>AI-assisted development should not only make teams faster. It should make their existing operational knowledge easier to use.</p>\n\n<p>That is the runbook layer.</p>",
+      "seo": {
+        "title": "Every AI Coding Workflow Needs a Runbook Layer | Hrvoje Pavlinovic",
+        "description": "AI-assisted development gets safer when agents can read deployment rules, incident history, provider gotchas, smoke tests, and rollback runbooks before acting.",
+        "keywords": [
+          "AI Coding",
+          "Runbooks",
+          "DevOps",
+          "Software Engineering",
+          "Agent Context",
+          "Production Safety"
+        ],
+        "author": "Hrvoje Pavlinovic",
+        "image": "https://hrvoje.pavlinovic.com/blog.png",
+        "twitterCard": "summary_large_image",
+        "twitterCreator": "@0xHP10"
+      }
+    },
+    {
+      "id": 15,
+      "title": "Agent Memory Needs Provenance, Not Vibes",
+      "slug": "agent-memory-needs-provenance-not-vibes",
+      "author": "Hrvoje Pavlinovic",
+      "tags": [
+        "AI",
+        "Memory",
+        "Provenance",
+        "Engineering"
+      ],
+      "shortDescription": "Why agent memory is only useful when every durable fact points back to a source, a date, and a reason it should still be trusted.",
+      "createdAt": "2026-07-07T12:20:00.000Z",
+      "fullText": "<p>Agent memory sounds useful until it starts remembering the wrong thing.</p>\n\n<p>That is the failure mode I care about most. Not that an agent forgets something. Forgetting is annoying. Remembering a stale or false fact with confidence is dangerous.</p>\n\n<p>For software work, memory without provenance is just vibes with a database.</p>\n\n<h2>What provenance means in practice</h2>\n\n<p>A durable memory item should be able to answer four questions:</p>\n\n<ul>\n  <li>Where did this fact come from?</li>\n  <li>When was it observed or decided?</li>\n  <li>Who or what is allowed to use it?</li>\n  <li>What would make it stale?</li>\n</ul>\n\n<p>If a memory cannot answer those questions, it should be treated as a hint, not as context the agent may rely on automatically.</p>\n\n<h2>A software example</h2>\n\n<p>Imagine an agent remembers: \"Do not touch the payment webhook retry logic.\" That sounds useful, but it is incomplete.</p>\n\n<p>Was that decision from a production incident? A Slack thread? A senior engineer's review comment? A workaround from six months ago? Did the system change since then? Is the warning still true for all services, or only for one deprecated handler?</p>\n\n<p>The useful version is different:</p>\n\n<p><strong>Payment webhook retry logic is sensitive because incident INC-184 showed duplicate fulfillment when retries were not idempotent. See PR #2317 and the runbook section updated on 2026-05-14. New retry changes need idempotency checks and staging replay before deploy.</strong></p>\n\n<p>Now the agent has a source, a reason, and a verification path. That is memory worth using.</p>\n\n<h2>Memory should decay</h2>\n\n<p>Most engineering facts have a half-life.</p>\n\n<p>An API constraint may disappear. A launch freeze ends. A flaky test gets fixed. A manual deployment rule becomes automated. If memory never decays, it becomes a pile of old caution signs that slow the team down.</p>\n\n<p>Good memory needs state: current, stale, superseded, archived, needs review. It also needs a way for newer evidence to challenge older memory.</p>\n\n<h2>Memory diffs are better than silent writes</h2>\n\n<p>I do not want agents silently writing long-term memory every time they finish a task.</p>\n\n<p>I want a diff.</p>\n\n<p>After a PR, incident, or debugging session, the agent can propose what it learned: new runbook rule, changed API behavior, updated deploy constraint, known gotcha, removed warning. Then a human can approve, reject, or edit it.</p>\n\n<p>That keeps memory reviewable. It also forces the system to explain why something deserves to become durable context.</p>\n\n<h2>The real product is trust</h2>\n\n<p>Agent memory is not valuable because it stores text. It is valuable when it improves trust.</p>\n\n<p>Can the agent show its source? Can it tell me what changed? Can it avoid leaking private context across projects? Can it admit when a memory might be stale?</p>\n\n<p>If the answer is no, the memory layer is not helping enough. It may even be making the system worse.</p>\n\n<p>The goal is not an agent that remembers everything. The goal is an agent that knows which facts deserve trust, and why.</p>",
+      "seo": {
+        "title": "Agent Memory Needs Provenance, Not Vibes | Hrvoje Pavlinovic",
+        "description": "Agent memory is only useful when durable facts point back to sources, dates, permissions, freshness, and reviewable memory diffs.",
+        "keywords": [
+          "Agent Memory",
+          "Provenance",
+          "AI Context",
+          "Software Engineering",
+          "Memory Diffs",
+          "AI Safety"
+        ],
+        "author": "Hrvoje Pavlinovic",
+        "image": "https://hrvoje.pavlinovic.com/blog.png",
+        "twitterCard": "summary_large_image",
+        "twitterCreator": "@0xHP10"
+      }
+    },
+    {
+      "id": 14,
+      "title": "How I Structure Context for Coding Agents",
+      "slug": "how-i-structure-context-for-coding-agents",
+      "author": "Hrvoje Pavlinovic",
+      "tags": [
+        "AI",
+        "Context",
+        "Software Engineering",
+        "Workflow"
+      ],
+      "shortDescription": "A practical structure for giving coding agents useful context without turning every task into a giant prompt dump.",
+      "createdAt": "2026-07-07T12:10:00.000Z",
+      "fullText": "<p>The most useful coding-agent setup I have found is not a giant prompt. It is a small context system.</p>\n\n<p>A prompt is what you say right now. A context system is what the agent can reliably learn before it acts: the task, the repo rules, the current production constraints, the relevant history, and the boundaries for what it may change.</p>\n\n<p>When that structure is missing, even strong models behave like talented contractors dropped into a warehouse with no labels. They can move fast, but they do not know what matters, what is fragile, or which previous decision they are about to undo.</p>\n\n<h2>The shape I want</h2>\n\n<p>For coding work, I try to separate context into five layers.</p>\n\n<h3>1. Goal context</h3>\n\n<p>This is the plain-English outcome. Not the implementation. The outcome.</p>\n\n<p>Examples: make the project list rank sunsetted projects last, reduce homepage LCP, add a safe deploy smoke test, explain why a production counter is wrong.</p>\n\n<p>If the goal is vague, the agent should stop and clarify. If the goal is clear, it should keep moving until the loop is closed.</p>\n\n<h3>2. System context</h3>\n\n<p>This is where the repo explains how it wants to be changed. In practice, this means files like <code>AGENTS.md</code>, local runbooks, deployment notes, coding conventions, and the commands that define done.</p>\n\n<p>This layer matters because every repo has taste. Some systems want generated files committed. Some do not. Some track data in JSON. Some use migrations. Some deploy through GitHub Actions. Some require a local preview before push. The agent needs that before editing.</p>\n\n<h3>3. Evidence context</h3>\n\n<p>This is the difference between guessing and working from facts.</p>\n\n<p>For a bug, evidence might be logs, a failing test, a reproduction, a screenshot, or a production response. For an SEO task, it might be the rendered HTML, sitemap, robots file, headers, and Lighthouse output. For a product change, it might be the current UI and the data model behind it.</p>\n\n<p>I want the agent to read first, then act. If it cannot show what it inspected, I do not trust the fix.</p>\n\n<h3>4. Boundary context</h3>\n\n<p>Agents need constraints as much as they need instructions.</p>\n\n<p>Which files are off limits? Is the worktree dirty? Can it push? Can it touch production? Are there user changes that must be preserved? Is the task allowed to create public content, send email, change DNS, or delete data?</p>\n\n<p>Good boundary context prevents the most expensive class of AI mistakes: doing a technically correct thing in the wrong operational scope.</p>\n\n<h3>5. Verification context</h3>\n\n<p>Every change should know how it will be proven.</p>\n\n<p>Sometimes that is a unit test. Sometimes it is <code>deno task check</code>, a build, a local smoke test, and a production curl after deploy. Sometimes it is a visual screenshot. The important part is that verification is not invented at the end. It is part of the plan from the beginning.</p>\n\n<h2>What I avoid</h2>\n\n<p>I avoid dumping every document into the context window. More text is not the same as better context.</p>\n\n<p>Old notes, stale architecture comments, unrelated tickets, and half-remembered decisions can make the model worse. The point is not to maximize context size. The point is to retrieve the smallest set of source-backed facts that changes the quality of the action.</p>\n\n<h2>The durable asset</h2>\n\n<p>Models will keep changing. IDEs will keep changing. The durable asset is the context structure around them.</p>\n\n<p>A good setup lets any strong agent answer the same basic questions before touching code: what am I trying to do, what system am I in, what evidence supports the change, what boundaries apply, and how will I prove it worked?</p>\n\n<p>That is the difference between an impressive demo and a workflow I am willing to use on production software.</p>",
+      "seo": {
+        "title": "How I Structure Context for Coding Agents | Hrvoje Pavlinovic",
+        "description": "A practical five-layer structure for coding-agent context: goal, system, evidence, boundaries, and verification.",
+        "keywords": [
+          "Coding Agents",
+          "AI Context",
+          "Software Engineering",
+          "Agent Workflow",
+          "Context Engineering",
+          "Verification"
+        ],
+        "author": "Hrvoje Pavlinovic",
+        "image": "https://hrvoje.pavlinovic.com/blog.png",
+        "twitterCard": "summary_large_image",
+        "twitterCreator": "@0xHP10"
+      }
+    },
     {
       "id": 13,
       "title": "What Would You Build on a Piece of Land in Dalmatia?",

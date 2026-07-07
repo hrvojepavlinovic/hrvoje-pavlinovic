@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Resume",
-    "subtitle": "13+ years building backend platforms, commerce systems, and AI-assisted engineering workflows"
+    "subtitle": "13+ years building backend platforms for commerce, payments, logistics, and product-heavy teams"
   },
   "profile": {
     "name": "Hrvoje Pavlinovic",
@@ -31,13 +31,13 @@
     ]
   },
   "professionalSummary": {
-    "description": "Senior Software Engineer with 13+ years of experience building backend platforms, distributed commerce systems, and production workflows for small, fast-moving teams. Strong track record across live commerce, auctions, payments, shipping, real-time video, search, event-driven services, and AWS infrastructure. Currently building complex backend systems at Tilt while using modern AI tooling and carefully scoped credentials to make delivery faster without weakening production safety. Known for independent ownership, clear communication, reliable delivery, and turning ambiguous product problems into shipped systems."
+    "description": "Senior Software Engineer with 13+ years of experience building backend platforms, distributed commerce systems, and production workflows for small, fast-moving teams. Strong track record across live commerce, auctions, payments, shipping, real-time video, search, event-driven services, and AWS infrastructure. Currently building complex backend systems at Tilt, where fast delivery has to stay grounded in clear trade-offs, scoped operational access, and careful production releases. Known for independent ownership, clear communication, reliable delivery, and turning ambiguous product problems into shipped systems."
   },
   "skills": {
     "coreExpertise": [
       "Backend Platform Engineering",
       "Distributed Commerce Systems",
-      "AI-Assisted Engineering Workflows",
+      "Operational Tooling and Delivery",
       "Payments and Shipping Integrations",
       "Performance and Reliability",
       "System Design"
@@ -77,8 +77,8 @@
       ],
       "AI/Workflow": [
         "Modern AI Tooling",
-        "AI-Assisted Delivery",
-        "Agentic Workflows",
+        "AI-Assisted Engineering",
+        "Repository Context",
         "Safe Tool Access",
         "Context Handoffs",
         "CI Feedback Loops"
@@ -103,8 +103,8 @@
         "Build and operate backend systems for Tilt's live commerce platform across livestreaming, auctions, product inventory, payments, shipping, seller tooling, and real-time buyer workflows.",
         "Ship changes inside a large TypeScript backend monorepo with 50+ services and shared libraries, spanning NestJS, Express, Hasura, PostgreSQL, Redis, AWS ECS/Lambda, SNS/SQS, S3, and AppConfig.",
         "Delivered complex commerce integrations and operational fixes across Stripe, Shippo, Royal Mail, InPost, Hasura schema exposure, auction events, live rooms, product ingestion, and mobile seller workflows.",
-        "Used modern AI tooling and connected operational context across Linear, Slack, Sentry, Stripe, Shippo, and AWS workflows to accelerate implementation, debugging, and release work while keeping credentials scoped and production actions explicit.",
-        "Introduced and improved AI-assisted engineering workflows, including repo-specific agent guidance, ticket-to-implementation experiments, CI feedback loops, and safer handoff patterns for a fast-moving distributed team.",
+        "Used modern AI tooling with connected Linear, Slack, Sentry, Stripe, Shippo, and AWS context to shorten implementation and debugging cycles while keeping credentials scoped and production actions explicit.",
+        "Helped shape AI-assisted engineering practices for a distributed team, including repo guidance, focused ticket-to-code experiments, CI feedback loops, and reviewable handoff patterns.",
         "Recognized internally as a reliable engineer who moves quickly, collaborates well across product and engineering, and handles ambiguous backend problems with strong ownership."
       ],
       "technologies": [
@@ -153,7 +153,7 @@
         "Serverless",
         "Monorepo"
       ],
-      "isHighlight": true
+      "isHighlight": false
     },
     {
       "title": "Software Engineer (Consulting)",
@@ -182,11 +182,11 @@
       "companyUrl": "https://povio.com",
       "period": "2021 - 2023",
       "achievements": [
-        "Develop clinical trials management system for German healthcare company Clariness",
-        "Implement scalable backend architecture using AWS, Terraform, Docker, and GitLab CI/CD pipelines",
-        "Integrate Twilio API for direct call agent functionality and resolve critical timezone calculation bugs",
-        "Simplify HIPAA compliance requirements for healthcare team, ensuring successful regulatory approval",
-        "Optimize database performance for handling thousands of concurrent patient record queries"
+        "Developed backend features for Clariness clinical trial management workflows used by healthcare teams.",
+        "Built APIs, background jobs, and deployment workflows with NestJS, TypeORM, PostgreSQL, AWS, Terraform, Docker, and GitLab CI/CD.",
+        "Integrated Twilio for direct call-agent workflows and debugged timezone-heavy scheduling issues.",
+        "Worked inside healthcare delivery constraints where patient data handling, auditability, and clear operational behavior mattered.",
+        "Improved database access patterns and backend performance for patient and trial-management workflows."
       ],
       "technologies": [
         "Node.js",
@@ -205,11 +205,11 @@
       "companyUrl": "https://rimac-automobili.com",
       "period": "2020 - 2021",
       "achievements": [
-        "Contribute to Telemetry API and OTA updates system for world's fastest electric hypercar",
-        "Implement microservices architecture using TypeScript, GraphQL, and event-driven design with Kafka",
-        "Design scalability solutions handling real-time telemetry data from 100+ vehicle sensors",
-        "Conduct 15+ technical interviews and establish hiring standards for the team",
-        "Create secure OTA updates system with rollback capabilities, ensuring zero failed deployments"
+        "Built backend services for telemetry and over-the-air update workflows on Rimac's hypercar platform.",
+        "Implemented TypeScript and GraphQL services within Apollo Federation and event-driven architecture with Kafka.",
+        "Worked on real-time vehicle telemetry ingestion and processing with reliability, observability, and operational safety concerns.",
+        "Conducted technical interviews and contributed to hiring calibration for the backend team.",
+        "Helped design OTA update flows with rollback and operational safety considerations."
       ],
       "technologies": [
         "TypeScript",
@@ -227,11 +227,11 @@
       "companyUrl": "https://profi.co",
       "period": "2018 - 2020",
       "achievements": [
-        "Lead development standards meetings with C-level executives, establishing company-wide coding practices",
-        "Architect scalable web applications for Norwegian media company handling 1M+ monthly users",
-        "Implement legacy system integration connecting 4 real estate agency APIs into unified platform",
-        "Mentor 3 junior developers achieving promotion to mid-level positions within 12 months",
-        "Reduce system downtime by 80% through performance optimization and proactive monitoring"
+        "Led engineering standards discussions with company leadership and helped align delivery practices across teams.",
+        "Built web applications and backend APIs for media, real estate, and product-focused client work.",
+        "Integrated multiple real-estate agency APIs into a unified platform while managing legacy constraints.",
+        "Mentored junior developers through implementation, code review, and delivery planning.",
+        "Improved reliability and performance through profiling, monitoring, and system cleanup."
       ],
       "technologies": [
         "Node.js",
@@ -250,9 +250,9 @@
       "companyUrl": "https://ericsson.com",
       "period": "2015 - 2018",
       "achievements": [
-        "Develop internal tools: Nodebook (Symfony), Atlas (data analysis), AAT (testing)",
-        "Improve performance by migrating from Groovy & Grails to Node.js",
-        "Create framework-agnostic schema language for testing tools and present to SoftBank executives"
+        "Developed internal tools including Nodebook (Symfony), Atlas (data analysis), and AAT (testing).",
+        "Helped improve performance and maintainability by moving selected tooling from Groovy/Grails toward Node.js.",
+        "Created a framework-agnostic schema language for testing tools and presented the approach to SoftBank stakeholders."
       ],
       "technologies": ["Node.js", "Symfony", "PHP", "Python", "MySQL"],
       "isHighlight": true

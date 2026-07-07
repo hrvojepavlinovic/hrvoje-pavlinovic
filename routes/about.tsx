@@ -66,7 +66,7 @@ export default function About({ data }: PageProps<AboutRouteData>) {
         />
         <meta
           property="og:image"
-          content="https://hrvoje.pavlinovic.com/pfptbs.png"
+          content="https://hrvoje.pavlinovic.com/blog.png"
         />
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
         <meta property="profile:first_name" content="Hrvoje" />
@@ -87,7 +87,7 @@ export default function About({ data }: PageProps<AboutRouteData>) {
         />
         <meta
           name="twitter:image"
-          content="https://hrvoje.pavlinovic.com/pfptbs.png"
+          content="https://hrvoje.pavlinovic.com/blog.png"
         />
 
         {/* Canonical URL */}

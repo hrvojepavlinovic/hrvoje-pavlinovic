@@ -11,7 +11,15 @@ export default {
         "btc-orange": "#f7931a",
       },
       fontFamily: {
-        mono: ["Space Mono", "monospace"],
+        mono: [
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "Liberation Mono",
+          "monospace",
+        ],
       },
     },
   },

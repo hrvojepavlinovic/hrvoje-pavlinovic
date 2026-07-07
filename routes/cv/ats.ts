@@ -1,72 +1,6 @@
 import { FreshContext, Handlers } from "$fresh/server.ts";
 import cvData from "../../data/cv.json" with { type: "json" };
-
-interface Stat {
-  value: string;
-  label: string;
-}
-
-interface Profile {
-  name: string;
-  title: string;
-  phone: string;
-  email: string;
-  website: string;
-  location: string;
-  stats: Stat[];
-}
-
-interface ProfessionalSummary {
-  description: string;
-}
-
-type TechStack = Record<string, string[]>;
-
-interface Skills {
-  coreExpertise: string[];
-  techStack: TechStack;
-}
-
-interface Experience {
-  title: string;
-  company: string;
-  period: string;
-  achievements: string[];
-  technologies?: string[];
-}
-
-interface PersonalProject {
-  name: string;
-  url: string;
-  description: string;
-  technologies: string[];
-}
-
-interface Reference {
-  company: string;
-  companyUrl: string;
-  person: string;
-  title: string;
-  url: string;
-  quote: string;
-}
-
-interface Education {
-  degree: string;
-  institution: string;
-  period: string;
-  details: string[];
-}
-
-interface CVData {
-  profile: Profile;
-  professionalSummary: ProfessionalSummary;
-  skills: Skills;
-  experience: Experience[];
-  personalProjects: PersonalProject[];
-  references: Reference[];
-  education: Education[];
-}
+import type { CVData } from "../../types/cv.ts";
 
 const typedCvData = cvData as unknown as CVData;
 
@@ -183,7 +117,7 @@ export const handler: Handlers = {
         addText(`${category}: ${items.join(", ")}`, 9);
       });
       addText(
-        "Additional keywords: backend engineering, platform engineering, distributed systems, live commerce, auctions, payments, shipping, logistics, event-driven architecture, API design, observability, AI coding tools, autonomous agents, safe credential handling, production reliability.",
+        "Additional keywords: backend engineering, platform engineering, distributed systems, live commerce, auctions, payments, shipping, logistics, event-driven architecture, API design, observability, modern AI tooling, safe credential handling, production reliability.",
         8,
       );
 
