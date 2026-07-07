@@ -43,11 +43,11 @@ export default function About({ data }: PageProps<AboutRouteData>) {
         />
         <meta
           name="description"
-          content="About Hrvoje Pavlinovic, a software engineer building reliable context systems for AI-assisted software teams and production-grade backend systems."
+          content="About Hrvoje Pavlinovic, a senior backend engineer building reliable production systems for complex products and product-heavy teams."
         />
         <meta
           name="keywords"
-          content="Hrvoje Pavlinovic, Software Engineer, AI Context Systems, Backend Engineering, Agent Memory, Provenance, Evals, Croatia"
+          content="Hrvoje Pavlinovic, Software Engineer, Backend Engineering, Production Systems, Live Commerce, Payments, AWS, Croatia"
         />
         <meta name="author" content="Hrvoje Pavlinovic" />
         <meta name="robots" content="index, follow" />
@@ -62,7 +62,7 @@ export default function About({ data }: PageProps<AboutRouteData>) {
         />
         <meta
           property="og:description"
-          content="Software engineer building reliable context systems for AI-assisted software teams."
+          content="Senior backend engineer building reliable production systems for complex products."
         />
         <meta
           property="og:image"
@@ -83,7 +83,7 @@ export default function About({ data }: PageProps<AboutRouteData>) {
         />
         <meta
           name="twitter:description"
-          content="Software engineer building reliable context systems for AI-assisted software teams."
+          content="Senior backend engineer building reliable production systems for complex products."
         />
         <meta
           name="twitter:image"
@@ -104,7 +104,7 @@ export default function About({ data }: PageProps<AboutRouteData>) {
               "name": "Hrvoje Pavlinovic",
               "alternateName": "@0xhp10",
               "description":
-                "Software engineer building reliable context systems for AI-assisted software teams.",
+                "Senior backend engineer building reliable production systems for complex products.",
               "image": "https://hrvoje.pavlinovic.com/pfptbs.png",
               "url": "https://hrvoje.pavlinovic.com",
               "sameAs": [
@@ -114,11 +114,12 @@ export default function About({ data }: PageProps<AboutRouteData>) {
               ],
               "jobTitle": "Software Engineer",
               "knowsAbout": [
-                "AI Context Systems",
-                "Agent Memory",
                 "Backend Engineering",
-                "Provenance",
-                "Evals",
+                "Production Systems",
+                "Distributed Systems",
+                "Live Commerce",
+                "Payments",
+                "AWS Infrastructure",
               ],
               "worksFor": {
                 "@type": "Organization",

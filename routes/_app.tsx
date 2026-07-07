@@ -73,11 +73,11 @@ export default function App({ Component, url }: PageProps) {
             <title>{defaultTitle}</title>
             <meta
               name="description"
-              content="Hrvoje Pavlinovic builds reliable backend systems for complex products, with practical AI-assisted workflows for context, delivery, and production safety."
+              content="Hrvoje Pavlinovic builds reliable backend systems for live commerce, payments, logistics, and complex product workflows."
             />
             <meta
               name="keywords"
-              content="Hrvoje Pavlinovic, senior backend engineer, backend systems, AI-assisted engineering, context systems, TypeScript, Node.js, AWS, PostgreSQL, live commerce, PLAYGRND, Memoato"
+              content="Hrvoje Pavlinovic, senior backend engineer, backend systems, TypeScript, Node.js, AWS, PostgreSQL, live commerce, payments, logistics, PLAYGRND, Memoato"
             />
             <meta name="author" content="Hrvoje Pavlinovic" />
             <meta name="robots" content="index, follow" />
@@ -90,7 +90,7 @@ export default function App({ Component, url }: PageProps) {
             <meta property="og:title" content={defaultTitle} />
             <meta
               property="og:description"
-              content="Senior backend engineer building reliable systems and practical AI-assisted engineering workflows."
+              content="Senior backend engineer building reliable systems for real businesses."
             />
             <meta
               property="og:image"
@@ -107,7 +107,7 @@ export default function App({ Component, url }: PageProps) {
             <meta name="twitter:title" content={defaultTitle} />
             <meta
               name="twitter:description"
-              content="Senior backend engineer building reliable systems and practical AI-assisted engineering workflows."
+              content="Senior backend engineer building reliable systems for real businesses."
             />
             <meta
               name="twitter:image"

@@ -4,16 +4,16 @@
     "heading": "Building reliable backend systems for complex products",
     "summary": "I specialize in making complex software workflows understandable, operable, and dependable.",
     "paragraphs": [
-      "With over 13 years of experience across Web3, automotive, health care, media, and commerce, I focus on stability, scale, and systems that teams can trust.",
+      "With over 13 years of experience across automotive, health care, media, commerce, and startup infrastructure, I focus on stability, scale, and systems that teams can trust.",
       "Currently, I work on backend infrastructure at Tilt, keeping livestream auctions, payments, and fulfillment fast and reliable.",
-      "My current specialization is reliable context infrastructure for AI-assisted software teams: connecting tools like GitHub, Slack, Linear, Jira, Sentry, docs, and production runbooks so agents can work with source-backed context instead of guesses.",
+      "I use modern AI tooling every day, but my deeper focus is still engineering judgment: clear context, scoped access, source-backed decisions, and production changes that remain reviewable.",
       "Outside of the terminal, my life revolves around family, health, and sound money. I am a proud father of two, an active fitness enthusiast (football, padel, gym, cycling), and a firm believer that Bitcoin can change the world for the better.",
       "I remain curious and focused on the future. My current goals are building useful products, growing HILLS Lab, and publishing practical field notes from real software work."
     ]
   },
   "work": {
-    "heading": "How I help teams work with AI",
-    "description": "My sweet spot is taking messy engineering workflows and shaping the architecture, context, and delivery habits that make humans and agents more reliable together.",
+    "heading": "How I help teams ship complex systems",
+    "description": "My sweet spot is taking messy engineering workflows and shaping the architecture, context, and delivery habits that make teams more reliable under real product pressure.",
     "capabilityAreas": [
       {
         "title": "Reliable production systems",
@@ -24,19 +24,19 @@
         ]
       },
       {
-        "title": "Agent context with guardrails",
-        "intro": "Blend tool access, provenance, memory policy, and evals so AI assistants are informed before they act.",
+        "title": "Context and tooling with guardrails",
+        "intro": "Blend tool access, provenance, documentation, and production rules so faster workflows stay reviewable.",
         "points": [
           "Map context across GitHub, Linear/Jira, Slack, Sentry, docs, and production runbooks.",
-          "Design reviewable memory diffs, permission scopes, and stale-context checks."
+          "Keep permissions scoped, production actions explicit, and stale context visible."
         ]
       },
       {
-        "title": "Model-agnostic implementation",
-        "intro": "Build systems that keep working as teams move between current and future AI tooling.",
+        "title": "Tool-agnostic implementation",
+        "intro": "Build systems that keep working as teams move between current and future tooling.",
         "points": [
           "Translate business pressure into scoped delivery cycles and crisp technical trade-offs.",
-          "Keep the durable asset in the context system, not in one vendor's feature set."
+          "Keep the durable asset in the system design, not in one vendor's feature set."
         ]
       }
     ],
@@ -50,7 +50,7 @@
       },
       {
         "name": "ReneVerse",
-        "summary": "Architected event-driven infrastructure for interoperable blockchain gaming assets and ad tech, scaling to billions of impressions with strict uptime targets.",
+        "summary": "Architected event-driven infrastructure for gaming ad engagement, partner integrations, and data-heavy product workflows.",
         "href": "https://reneverse.io",
         "status": "Recent engagement",
         "trackingTarget": "reneverse"
@@ -74,7 +74,7 @@
       {
         "period": "2021 → today",
         "headline": "Remote partner to founders",
-        "summary": "Embedded with Povio, ReneVerse, CryptoToday, and Tilt. Scaled blockchain-first products, reinforced event-driven pipelines, and now guide Tilt's interactive commerce backend."
+        "summary": "Embedded with Povio, ReneVerse, CryptoToday, and Tilt. Reinforced event-driven pipelines, shipped domain-heavy backend work, and now work on Tilt's interactive commerce backend."
       }
     ]
   },

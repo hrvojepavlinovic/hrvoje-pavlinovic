@@ -8,11 +8,11 @@ export default function CV() {
         <title>CV &mdash; Hrvoje Pavlinovic</title>
         <meta
           name="description"
-          content="Professional experience and projects by Hrvoje Pavlinovic, a software engineer focused on backend systems, AI-assisted engineering workflows, context infrastructure, and reliable delivery."
+          content="Professional experience and projects by Hrvoje Pavlinovic, a senior backend engineer focused on commerce systems, payments, logistics, AWS infrastructure, and reliable delivery."
         />
         <meta
           name="keywords"
-          content="Hrvoje Pavlinovic, Resume, CV, Software Engineer, AI Context Systems, Backend Engineering, Tech Lead, PLAYGRND, Memoato"
+          content="Hrvoje Pavlinovic, Resume, CV, Software Engineer, Backend Engineering, Commerce Systems, Payments, Logistics, AWS, PLAYGRND, Memoato"
         />
         <meta name="author" content="Hrvoje Pavlinovic" />
         <meta name="robots" content="index, follow" />
@@ -27,7 +27,7 @@ export default function CV() {
         />
         <meta
           property="og:description"
-          content="Professional experience and projects by Hrvoje Pavlinovic, focused on backend systems, AI-assisted engineering workflows, and reliable delivery."
+          content="Professional experience and projects by Hrvoje Pavlinovic, focused on backend systems, commerce workflows, and reliable delivery."
         />
         <meta
           property="og:image"
@@ -43,7 +43,7 @@ export default function CV() {
         />
         <meta
           name="twitter:description"
-          content="Professional experience and projects by Hrvoje Pavlinovic, focused on backend systems, AI-assisted engineering workflows, and reliable delivery."
+          content="Professional experience and projects by Hrvoje Pavlinovic, focused on backend systems, commerce workflows, and reliable delivery."
         />
         <meta
           name="twitter:image"
