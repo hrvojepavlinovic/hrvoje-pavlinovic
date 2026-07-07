@@ -161,16 +161,16 @@
       "companyUrl": "https://cryptotoday.com",
       "period": "2024 - 2025",
       "achievements": [
-        "Built backend and infrastructure for a crypto discovery product, covering real-time market data ingestion, ranking, and Telegram mini-app support.",
+        "Built backend and infrastructure for a consumer market-data discovery product, covering real-time data ingestion, ranking, and Telegram mini-app support.",
         "Optimized database access for price scraping from 20+ exchanges with indexing, caching, and query improvements.",
-        "Implemented voting and community mechanisms while keeping non-technical stakeholders aligned on trade-offs and delivery scope.",
+        "Implemented voting and community mechanisms while keeping non-technical stakeholders aligned on trade-offs, delivery scope, and operational constraints.",
         "Integrated a mobile backend for Telegram mini-app workflows used by a high-traffic consumer audience."
       ],
       "technologies": [
         "Next.js",
         "MongoDB",
         "PostgreSQL",
-        "TonConnect",
+        "Telegram Mini Apps",
         "AWS CDK",
         "ECS"
       ],
@@ -290,7 +290,7 @@
     {
       "name": "Memoato",
       "url": "https://memoato.com",
-      "description": "AI-powered personal memory and life tracking platform with natural-language capture, automated categorization, searchable history, and insight dashboards.",
+      "description": "Personal memory and life tracking platform with natural-language capture, automated categorization, searchable history, and insight dashboards.",
       "technologies": ["Wasp", "Postgres", "Redis", "AI", "Stripe"]
     },
     {
