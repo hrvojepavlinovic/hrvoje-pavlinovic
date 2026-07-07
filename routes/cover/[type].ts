@@ -90,7 +90,7 @@ const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
     opening:
       "I am interested in the {position} position at {companyName}. I am backend-first, but I have 13+ years of experience shipping across the stack when the product needs it.",
     body: [
-      "In personal products like Memoato, PLAYGRND, PLAYGRND Draft, and this website, I own the full path from data model and backend API to frontend interaction, deployment, analytics, and operations.",
+      "PLAYGRND is the clearest personal example: I own a full product path from a Postgres source-of-truth model and private Go API to SSR SvelteKit pages, Redis-backed hot reads, WhatsApp onboarding, player claims, admin review flows, deployment, and operations. Memoato, PLAYGRND Draft, and this website add more examples of full-stack product ownership.",
       "Professionally, my deepest experience is backend-heavy product work: Tilt live commerce, ReneVerse ad engagement infrastructure, Povio healthcare workflows, and Rimac telemetry systems. That gives me a strong foundation for full-stack roles where backend quality still drives product reliability.",
       "I work comfortably with TypeScript, Node.js, React, Next.js, SvelteKit, Fresh/Deno, PostgreSQL, Redis, AWS, Docker, and CI/CD, and I care about making product decisions explicit instead of hiding complexity behind implementation details.",
     ],

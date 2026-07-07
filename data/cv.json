@@ -288,16 +288,23 @@
 
   "personalProjects": [
     {
+      "name": "PLAYGRND",
+      "url": "https://playgrnd.app",
+      "description": "Public amateur football record platform with SSR league pages, player/team profiles, search, claims, WhatsApp magic-link onboarding, admin review flows, and recomputable Postgres/Redis aggregate pipelines.",
+      "technologies": [
+        "Go",
+        "Postgres",
+        "Redis",
+        "SvelteKit",
+        "Hetzner",
+        "WhatsApp"
+      ]
+    },
+    {
       "name": "Memoato",
       "url": "https://memoato.com",
       "description": "Personal memory and life tracking platform with natural-language capture, automated categorization, searchable history, and insight dashboards.",
       "technologies": ["Wasp", "Postgres", "Redis", "AI", "Stripe"]
-    },
-    {
-      "name": "PLAYGRND",
-      "url": "https://playgrnd.app",
-      "description": "Amateur football league and tournament platform with player profiles, standings, match results, and community-first local sports workflows.",
-      "technologies": ["Go", "Postgres", "Redis", "SvelteKit", "Hetzner"]
     },
     {
       "name": "PLAYGRND Draft",

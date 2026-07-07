@@ -2,10 +2,32 @@
   "description": "A few products and side projects I build to stay close to the craft.",
   "projects": [
     {
+      "id": "playgrnd",
+      "name": "PLAYGRND",
+      "url": "https://playgrnd.app",
+      "description": "A public amateur football record platform for leagues, matches, teams, players, claims, corrections, and organizer workflows.",
+      "highlights": [
+        "SSR SvelteKit public app backed by a private Go API over local sockets",
+        "Postgres source-of-truth model with Redis snapshots and recomputable derived stats",
+        "WhatsApp magic-link onboarding, player claims, admin review, and scoped operational flows"
+      ],
+      "technologies": [
+        "Go",
+        "Postgres",
+        "Redis",
+        "SvelteKit",
+        "WhatsApp",
+        "Hetzner"
+      ],
+      "status": "development",
+      "featured": true,
+      "accent": "orange"
+    },
+    {
       "id": "memoato",
       "name": "Memoato",
       "url": "https://memoato.com",
-      "description": "An AI-powered quantified self and journaling app designed for peak performance and life tracking.",
+      "description": "A personal memory and quantified-self app for fast capture, life tracking, and long-term searchable history.",
       "highlights": [
         "Fast capture with natural language input",
         "Organized timelines with actionable insights",
@@ -15,21 +37,6 @@
       "status": "development",
       "featured": true,
       "accent": "emerald"
-    },
-    {
-      "id": "playgrnd",
-      "name": "PLAYGRND",
-      "url": "https://playgrnd.app",
-      "description": "A community-first football scoreboard for tracking leagues, results, standings, and player stats.",
-      "highlights": [
-        "Leagues, standings, and player stats in one place",
-        "Share match results with a clean public link",
-        "Built for local teams that want structure without bureaucracy"
-      ],
-      "technologies": ["Go", "Postgres", "Redis", "SvelteKit", "Hetzner"],
-      "status": "development",
-      "featured": true,
-      "accent": "orange"
     },
     {
       "id": "playgrnd-draft",

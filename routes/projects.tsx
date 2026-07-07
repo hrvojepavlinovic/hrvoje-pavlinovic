@@ -44,11 +44,11 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         <title>Projects &mdash; Hrvoje Pavlinovic</title>
         <meta
           name="description"
-          content="A small selection of products and side projects by Hrvoje Pavlinovic, including Memoato, PLAYGRND, and PLAYGRND Draft."
+          content="A small selection of products and side projects by Hrvoje Pavlinovic, led by PLAYGRND, Memoato, and PLAYGRND Draft."
         />
         <meta
           name="keywords"
-          content="Hrvoje Pavlinovic projects, Memoato, PLAYGRND, PLAYGRND Draft, backend engineering, Bitcoin"
+          content="Hrvoje Pavlinovic projects, PLAYGRND, Memoato, PLAYGRND Draft, backend engineering, product engineering"
         />
         <meta name="author" content="Hrvoje Pavlinovic" />
         <meta name="robots" content="index, follow" />
@@ -66,7 +66,7 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         />
         <meta
           property="og:description"
-          content="A small selection of products and side projects by Hrvoje Pavlinovic, including Memoato, PLAYGRND, and PLAYGRND Draft."
+          content="A small selection of products and side projects by Hrvoje Pavlinovic, led by PLAYGRND, Memoato, and PLAYGRND Draft."
         />
         <meta
           property="og:image"
@@ -76,15 +76,13 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
 
         {/* Twitter Card meta tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@0xhp10" />
-        <meta name="twitter:creator" content="@0xhp10" />
         <meta
           name="twitter:title"
           content="Projects &mdash; Hrvoje Pavlinovic"
         />
         <meta
           name="twitter:description"
-          content="A small selection of products and side projects by Hrvoje Pavlinovic, including Memoato, PLAYGRND, and PLAYGRND Draft."
+          content="A small selection of products and side projects by Hrvoje Pavlinovic, led by PLAYGRND, Memoato, and PLAYGRND Draft."
         />
         <meta
           name="twitter:image"
