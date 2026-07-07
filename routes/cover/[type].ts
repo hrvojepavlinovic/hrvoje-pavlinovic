@@ -11,92 +11,91 @@ interface CoverLetterTemplate {
 const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
   web3: {
     opening:
-      "I am writing to express my strong interest in the {position} position at {companyName}. With over 13 years of software engineering experience and specialized expertise in blockchain technologies, I am excited about the opportunity to contribute to your innovative Web3 initiatives.",
+      "I am interested in the {position} position at {companyName}. I bring 13+ years of software engineering experience, with recent work across backend platforms, GraphQL APIs, AWS infrastructure, Web2/Web3 service boundaries, and product systems that need to keep working under real production load.",
     body: [
-      "My experience at ReneVerse.io has given me deep hands-on experience with blockchain development, where I architected serverless infrastructure supporting interoperable gaming assets across multiple blockchain networks. I successfully scaled systems to handle 1.7B+ ad impressions while maintaining 99.9% uptime, demonstrating my ability to build robust Web3 applications at scale.",
-      "At CryptoToday, I built Ethereum-based decentralized voting engine with zero downtime and integrated TON and ETH payment processing systems. My technical stack includes Ethereum, Bitcoin, Smart Contracts, TonConnect, Ethers, and Wagmi, making me well-equipped to tackle complex Web3 challenges.",
-      "Beyond technical skills, I bring leadership experience mentoring teams of 4+ developers and establishing development standards that improve deployment frequency by 3x. My combination of deep blockchain knowledge, scalability expertise, and team leadership makes me an ideal candidate for driving Web3 innovation at {companyName}.",
+      "At ReneVerse, I worked on core Web2 and Web3 backend services for an in-game advertising and gaming assets platform. The work combined AWS CDK, GraphQL, serverless services, background processing, and integration-heavy product delivery for a small team.",
+      "I am strongest where blockchain or wallet-facing features still need normal production engineering discipline: clear data models, reliable APIs, observability, careful rollout paths, and pragmatic trade-offs between product goals and operational risk.",
+      "I also bring recent experience from Tilt's live commerce platform, where payments, shipping, auctions, and real-time workflows require the same kind of careful backend ownership that complex Web3 products need once they reach real users.",
     ],
     closing:
-      "I am eager to discuss how my Web3 expertise and proven track record of scaling blockchain applications can contribute to {companyName}'s continued success in the decentralized ecosystem.",
+      "I would be happy to discuss how my backend, infrastructure, and integration experience could help {companyName} ship reliable Web3 product work without losing sight of the practical engineering details.",
     skills: [
-      "Ethereum",
-      "Bitcoin",
-      "Smart Contracts",
-      "Web3 Architecture",
-      "Blockchain Scalability",
+      "Backend Architecture",
+      "GraphQL",
+      "AWS CDK",
+      "Wallet-aware Product Flows",
+      "Integration Design",
       "System Design",
     ],
   },
   bitcoin: {
     opening:
-      "I am excited to apply for the {position} position at {companyName}. As a dedicated Bitcoin enthusiast since 2017 and seasoned software engineer with 13+ years of experience, I am passionate about contributing to Bitcoin's mission of financial sovereignty and innovation.",
+      "I am excited to apply for the {position} position at {companyName}. I have 13+ years of software engineering experience and a long-standing personal interest in Bitcoin, sound money, and products that make complex systems understandable to real users.",
     body: [
-      "My journey with Bitcoin began in 2017, and since then I have been deeply involved in the ecosystem both professionally and personally. At ReneVerse.io, I developed blockchain infrastructure that handles massive scale, processing 1.7B+ ad impressions while maintaining sub-200ms response times, demonstrating my ability to build robust systems that Bitcoin applications require.",
-      "I founded XXI Today, a comprehensive Bitcoin portal tracking the historic journey to 21 million coins, showcasing my commitment to Bitcoin education and community building. This project reflects my deep understanding of Bitcoin's fundamentals, Lightning Network integration for instant payments, and my dedication to making Bitcoin accessible to everyone from beginners to experts.",
-      "My technical expertise spans the full Bitcoin ecosystem: Lightning Network implementation for instant micropayments, Stacks integration for smart contracts and .btc domain lookup functionality, and Nostr protocol development for decentralized communication. Combined with my backend architecture experience, performance optimization skills, and security best practices, I bring comprehensive Bitcoin development capabilities to drive innovation at {companyName}.",
+      "My professional background is strongest in backend systems: live commerce at Tilt, ad engagement infrastructure at ReneVerse, healthcare workflows at Povio, and telemetry systems at Rimac. That experience transfers well to Bitcoin products where reliability, data correctness, security boundaries, and clear user flows matter.",
+      "Outside client work, I have built and experimented with Bitcoin-oriented products and writing, including interfaces around education, identity, and payments. I care about making the technology useful without hiding the trade-offs or overstating what a system can do.",
+      "For {companyName}, I would bring pragmatic backend engineering, strong product judgment, and genuine alignment with the long-term values behind Bitcoin.",
     ],
     closing:
-      "I would welcome the opportunity to discuss how my Bitcoin passion, Lightning/Stacks/Nostr expertise, and commitment to sound money principles align with {companyName}'s mission in the Bitcoin ecosystem.",
+      "I would welcome the chance to discuss how my backend experience and long-term Bitcoin conviction align with {companyName}'s product and engineering goals.",
     skills: [
-      "Bitcoin Protocol",
-      "Lightning Network",
-      "Stacks Blockchain",
-      ".btc Domains",
-      "Nostr Protocol",
-      "Bitcoin Security",
+      "Backend Systems",
+      "Payments",
+      "Security Boundaries",
+      "Product Engineering",
+      "Bitcoin",
+      "Reliable Delivery",
     ],
   },
   ai: {
     opening:
-      "I am writing to express my strong interest in the {position} position at {companyName}. With 13+ years of software engineering experience and hands-on expertise in AI/LLM integration, vector databases, and intelligent pipeline architecture, I am excited about the opportunity to drive artificial intelligence innovation and implementation at your organization.",
+      "I am interested in the {position} position at {companyName}. I bring 13+ years of software engineering experience and practical day-to-day use of modern AI tooling inside real engineering workflows, especially where speed has to stay balanced with production judgment.",
     body: [
-      "My AI expertise spans the full spectrum of modern AI implementation, from LLM integration to vector database architectures. In Memoato, I built an AI-powered life tracking and journaling product, focusing on fast capture, structured categorization, and insight generation. I've also experimented with vector databases like Qdrant for semantic search and similarity matching, including ingesting document data for intelligent retrieval workflows.",
-      "I specialize in implementing complex LLM pipeline architectures, designing systems where ChatGPT Turbo serves as an entry assistant that intelligently routes requests to more specialized assistants based on context and requirements. These pipelines leverage vector databases for context retrieval and semantic understanding, creating sophisticated AI workflows that can handle diverse user inputs while maintaining conversation context and delivering highly relevant responses.",
-      "At ReneVerse.io, I architected scalable backend systems processing 1.7B+ requests with the infrastructure necessary for AI service integration while maintaining sub-200ms response times. My experience combines practical AI implementation with production-scale architecture, ensuring that complex LLM pipelines and vector database operations perform reliably under heavy load while delivering intelligent, context-aware user experiences.",
+      "At Tilt, I use modern AI tooling with connected operational context from Linear, Slack, Sentry, Stripe, Shippo, and AWS to shorten implementation and debugging cycles while keeping credential scopes and production actions explicit.",
+      "In my own products, including Memoato, I have worked on natural-language capture, structured memory, search, categorization, and insight workflows. I am interested in the context layer around AI: what source is current, what is allowed, what changed, and how the output can be reviewed.",
+      "My advantage is not treating AI as magic. I bring backend engineering, operational discipline, and a careful approach to where AI tools should accelerate work and where human review must stay in control.",
     ],
     closing:
-      "I am eager to discuss how my comprehensive AI expertise,from vector databases and LLM pipelines to production-scale AI architecture can help {companyName} implement transformative intelligent systems that drive real business value.",
+      "I would be glad to discuss how I could help {companyName} apply AI tooling in ways that improve delivery speed while preserving reliability, security, and engineering judgment.",
     skills: [
-      "LLM Pipelines",
-      "Vector Databases",
-      "Qdrant",
-      "PDF Data Ingestion",
-      "GPT/OpenAI APIs",
-      "AI Architecture",
-      "Semantic Search",
-      "Intelligent Routing",
+      "Modern AI Tooling",
+      "Repository Context",
+      "Safe Tool Access",
+      "Backend Engineering",
+      "Search and Memory",
+      "Evaluation Mindset",
+      "Operational Workflows",
     ],
   },
   backend: {
     opening:
-      "I am writing to apply for the {position} position at {companyName}. With 13+ years of experience developing scalable serverless and event-driven architecture and a proven track record of optimizing systems for thousands of concurrent requests, I am confident I can make significant contributions to your backend infrastructure.",
+      "I am writing to apply for the {position} position at {companyName}. With 13+ years of experience building backend platforms, distributed systems, and production workflows, I can contribute quickly to teams that need reliable systems and clear technical trade-offs.",
     body: [
-      "My expertise lies in building robust, scalable backend systems that handle massive traffic loads. At ReneVerse.io, I architected serverless infrastructure that scales to 1.7B+ monthly ad impressions with 99.9% uptime and sub-200ms response times. This experience has given me deep knowledge of performance optimization, caching strategies, and load balancing techniques essential for modern backend systems.",
-      "I excel in database optimization and concurrent request handling, having optimized PostgreSQL databases for real-time data processing from 20+ sources with 70% query speed improvements. My technical stack includes Node.js, TypeScript, Express, Nest.js, GraphQL, REST APIs, and extensive experience with AWS infrastructure including CDK, Lambda, and ECS.",
-      "Beyond technical implementation, I bring strong leadership skills, having mentored teams of 4+ developers and established development standards that improved deployment frequency by 3x. My experience conducting 15+ technical interviews and reducing time-to-hire by 30% demonstrates my ability to build and scale engineering teams effectively.",
+      "My current work at Tilt spans live commerce, auctions, payments, shipping, seller tooling, product inventory, and real-time buyer workflows inside a large TypeScript backend monorepo.",
+      "Before Tilt, I built backend and infrastructure at ReneVerse, Povio, Rimac, Profico, and Ericsson across ad engagement data, healthcare workflows, telemetry systems, search, and internal tooling. The recurring pattern is domain-heavy backend work where the system has to remain understandable after release.",
+      "My technical stack includes Node.js, TypeScript, NestJS, Express, GraphQL, Hasura, PostgreSQL, Redis, AWS CDK, ECS, Lambda, SNS/SQS, Docker, and CI/CD. I also bring strong communication and ownership habits, which matter as much as code in ambiguous backend work.",
     ],
     closing:
-      "I am excited about the opportunity to bring my backend expertise and passion for scalable architecture to help {companyName} build robust, high-performance systems that drive business growth.",
+      "I would be happy to discuss how my backend experience could help {companyName} build systems that are reliable, operable, and easier for the team to evolve.",
     skills: [
-      "Serverless Architecture",
-      "Database Optimization",
+      "Backend Platforms",
       "API Development",
       "AWS Infrastructure",
-      "Performance Optimization",
-      "System Scalability",
+      "PostgreSQL",
+      "Event-driven Systems",
+      "Production Reliability",
     ],
   },
   fullstack: {
     opening:
-      "I am interested in the {position} position at {companyName}. With 13+ years of comprehensive software development experience spanning backend architecture, frontend development, and everything in between, I am well-positioned to contribute across your entire technology stack.",
+      "I am interested in the {position} position at {companyName}. I am backend-first, but I have 13+ years of experience shipping across the stack when the product needs it.",
     body: [
-      "My full-stack expertise is demonstrated through projects like Memoato, where I am building an AI-powered life tracking and journaling app with a coherent workflow across capture, storage, and insights. It spans backend APIs, reliable data modeling, and a clean, responsive UI.",
-      "At ReneVerse.io, I built complete solutions from backend services handling 1.7B+ ad impressions to frontend SDKs for Unity and Unreal Engine integration. My technical versatility spans Node.js, TypeScript, React, Next.js, PostgreSQL, AWS infrastructure, and modern development practices including CI/CD and Infrastructure as Code.",
-      "I bring both technical depth and product thinking. My experience leading development standards across organizations and mentoring teams demonstrates my ability to architect solutions that scale both technically and organizationally.",
+      "In personal products like Memoato, PLAYGRND, PLAYGRND Draft, and this website, I own the full path from data model and backend API to frontend interaction, deployment, analytics, and operations.",
+      "Professionally, my deepest experience is backend-heavy product work: Tilt live commerce, ReneVerse ad engagement infrastructure, Povio healthcare workflows, and Rimac telemetry systems. That gives me a strong foundation for full-stack roles where backend quality still drives product reliability.",
+      "I work comfortably with TypeScript, Node.js, React, Next.js, SvelteKit, Fresh/Deno, PostgreSQL, Redis, AWS, Docker, and CI/CD, and I care about making product decisions explicit instead of hiding complexity behind implementation details.",
     ],
     closing:
-      "I would love to discuss how my full-stack expertise and product-focused approach can help {companyName} deliver exceptional user experiences backed by robust, scalable technology.",
+      "I would be glad to discuss how my backend depth and product-minded full-stack experience could help {companyName} ship practical, dependable product work.",
     skills: [
       "Full Stack Development",
       "React/Next.js",
@@ -108,14 +107,14 @@ const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
   },
   lead: {
     opening:
-      "I am writing to express my interest in the {position} position at {companyName}. With 13+ years of software engineering experience and a proven track record of leading technical teams, establishing development standards, and scaling systems to handle billions of requests, I am excited about the opportunity to drive technical excellence at your organization.",
+      "I am writing to express my interest in the {position} position at {companyName}. With 13+ years of software engineering experience, I bring a senior hands-on approach to technical leadership: clarify the problem, design the system, ship carefully, and leave the team with healthier defaults.",
     body: [
-      "My leadership experience spans multiple organizations where I have successfully built and mentored high-performing engineering teams. At ReneVerse.io, I mentor a team of 4 developers and conduct technical interviews, contributing to a 50% reduction in time-to-productivity for new hires. I established development standards that improved deployment frequency by 3x while maintaining 99.9% system uptime.",
-      "At Profico, I led development standards meetings with C-level executives, establishing company-wide coding practices adopted by 20+ developers. I mentored 3 junior developers who achieved promotion to mid-level positions within 12 months and reduced system downtime by 80% through strategic architecture decisions and proactive monitoring implementation.",
-      "My technical leadership is backed by deep engineering expertise in scalable architecture, having built systems that handle 1.7B+ ad impressions and optimized databases for thousands of concurrent requests. I combine hands-on technical skills with strategic thinking, balancing technical debt management, team growth, and delivery excellence to achieve both short-term goals and long-term architectural vision.",
+      "At Tilt, I work in a fast-moving distributed team across live commerce, payments, shipping, auctions, seller tooling, and operational fixes. That environment rewards clear communication, ownership, and the ability to move without making production behavior vague.",
+      "Across Profico, ReneVerse, Rimac, and Povio, I have mentored developers, led standards discussions, conducted technical interviews, and helped small teams turn ambiguous requirements into maintainable systems.",
+      "My leadership style is pragmatic and close to the code. I like teams that communicate plainly, review trade-offs honestly, and treat reliability, documentation, and operational ownership as part of delivery rather than cleanup after the fact.",
     ],
     closing:
-      "I am eager to discuss how my technical leadership experience and passion for building high-performing teams can help {companyName} achieve its engineering goals and scale its technology organization.",
+      "I would welcome the opportunity to discuss how my hands-on technical leadership could help {companyName} deliver reliably while keeping the engineering system healthy.",
     skills: [
       "Technical Leadership",
       "Team Mentoring",
@@ -127,14 +126,14 @@ const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
   },
   staff: {
     opening:
-      "I am writing to express my strong interest in the {position} position at {companyName}. With 13+ years of software engineering experience, extensive experience in scalable architecture design, and a proven track record of leading technical initiatives across multiple organizations, I am excited about the opportunity to drive technical excellence and innovation at {companyName}.",
+      "I am writing to express my interest in the {position} position at {companyName}. I bring 13+ years of engineering experience across backend platforms, distributed systems, infrastructure, and complex product domains where strong technical judgment matters more than ceremony.",
     body: [
-      "As a senior technical contributor, I have consistently delivered high-impact solutions that scale to massive traffic loads. At ReneVerse.io, I architected serverless and event-driven infrastructure supporting 1.7B+ monthly ad impressions with 99.9% uptime and sub-200ms response times. My expertise spans distributed systems engineering, AWS infrastructure, and performance optimization strategies that handle thousands of concurrent requests.",
-      "My technical influence extends beyond individual contributions to shaping engineering culture and practices. I've established development standards adopted by 20+ developers, reduced system downtime by 80% through strategic architecture decisions, and mentored engineering teams while conducting 15+ technical interviews. My experience consolidating legacy systems by unifying 6 repositories into a monorepo reduced build times by 40%.",
-      "I bring a unique combination of deep technical expertise in modern technologies (Node.js, TypeScript, GraphQL, Serverless, Kubernetes, PostgreSQL, DynamoDB) and strategic thinking necessary for Staff-level impact. My experience with Web3/blockchain technologies, distributed systems, and security best practices positions me to tackle complex technical challenges while maintaining focus on business outcomes and team productivity.",
+      "My recent work at Tilt is a good example of the kind of systems I enjoy: a large TypeScript backend monorepo, many services, commerce and logistics constraints, real-time workflows, and production integrations with Stripe, Shippo, Sentry, AWS, and related operational tools.",
+      "At ReneVerse, I helped architect backend and data systems for ad engagement and targeting. At Rimac, I worked on telemetry and OTA update systems. At Povio, I worked in healthcare/clinical-trials workflows. Those domains are different, but the useful pattern is the same: make the system legible, reliable, and evolvable.",
+      "For a Staff-level role, I would bring hands-on backend depth, careful architecture, communication across product and engineering, and a bias toward solving the real constraint rather than adding process or abstraction prematurely.",
     ],
     closing:
-      "I am eager to discuss how my technical depth, architectural expertise, and proven ability to drive large-scale technical initiatives can contribute to {companyName}'s continued growth and technical excellence.",
+      "I would be happy to discuss where {companyName} needs senior technical leverage and whether my background fits the systems, team shape, and product pressure you are facing.",
     skills: [
       "Staff-level Engineering",
       "Distributed Systems",
