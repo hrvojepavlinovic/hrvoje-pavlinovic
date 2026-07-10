@@ -56,6 +56,8 @@ export default function MobileMenu() {
         onClick={toggleMenu}
         class="chrome-button relative z-50"
         aria-label="Toggle menu"
+        aria-expanded={isOpen.value}
+        aria-controls="mobile-navigation"
       >
         {isOpen.value
           ? (
@@ -86,8 +88,12 @@ export default function MobileMenu() {
       </button>
 
       {/* Mobile menu overlay */}
-      <div
-        class={`mobile-menu-panel fixed inset-0 z-40 backdrop-blur-md transition-opacity duration-200 md:hidden ${
+      <nav
+        id="mobile-navigation"
+        aria-label="Mobile navigation"
+        aria-hidden={!isOpen.value}
+        inert={!isOpen.value}
+        class={`mobile-menu-panel fixed inset-0 z-40 transition-opacity duration-200 md:hidden ${
           isOpen.value ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
@@ -97,7 +103,7 @@ export default function MobileMenu() {
           <NavLink href="/projects" onClick={toggleMenu}>projects</NavLink>
           <NavLink href="/blog" onClick={toggleMenu}>blog</NavLink>
         </div>
-      </div>
+      </nav>
     </>
   );
 }

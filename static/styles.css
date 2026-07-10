@@ -224,7 +224,6 @@ button:focus-visible {
 
 .mobile-menu-panel {
   background: var(--canvas);
-  background: color-mix(in srgb, var(--canvas) 94%, transparent);
 }
 
 .mobile-nav-link {
@@ -532,6 +531,9 @@ body .uppercase {
 @media (max-width: 767px) {
   .site-nav-shell {
     width: calc(100% - 1rem);
+    background: var(--canvas);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   .site-canvas::before {
