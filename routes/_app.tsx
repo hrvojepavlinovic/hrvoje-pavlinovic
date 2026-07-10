@@ -5,6 +5,7 @@ import MotionEffects from "../islands/MotionEffects.tsx";
 
 const SITE_TITLE = "Hrvoje Pavlinovic";
 const SITE_URL = "https://hrvoje.pavlinovic.com";
+const STYLESHEET_URL = "/styles.css?v=20260710-redesign";
 
 const deriveDefaultTitle = (pathname: string) => {
   if (pathname === "/" || pathname === "") return SITE_TITLE;
@@ -130,8 +131,8 @@ export default function App({ Component, url }: PageProps) {
         <meta name="theme-color" content="#000000" />
 
         {/* Preload and Resource Hints */}
-        <link rel="preload" href="/styles.css" as="style" />
-        <link rel="stylesheet" href="/styles.css" />
+        <link rel="preload" href={STYLESHEET_URL} as="style" />
+        <link rel="stylesheet" href={STYLESHEET_URL} />
 
         {/* Databuddy Analytics - Only in production */}
         {url.hostname !== "localhost" && (
