@@ -116,7 +116,7 @@ button:focus-visible {
 .site-header {
   position: fixed;
   z-index: 50;
-  top: 0.75rem;
+  top: 0;
   right: 0;
   left: 0;
   pointer-events: none;
@@ -530,10 +530,6 @@ body .uppercase {
 }
 
 @media (max-width: 767px) {
-  .site-header {
-    top: 0.5rem;
-  }
-
   .site-nav-shell {
     width: calc(100% - 1rem);
   }
