@@ -176,23 +176,23 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
   }>;
 
   return (
-    <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
-      <section class="max-w-5xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
-        <div class="space-y-8">
+    <div class="site-canvas">
+      <section class="site-hero mx-auto max-w-5xl px-6">
+        <div class="space-y-8" data-reveal>
           <div class="space-y-4">
-            <div class="space-y-2">
-              <div class="flex justify-center">
+            <div class="hero-identity">
+              <div class="avatar-frame" data-gravity>
                 <img
                   src={data.avatar.src}
                   alt={data.avatar.alt}
-                  class="h-12 w-12 rounded-full object-cover ring-1 ring-black/10 dark:ring-white/10 md:h-14 md:w-14"
+                  class="object-cover"
                   loading="eager"
                 />
               </div>
-              <h1 class="mx-auto text-center text-[24px] font-semibold leading-tight tracking-tight text-gray-900 [text-wrap:balance] dark:text-gray-100 sm:text-[28px] md:text-[48px]">
+              <h1 class="hero-title mx-auto text-center">
                 {heroTitle}
               </h1>
-              <p class="mx-auto text-center text-[13px] font-semibold text-gray-700 [text-wrap:balance] dark:text-gray-200 sm:text-[15px] md:text-lg">
+              <p class="mx-auto max-w-3xl text-center text-[13px] font-semibold text-gray-700 [text-wrap:balance] dark:text-gray-200 sm:text-[15px] md:text-base">
                 {heroStat}
               </p>
             </div>
@@ -207,7 +207,8 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                 rel={link.href.startsWith("mailto:")
                   ? undefined
                   : "noopener noreferrer"}
-                class="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition-all hover:border-gray-900 hover:bg-black hover:text-white dark:border-gray-800 dark:text-gray-200 dark:hover:border-gray-100"
+                class="gravity-button group"
+                data-gravity
                 onClick={() =>
                   handleTrackedLink(
                     link.trackingTarget ?? link.label.toLowerCase(),
@@ -221,7 +222,7 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
             ))}
           </div>
 
-          <div class="space-y-4 text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
+          <div class="hero-copy-panel space-y-4 text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
             {data.heroParagraphs.map((paragraph, index) => (
               <p key={`hero-paragraph-${index}`} class="text-sm">
                 {renderTemplateWithComponents(paragraph)}
@@ -240,7 +241,8 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                   href={cta.href}
                   target={cta.external ? "_blank" : undefined}
                   rel={cta.external ? "noopener noreferrer" : undefined}
-                  class="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-800 shadow-sm dark:border-gray-800 dark:bg-black dark:text-gray-100"
+                  class="action-button"
+                  data-gravity
                   onClick={() => handleTrackedLink(cta.trackingTarget)}
                 >
                   <span class="inline-flex h-6 w-6 items-center justify-center text-gray-600 dark:text-gray-300">
@@ -278,7 +280,9 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                         href={metric.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="rounded-2xl border border-gray-200 bg-white/80 p-3 text-center shadow-sm transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600"
+                        class="surface-card metric-tile p-3 text-center"
+                        data-tilt
+                        data-reveal
                         onClick={() =>
                           handleTrackedLink(
                             metric.trackingTarget ?? "memoato-category",
@@ -298,7 +302,8 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
                     : (
                       <div
                         key={metric.label}
-                        class="rounded-2xl border border-gray-200 bg-white/80 p-3 text-center shadow-sm dark:border-gray-800 dark:bg-black/40"
+                        class="surface-card metric-tile p-3 text-center"
+                        data-reveal
                       >
                         <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                           {metric.label}

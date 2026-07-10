@@ -14,7 +14,8 @@ function NavLink({ href, children, external = false }: NavLinkProps) {
       href={href}
       {...(external && { target: "_blank", rel: "noopener noreferrer" })}
       {...(!external && { "data-internal": "true" })}
-      class="inline-flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground dark:text-white/70 text-black/70 dark:hover:bg-white/5 hover:bg-black/5 dark:hover:text-white hover:text-black"
+      data-nav-link="true"
+      class="site-nav-link"
     >
       {children}
     </a>
@@ -31,42 +32,36 @@ export default function Header() {
   };
 
   return (
-    <header
-      class="fixed top-0 left-0 right-0 z-50 border-transparent"
-      style={{
-        backgroundImage:
-          "linear-gradient(to bottom, var(--theme-background-opaque) 40%, transparent 100%)",
-      }}
-    >
-      <nav class="max-w-screen-xl mx-auto flex justify-between items-center px-4">
+    <header class="site-header">
+      <nav class="site-nav-shell flex items-center justify-between">
         <a
           href="/"
-          class="flex items-center space-x-2 text-lg font-semibold tracking-tight py-6 dark:text-white text-black hover:opacity-80 transition-opacity"
+          class="site-brand"
           data-internal="true"
           onClick={handleMenuClick}
         >
           <span>
-            hrvoje<span class="text-btc-orange">.</span>pavlinovic
+            hrvoje.pavlinovic
           </span>
         </a>
 
         {/* Desktop Navigation */}
-        <div class="hidden md:flex items-center space-x-1">
-          <nav class="flex items-center space-x-1">
+        <div class="hidden items-center gap-1 md:flex">
+          <div class="flex items-center gap-1">
             <NavLink href="/about">about</NavLink>
             <NavLink href="/cv">cv</NavLink>
             <NavLink href="/projects">projects</NavLink>
             <NavLink href="/blog">blog</NavLink>
-          </nav>
+          </div>
 
           {/* Theme toggle */}
-          <div class="flex items-center ml-2 pl-2">
+          <div class="ml-1 flex items-center pl-1">
             <ThemeToggle />
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        <div class="flex items-center md:hidden space-x-2">
+        <div class="flex items-center gap-2 md:hidden">
           <ThemeToggle />
           <MobileMenu />
         </div>

@@ -122,8 +122,8 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
         />
       </Head>
 
-      <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
-        <section class="max-w-3xl mx-auto px-6 py-24 md:py-32 space-y-10">
+      <div class="site-canvas">
+        <section class="mx-auto max-w-3xl space-y-10 px-6 pb-24 pt-32 md:pb-32 md:pt-40">
           <a
             href="/blog"
             class="inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-200"
@@ -131,7 +131,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
             ← Back to essays
           </a>
 
-          <header class="space-y-4">
+          <header class="space-y-4" data-reveal>
             <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
               <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
                 {article.timeAgo}
@@ -154,7 +154,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
                 {article.tags.map((tag) => (
                   <span
                     key={tag}
-                    class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 dark:border-gray-700 dark:bg-black"
+                    class="tag-chip inline-flex items-center px-2.5 py-1"
                   >
                     {tag}
                   </span>
@@ -163,7 +163,10 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
             )}
           </header>
 
-          <article class="space-y-8 text-base leading-relaxed text-gray-700 dark:text-gray-300">
+          <article
+            class="space-y-8 text-base leading-relaxed text-gray-700 dark:text-gray-300"
+            data-reveal
+          >
             <div
               class="blog-content prose prose-base dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-orange-600 dark:prose-a:text-orange-300 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 max-w-none"
               dangerouslySetInnerHTML={{ __html: article.fullText }}

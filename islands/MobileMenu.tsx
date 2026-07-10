@@ -12,7 +12,7 @@ function NavLink({ href, children, onClick, external = false }: NavLinkProps) {
   return (
     <a
       href={href}
-      class="dark:text-white/60 text-black/60 dark:hover:text-white hover:text-black text-2xl py-6 text-center inline-block w-full"
+      class="mobile-nav-link inline-block w-full py-6 text-center text-2xl"
       {...(external && { target: "_blank", rel: "noopener noreferrer" })}
       {...(!external && { "data-internal": "true" })}
       onClick={onClick}
@@ -54,7 +54,7 @@ export default function MobileMenu() {
       <button
         type="button"
         onClick={toggleMenu}
-        class="inline-flex items-center justify-center rounded-md w-9 h-9 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground dark:border-white/10 border-black/10 dark:bg-black/50 bg-white/50 dark:hover:bg-white/5 hover:bg-black/5 backdrop-blur-sm shadow-sm dark:shadow-white/5 shadow-black/5 relative z-50"
+        class="chrome-button relative z-50"
         aria-label="Toggle menu"
       >
         {isOpen.value
@@ -87,11 +87,11 @@ export default function MobileMenu() {
 
       {/* Mobile menu overlay */}
       <div
-        class={`fixed inset-0 dark:bg-black/95 bg-white/95 backdrop-blur-md z-40 md:hidden transition-opacity duration-200 ${
+        class={`mobile-menu-panel fixed inset-0 z-40 backdrop-blur-md transition-opacity duration-200 md:hidden ${
           isOpen.value ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
-        <div class="flex flex-col items-center justify-center h-full p-6 space-y-4 max-w-sm mx-auto">
+        <div class="mx-auto flex h-full max-w-sm flex-col items-center justify-center space-y-4 p-6">
           <NavLink href="/about" onClick={toggleMenu}>about</NavLink>
           <NavLink href="/cv" onClick={toggleMenu}>cv</NavLink>
           <NavLink href="/projects" onClick={toggleMenu}>projects</NavLink>

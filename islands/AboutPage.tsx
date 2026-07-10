@@ -56,12 +56,15 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
   };
 
   return (
-    <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
-      <section class="max-w-4xl mx-auto px-6 pt-32 pb-16 space-y-6 md:pt-40">
-        <p class="text-sm font-semibold uppercase tracking-wide text-orange-500">
+    <div class="site-canvas">
+      <section
+        class="mx-auto max-w-4xl space-y-6 px-6 pb-16 pt-32 md:pt-40"
+        data-reveal
+      >
+        <p class="eyebrow">
           {data.pageTitle}
         </p>
-        <h1 class="text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[44px]">
+        <h1 class="display-title">
           {data.intro.heading}
         </h1>
         <p class="text-base font-semibold text-gray-700 dark:text-gray-200 md:text-lg">
@@ -78,7 +81,7 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
       </section>
 
       {categories.length > 0 && (
-        <section class="border-t border-gray-100 dark:border-gray-900">
+        <section class="section-band">
           <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-8">
             <div class="space-y-3">
               <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
@@ -132,7 +135,9 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
                       href={category.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="space-y-4 rounded-2xl border border-gray-200 bg-white/80 p-6 transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600"
+                      class="surface-card space-y-4 p-6"
+                      data-tilt
+                      data-reveal
                       onClick={() =>
                         trackEvent({
                           type: "click",
@@ -148,7 +153,8 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
                 return (
                   <div
                     key={category.slug}
-                    class="space-y-4 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-gray-800 dark:bg-black/40"
+                    class="surface-card space-y-4 p-6"
+                    data-reveal
                   >
                     {cardContent}
                   </div>
@@ -194,7 +200,7 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
         </section>
       )}
 
-      <section class="border-t border-gray-100 dark:border-gray-900">
+      <section class="section-band">
         <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
           <div class="space-y-3">
             <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
@@ -209,7 +215,9 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
             {data.work.capabilityAreas.map((area) => (
               <div
                 key={area.title}
-                class="group flex h-full flex-col gap-4 rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600 dark:hover:bg-black"
+                class="surface-card group flex h-full flex-col gap-4 p-6"
+                data-tilt
+                data-reveal
               >
                 <div class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-orange-500">
                   <span class="h-1.5 w-1.5 rounded-full bg-orange-400" />
@@ -271,7 +279,9 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
                   href={work.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="group flex h-full flex-col justify-between rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600 dark:hover:bg-black"
+                  class="surface-card group flex h-full flex-col justify-between p-6"
+                  data-tilt
+                  data-reveal
                   onClick={() =>
                     trackEvent({
                       type: "click",
@@ -316,7 +326,7 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
         </div>
       </section>
 
-      <section class="border-t border-gray-100 dark:border-gray-900">
+      <section class="section-band">
         <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-8">
           <div class="space-y-3">
             <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
@@ -331,7 +341,9 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
             {data.journey.stops.map((stop) => (
               <div
                 key={stop.period}
-                class="rounded-2xl border border-gray-100 bg-white/70 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gray-300 hover:bg-white dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600 dark:hover:bg-black"
+                class="surface-card p-6"
+                data-tilt
+                data-reveal
               >
                 <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                   {stop.period}
@@ -348,7 +360,7 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
         </div>
       </section>
 
-      <section class="border-t border-gray-100 dark:border-gray-900">
+      <section class="section-band">
         <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
           <div class="space-y-3">
             <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
@@ -363,7 +375,8 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
             {data.life.focusAreas.map((area) => (
               <div
                 key={area.title}
-                class="flex h-full flex-col gap-3 rounded-2xl border border-gray-100 bg-white/60 p-6 shadow-sm dark:border-gray-800 dark:bg-black/40"
+                class="surface-card flex h-full flex-col gap-3 p-6"
+                data-reveal
               >
                 <div class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-orange-500">
                   <span class="h-1.5 w-1.5 rounded-full bg-orange-400" />
@@ -378,7 +391,7 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
         </div>
       </section>
 
-      <section class="border-t border-gray-100 dark:border-gray-900">
+      <section class="section-band">
         <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-6">
           <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
             {data.principles.heading}

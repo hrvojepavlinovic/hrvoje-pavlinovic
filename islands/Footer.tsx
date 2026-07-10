@@ -60,9 +60,9 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer class="mt-20 border-t border-black/10 bg-white/70 backdrop-blur-sm dark:border-white/10 dark:bg-black/70">
+    <footer class="site-footer">
       <div
-        class={`max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-opacity duration-500 ${
+        class={`mx-auto max-w-5xl px-6 py-8 transition-opacity duration-500 ${
           isLoaded.value ? "opacity-100" : "opacity-0"
         }`}
       >

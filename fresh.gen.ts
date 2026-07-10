@@ -39,6 +39,7 @@ import * as $Footer from "./islands/Footer.tsx";
 import * as $HomePage from "./islands/HomePage.tsx";
 import * as $LikeButton from "./islands/LikeButton.tsx";
 import * as $MobileMenu from "./islands/MobileMenu.tsx";
+import * as $MotionEffects from "./islands/MotionEffects.tsx";
 import * as $ProjectsList from "./islands/ProjectsList.tsx";
 import * as $SocialActions from "./islands/SocialActions.tsx";
 import * as $ThemeToggle from "./islands/ThemeToggle.tsx";
@@ -86,6 +87,7 @@ const manifest = {
     "./islands/HomePage.tsx": $HomePage,
     "./islands/LikeButton.tsx": $LikeButton,
     "./islands/MobileMenu.tsx": $MobileMenu,
+    "./islands/MotionEffects.tsx": $MotionEffects,
     "./islands/ProjectsList.tsx": $ProjectsList,
     "./islands/SocialActions.tsx": $SocialActions,
     "./islands/ThemeToggle.tsx": $ThemeToggle,

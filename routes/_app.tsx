@@ -1,6 +1,7 @@
 import { type PageProps } from "$fresh/server.ts";
 import Header from "../components/Header.tsx";
 import Footer from "../islands/Footer.tsx";
+import MotionEffects from "../islands/MotionEffects.tsx";
 
 const SITE_TITLE = "Hrvoje Pavlinovic";
 const SITE_URL = "https://hrvoje.pavlinovic.com";
@@ -149,12 +150,13 @@ export default function App({ Component, url }: PageProps) {
           </script>
         )}
       </head>
-      <body class="dark:bg-black bg-white dark:text-white/80 text-black/80 min-h-screen font-mono">
+      <body class="min-h-screen">
         <Header />
         <main class="w-full">
           <Component />
         </main>
         <Footer />
+        <MotionEffects />
       </body>
     </html>
   );

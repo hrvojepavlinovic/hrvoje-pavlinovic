@@ -104,11 +104,11 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
         return (
           <article
             key={project.id}
-            class={`space-y-6 rounded-lg border bg-white/80 p-6 transition-colors dark:bg-black/40 ${
-              project.id === "playgrnd"
-                ? "border-orange-300 dark:border-orange-800"
-                : "border-gray-200 hover:border-gray-300 dark:border-gray-800 dark:hover:border-gray-600"
+            class={`surface-card space-y-6 p-6 ${
+              project.id === "playgrnd" ? "accent-card" : ""
             }`}
+            data-tilt
+            data-reveal
           >
             <header class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div class="flex min-w-0 items-start gap-4">
@@ -158,7 +158,7 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 dark:border-gray-700 dark:bg-black"
+                      class="tag-chip inline-flex items-center px-2.5 py-1"
                     >
                       {tech}
                     </span>
@@ -175,7 +175,7 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                       clickType: "link",
                       target: `${project.id}-details`,
                     })}
-                  class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-900 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-100 dark:hover:border-gray-100"
+                  class="action-button"
                 >
                   {project.caseStudy ? "Case study" : "Details"}
                   <svg
@@ -200,7 +200,7 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                         clickType: "link",
                         target: `${project.id}-live`,
                       })}
-                    class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-100"
+                    class="action-button"
                   >
                     Check it out
                     <svg

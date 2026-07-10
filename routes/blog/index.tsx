@@ -84,11 +84,9 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
   ) => (
     <article
       key={article.id}
-      class={`border bg-white/80 transition-colors dark:bg-black/40 ${
-        featured
-          ? "rounded-lg border-orange-200 p-6 dark:border-orange-900"
-          : "rounded-lg border-gray-200 p-5 hover:border-gray-300 dark:border-gray-800 dark:hover:border-gray-600"
-      }`}
+      class={`surface-card ${featured ? "accent-card p-6" : "p-5"}`}
+      data-tilt
+      data-reveal
     >
       <a href={`/blog/${article.slug}`} class="block space-y-4">
         <header class="space-y-2">
@@ -138,13 +136,13 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
         <meta name="twitter:url" content={canonicalUrl} />
       </Head>
 
-      <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
-        <main class="max-w-5xl mx-auto px-6 pt-24 pb-24 md:pt-28 md:pb-28">
-          <header class="max-w-3xl">
-            <p class="text-xs font-semibold uppercase text-orange-600 dark:text-orange-400">
+      <div class="site-canvas">
+        <main class="mx-auto max-w-5xl px-6 pb-24 pt-32 md:pb-28 md:pt-40">
+          <header class="page-intro" data-reveal>
+            <p class="eyebrow">
               Field notes
             </p>
-            <h1 class="mt-3 text-3xl font-semibold text-gray-900 dark:text-gray-100 md:text-4xl">
+            <h1 class="display-title mt-4">
               Systems, products, and the life around the work.
             </h1>
             <p class="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400 md:text-base">
@@ -153,7 +151,7 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
             </p>
           </header>
 
-          <section class="mt-12">
+          <section class="mt-14">
             <h2 class="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400">
               Start here
             </h2>

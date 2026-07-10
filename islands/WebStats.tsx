@@ -218,7 +218,7 @@ export default function WebStatsPage() {
 
   if (loading) {
     return (
-      <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
+      <div class="site-canvas">
         <section class="max-w-4xl mx-auto flex min-h-screen flex-col justify-center px-6 py-24 md:py-32">
           <div class="space-y-6 text-center">
             <div class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 dark:border-gray-700">
@@ -234,14 +234,14 @@ export default function WebStatsPage() {
   }
 
   return (
-    <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
+    <div class="site-canvas">
       <section class="max-w-5xl mx-auto px-6 pt-28 pb-24 md:pt-32 md:pb-28 space-y-10">
         <span class="inline-flex text-xs text-gray-500 dark:text-gray-500">
           Last updated: {updatedAt}
         </span>
 
         <div class="grid gap-6 md:grid-cols-2">
-          <div class="rounded-2xl border border-gray-200 bg-white/80 p-6 text-center dark:border-gray-800 dark:bg-black/40">
+          <div class="surface-card p-6 text-center" data-reveal>
             <p class="text-3xl font-semibold text-orange-600 dark:text-orange-400">
               {totalViews.toLocaleString()}
             </p>
@@ -249,7 +249,7 @@ export default function WebStatsPage() {
               Total page views
             </p>
           </div>
-          <div class="rounded-2xl border border-gray-200 bg-white/80 p-6 text-center dark:border-gray-800 dark:bg-black/40">
+          <div class="surface-card p-6 text-center" data-reveal>
             <p class="text-3xl font-semibold text-orange-600 dark:text-orange-400">
               {totalClicks.toLocaleString()}
             </p>
@@ -267,7 +267,7 @@ export default function WebStatsPage() {
             {pageViews.map((item) => (
               <div
                 key={item.page}
-                class="flex items-center justify-between rounded-xl border border-gray-200 bg-white/80 px-4 py-3 text-sm dark:border-gray-800 dark:bg-black/40"
+                class="surface-card flex items-center justify-between px-4 py-3 text-sm"
               >
                 <span class="text-gray-700 dark:text-gray-300">
                   {item.page}
@@ -289,7 +289,7 @@ export default function WebStatsPage() {
               {blogStats.map((item) => (
                 <div
                   key={item.page}
-                  class="flex items-center justify-between rounded-xl border border-gray-200 bg-white/80 px-4 py-3 text-sm dark:border-gray-800 dark:bg-black/40"
+                  class="surface-card flex items-center justify-between px-4 py-3 text-sm"
                 >
                   <span class="text-gray-700 dark:text-gray-300">
                     {item.page}
@@ -311,7 +311,7 @@ export default function WebStatsPage() {
             {clicks.map((item) => (
               <div
                 key={`${item.target}-${item.type}`}
-                class="flex items-center justify-between gap-4 rounded-xl border border-gray-200 bg-white/80 px-4 py-3 text-sm dark:border-gray-800 dark:bg-black/40"
+                class="surface-card flex items-center justify-between gap-4 px-4 py-3 text-sm"
               >
                 <div class="flex items-center gap-3">
                   <span

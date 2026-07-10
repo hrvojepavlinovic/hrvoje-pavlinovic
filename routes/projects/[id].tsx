@@ -143,9 +143,9 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
         <meta name="twitter:url" content={canonicalUrl} />
       </Head>
 
-      <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
-        <section class="max-w-5xl mx-auto px-6 pt-24 pb-16 md:pt-32 md:pb-20">
-          <div class="max-w-4xl space-y-5">
+      <div class="site-canvas">
+        <section class="mx-auto max-w-5xl px-6 pb-16 pt-32 md:pb-20 md:pt-40">
+          <div class="max-w-4xl space-y-5" data-reveal>
             {project.image && (
               <img
                 src={project.image}
@@ -163,7 +163,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                 {statusCopy[project.status]}
               </span>
             </div>
-            <h1 class="text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[44px]">
+            <h1 class="display-title">
               {project.name}
             </h1>
             <p class="max-w-3xl text-base leading-relaxed text-gray-600 dark:text-gray-300 md:text-lg">
@@ -174,7 +174,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 dark:border-gray-700 dark:bg-black"
+                    class="tag-chip inline-flex items-center px-2.5 py-1"
                   >
                     {tech}
                   </span>
@@ -187,7 +187,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-900 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-100 dark:hover:border-gray-100"
+                  class="action-button"
                 >
                   Visit product
                   <svg
@@ -204,7 +204,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
               )}
               <a
                 href="mailto:hrvoje@pavlinovic.com"
-                class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-100"
+                class="action-button"
               >
                 Email me
                 <svg
@@ -224,7 +224,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
 
         {project.caseStudy && (
           <>
-            <section class="border-t border-gray-100 dark:border-gray-800">
+            <section class="section-band" data-reveal>
               <div class="max-w-5xl mx-auto grid gap-8 px-6 py-12 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] md:py-16">
                 <div>
                   <p class="text-xs font-semibold uppercase text-orange-600 dark:text-orange-400">
@@ -254,7 +254,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
               </div>
             </section>
 
-            <section class="border-t border-gray-100 dark:border-gray-800">
+            <section class="section-band" data-reveal>
               <div class="max-w-5xl mx-auto grid gap-8 px-6 py-12 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] md:py-16">
                 <div>
                   <p class="text-xs font-semibold uppercase text-gray-500">
@@ -277,7 +277,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
               </div>
             </section>
 
-            <section class="border-t border-gray-100 bg-gray-50/70 dark:border-gray-800 dark:bg-gray-950/40">
+            <section class="section-band" data-reveal>
               <div class="max-w-5xl mx-auto px-6 py-12 md:py-16">
                 <div class="max-w-3xl">
                   <p class="text-xs font-semibold uppercase text-gray-500">
@@ -302,7 +302,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
               </div>
             </section>
 
-            <section class="border-t border-gray-100 dark:border-gray-800">
+            <section class="section-band" data-reveal>
               <div class="max-w-5xl mx-auto px-6 py-12 md:py-16">
                 <div class="max-w-3xl">
                   <p class="text-xs font-semibold uppercase text-gray-500">
@@ -325,7 +325,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
               </div>
             </section>
 
-            <section class="border-t border-gray-100 dark:border-gray-800">
+            <section class="section-band" data-reveal>
               <div class="max-w-5xl mx-auto grid gap-8 px-6 py-12 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] md:py-16">
                 <div>
                   <p class="text-xs font-semibold uppercase text-gray-500">
@@ -356,7 +356,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                     {project.caseStudy.related.map((link) => (
                       <a
                         href={link.href}
-                        class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold hover:border-gray-900 dark:border-gray-700 dark:hover:border-gray-100"
+                        class="action-button"
                       >
                         {link.label} <span aria-hidden="true">↗</span>
                       </a>
@@ -370,7 +370,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
 
         {!project.caseStudy && project.highlights &&
           project.highlights.length > 0 && (
-          <section class="border-t border-gray-100 dark:border-gray-800">
+          <section class="section-band" data-reveal>
             <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-6">
               <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
                 Highlights
