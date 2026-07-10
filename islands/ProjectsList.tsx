@@ -12,6 +12,9 @@ interface Project {
   featured: boolean;
   likes?: number;
   accent?: string;
+  image?: string;
+  imageAlt?: string;
+  caseStudy?: unknown;
 }
 
 interface ProjectsListProps {
@@ -101,17 +104,35 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
         return (
           <article
             key={project.id}
-            class="space-y-6 rounded-2xl border border-gray-200 bg-white/80 p-6 shadow-sm transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600"
+            class={`space-y-6 rounded-lg border bg-white/80 p-6 transition-colors dark:bg-black/40 ${
+              project.id === "playgrnd"
+                ? "border-orange-300 dark:border-orange-800"
+                : "border-gray-200 hover:border-gray-300 dark:border-gray-800 dark:hover:border-gray-600"
+            }`}
           >
             <header class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              <div class="space-y-2">
-                <div class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                  <span class={`h-1.5 w-1.5 rounded-full ${dot}`} />
-                  {project.name}
+              <div class="flex min-w-0 items-start gap-4">
+                {project.image && (
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt ?? ""}
+                    class="h-12 w-12 flex-none object-contain"
+                  />
+                )}
+                <div class="min-w-0 space-y-2">
+                  <div class="flex flex-wrap items-center gap-2 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                    <span class={`h-1.5 w-1.5 rounded-full ${dot}`} />
+                    {project.name}
+                    {project.id === "playgrnd" && (
+                      <span class="text-orange-600 dark:text-orange-400">
+                        Flagship product
+                      </span>
+                    )}
+                  </div>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">
+                    {project.description}
+                  </p>
                 </div>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                  {project.description}
-                </p>
               </div>
               <span
                 class={`inline-flex min-w-[140px] justify-center h-8 items-center rounded-full px-4 text-xs font-semibold text-center ${status.tone}`}
@@ -154,9 +175,9 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                       clickType: "link",
                       target: `${project.id}-details`,
                     })}
-                  class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-900 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-100 dark:hover:border-gray-100"
+                  class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-900 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-100 dark:hover:border-gray-100"
                 >
-                  Details
+                  {project.caseStudy ? "Case study" : "Details"}
                   <svg
                     class="h-3.5 w-3.5"
                     viewBox="0 0 24 24"
@@ -179,7 +200,7 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                         clickType: "link",
                         target: `${project.id}-live`,
                       })}
-                    class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-100"
+                    class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-100"
                   >
                     Check it out
                     <svg

@@ -6,6 +6,8 @@
       "name": "PLAYGRND",
       "url": "https://playgrnd.app",
       "description": "A public amateur football record platform for leagues, matches, teams, players, claims, corrections, and organizer workflows.",
+      "image": "/projects/playgrnd-mark.png",
+      "imageAlt": "PLAYGRND brand mark",
       "highlights": [
         "SSR SvelteKit public app backed by a private Go API over local sockets",
         "Postgres source-of-truth model with Redis snapshots and recomputable derived stats",
@@ -21,7 +23,83 @@
       ],
       "status": "development",
       "featured": true,
-      "accent": "orange"
+      "accent": "orange",
+      "caseStudy": {
+        "eyebrow": "Founder-built product case study",
+        "intro": "I am building PLAYGRND to give amateur footballers and organizers a credible public record: competitions, matches, teams, player profiles, honors, claims, and corrections in one fast, shareable product.",
+        "role": "Founder and hands-on engineer",
+        "period": "2025 - Present",
+        "stage": "Live product, active development",
+        "challenge": "Local amateur football history exists, but it is fragmented across league sites, spreadsheets, social posts, and private organizer knowledge. The first job is not adding another social feed. It is turning that history into a trustworthy public record, then creating a controlled path for players and organizers to improve it.",
+        "productLoop": [
+          "Publish fast, searchable league history with shareable player, team, match, and season pages.",
+          "Let players claim an existing profile through a channel they already use, without weakening identity checks.",
+          "Route claims and corrections through scoped admin review before they change the public record.",
+          "Use organizer workflows and real season feedback to decide what deserves to become native product functionality."
+        ],
+        "architecture": [
+          {
+            "label": "Public web",
+            "value": "SvelteKit SSR with Croatian-first content and an English toggle"
+          },
+          {
+            "label": "Application API",
+            "value": "Private Go service reached over local sockets, with public writes kept behind the web layer"
+          },
+          {
+            "label": "Source of truth",
+            "value": "PostgreSQL for imported records, claims, identity, audit state, and deterministic aggregates"
+          },
+          {
+            "label": "Hot reads",
+            "value": "Redis snapshots for stable and short-lived public data, with PostgreSQL fallback"
+          },
+          {
+            "label": "Identity and claims",
+            "value": "WhatsApp magic links, short claim codes, pending profiles, and guarded approval flows"
+          },
+          {
+            "label": "Operations",
+            "value": "Hetzner releases, health checks, recompute tooling, backups, and documented rollback paths"
+          }
+        ],
+        "decisions": [
+          {
+            "title": "Trust before creation",
+            "text": "The product starts from explainable imported history. New write surfaces are added only when they close a real claim, correction, or organizer loop."
+          },
+          {
+            "title": "SSR-first public reads",
+            "text": "Player and league pages should be fast, indexable, and useful when shared. The private API remains an implementation boundary rather than a public contract."
+          },
+          {
+            "title": "Recomputable derived data",
+            "text": "Finished-season standings, scorers, and player statistics can be rebuilt transactionally from source records instead of becoming cache-shaped truth."
+          },
+          {
+            "title": "WhatsApp as a user channel",
+            "text": "Login and claims meet local users in a familiar channel, while raw webhook storage, credentials, admin actions, and official record changes stay deliberately constrained."
+          }
+        ],
+        "delivered": [
+          "Public league, match, team, player, standings, scorers, honors, search, and share flows",
+          "Croatian-first SSR product with responsive mobile search and profile discovery",
+          "WhatsApp magic-link login, pending-profile onboarding, profile claims, and admin review foundation",
+          "Persisted season aggregates, Redis hot-read snapshots, explicit recompute commands, and raw-data fallbacks",
+          "Operational tooling for deployment, health checks, backups, cache warming, derived-data audits, and rollback"
+        ],
+        "next": "The next proof is operational rather than cosmetic: harden real-phone claim flows, run the product with active competition organizers, and use that feedback to shape result entry, corrections, and recurring organizer workflows.",
+        "related": [
+          {
+            "label": "Why WhatsApp fits PLAYGRND claims",
+            "href": "/blog/playgrnd-whatsapp-auth-login-claims"
+          },
+          {
+            "label": "Keeping aggregates fast and recomputable",
+            "href": "/blog/playgrnd-cache-query-optimization"
+          }
+        ]
+      }
     },
     {
       "id": "memoato",
@@ -57,13 +135,13 @@
       "id": "hills-lab",
       "name": "HILLS Lab",
       "url": "https://hills-lab.hr",
-      "description": "An independent R&D studio focused on applied AI, Bitcoin, and commerce systems.",
+      "description": "A founder-led engineering studio for domain-heavy backend systems, product delivery, operations, and carefully scoped AI-assisted workflows.",
       "highlights": [
-        "Hands-on engineering, not slide decks",
-        "Small teams, clear ownership, production discipline",
-        "Focused on shipping and operating real systems"
+        "Senior ownership from an ambiguous problem through production",
+        "Backend, product, data, infrastructure, and operational delivery",
+        "Specialized AI workflow work with clear sources and access boundaries"
       ],
-      "technologies": ["Backend", "Infra", "AI", "Bitcoin"],
+      "technologies": ["Backend", "Product", "Infrastructure", "AI Workflows"],
       "status": "development",
       "featured": false,
       "accent": "orange"

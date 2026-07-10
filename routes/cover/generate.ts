@@ -7,6 +7,9 @@ export const handler: Handlers = {
       const template = formData.get("template") as string;
       const company = formData.get("company") as string;
       const position = formData.get("position") as string;
+      const recipient = formData.get("recipient") as string;
+      const motivation = formData.get("motivation") as string;
+      const evidence = formData.get("evidence") as string;
 
       // Validate required fields
       if (!template || !company || !position) {
@@ -19,6 +22,7 @@ export const handler: Handlers = {
         "bitcoin",
         "ai",
         "backend",
+        "product",
         "fullstack",
         "lead",
         "staff",
@@ -31,6 +35,11 @@ export const handler: Handlers = {
       const url = new URL(`/cover/${template}`, req.url);
       url.searchParams.set("company", company);
       url.searchParams.set("position", position);
+      if (recipient) url.searchParams.set("recipient", recipient.slice(0, 120));
+      if (motivation) {
+        url.searchParams.set("motivation", motivation.slice(0, 900));
+      }
+      if (evidence) url.searchParams.set("evidence", evidence.slice(0, 900));
 
       return Response.redirect(url.toString());
     } catch (error) {

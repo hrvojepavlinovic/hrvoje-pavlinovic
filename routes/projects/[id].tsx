@@ -14,6 +14,36 @@ interface Project {
   featured: boolean;
   likes?: number;
   accent?: string;
+  image?: string;
+  imageAlt?: string;
+  caseStudy?: ProjectCaseStudy;
+}
+
+interface CaseStudyItem {
+  label?: string;
+  title?: string;
+  value?: string;
+  text?: string;
+}
+
+interface CaseStudyLink {
+  label: string;
+  href: string;
+}
+
+interface ProjectCaseStudy {
+  eyebrow: string;
+  intro: string;
+  role: string;
+  period: string;
+  stage: string;
+  challenge: string;
+  productLoop: string[];
+  architecture: CaseStudyItem[];
+  decisions: CaseStudyItem[];
+  delivered: string[];
+  next: string;
+  related: CaseStudyLink[];
 }
 
 interface ProjectsData {
@@ -77,6 +107,9 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
   const pageTitle = `${project.name} \u2014 Hrvoje Pavlinovic`;
   const description = project.description;
   const canonicalUrl = `${SITE_URL}/projects/${project.id}`;
+  const imageUrl = project.image
+    ? `${SITE_URL}${project.image}`
+    : `${SITE_URL}/pfptbs.png`;
 
   return (
     <>
@@ -95,7 +128,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
         <meta property="og:url" content={canonicalUrl} />
         <meta
           property="og:image"
-          content="https://hrvoje.pavlinovic.com/pfptbs.png"
+          content={imageUrl}
         />
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -105,14 +138,21 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
         <meta name="twitter:description" content={description} />
         <meta
           name="twitter:image"
-          content="https://hrvoje.pavlinovic.com/pfptbs.png"
+          content={imageUrl}
         />
         <meta name="twitter:url" content={canonicalUrl} />
       </Head>
 
       <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
-        <section class="max-w-5xl mx-auto px-6 py-24 md:py-32 space-y-10">
-          <div class="space-y-4">
+        <section class="max-w-5xl mx-auto px-6 pt-24 pb-16 md:pt-32 md:pb-20">
+          <div class="max-w-4xl space-y-5">
+            {project.image && (
+              <img
+                src={project.image}
+                alt={project.imageAlt ?? `${project.name} brand mark`}
+                class="h-20 w-20 object-contain md:h-24 md:w-24"
+              />
+            )}
             <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
               <span class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1 dark:border-gray-700">
                 <span
@@ -126,8 +166,8 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
             <h1 class="text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[44px]">
               {project.name}
             </h1>
-            <p class="text-sm text-gray-600 dark:text-gray-400">
-              {project.description}
+            <p class="max-w-3xl text-base leading-relaxed text-gray-600 dark:text-gray-300 md:text-lg">
+              {project.caseStudy?.intro ?? project.description}
             </p>
             {project.technologies && project.technologies.length > 0 && (
               <div class="flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-400">
@@ -147,7 +187,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-900 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-100 dark:hover:border-gray-100"
+                  class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-900 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-100 dark:hover:border-gray-100"
                 >
                   Visit product
                   <svg
@@ -164,7 +204,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
               )}
               <a
                 href="mailto:hrvoje@pavlinovic.com"
-                class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-100"
+                class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:border-gray-900 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-100"
               >
                 Email me
                 <svg
@@ -182,7 +222,154 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
           </div>
         </section>
 
-        {project.highlights && project.highlights.length > 0 && (
+        {project.caseStudy && (
+          <>
+            <section class="border-t border-gray-100 dark:border-gray-800">
+              <div class="max-w-5xl mx-auto grid gap-8 px-6 py-12 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] md:py-16">
+                <div>
+                  <p class="text-xs font-semibold uppercase text-orange-600 dark:text-orange-400">
+                    {project.caseStudy.eyebrow}
+                  </p>
+                  <h2 class="mt-3 text-2xl font-semibold">The product bet</h2>
+                </div>
+                <div class="space-y-7">
+                  <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300">
+                    {project.caseStudy.challenge}
+                  </p>
+                  <dl class="grid gap-px overflow-hidden rounded-lg border border-gray-200 bg-gray-200 text-sm dark:border-gray-800 dark:bg-gray-800 sm:grid-cols-3">
+                    {[
+                      ["Role", project.caseStudy.role],
+                      ["Period", project.caseStudy.period],
+                      ["Stage", project.caseStudy.stage],
+                    ].map(([label, value]) => (
+                      <div class="bg-white p-4 dark:bg-black">
+                        <dt class="text-xs uppercase text-gray-500">{label}</dt>
+                        <dd class="mt-2 font-semibold text-gray-900 dark:text-gray-100">
+                          {value}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </div>
+            </section>
+
+            <section class="border-t border-gray-100 dark:border-gray-800">
+              <div class="max-w-5xl mx-auto grid gap-8 px-6 py-12 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] md:py-16">
+                <div>
+                  <p class="text-xs font-semibold uppercase text-gray-500">
+                    Product loop
+                  </p>
+                  <h2 class="mt-3 text-2xl font-semibold">
+                    From public record to trusted input
+                  </h2>
+                </div>
+                <ol class="border-t border-gray-200 dark:border-gray-800">
+                  {project.caseStudy.productLoop.map((item, index) => (
+                    <li class="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-4 border-b border-gray-200 py-5 text-sm leading-relaxed text-gray-700 dark:border-gray-800 dark:text-gray-300">
+                      <span class="font-semibold text-orange-600 dark:text-orange-400">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </section>
+
+            <section class="border-t border-gray-100 bg-gray-50/70 dark:border-gray-800 dark:bg-gray-950/40">
+              <div class="max-w-5xl mx-auto px-6 py-12 md:py-16">
+                <div class="max-w-3xl">
+                  <p class="text-xs font-semibold uppercase text-gray-500">
+                    System shape
+                  </p>
+                  <h2 class="mt-3 text-2xl font-semibold">
+                    Simple boundaries, explicit sources of truth
+                  </h2>
+                </div>
+                <div class="mt-8 grid gap-px overflow-hidden rounded-lg border border-gray-200 bg-gray-200 dark:border-gray-800 dark:bg-gray-800 md:grid-cols-2">
+                  {project.caseStudy.architecture.map((item) => (
+                    <article class="min-w-0 bg-white p-5 dark:bg-black">
+                      <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                        {item.label}
+                      </h3>
+                      <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                        {item.value}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section class="border-t border-gray-100 dark:border-gray-800">
+              <div class="max-w-5xl mx-auto px-6 py-12 md:py-16">
+                <div class="max-w-3xl">
+                  <p class="text-xs font-semibold uppercase text-gray-500">
+                    Engineering judgment
+                  </p>
+                  <h2 class="mt-3 text-2xl font-semibold">
+                    Decisions that keep the product legible
+                  </h2>
+                </div>
+                <div class="mt-8 grid gap-x-10 gap-y-8 md:grid-cols-2">
+                  {project.caseStudy.decisions.map((item) => (
+                    <article class="border-t border-gray-300 pt-4 dark:border-gray-700">
+                      <h3 class="text-base font-semibold">{item.title}</h3>
+                      <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                        {item.text}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section class="border-t border-gray-100 dark:border-gray-800">
+              <div class="max-w-5xl mx-auto grid gap-8 px-6 py-12 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] md:py-16">
+                <div>
+                  <p class="text-xs font-semibold uppercase text-gray-500">
+                    Current proof
+                  </p>
+                  <h2 class="mt-3 text-2xl font-semibold">
+                    What is already delivered
+                  </h2>
+                </div>
+                <div>
+                  <ul class="space-y-4 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+                    {project.caseStudy.delivered.map((item) => (
+                      <li class="flex items-start gap-3">
+                        <span class="mt-[0.55rem] h-1.5 w-1.5 flex-none rounded-full bg-orange-500" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div class="mt-8 border-l-2 border-orange-500 pl-5">
+                    <p class="text-xs font-semibold uppercase text-gray-500">
+                      Next proof
+                    </p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+                      {project.caseStudy.next}
+                    </p>
+                  </div>
+                  <div class="mt-8 flex flex-wrap gap-3">
+                    {project.caseStudy.related.map((link) => (
+                      <a
+                        href={link.href}
+                        class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold hover:border-gray-900 dark:border-gray-700 dark:hover:border-gray-100"
+                      >
+                        {link.label} <span aria-hidden="true">↗</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          </>
+        )}
+
+        {!project.caseStudy && project.highlights &&
+          project.highlights.length > 0 && (
           <section class="border-t border-gray-100 dark:border-gray-800">
             <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-6">
               <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">

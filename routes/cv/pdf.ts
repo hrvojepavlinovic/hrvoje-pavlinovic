@@ -27,8 +27,8 @@ export const handler: Handlers = {
       const lineHeight = 3.8;
 
       // Helper function to check if we need a new page
-      const checkNewPage = (requiredSpace = 20) => {
-        if (yPosition + requiredSpace > 275) {
+      const checkNewPage = (requiredSpace = 20, pageBottom = 275) => {
+        if (yPosition + requiredSpace > pageBottom) {
           doc.addPage();
           yPosition = 15;
           return true;
@@ -386,7 +386,7 @@ export const handler: Handlers = {
         const requiredSpace = 12 + (edu.details.length * 4);
 
         if (index > 0 || yPosition + requiredSpace > 275) {
-          checkNewPage(requiredSpace);
+          checkNewPage(requiredSpace, 282);
         }
 
         yPosition = addText(

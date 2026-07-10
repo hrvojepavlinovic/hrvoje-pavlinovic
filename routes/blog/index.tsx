@@ -16,9 +16,23 @@ interface BlogPageData {
   })[];
 }
 
+const FEATURED_SLUGS = [
+  "playgrnd-cache-query-optimization",
+  "playgrnd-whatsapp-auth-login-claims",
+  "ambition-without-disappearing",
+];
+
+const ARCHIVED_INDEX_SLUGS = new Set([
+  "build-log-ai-portfolio-session",
+  "behind-the-code-claude-sonnet-4-development-session",
+  "3am-thoughts-ai-gets-tired-humans-get-obsessed",
+  "building-modern-web-experience-fresh-ai",
+]);
+
 export const handler: Handlers<BlogPageData> = {
   async GET(_req, ctx) {
     const sortedArticles = (blogData.articles as BlogArticle[])
+      .filter((article) => !ARCHIVED_INDEX_SLUGS.has(article.slug))
       .sort((a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
       );
@@ -55,6 +69,50 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
   const keywords =
     "Blog, Software Engineering, Backend Engineering, Operational Tooling, Self Hosting, Product Engineering, Hrvoje";
   const author = "Hrvoje Pavlinovic";
+  const featuredArticles = FEATURED_SLUGS.map((slug) =>
+    data.articles.find((article) => article.slug === slug)
+  ).filter((article): article is BlogPageData["articles"][number] =>
+    Boolean(article)
+  );
+  const latestArticles = data.articles.filter((article) =>
+    !FEATURED_SLUGS.includes(article.slug)
+  );
+
+  const articleCard = (
+    article: BlogPageData["articles"][number],
+    featured = false,
+  ) => (
+    <article
+      key={article.id}
+      class={`border bg-white/80 transition-colors dark:bg-black/40 ${
+        featured
+          ? "rounded-lg border-orange-200 p-6 dark:border-orange-900"
+          : "rounded-lg border-gray-200 p-5 hover:border-gray-300 dark:border-gray-800 dark:hover:border-gray-600"
+      }`}
+    >
+      <a href={`/blog/${article.slug}`} class="block space-y-4">
+        <header class="space-y-2">
+          <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
+            <span class="text-orange-700 dark:text-orange-300">
+              {article.tags[0] ?? "Note"}
+            </span>
+            <span>{article.timeAgo}</span>
+            <span>{article.readingTime} min read</span>
+          </div>
+          <h2
+            class={`${
+              featured ? "text-xl" : "text-lg"
+            } font-semibold text-gray-900 dark:text-gray-100`}
+          >
+            {article.title}
+          </h2>
+        </header>
+        <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          {article.shortDescription}
+        </p>
+      </a>
+    </article>
+  );
 
   return (
     <>
@@ -81,47 +139,37 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
       </Head>
 
       <div class="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100">
-        <main class="max-w-4xl mx-auto px-6 pt-20 pb-24 md:pt-24 md:pb-28 space-y-6">
-          {data.articles.map((article) => (
-            <article
-              key={article.id}
-              class="rounded-2xl border border-gray-200 bg-white/80 p-6 transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-black/40 dark:hover:border-gray-600"
-            >
-              <a href={`/blog/${article.slug}`} class="space-y-4">
-                <header class="space-y-2">
-                  <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide">
-                    <span class="inline-flex items-center gap-2 rounded-full bg-orange-50 px-3 py-1 text-orange-700 dark:bg-orange-950/30 dark:text-orange-200">
-                      Essay
-                    </span>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
-                      {article.timeAgo}
-                    </span>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
-                      {article.readingTime} min read
-                    </span>
-                  </div>
-                  <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-                    {article.title}
-                  </h2>
-                </header>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                  {article.shortDescription}
-                </p>
-                {article.tags.length > 0 && (
-                  <div class="flex flex-wrap gap-2 text-xs">
-                    {article.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        class="inline-flex items-center rounded-full border border-gray-200 bg-white px-2.5 py-1 text-gray-600 dark:border-gray-700 dark:bg-black dark:text-gray-300"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </a>
-            </article>
-          ))}
+        <main class="max-w-5xl mx-auto px-6 pt-24 pb-24 md:pt-28 md:pb-28">
+          <header class="max-w-3xl">
+            <p class="text-xs font-semibold uppercase text-orange-600 dark:text-orange-400">
+              Field notes
+            </p>
+            <h1 class="mt-3 text-3xl font-semibold text-gray-900 dark:text-gray-100 md:text-4xl">
+              Systems, products, and the life around the work.
+            </h1>
+            <p class="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400 md:text-base">
+              Practical notes from backend engineering and building products,
+              plus occasional writing about business, family, and ambition.
+            </p>
+          </header>
+
+          <section class="mt-12">
+            <h2 class="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400">
+              Start here
+            </h2>
+            <div class="mt-4 grid gap-4 md:grid-cols-3">
+              {featuredArticles.map((article) => articleCard(article, true))}
+            </div>
+          </section>
+
+          <section class="mt-14">
+            <h2 class="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400">
+              Latest notes
+            </h2>
+            <div class="mt-4 grid gap-4 md:grid-cols-2">
+              {latestArticles.map((article) => articleCard(article))}
+            </div>
+          </section>
         </main>
       </div>
     </>

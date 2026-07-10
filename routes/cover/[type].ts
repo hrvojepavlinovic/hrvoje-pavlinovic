@@ -86,6 +86,25 @@ const coverLetterTemplates: Record<string, CoverLetterTemplate> = {
       "Production Reliability",
     ],
   },
+  product: {
+    opening:
+      "I am interested in the {position} position at {companyName}. I bring 13+ years of backend engineering experience, but the part of the work I value most is owning the path from an unclear product problem to a system that works in production.",
+    body: [
+      "At Tilt, I work across live commerce, auctions, payments, shipping, inventory, seller tooling, and real-time buyer workflows. The work is technically broad, but the real challenge is usually product-shaped: understand the constraint, make trade-offs explicit, and release a change that operators and users can depend on.",
+      "PLAYGRND is my clearest founder-built example. I own the product and engineering path from imported football records and a Postgres source-of-truth model to a private Go API, SSR SvelteKit pages, Redis-backed reads, WhatsApp onboarding, player claims, admin review, deployment, and operations.",
+      "I am most useful in teams where backend depth, product judgment, and independent delivery need to live in the same person. I communicate directly, stay close to users and operations, and prefer concrete evidence over architecture for its own sake.",
+    ],
+    closing:
+      "I would be glad to discuss the product and engineering problems {companyName} needs this role to own, and whether my background is a good fit for them.",
+    skills: [
+      "Backend and Product Engineering",
+      "Independent Delivery",
+      "System Design",
+      "PostgreSQL",
+      "Operational Workflows",
+      "Founder Mindset",
+    ],
+  },
   fullstack: {
     opening:
       "I am interested in the {position} position at {companyName}. I am backend-first, but I have 13+ years of experience shipping across the stack when the product needs it.",
@@ -154,6 +173,12 @@ export const handler: Handlers = {
         url.searchParams.get("companyName") || "[Company Name]";
       const position = url.searchParams.get("position") ||
         `${type.charAt(0).toUpperCase() + type.slice(1)} Position`;
+      const recipient = url.searchParams.get("recipient")?.trim().slice(0, 120);
+      const motivation = url.searchParams.get("motivation")?.trim().slice(
+        0,
+        900,
+      );
+      const evidence = url.searchParams.get("evidence")?.trim().slice(0, 900);
 
       // Validate cover letter type
       if (!coverLetterTemplates[type]) {
@@ -293,7 +318,7 @@ export const handler: Handlers = {
 
       // Salutation
       yPosition = addText(
-        `Dear ${companyName} Team,`,
+        `Dear ${recipient || `${companyName} Team`},`,
         margin,
         yPosition,
         contentWidth,
@@ -317,6 +342,19 @@ export const handler: Handlers = {
       );
       yPosition += 6;
 
+      [motivation, evidence].filter(Boolean).forEach((paragraph) => {
+        checkNewPage(20);
+        yPosition = addText(
+          paragraph as string,
+          margin,
+          yPosition,
+          contentWidth,
+          10,
+          "normal",
+        );
+        yPosition += 6;
+      });
+
       // Body paragraphs
       template.body.forEach((paragraph) => {
         checkNewPage(20);
@@ -332,28 +370,6 @@ export const handler: Handlers = {
         );
         yPosition += 6;
       });
-
-      // Key Skills section
-      checkNewPage(15);
-      yPosition = addText(
-        "Key Relevant Skills:",
-        margin,
-        yPosition,
-        contentWidth,
-        10,
-        "bold",
-      );
-      yPosition += 2;
-      const skillsText = template.skills.join(" • ");
-      yPosition = addText(
-        `• ${skillsText}`,
-        margin,
-        yPosition,
-        contentWidth,
-        10,
-        "normal",
-      );
-      yPosition += 6;
 
       // Closing paragraph
       checkNewPage(15);
@@ -401,7 +417,9 @@ export const handler: Handlers = {
       // Generate PDF buffer
       const pdfBuffer = doc.output("arraybuffer");
 
-      const fileName = `Hrvoje_Pavlinovic_Cover_Letter.pdf`;
+      const companySlug = companyName.replace(/[^a-z0-9]+/gi, "_")
+        .replace(/^_+|_+$/g, "") || "Company";
+      const fileName = `Hrvoje_Pavlinovic_${companySlug}_Cover_Letter.pdf`;
 
       return new Response(pdfBuffer, {
         headers: {

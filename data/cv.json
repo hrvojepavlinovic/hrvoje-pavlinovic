@@ -5,7 +5,7 @@
   },
   "profile": {
     "name": "Hrvoje Pavlinovic",
-    "title": "Senior Software Engineer",
+    "title": "Senior Backend & Product Engineer",
     "photo": "/pfptbs.png",
     "phone": "+385976292514",
     "email": "hrvoje@pavlinovic.com",
@@ -31,11 +31,12 @@
     ]
   },
   "professionalSummary": {
-    "description": "Senior Software Engineer with 13+ years of experience building backend platforms, distributed commerce systems, and production workflows for small, fast-moving teams. Strong track record across live commerce, auctions, payments, shipping, real-time video, search, event-driven services, and AWS infrastructure. Currently building complex backend systems at Tilt, where fast delivery has to stay grounded in clear trade-offs, scoped operational access, and careful production releases. Known for independent ownership, clear communication, reliable delivery, and turning ambiguous product problems into shipped systems."
+    "description": "Senior Backend & Product Engineer with 13+ years of experience turning ambiguous, domain-heavy problems into dependable production systems. Recent work spans live commerce, auctions, payments, shipping, real-time workflows, PostgreSQL, event-driven services, and AWS infrastructure. At Tilt, I work across a large distributed commerce platform where delivery speed has to stay grounded in clear trade-offs, scoped operational access, and careful releases. I am strongest when I can own the path from problem framing and system design through implementation, debugging, rollout, and ongoing operation."
   },
   "skills": {
     "coreExpertise": [
       "Backend Platform Engineering",
+      "Product Engineering",
       "Distributed Commerce Systems",
       "Operational Tooling and Delivery",
       "Payments and Shipping Integrations",
@@ -321,8 +322,8 @@
     {
       "name": "HILLS Lab",
       "url": "https://hills-lab.hr",
-      "description": "Independent engineering studio for backend systems, applied AI workflows, infrastructure experiments, and small product bets.",
-      "technologies": ["Backend", "Infra", "AI", "Product"]
+      "description": "Founder-led engineering studio for domain-heavy backend systems, product delivery, operational infrastructure, and carefully scoped AI-assisted workflows.",
+      "technologies": ["Backend", "Product", "Infrastructure", "AI Workflows"]
     }
   ],
   "_disabledPersonalProjects": [
