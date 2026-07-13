@@ -111,10 +111,86 @@
         "Organized timelines with actionable insights",
         "Built for consistency, not spreadsheet rituals"
       ],
-      "technologies": ["Wasp", "Postgres", "Redis", "Cloudflare"],
+      "technologies": ["Wasp", "React", "Postgres", "Hetzner"],
       "status": "development",
       "featured": true,
-      "accent": "emerald"
+      "accent": "emerald",
+      "caseStudy": {
+        "eyebrow": "Personal software case study",
+        "intro": "I am building Memoato as a low-friction personal memory system: capture a real-life note in natural language, preserve what was actually said, and turn the useful parts into structured history without forcing life into a spreadsheet first.",
+        "role": "Founder and hands-on engineer",
+        "period": "2025 - Present",
+        "stage": "Live private beta, active development",
+        "challenge": "Most tracking tools make the user choose a category, form, unit, and exact structure before recording anything. That friction is especially expensive on busy days, which are often the days worth remembering. Memoato has to accept imperfect input quickly while keeping the raw record, derived facts, privacy choices, and later corrections understandable.",
+        "productLoop": [
+          "Capture a short natural-language note from the web app, an MCP client, or another trusted integration.",
+          "Store the raw entry first, then extract structured facts with deterministic rules and a scoped AI fallback.",
+          "Match confident facts to existing categories, keep uncertain material visible, and avoid silently inventing history.",
+          "Turn accumulated entries into timelines, progress views, and useful recall without making dashboards the primary input model."
+        ],
+        "architecture": [
+          {
+            "label": "Product app",
+            "value": "Wasp and React for authenticated capture, timelines, category views, and account workflows"
+          },
+          {
+            "label": "Source of truth",
+            "value": "PostgreSQL through Prisma for users, raw entries, structured events, categories, and timestamps"
+          },
+          {
+            "label": "Ingestion",
+            "value": "Raw-first API pipeline with deterministic parsing, optional model fallback, and asynchronous processing"
+          },
+          {
+            "label": "Integrations",
+            "value": "Revocable, hashed API keys scoped to raw-entry writes, plus a private MCP bridge"
+          },
+          {
+            "label": "Privacy",
+            "value": "Cloud, encrypted-cloud, and local-first product modes kept as explicit user choices"
+          },
+          {
+            "label": "Operations",
+            "value": "Hetzner deployment behind Caddy and systemd, with GitHub Actions release automation"
+          }
+        ],
+        "decisions": [
+          {
+            "title": "Raw before derived",
+            "text": "The original note is stored before parsing begins. Structured events can be corrected or rebuilt without erasing what the user actually recorded."
+          },
+          {
+            "title": "Confidence is a product concern",
+            "text": "A plausible parse is not automatically a fact. Confident matches can become events; uncertain notes stay visible instead of being forced into the wrong category."
+          },
+          {
+            "title": "Categories are views",
+            "text": "Goals, charts, and category pages remain useful, but capture starts with the user's words rather than requiring the user to navigate the data model."
+          },
+          {
+            "title": "Narrow integration access",
+            "text": "MCP and automation tokens can write raw entries without receiving broad account access, and every key can be revoked or expired."
+          }
+        ],
+        "delivered": [
+          "Natural-language quick logging with raw-entry preservation and asynchronous fact processing",
+          "Timeline, category, goal, chart, ordering, and human-readable daily summary views",
+          "Deterministic parsing plus optional AI-assisted extraction with unmatched notes retained",
+          "Scoped API keys and MCP ingestion for low-friction logging from trusted tools",
+          "Email and Google authentication, privacy modes, PWA support, and Hetzner production deployment"
+        ],
+        "next": "The next step is to make recall as useful as capture: improve correction flows, alias memory, provenance for derived facts, and summaries that help without pretending the system knows more than the underlying entries support.",
+        "related": [
+          {
+            "label": "What reliable context actually requires",
+            "href": "/blog/reliable-context-for-ai-assisted-teams"
+          },
+          {
+            "label": "Trustworthy agent memory research notebook",
+            "href": "https://github.com/hrvojepavlinovic/trustworthy-agent-memory"
+          }
+        ]
+      }
     },
     {
       "id": "playgrnd-draft",
@@ -129,7 +205,79 @@
       "technologies": ["Next.js", "TypeScript", "Postgres", "Hetzner"],
       "status": "development",
       "featured": true,
-      "accent": "green"
+      "accent": "green",
+      "caseStudy": {
+        "eyebrow": "Interactive product case study",
+        "intro": "I built PLAYGRND Draft as a fast football game for short mobile sessions: spin an iconic national-team tournament squad, draft an all-time XI by position, simulate the tournament, and share the result.",
+        "role": "Founder, product designer, and engineer",
+        "period": "2026 - Present",
+        "stage": "Live experiment, active iteration",
+        "challenge": "Football draft games are easy to overbuild. The core experience needs enough recognizable players and simulation depth to feel meaningful, but every login, network request, asset dependency, or long setup step makes a casual session less likely to finish. The product had to feel immediate while keeping sharing and aggregate learning available as optional layers.",
+        "productLoop": [
+          "Generate a tournament squad capsule and present a position-specific choice from recognizable historical players.",
+          "Let the player complete a balanced XI without login, remote assets, or server-dependent game state.",
+          "Run a deterministic group and knockout simulation from the draft state and seed.",
+          "Offer a shareable result, then collect only anonymous aggregate signals without blocking gameplay."
+        ],
+        "architecture": [
+          {
+            "label": "Game client",
+            "value": "Next.js, React, and TypeScript with drafting and simulation running locally in the browser"
+          },
+          {
+            "label": "Football data",
+            "value": "Curated tournament squads and independent ratings shipped with the application bundle"
+          },
+          {
+            "label": "Simulation",
+            "value": "Seeded, reproducible tournament runs covering group and knockout stages"
+          },
+          {
+            "label": "Sharing",
+            "value": "Compact saved runs behind short IDs, with local share text as the failure fallback"
+          },
+          {
+            "label": "Aggregate stats",
+            "value": "Optional Postgres-backed counters published as a static snapshot outside the gameplay path"
+          },
+          {
+            "label": "Delivery",
+            "value": "Static release directories on Hetzner behind Caddy, with the optional API managed separately"
+          }
+        ],
+        "decisions": [
+          {
+            "title": "No backend in the game loop",
+            "text": "Starting, drafting, simulating, and seeing a result must keep working if the share and stats API is unavailable."
+          },
+          {
+            "title": "Recognizable squads over exhaustive data",
+            "text": "The first version favors iconic tournament capsules so most spins create an understandable football decision rather than a history quiz."
+          },
+          {
+            "title": "Deterministic by design",
+            "text": "A seed and the selected XI are enough to reproduce a run, which keeps the simulation testable and makes compact sharing possible."
+          },
+          {
+            "title": "Rights-aware presentation",
+            "text": "The fan-made game avoids official logos, player photos, trophy imagery, and claims of affiliation while keeping names and tournament facts descriptive."
+          }
+        ],
+        "delivered": [
+          "Mobile-first positional draft flow built around curated historical tournament squads",
+          "Local deterministic tournament simulation with group and knockout progression",
+          "Shareable saved runs with graceful fallback when the optional API is unavailable",
+          "Anonymous aggregate statistics generated into a fast static public snapshot",
+          "Independent PLAYGRND branding, explicit rights boundaries, and Hetzner release deployment"
+        ],
+        "next": "The next useful work is learning from completed runs: tune squad variety and simulation balance, improve the moments people want to share, and add backend features only when they strengthen that loop without slowing it down.",
+        "related": [
+          {
+            "label": "The wider PLAYGRND product",
+            "href": "/projects/playgrnd"
+          }
+        ]
+      }
     },
     {
       "id": "hills-lab",

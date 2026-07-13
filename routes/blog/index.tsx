@@ -17,8 +17,8 @@ interface BlogPageData {
 }
 
 const FEATURED_SLUGS = [
+  "reliable-context-for-ai-assisted-teams",
   "playgrnd-cache-query-optimization",
-  "playgrnd-whatsapp-auth-login-claims",
   "ambition-without-disappearing",
 ];
 
