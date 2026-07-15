@@ -144,16 +144,16 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
               <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
                 {article.views} views
               </span>
-              <a
-                href={`/blog/${article.slug}.md`}
-                class="inline-flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1 text-orange-800 transition-colors hover:bg-orange-200 dark:bg-orange-950 dark:text-orange-200 dark:hover:bg-orange-900"
-              >
-                Export Markdown
-              </a>
             </div>
             <h1 class="text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[42px]">
               {article.title}
             </h1>
+            <a
+              href={`/blog/${article.slug}.md`}
+              class="inline-flex w-fit items-center gap-2 rounded-full bg-orange-100 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-orange-800 transition-colors hover:bg-orange-200 dark:bg-orange-950 dark:text-orange-200 dark:hover:bg-orange-900"
+            >
+              Agent-ready Markdown
+            </a>
             <p class="text-sm text-gray-600 dark:text-gray-400">
               by {article.author}
             </p>
