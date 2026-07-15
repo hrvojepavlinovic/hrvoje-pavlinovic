@@ -63,6 +63,7 @@ export const handler: Handlers<BlogPostData> = {
 export default function BlogPost({ data }: PageProps<BlogPostData>) {
   const { article } = data;
   const canonicalUrl = `https://hrvoje.pavlinovic.com/blog/${article.slug}`;
+  const markdownUrl = `${canonicalUrl}.md`;
   const absoluteImageUrl = article.seo.image ||
     "https://hrvoje.pavlinovic.com/blog.png";
   const pageTitle = article.seo.title.includes("Hrvoje Pavlinovic")
@@ -78,6 +79,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
         <meta name="author" content={article.seo.author} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" type="text/markdown" href={markdownUrl} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={article.seo.description} />
@@ -142,6 +144,12 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
               <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
                 {article.views} views
               </span>
+              <a
+                href={`/blog/${article.slug}.md`}
+                class="inline-flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1 text-orange-800 transition-colors hover:bg-orange-200 dark:bg-orange-950 dark:text-orange-200 dark:hover:bg-orange-900"
+              >
+                Export Markdown
+              </a>
             </div>
             <h1 class="text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[42px]">
               {article.title}

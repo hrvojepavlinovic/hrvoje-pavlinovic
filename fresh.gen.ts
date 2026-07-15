@@ -15,6 +15,7 @@ import * as $api_likes from "./routes/api/likes.ts";
 import * as $api_projects from "./routes/api/projects.ts";
 import * as $api_stats from "./routes/api/stats.ts";
 import * as $api_track from "./routes/api/track.ts";
+import * as $blog_slug_md from "./routes/blog/[slug].md.ts";
 import * as $blog_slug_ from "./routes/blog/[slug].tsx";
 import * as $blog_index from "./routes/blog/index.tsx";
 import * as $branding_x_cover from "./routes/branding/x/cover.tsx";
@@ -61,6 +62,7 @@ const manifest = {
     "./routes/api/projects.ts": $api_projects,
     "./routes/api/stats.ts": $api_stats,
     "./routes/api/track.ts": $api_track,
+    "./routes/blog/[slug].md.ts": $blog_slug_md,
     "./routes/blog/[slug].tsx": $blog_slug_,
     "./routes/blog/index.tsx": $blog_index,
     "./routes/branding/x/cover.tsx": $branding_x_cover,
