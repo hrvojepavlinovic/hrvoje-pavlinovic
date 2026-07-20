@@ -842,3 +842,83 @@ body .uppercase {
   border-left: 2px solid var(--accent);
   color: var(--ink);
 }
+
+.blog-content table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 2rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  border-spacing: 0;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  scrollbar-color: var(--line-strong) transparent;
+  scrollbar-width: thin;
+}
+
+.blog-content thead {
+  background: var(--surface-muted);
+}
+
+.blog-content th,
+.blog-content td {
+  min-width: 10rem;
+  padding: 0.85rem 1rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.blog-content th {
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.blog-content td {
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.blog-content th:first-child,
+.blog-content td:first-child {
+  min-width: 8rem;
+  white-space: nowrap;
+}
+
+.blog-content th:last-child,
+.blog-content td:last-child {
+  border-right: 0;
+}
+
+.blog-content tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.blog-content tbody tr:hover {
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+
+@media (max-width: 767px) {
+  .blog-content table {
+    margin-inline: -0.25rem;
+    width: calc(100% + 0.5rem);
+  }
+
+  .blog-content th,
+  .blog-content td {
+    min-width: 12rem;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .blog-content th:first-child,
+  .blog-content td:first-child {
+    min-width: 7.5rem;
+  }
+}
