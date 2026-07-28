@@ -17,8 +17,8 @@ interface BlogPageData {
 }
 
 const FEATURED_SLUGS = [
+  "i-wanted-a-break-from-prompting-so-i-planted-some-trees",
   "reliable-context-for-ai-assisted-teams",
-  "playgrnd-cache-query-optimization",
   "ambition-without-disappearing",
 ];
 
