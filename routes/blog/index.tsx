@@ -17,9 +17,9 @@ interface BlogPageData {
 }
 
 const FEATURED_SLUGS = [
+  "bitcoin-stablecoins-payment-rails-ai-agents-need",
   "i-wanted-a-break-from-prompting-so-i-planted-some-trees",
   "reliable-context-for-ai-assisted-teams",
-  "ambition-without-disappearing",
 ];
 
 const ARCHIVED_INDEX_SLUGS = new Set([
