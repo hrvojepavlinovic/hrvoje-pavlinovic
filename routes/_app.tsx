@@ -5,7 +5,7 @@ import MotionEffects from "../islands/MotionEffects.tsx";
 
 const SITE_TITLE = "Hrvoje Pavlinovic";
 const SITE_URL = "https://hrvoje.pavlinovic.com";
-const STYLESHEET_URL = "/styles.css?v=20260720-blog-tables";
+const STYLESHEET_URL = "/styles.css?v=20260804-home-usage";
 
 const deriveDefaultTitle = (pathname: string) => {
   if (pathname === "/" || pathname === "") return SITE_TITLE;

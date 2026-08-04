@@ -2,17 +2,39 @@ import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import HomePage from "../islands/HomePage.tsx";
 import homeDataJson from "../data/home.json" with { type: "json" };
+import blogDataJson from "../data/blog.json" with { type: "json" };
+import aiUsageJson from "../data/ai-usage.json" with { type: "json" };
 import { HomeData } from "../types/home.ts";
+import { BlogArticle } from "../types/blog.ts";
+import { AIUsageSnapshot } from "../types/aiUsage.ts";
 import {
   getMemoatoPublicStats,
   MemoatoPublicStats,
 } from "../utils/memoatoStats.ts";
+import { calculateReadingTime } from "../utils/blog.ts";
+import { summarizeAIUsage } from "../utils/aiUsage.ts";
 
 const homeData = homeDataJson as HomeData;
+const aiUsageSnapshot = aiUsageJson as AIUsageSnapshot;
+const latestArticles = (blogDataJson.articles as BlogArticle[])
+  .toSorted((a, b) =>
+    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  )
+  .slice(0, 3)
+  .map((article) => ({
+    title: article.title,
+    slug: article.slug,
+    shortDescription: article.shortDescription,
+    tag: article.tags[0] ?? "Note",
+    createdAt: article.createdAt,
+    readingTime: calculateReadingTime(article.fullText),
+  }));
 
 interface HomeRouteData {
   home: HomeData;
   memoatoStats: MemoatoPublicStats | null;
+  aiUsage: ReturnType<typeof summarizeAIUsage>;
+  latestArticles: typeof latestArticles;
 }
 
 export const handler: Handlers<HomeRouteData> = {
@@ -27,7 +49,12 @@ export const handler: Handlers<HomeRouteData> = {
       host.includes("127.0.0.1") ||
       host.includes("0.0.0.0");
     const memoatoStats = await getMemoatoPublicStats({ forceRefresh });
-    return ctx.render({ home: homeData, memoatoStats });
+    return ctx.render({
+      home: homeData,
+      memoatoStats,
+      aiUsage: summarizeAIUsage(aiUsageSnapshot),
+      latestArticles,
+    });
   },
 };
 
@@ -124,7 +151,12 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
         />
       </Head>
 
-      <HomePage data={data.home} memoatoStats={data.memoatoStats} />
+      <HomePage
+        data={data.home}
+        memoatoStats={data.memoatoStats}
+        aiUsage={data.aiUsage}
+        latestArticles={data.latestArticles}
+      />
     </>
   );
 }

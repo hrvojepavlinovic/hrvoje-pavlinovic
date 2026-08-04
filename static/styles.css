@@ -418,6 +418,14 @@ button:focus-visible {
   border-radius: 8px !important;
 }
 
+.home-article-card {
+  min-height: 19rem;
+}
+
+.home-article-card > a {
+  min-height: inherit;
+}
+
 .action-button {
   display: inline-flex;
   min-height: 2.65rem;

@@ -2,10 +2,22 @@ import { trackEvent } from "../utils/track.ts";
 import { renderTemplateWithComponents } from "../utils/contentTokens.tsx";
 import { HomeData } from "../types/home.ts";
 import { MemoatoPublicStats } from "../utils/memoatoStats.ts";
+import { AIUsageSummary } from "../types/aiUsage.ts";
+
+export interface HomeArticlePreview {
+  title: string;
+  slug: string;
+  shortDescription: string;
+  tag: string;
+  createdAt: string;
+  readingTime: number;
+}
 
 export interface HomePageProps {
   data: HomeData;
   memoatoStats?: MemoatoPublicStats | null;
+  aiUsage: AIUsageSummary;
+  latestArticles: HomeArticlePreview[];
 }
 
 const handleTrackedLink = (target: string) => {
@@ -40,13 +52,36 @@ const ctaMeta: Record<string, { iconPaths: string[] }> = {
   },
 } as const;
 
-export default function HomePage({ data, memoatoStats }: HomePageProps) {
+export default function HomePage({
+  data,
+  memoatoStats,
+  aiUsage,
+  latestArticles,
+}: HomePageProps) {
   const heroTitle = renderTemplateWithComponents(data.title);
   const heroStat = renderTemplateWithComponents(data.heroStat);
   const formatter = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 1,
   });
   const integerFormatter = new Intl.NumberFormat("en-US");
+  const tokenFormatter = new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    maximumFractionDigits: 1,
+  });
+  const articleDateFormatter = new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "Europe/Zagreb",
+  });
+  const updatedFormatter = new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Europe/Zagreb",
+  });
 
   const memoatoCategories = memoatoStats?.categories ?? [];
   const findCategory = (slug: string) =>
@@ -345,6 +380,140 @@ export default function HomePage({ data, memoatoStats }: HomePageProps) {
               </div>
             </div>
           )}
+        </div>
+      </section>
+
+      <section class="section-band">
+        <div class="mx-auto max-w-5xl px-6 py-20 md:py-24">
+          <header class="grid gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+            <div class="max-w-2xl" data-reveal>
+              <p class="eyebrow">AI usage</p>
+              <h2 class="mt-4 text-2xl font-semibold text-gray-900 dark:text-gray-100 md:text-3xl">
+                The work behind the prompts, counted.
+              </h2>
+              <p class="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                Sanitized local token events. No prompts, project names, or
+                conversation content leave the machine.
+              </p>
+            </div>
+            <span class="tag-chip inline-flex w-fit items-center px-3 py-1.5 text-xs font-semibold uppercase">
+              {aiUsage.sourceLabel} · {aiUsage.quality}
+            </span>
+          </header>
+
+          <div class="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {aiUsage.periods.map((period) => (
+              <article
+                key={period.label}
+                class="surface-card metric-tile p-4 md:p-5"
+                data-tilt
+                data-reveal
+              >
+                <p class="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
+                  {period.label}
+                </p>
+                <p class="mt-2 text-2xl font-semibold text-gray-900 dark:text-gray-100 md:text-3xl">
+                  {tokenFormatter.format(period.totalTokens)}
+                </p>
+                <p class="mt-1 text-xs text-gray-500 dark:text-gray-500">
+                  tokens · {integerFormatter.format(period.requests)} calls
+                </p>
+                <div class="mt-4 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-gray-500 dark:text-gray-500">
+                  <span>{tokenFormatter.format(period.inputTokens)} input</span>
+                  <span>
+                    {tokenFormatter.format(period.outputTokens)} output
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <p class="mt-4 text-xs text-gray-500 dark:text-gray-500">
+            Snapshot updated{" "}
+            {updatedFormatter.format(new Date(aiUsage.generatedAt))}
+          </p>
+        </div>
+      </section>
+
+      <section class="section-band">
+        <div class="mx-auto max-w-5xl px-6 py-20 md:py-24">
+          <header class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <div data-reveal>
+              <p class="eyebrow">Latest writing</p>
+              <h2 class="mt-4 text-2xl font-semibold text-gray-900 dark:text-gray-100 md:text-3xl">
+                Notes from the work and life around it.
+              </h2>
+            </div>
+            <a
+              href="/blog"
+              class="action-button w-fit"
+              onClick={() => handleTrackedLink("home-all-blog-posts")}
+            >
+              <span>All posts</span>
+              <svg
+                class="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14" />
+                <path d="m13 5 7 7-7 7" />
+              </svg>
+            </a>
+          </header>
+
+          <div class="mt-8 grid gap-4 md:grid-cols-3">
+            {latestArticles.map((article) => (
+              <article
+                key={article.slug}
+                class="surface-card home-article-card"
+                data-tilt
+                data-reveal
+              >
+                <a
+                  href={`/blog/${article.slug}`}
+                  class="group flex h-full flex-col p-5"
+                  onClick={() => handleTrackedLink(`home-blog-${article.slug}`)}
+                >
+                  <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
+                    <span class="text-orange-700 dark:text-orange-300">
+                      {article.tag}
+                    </span>
+                    <span>·</span>
+                    <time dateTime={article.createdAt}>
+                      {articleDateFormatter.format(new Date(article.createdAt))}
+                    </time>
+                  </div>
+                  <h3 class="mt-4 text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100">
+                    {article.title}
+                  </h3>
+                  <p class="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                    {article.shortDescription}
+                  </p>
+                  <div class="mt-auto flex items-center justify-between pt-6 text-xs font-semibold text-gray-500 dark:text-gray-500">
+                    <span>{article.readingTime} min read</span>
+                    <svg
+                      class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="m13 5 7 7-7 7" />
+                    </svg>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </div>

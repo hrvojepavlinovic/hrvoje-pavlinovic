@@ -7,6 +7,7 @@
     "start": "deno run -A --unstable-kv --watch=static/,routes/,islands/,components/ dev.ts",
     "build": "deno run -A --unstable-kv dev.ts build",
     "preview": "deno run -A --unstable-kv main.ts",
+    "usage:sync": "deno run --allow-env=HOME --allow-read --allow-run=rg --allow-write=data/ai-usage.json scripts/sync-ai-usage.ts",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
   "lint": {
