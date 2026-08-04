@@ -389,11 +389,11 @@ export default function HomePage({
             <div class="max-w-2xl" data-reveal>
               <p class="eyebrow">AI usage</p>
               <h2 class="mt-4 text-2xl font-semibold text-gray-900 dark:text-gray-100 md:text-3xl">
-                The work behind the prompts, counted.
+                I use Codex a lot. Here are the numbers.
               </h2>
               <p class="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-                Sanitized local token events. No prompts, project names, or
-                conversation content leave the machine.
+                A running count from my local sessions, updated whenever I
+                remember.
               </p>
             </div>
             <span class="tag-chip inline-flex w-fit items-center px-3 py-1.5 text-xs font-semibold uppercase">
