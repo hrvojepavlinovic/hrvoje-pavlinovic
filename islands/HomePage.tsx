@@ -397,7 +397,7 @@ export default function HomePage({
               </p>
             </div>
             <span class="tag-chip inline-flex w-fit items-center px-3 py-1.5 text-xs font-semibold uppercase">
-              {aiUsage.sourceLabel} · {aiUsage.quality}
+              {aiUsage.sourceLabel}
             </span>
           </header>
 
