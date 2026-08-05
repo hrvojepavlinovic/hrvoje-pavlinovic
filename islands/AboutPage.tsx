@@ -8,7 +8,11 @@ interface AboutPageProps {
 }
 
 export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
-  const categories = memoatoStats?.categories ?? [];
+  const allCategories = memoatoStats?.categories ?? [];
+  const categories = ["weight", "push-ups", "pull-ups"].flatMap((slug) => {
+    const category = allCategories.find((item) => item.slug === slug);
+    return category ? [category] : [];
+  });
   const integerFormatter = new Intl.NumberFormat("en-US");
   const decimalFormatter = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 2,
@@ -33,26 +37,6 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
       ? decimalFormatter.format(value)
       : integerFormatter.format(value);
     return unit ? `${formatted} ${unit}` : formatted;
-  };
-
-  const pickPrimaryStat = (
-    category: { [K in StatPeriod]: number | null },
-  ) => {
-    for (const period of statPeriods) {
-      const value = category[period.key];
-      if (value != null && value !== 0) {
-        return { period: period.key, value };
-      }
-    }
-
-    for (const period of statPeriods) {
-      const value = category[period.key];
-      if (value != null) {
-        return { period: period.key, value };
-      }
-    }
-
-    return null;
   };
 
   return (
@@ -89,9 +73,16 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
               </h2>
             </div>
 
-            <div class="grid gap-6 md:grid-cols-2">
+            <div class="grid gap-6 md:grid-cols-3">
               {categories.map((category) => {
-                const primary = pickPrimaryStat(category);
+                const primary = category.year == null
+                  ? null
+                  : { period: "year" as const, value: category.year };
+                const primaryLabel = category.slug === "weight"
+                  ? "Latest log"
+                  : primary
+                  ? statPeriodLabels[primary.period]
+                  : "No recent data";
                 const cardContent = (
                   <>
                     <div class="space-y-2">
@@ -104,9 +95,7 @@ export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
                           : "–"}
                       </p>
                       <p class="text-xs text-gray-500 dark:text-gray-500">
-                        {primary
-                          ? statPeriodLabels[primary.period]
-                          : "No recent data"}
+                        {primaryLabel}
                       </p>
                     </div>
 

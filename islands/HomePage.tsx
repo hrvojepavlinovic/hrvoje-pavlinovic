@@ -87,92 +87,40 @@ export default function HomePage({
   const findCategory = (slug: string) =>
     memoatoCategories.find((category) => category.slug === slug) ?? null;
 
-  type MemoatoPeriod = "today" | "week" | "month" | "year";
-  const periodLabels: Record<MemoatoPeriod, string> = {
-    today: "Today",
-    week: "This week",
-    month: "This month",
-    year: "This year",
-  };
-
   const toFiniteNumber = (value: number | null): number | null => {
     if (value == null) return null;
     const parsed = typeof value === "number" ? value : Number(value);
     return Number.isFinite(parsed) ? parsed : null;
   };
 
-  const pickStatValue = (category: { [K in MemoatoPeriod]: number | null }) => {
-    const orderedPeriods: MemoatoPeriod[] = ["today", "week", "month", "year"];
-    for (const period of orderedPeriods) {
-      const value = toFiniteNumber(category[period]);
-      if (value != null && value !== 0) {
-        return { period, value };
-      }
-    }
-
-    return {
-      period: "year" as const,
-      value: toFiniteNumber(category.year) ?? 0,
-    };
-  };
-
   const weight = findCategory("weight");
-  const activeKcal = findCategory("active-kcal");
-  const indoorBike = findCategory("indoor-bike-kcal");
   const pushUps = findCategory("push-ups");
   const pullUps = findCategory("pull-ups");
-  const football = findCategory("football");
 
   const heroMetrics = [
     weight
       ? (() => {
-        const picked = pickStatValue(weight);
+        const value = toFiniteNumber(weight.year);
+        if (value == null) return null;
         return {
           label: "Weight",
-          value: `${formatter.format(picked.value)}${
+          value: `${formatter.format(value)}${
             weight.unit ? ` ${weight.unit}` : ""
           }`,
-          hint: periodLabels[picked.period],
+          hint: "Latest log",
           url: weight.url,
           trackingTarget: `memoato-category-${weight.slug}`,
         };
       })()
       : null,
-    activeKcal
-      ? (() => {
-        const picked = pickStatValue(activeKcal);
-        return {
-          label: activeKcal.title,
-          value: `${integerFormatter.format(picked.value)}${
-            activeKcal.unit ? ` ${activeKcal.unit}` : ""
-          }`,
-          hint: periodLabels[picked.period],
-          url: activeKcal.url,
-          trackingTarget: `memoato-category-${activeKcal.slug}`,
-        };
-      })()
-      : null,
-    indoorBike
-      ? (() => {
-        const picked = pickStatValue(indoorBike);
-        return {
-          label: indoorBike.title,
-          value: `${integerFormatter.format(picked.value)}${
-            indoorBike.unit ? ` ${indoorBike.unit}` : ""
-          }`,
-          hint: periodLabels[picked.period],
-          url: indoorBike.url,
-          trackingTarget: `memoato-category-${indoorBike.slug}`,
-        };
-      })()
-      : null,
     pushUps
       ? (() => {
-        const picked = pickStatValue(pushUps);
+        const value = toFiniteNumber(pushUps.year);
+        if (value == null) return null;
         return {
           label: pushUps.title,
-          value: integerFormatter.format(picked.value),
-          hint: periodLabels[picked.period],
+          value: integerFormatter.format(value),
+          hint: "This year",
           url: pushUps.url,
           trackingTarget: `memoato-category-${pushUps.slug}`,
         };
@@ -180,25 +128,14 @@ export default function HomePage({
       : null,
     pullUps
       ? (() => {
-        const picked = pickStatValue(pullUps);
+        const value = toFiniteNumber(pullUps.year);
+        if (value == null) return null;
         return {
           label: pullUps.title,
-          value: integerFormatter.format(picked.value),
-          hint: periodLabels[picked.period],
+          value: integerFormatter.format(value),
+          hint: "This year",
           url: pullUps.url,
           trackingTarget: `memoato-category-${pullUps.slug}`,
-        };
-      })()
-      : null,
-    football
-      ? (() => {
-        const picked = pickStatValue(football);
-        return {
-          label: football.title,
-          value: integerFormatter.format(picked.value),
-          hint: periodLabels[picked.period],
-          url: football.url,
-          trackingTarget: `memoato-category-${football.slug}`,
         };
       })()
       : null,
@@ -306,7 +243,7 @@ export default function HomePage({
 
           {heroMetrics.length > 0 && (
             <div class="space-y-3 pt-8">
-              <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
+              <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {heroMetrics.map((metric) =>
                   metric.url
                     ? (
