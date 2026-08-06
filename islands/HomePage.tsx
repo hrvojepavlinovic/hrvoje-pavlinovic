@@ -322,8 +322,8 @@ export default function HomePage({
 
       <section class="section-band">
         <div class="mx-auto max-w-5xl px-6 py-20 md:py-24">
-          <header class="grid gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
-            <div class="max-w-2xl" data-reveal>
+          <header>
+            <div data-reveal>
               <p class="eyebrow">AI usage</p>
               <h2 class="mt-4 text-2xl font-semibold text-gray-900 dark:text-gray-100 md:text-3xl">
                 I use Codex a lot. Here are the numbers.
@@ -333,9 +333,6 @@ export default function HomePage({
                 remember.
               </p>
             </div>
-            <span class="tag-chip inline-flex w-fit items-center px-3 py-1.5 text-xs font-semibold uppercase">
-              {aiUsage.sourceLabel}
-            </span>
           </header>
 
           <div class="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
