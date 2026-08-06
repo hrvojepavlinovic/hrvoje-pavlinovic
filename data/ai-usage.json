@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-08-04T17:58:04.747Z",
+  "generatedAt": "2026-08-06T10:34:56.469Z",
   "timezone": "Europe/Zagreb",
   "sources": [
     {
       "tool": "Codex",
       "quality": "exact",
       "firstDate": "2025-10-12",
-      "lastDate": "2026-08-04",
-      "sessions": 509
+      "lastDate": "2026-08-06",
+      "sessions": 557
     }
   ],
   "days": [
@@ -1048,13 +1048,35 @@
     {
       "date": "2026-08-04",
       "tool": "Codex",
-      "inputTokens": 502566858,
-      "cachedInputTokens": 482658560,
+      "inputTokens": 763293759,
+      "cachedInputTokens": 733290752,
       "cacheWriteInputTokens": 0,
-      "outputTokens": 1221916,
-      "reasoningOutputTokens": 397051,
-      "totalTokens": 504519296,
-      "requests": 3993
+      "outputTokens": 1797577,
+      "reasoningOutputTokens": 569706,
+      "totalTokens": 766382090,
+      "requests": 6057
+    },
+    {
+      "date": "2026-08-05",
+      "tool": "Codex",
+      "inputTokens": 1695222980,
+      "cachedInputTokens": 1632851200,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 3089324,
+      "reasoningOutputTokens": 973995,
+      "totalTokens": 1700878782,
+      "requests": 12928
+    },
+    {
+      "date": "2026-08-06",
+      "tool": "Codex",
+      "inputTokens": 161757995,
+      "cachedInputTokens": 153348608,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 374387,
+      "reasoningOutputTokens": 120794,
+      "totalTokens": 162543571,
+      "requests": 1151
     }
   ]
 }
