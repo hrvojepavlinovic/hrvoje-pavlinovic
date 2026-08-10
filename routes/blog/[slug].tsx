@@ -171,10 +171,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
             )}
           </header>
 
-          <article
-            class="space-y-8 text-base leading-relaxed text-gray-700 dark:text-gray-300"
-            data-reveal
-          >
+          <article class="space-y-8 text-base leading-relaxed text-gray-700 dark:text-gray-300">
             <div
               class="blog-content prose prose-base dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-orange-600 dark:prose-a:text-orange-300 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 max-w-none"
               dangerouslySetInnerHTML={{ __html: article.fullText }}
