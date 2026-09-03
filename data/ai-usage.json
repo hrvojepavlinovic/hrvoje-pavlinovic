@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-08-29T00:25:29.158Z",
+  "generatedAt": "2026-09-03T09:48:27.331Z",
   "timezone": "Europe/Zagreb",
   "sources": [
     {
       "tool": "Codex",
       "quality": "exact",
       "firstDate": "2025-10-12",
-      "lastDate": "2026-08-29",
-      "sessions": 937
+      "lastDate": "2026-09-03",
+      "sessions": 958
     }
   ],
   "days": [
@@ -1323,13 +1323,68 @@
     {
       "date": "2026-08-29",
       "tool": "Codex",
-      "inputTokens": 118463846,
-      "cachedInputTokens": 114315392,
+      "inputTokens": 383633796,
+      "cachedInputTokens": 373043584,
       "cacheWriteInputTokens": 0,
-      "outputTokens": 427009,
-      "reasoningOutputTokens": 141903,
-      "totalTokens": 119057502,
-      "requests": 969
+      "outputTokens": 1105008,
+      "reasoningOutputTokens": 385913,
+      "totalTokens": 385349613,
+      "requests": 2942
+    },
+    {
+      "date": "2026-08-30",
+      "tool": "Codex",
+      "inputTokens": 79479040,
+      "cachedInputTokens": 77240832,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 218436,
+      "reasoningOutputTokens": 76274,
+      "totalTokens": 79805317,
+      "requests": 617
+    },
+    {
+      "date": "2026-08-31",
+      "tool": "Codex",
+      "inputTokens": 338026180,
+      "cachedInputTokens": 326417792,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 892648,
+      "reasoningOutputTokens": 306019,
+      "totalTokens": 339762475,
+      "requests": 2617
+    },
+    {
+      "date": "2026-09-01",
+      "tool": "Codex",
+      "inputTokens": 864800955,
+      "cachedInputTokens": 844394368,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 2280438,
+      "reasoningOutputTokens": 758913,
+      "totalTokens": 869303351,
+      "requests": 5915
+    },
+    {
+      "date": "2026-09-02",
+      "tool": "Codex",
+      "inputTokens": 674414783,
+      "cachedInputTokens": 656203008,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 1888829,
+      "reasoningOutputTokens": 688689,
+      "totalTokens": 678035238,
+      "requests": 4795
+    },
+    {
+      "date": "2026-09-03",
+      "tool": "Codex",
+      "inputTokens": 328572845,
+      "cachedInputTokens": 319804032,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 950496,
+      "reasoningOutputTokens": 289992,
+      "totalTokens": 330123410,
+      "requests": 2389
     }
   ]
 }
