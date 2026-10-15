@@ -1,15 +1,14 @@
 {
   "name": "Hrvoje Pavlinovic",
-  "title": "Senior backend engineer building reliable systems for real businesses",
-  "heroStat": "13+ years in software. Live commerce, payments, logistics, AWS, and product-minded delivery.",
+  "title": "I’m Hrvoje.\nI build backend systems.",
+  "heroStat": "13+ years in software. Based in Split, Croatia.",
   "avatar": {
     "src": "/pfptbs-avatar.png",
     "alt": "Hrvoje Pavlinovic"
   },
   "heroParagraphs": [
-    "I am a senior software engineer currently working with {{TILT_URL}}, where I build backend systems for live commerce across auctions, payments, shipping, seller tooling, and real-time buyer workflows.",
-    "My strongest work is taking ambiguous, domain-heavy problems and turning them into dependable production systems: clear trade-offs, careful releases, scoped operational access, and engineering judgment that holds up when the pressure is real.",
-    "Family first, software close behind, and always trying to stay fit enough to keep up with both. I like teams that move fast, communicate plainly, and care about the boring details that make complex systems reliable."
+    "At {{TILT_URL}}, I work on live auctions, payments, shipping and the systems behind them.",
+    "I also build PLAYGRND and Memoato through HILLS Lab. I like owning the work from the first useful version through the details of running it in production."
   ],
   "socialLinks": [
     {
@@ -39,29 +38,45 @@
   ],
   "ctaLinks": [
     {
-      "label": "About",
-      "href": "/about",
-      "trackingTarget": "about",
+      "label": "Get in touch",
+      "href": "mailto:hrvoje@pavlinovic.com",
+      "trackingTarget": "email",
       "variant": "primary"
     },
     {
-      "label": "Resume",
+      "label": "View my CV",
       "href": "/cv",
       "trackingTarget": "resume",
-      "variant": "primary"
+      "variant": "secondary"
     },
     {
-      "label": "HILLS Lab",
-      "href": "https://hills-lab.hr",
-      "trackingTarget": "hills_lab",
-      "variant": "secondary",
-      "external": true
-    },
-    {
-      "label": "Blog",
-      "href": "/blog",
-      "trackingTarget": "blog",
+      "label": "See selected work",
+      "href": "#selected-work",
+      "trackingTarget": "home-selected-work",
       "variant": "secondary"
     }
-  ]
+  ],
+  "selectedWork": [
+    {
+      "name": "PLAYGRND",
+      "description": "A platform for the people who play, organise and follow local football.",
+      "detail": "My own product · Backend, product and operations",
+      "href": "/projects/playgrnd",
+      "image": "/projects/playgrnd-home-20261016.webp",
+      "imageAlt": "PLAYGRND football competitions, match results and player statistics",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "name": "Memoato",
+      "description": "A personal memory product that keeps the original note close to what the system remembers.",
+      "detail": "My own product · Capture, recall and integrations",
+      "href": "/projects/memoato",
+      "image": "/projects/memoato-home-20261016.webp",
+      "imageAlt": "Memoato homepage showing natural-language capture and remembered details",
+      "width": 1440,
+      "height": 900
+    }
+  ],
+  "personalNote": "Family first, software close behind. Outside work, I’m usually around football, padel, or trying to make room for a bit of training."
 }

@@ -1,6 +1,7 @@
 import { trackEvent } from "../utils/track.ts";
 import { renderTemplateWithComponents } from "../utils/contentTokens.tsx";
 import { HomeData } from "../types/home.ts";
+import { Reference } from "../types/cv.ts";
 import { MemoatoPublicStats } from "../utils/memoatoStats.ts";
 import { AIUsageSummary } from "../types/aiUsage.ts";
 
@@ -18,438 +19,408 @@ export interface HomePageProps {
   memoatoStats?: MemoatoPublicStats | null;
   aiUsage: AIUsageSummary;
   latestArticles: HomeArticlePreview[];
+  references: Reference[];
 }
 
 const handleTrackedLink = (target: string) => {
   trackEvent({ type: "click", clickType: "link", target });
 };
 
-const ctaMeta: Record<string, { iconPaths: string[] }> = {
-  about: {
-    iconPaths: [
-      "M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z",
-      "M4 20a8 8 0 0 1 16 0",
-    ],
-  },
-  resume: {
-    iconPaths: [
-      "M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z",
-      "M14 3v5h5",
-    ],
-  },
-  projects: {
-    iconPaths: [
-      "M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z",
-      "m9 13 2 2-2 2",
-      "m15 13-2 2 2 2",
-    ],
-  },
-  blog: {
-    iconPaths: [
-      "M4 20h4l10-10-4-4L4 16v4Z",
-      "m12 6 4 4",
-    ],
-  },
-} as const;
+function Arrow({ diagonal = false }: { diagonal?: boolean }) {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d={diagonal ? "M6 18 18 6M6 6h12v12" : "M4 12h16m-6-6 6 6-6 6"} />
+    </svg>
+  );
+}
+
+const referenceOrder = [
+  "Rimac Automobili",
+  "ReneVerse",
+  "Tilt",
+  "Povio",
+  "Profico",
+  "Ericsson Nikola Tesla",
+];
 
 export default function HomePage({
   data,
   memoatoStats,
   aiUsage,
   latestArticles,
+  references,
 }: HomePageProps) {
-  const heroTitle = renderTemplateWithComponents(data.title);
-  const heroStat = renderTemplateWithComponents(data.heroStat);
-  const formatter = new Intl.NumberFormat("en-US", {
+  const dateFormatter = new Intl.DateTimeFormat("en-GB", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "Europe/Zagreb",
+  });
+  const numberFormatter = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 1,
   });
-  const integerFormatter = new Intl.NumberFormat("en-US");
   const tokenFormatter = new Intl.NumberFormat("en-US", {
     notation: "compact",
     maximumFractionDigits: 1,
   });
-  const articleDateFormatter = new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "Europe/Zagreb",
-  });
-  const updatedFormatter = new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: "Europe/Zagreb",
-  });
-
-  const memoatoCategories = memoatoStats?.categories ?? [];
-  const findCategory = (slug: string) =>
-    memoatoCategories.find((category) => category.slug === slug) ?? null;
-
-  const toFiniteNumber = (value: number | null): number | null => {
-    if (value == null) return null;
-    const parsed = typeof value === "number" ? value : Number(value);
-    return Number.isFinite(parsed) ? parsed : null;
-  };
-
-  const weight = findCategory("weight");
-  const pushUps = findCategory("push-ups");
-  const pullUps = findCategory("pull-ups");
-
-  const heroMetrics = [
-    weight
-      ? (() => {
-        const value = toFiniteNumber(weight.year);
-        if (value == null) return null;
-        return {
-          label: "Weight",
-          value: `${formatter.format(value)}${
-            weight.unit ? ` ${weight.unit}` : ""
-          }`,
-          hint: "Latest log",
-          url: weight.url,
-          trackingTarget: `memoato-category-${weight.slug}`,
-        };
-      })()
-      : null,
-    pushUps
-      ? (() => {
-        const value = toFiniteNumber(pushUps.year);
-        if (value == null) return null;
-        return {
-          label: pushUps.title,
-          value: integerFormatter.format(value),
-          hint: "This year",
-          url: pushUps.url,
-          trackingTarget: `memoato-category-${pushUps.slug}`,
-        };
-      })()
-      : null,
-    pullUps
-      ? (() => {
-        const value = toFiniteNumber(pullUps.year);
-        if (value == null) return null;
-        return {
-          label: pullUps.title,
-          value: integerFormatter.format(value),
-          hint: "This year",
-          url: pullUps.url,
-          trackingTarget: `memoato-category-${pullUps.slug}`,
-        };
-      })()
-      : null,
-  ].filter(Boolean) as Array<{
-    label: string;
-    value: string;
-    hint: string;
-    url?: string;
-    trackingTarget?: string;
-  }>;
+  const orderedReferences = [...references].sort((a, b) =>
+    referenceOrder.indexOf(a.company) - referenceOrder.indexOf(b.company)
+  );
+  const snapshotDate = dateFormatter.format(new Date(aiUsage.generatedAt));
+  const snapshotStale = Date.now() - Date.parse(aiUsage.generatedAt) >
+    2 * 24 * 60 * 60 * 1000;
+  const allTimeUsage = aiUsage.periods.find((period) =>
+    period.label === "All time"
+  );
+  const categories = (memoatoStats?.categories ?? []).filter((category) =>
+    ["weight", "push-ups", "pull-ups"].includes(category.slug) &&
+    category.year !== null && Number.isFinite(category.year)
+  );
 
   return (
-    <div class="site-canvas">
-      <section class="site-hero mx-auto max-w-5xl px-6">
-        <div class="space-y-8" data-reveal>
-          <div class="space-y-4">
-            <div class="hero-identity">
-              <div class="avatar-frame" data-gravity>
-                <img
-                  src={data.avatar.src}
-                  alt={data.avatar.alt}
-                  class="object-cover"
-                  loading="eager"
-                />
-              </div>
-              <h1 class="hero-title mx-auto text-center">
-                {heroTitle}
-              </h1>
-              <p class="mx-auto max-w-3xl text-center text-[13px] font-semibold text-gray-700 [text-wrap:balance] dark:text-gray-200 sm:text-[15px] md:text-base">
-                {heroStat}
-              </p>
+    <div class="site-canvas home-profile">
+      <div class="home-content">
+        <section class="home-intro" aria-labelledby="home-title">
+          <div class="home-intro-copy">
+            <h1 id="home-title">
+              {data.title.split("\n").map((line) => (
+                <span key={line}>{`${line} `}</span>
+              ))}
+            </h1>
+            <p class="home-experience">{data.heroStat}</p>
+            <div class="home-intro-description">
+              {data.heroParagraphs.map((paragraph) => (
+                <p key={paragraph}>{renderTemplateWithComponents(paragraph)}</p>
+              ))}
             </div>
-          </div>
-
-          <div class="flex flex-wrap justify-center gap-3">
-            {data.socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={link.href.startsWith("mailto:")
-                  ? undefined
-                  : "noopener noreferrer"}
-                class="gravity-button group"
-                data-gravity
-                onClick={() =>
-                  handleTrackedLink(
-                    link.trackingTarget ?? link.label.toLowerCase(),
-                  )}
-              >
-                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                  <path d={link.icon} />
-                </svg>
-                <span class="sr-only">{link.label}</span>
-              </a>
-            ))}
-          </div>
-
-          <div class="hero-copy-panel space-y-4 text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
-            {data.heroParagraphs.map((paragraph, index) => (
-              <p key={`hero-paragraph-${index}`} class="text-sm">
-                {renderTemplateWithComponents(paragraph)}
-              </p>
-            ))}
-          </div>
-
-          <div class="grid grid-cols-2 gap-3 sm:hidden">
-            {data.ctaLinks.map((cta) => {
-              const meta = ctaMeta[cta.trackingTarget] ?? {
-                iconPaths: ["M5 12h14", "m13 5 7 7-7 7"],
-              };
-              return (
+            <div class="home-actions">
+              {data.ctaLinks.slice(0, 2).map((cta) => (
                 <a
-                  key={cta.label}
+                  key={cta.href}
                   href={cta.href}
-                  target={cta.external ? "_blank" : undefined}
-                  rel={cta.external ? "noopener noreferrer" : undefined}
-                  class="action-button"
-                  data-gravity
+                  class={cta.variant === "primary"
+                    ? "home-contact"
+                    : "home-link"}
                   onClick={() => handleTrackedLink(cta.trackingTarget)}
                 >
-                  <span class="inline-flex h-6 w-6 items-center justify-center text-gray-600 dark:text-gray-300">
-                    <svg
-                      class="h-3.5 w-3.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.75"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      {meta.iconPaths.map((iconPath, index) => (
-                        <path
-                          key={`${cta.trackingTarget}-${index}`}
-                          d={iconPath}
-                        />
-                      ))}
-                    </svg>
-                  </span>
-                  <span>{cta.label}</span>
+                  {cta.label}
+                  <Arrow />
                 </a>
-              );
-            })}
-          </div>
-
-          {heroMetrics.length > 0 && (
-            <div class="space-y-3 pt-8">
-              <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                {heroMetrics.map((metric) =>
-                  metric.url
-                    ? (
-                      <a
-                        key={metric.label}
-                        href={metric.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="surface-card metric-tile p-3 text-center"
-                        data-tilt
-                        data-reveal
-                        onClick={() =>
-                          handleTrackedLink(
-                            metric.trackingTarget ?? "memoato-category",
-                          )}
-                      >
-                        <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                          {metric.label}
-                        </p>
-                        <p class="mt-1 text-base font-semibold text-gray-900 dark:text-gray-100 md:text-lg">
-                          {metric.value}
-                        </p>
-                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-500">
-                          {metric.hint}
-                        </p>
-                      </a>
-                    )
-                    : (
-                      <div
-                        key={metric.label}
-                        class="surface-card metric-tile p-3 text-center"
-                        data-reveal
-                      >
-                        <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                          {metric.label}
-                        </p>
-                        <p class="mt-1 text-base font-semibold text-gray-900 dark:text-gray-100 md:text-lg">
-                          {metric.value}
-                        </p>
-                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-500">
-                          {metric.hint}
-                        </p>
-                      </div>
-                    )
-                )}
-              </div>
-
-              <div class="mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-0 text-center text-xs text-gray-500 dark:text-gray-500 sm:flex-row sm:gap-2">
-                <p>
-                  Live stats from{" "}
+              ))}
+            </div>
+            <div class="home-socials" aria-label="Social profiles">
+              {data.socialLinks.filter((link) =>
+                link.trackingTarget !== "email"
+              )
+                .map((link) => (
                   <a
-                    href="https://memoato.com"
+                    key={link.href}
+                    href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
-                    onClick={() => handleTrackedLink("memoato-stats")}
+                    onClick={() =>
+                      handleTrackedLink(link.trackingTarget ?? link.label)}
                   >
-                    memoato.com
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d={link.icon} />
+                    </svg>
+                    {link.label === "X (Twitter)" ? "X" : link.label}
                   </a>
-                </p>
-                <span class="hidden sm:inline" aria-hidden="true">·</span>
+                ))}
+            </div>
+          </div>
+          <img
+            class="home-portrait"
+            src="/pfptbs.png"
+            alt={data.avatar.alt}
+            width="512"
+            height="512"
+            loading="eager"
+            decoding="async"
+          />
+        </section>
+
+        <section
+          id="selected-work"
+          class="home-section home-work"
+          aria-labelledby="home-work-title"
+        >
+          <div class="home-section-heading">
+            <div>
+              <h2 id="home-work-title">Things I’m building.</h2>
+              <p>My own products, alongside the work I do with client teams.</p>
+            </div>
+            <a
+              class="home-link"
+              href="/projects"
+              onClick={() => handleTrackedLink("home-projects")}
+            >
+              All projects<Arrow />
+            </a>
+          </div>
+          <div class="home-project-grid">
+            {data.selectedWork.map((project) => (
+              <article key={project.name}>
                 <a
-                  href="https://app.memoato.com/u/0xhp10"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
-                  onClick={() => handleTrackedLink("memoato-profile-stats")}
+                  class="home-project-image"
+                  href={project.href}
+                  onClick={() =>
+                    handleTrackedLink(`home-project-${project.name}`)}
                 >
-                  View all stats.
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt}
+                    width={project.width}
+                    height={project.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </a>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
+                <h3>
+                  <a
+                    href={project.href}
+                    onClick={() =>
+                      handleTrackedLink(`home-project-${project.name}`)}
+                  >
+                    {project.name}
+                    <Arrow diagonal />
+                  </a>
+                </h3>
+                <p>{project.description}</p>
+                <small>{project.detail}</small>
+              </article>
+            ))}
+          </div>
+        </section>
 
-      <section class="section-band">
-        <div class="mx-auto max-w-5xl px-6 py-20 md:py-24">
-          <header>
-            <div data-reveal>
-              <p class="eyebrow">AI usage</p>
-              <h2 class="mt-4 text-2xl font-semibold text-gray-900 dark:text-gray-100 md:text-3xl">
-                I use Codex a lot. Here are the numbers.
-              </h2>
-              <p class="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-                A running count from my local sessions, updated whenever I
-                remember.
-              </p>
+        <section
+          id="recommendations"
+          class="home-section home-recommendations"
+          aria-labelledby="home-recommendations-title"
+        >
+          <div class="home-section-heading">
+            <div>
+              <h2 id="home-recommendations-title">People I’ve worked with.</h2>
+              <p>Recommendations from engineering leaders and founders.</p>
             </div>
-          </header>
-
-          <div class="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-            {aiUsage.periods.map((period) => (
-              <article
-                key={period.label}
-                class="surface-card metric-tile p-4 md:p-5"
-                data-tilt
-                data-reveal
+          </div>
+          <div class="home-reference-grid">
+            {orderedReferences.map((reference, index) => (
+              <figure
+                key={reference.company}
+                class={index < 2
+                  ? "home-reference home-reference-featured"
+                  : "home-reference"}
               >
-                <p class="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
-                  {period.label}
-                </p>
-                <p class="mt-2 text-2xl font-semibold text-gray-900 dark:text-gray-100 md:text-3xl">
-                  {tokenFormatter.format(period.totalTokens)}
-                </p>
-                <p class="mt-1 text-xs text-gray-500 dark:text-gray-500">
-                  tokens · {integerFormatter.format(period.requests)} calls
-                </p>
-                <div class="mt-4 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-gray-500 dark:text-gray-500">
-                  <span>{tokenFormatter.format(period.inputTokens)} input</span>
-                  <span>
-                    {tokenFormatter.format(period.outputTokens)} output
-                  </span>
+                <blockquote>
+                  <p>{reference.quote}</p>
+                </blockquote>
+                <figcaption>
+                  <a
+                    class="home-reference-person"
+                    href={reference.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() =>
+                      handleTrackedLink(`recommendation-${reference.person}`)}
+                  >
+                    {reference.person}
+                    <Arrow diagonal />
+                  </a>
+                  <p>{reference.title}</p>
+                  <a
+                    class="home-reference-company"
+                    href={reference.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() =>
+                      handleTrackedLink(
+                        `recommendation-company-${reference.company}`,
+                      )}
+                  >
+                    {reference.company}
+                  </a>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <section
+          class="home-section home-writing"
+          aria-labelledby="home-writing-title"
+        >
+          <div class="home-section-heading">
+            <div>
+              <h2 id="home-writing-title">Notes from the work.</h2>
+              <p>Engineering, products, and the life around them.</p>
+            </div>
+            <a
+              class="home-link"
+              href="/blog"
+              onClick={() => handleTrackedLink("home-all-blog-posts")}
+            >
+              All writing<Arrow />
+            </a>
+          </div>
+          <div class="home-article-list">
+            {latestArticles.map((article) => (
+              <article key={article.slug}>
+                <div class="home-article-meta">
+                  <time dateTime={article.createdAt}>
+                    {dateFormatter.format(new Date(article.createdAt))}
+                  </time>
+                  <span>{article.readingTime} min read</span>
+                </div>
+                <div>
+                  <h3>
+                    <a
+                      href={`/blog/${article.slug}`}
+                      onClick={() =>
+                        handleTrackedLink(`home-blog-${article.slug}`)}
+                    >
+                      {article.title}
+                      <Arrow diagonal />
+                    </a>
+                  </h3>
+                  <p>{article.shortDescription}</p>
                 </div>
               </article>
             ))}
           </div>
+        </section>
 
-          <p class="mt-4 text-xs text-gray-500 dark:text-gray-500">
-            Snapshot updated{" "}
-            {updatedFormatter.format(new Date(aiUsage.generatedAt))}
-          </p>
-        </div>
-      </section>
-
-      <section class="section-band">
-        <div class="mx-auto max-w-5xl px-6 py-20 md:py-24">
-          <header class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-            <div data-reveal>
-              <p class="eyebrow">Latest writing</p>
-              <h2 class="mt-4 text-2xl font-semibold text-gray-900 dark:text-gray-100 md:text-3xl">
-                Notes from the work and life around it.
-              </h2>
-            </div>
+        <section
+          class="home-section home-personal"
+          aria-labelledby="home-personal-title"
+        >
+          <div>
+            <h2 id="home-personal-title">Away from the keyboard.</h2>
+            <p>{data.personalNote}</p>
             <a
-              href="/blog"
-              class="action-button w-fit"
-              onClick={() => handleTrackedLink("home-all-blog-posts")}
+              class="home-link"
+              href="/about"
+              onClick={() => handleTrackedLink("home-about")}
             >
-              <span>All posts</span>
-              <svg
-                class="h-4 w-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M5 12h14" />
-                <path d="m13 5 7 7-7 7" />
-              </svg>
+              A little more about me<Arrow />
             </a>
-          </header>
-
-          <div class="mt-8 grid gap-4 md:grid-cols-3">
-            {latestArticles.map((article) => (
-              <article
-                key={article.slug}
-                class="surface-card home-article-card"
-                data-tilt
-                data-reveal
-              >
-                <a
-                  href={`/blog/${article.slug}`}
-                  class="group flex h-full flex-col p-5"
-                  onClick={() => handleTrackedLink(`home-blog-${article.slug}`)}
-                >
-                  <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
-                    <span class="text-orange-700 dark:text-orange-300">
-                      {article.tag}
-                    </span>
-                    <span>·</span>
-                    <time dateTime={article.createdAt}>
-                      {articleDateFormatter.format(new Date(article.createdAt))}
-                    </time>
-                  </div>
-                  <h3 class="mt-4 text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100">
-                    {article.title}
-                  </h3>
-                  <p class="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-                    {article.shortDescription}
-                  </p>
-                  <div class="mt-auto flex items-center justify-between pt-6 text-xs font-semibold text-gray-500 dark:text-gray-500">
-                    <span>{article.readingTime} min read</span>
-                    <svg
-                      class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.75"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="M5 12h14" />
-                      <path d="m13 5 7 7-7 7" />
-                    </svg>
-                  </div>
-                </a>
-              </article>
-            ))}
           </div>
-        </div>
-      </section>
+          <div class="home-personal-data">
+            {categories.length > 0 && (
+              <details>
+                <summary>Personal stats from Memoato</summary>
+                <dl>
+                  {categories.map((category) => (
+                    <div key={category.slug}>
+                      <dt>
+                        {category.title}
+                        {category.slug === "weight"
+                          ? " · latest log"
+                          : " · this year"}
+                      </dt>
+                      <dd>
+                        {category.url
+                          ? (
+                            <a
+                              href={category.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() =>
+                                handleTrackedLink(
+                                  `memoato-category-${category.slug}`,
+                                )}
+                            >
+                              {numberFormatter.format(category.year!)}
+                              {category.unit ? ` ${category.unit}` : ""}
+                            </a>
+                          )
+                          : (
+                            <span>
+                              {numberFormatter.format(category.year!)}
+                              {category.unit ? ` ${category.unit}` : ""}
+                            </span>
+                          )}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+                {memoatoStats?.generatedAt && (
+                  <p class="home-data-note">
+                    Data retrieved{" "}
+                    {dateFormatter.format(new Date(memoatoStats.generatedAt))}.
+                  </p>
+                )}
+                <a
+                  class="home-link"
+                  href="https://app.memoato.com/u/0xhp10"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => handleTrackedLink("memoato-profile-stats")}
+                >
+                  View public profile<Arrow diagonal />
+                </a>
+              </details>
+            )}
+            <details>
+              <summary>Codex usage · {snapshotDate}</summary>
+              <p class="home-data-note">
+                Manually updated snapshot.{snapshotStale
+                  ? " This is historical data, not a live activity counter."
+                  : ""}
+              </p>
+              {allTimeUsage && (
+                <p>
+                  {tokenFormatter.format(allTimeUsage.totalTokens)}{" "}
+                  tokens across {numberFormatter.format(allTimeUsage.requests)}
+                  {" "}
+                  calls, recorded up to {snapshotDate}.
+                </p>
+              )}
+            </details>
+          </div>
+        </section>
+
+        <section
+          class="home-contact-close home-section"
+          aria-labelledby="home-contact-title"
+        >
+          <h2 id="home-contact-title">Have something in mind?</h2>
+          <a
+            href="mailto:hrvoje@pavlinovic.com"
+            class="home-email"
+            onClick={() => handleTrackedLink("home-contact-close")}
+          >
+            hrvoje@pavlinovic.com<Arrow diagonal />
+          </a>
+          <p>
+            For work with the studio, visit{" "}
+            <a
+              href="https://hills-lab.hr"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => handleTrackedLink("hills_lab")}
+            >
+              HILLS Lab
+            </a>.
+          </p>
+        </section>
+      </div>
     </div>
   );
 }

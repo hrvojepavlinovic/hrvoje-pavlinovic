@@ -26,4 +26,15 @@ export interface HomeData {
   heroParagraphs: string[];
   socialLinks: SocialLink[];
   ctaLinks: CtaLink[];
+  selectedWork: {
+    name: string;
+    description: string;
+    detail: string;
+    href: string;
+    image: string;
+    imageAlt: string;
+    width: number;
+    height: number;
+  }[];
+  personalNote: string;
 }
