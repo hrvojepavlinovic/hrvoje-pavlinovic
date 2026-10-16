@@ -10,20 +10,9 @@ export default function ThemeToggle() {
   const theme = useSignal<"dark" | "light">(getInitialTheme());
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
-    if (savedTheme) {
-      theme.value = savedTheme;
-    } else {
-      const isDark =
-        globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
-      theme.value = isDark ? "dark" : "light";
-    }
-
-    if (theme.value === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    theme.value = document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
   }, []);
 
   return (
@@ -32,10 +21,12 @@ export default function ThemeToggle() {
       onClick={() => {
         const newTheme = theme.value === "dark" ? "light" : "dark";
         theme.value = newTheme;
-        document.documentElement.classList.toggle("dark");
-        localStorage.setItem("theme", newTheme);
+        document.documentElement.classList.toggle("dark", newTheme === "dark");
+        try {
+          localStorage.setItem("theme", newTheme);
+        } catch { /* Theme still works without storage. */ }
       }}
-      class="chrome-button"
+      class="chrome-button theme-toggle"
       aria-label={`Switch to ${theme.value === "dark" ? "light" : "dark"} mode`}
     >
       {theme.value === "dark"

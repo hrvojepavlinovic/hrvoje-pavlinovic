@@ -1,3 +1,4 @@
+import SocialImage, { socialImageUrl } from "../components/SocialImage.tsx";
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import HomePage from "../islands/HomePage.tsx";
@@ -94,10 +95,7 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
           property="og:description"
           content="Senior backend engineer building reliable systems for real businesses."
         />
-        <meta
-          property="og:image"
-          content="https://hrvoje.pavlinovic.com/blog.png"
-        />
+
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
         <meta property="profile:first_name" content="Hrvoje" />
         <meta property="profile:last_name" content="Pavlinovic" />
@@ -111,10 +109,6 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
         <meta
           name="twitter:description"
           content="Senior backend engineer building reliable systems for real businesses."
-        />
-        <meta
-          name="twitter:image"
-          content="https://hrvoje.pavlinovic.com/blog.png"
         />
 
         {/* Canonical URL */}
@@ -157,6 +151,10 @@ export default function Home({ data }: PageProps<HomeRouteData>) {
               },
             }),
           }}
+        />
+        <SocialImage
+          src={socialImageUrl("home")}
+          alt="Hrvoje Pavlinovic — Senior Backend & Product Engineer"
         />
       </Head>
 

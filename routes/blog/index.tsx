@@ -1,3 +1,4 @@
+import SocialImage, { socialImageUrl } from "../../components/SocialImage.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { BlogArticle } from "../../types/blog.ts";
@@ -53,7 +54,6 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
   const title = "Blog — Hrvoje Pavlinovic";
   const description =
     "Notes on backend engineering, operational tooling, self-hosting, product work, and building small software systems.";
-  const imageUrl = "https://hrvoje.pavlinovic.com/blog.png";
   const featured = data.query ? [] : FEATURED_SLUGS.flatMap((slug) => {
     const article = data.articles.find((a) => a.slug === slug);
     return article ? [article] : [];
@@ -84,7 +84,7 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={imageUrl} />
+
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -92,8 +92,12 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
         <meta name="twitter:creator" content="@0xhp10" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={imageUrl} />
+
         <meta name="twitter:url" content={canonicalUrl} />
+        <SocialImage
+          src={socialImageUrl("blog")}
+          alt="Field notes by Hrvoje Pavlinovic"
+        />
       </Head>
       <div class="site-canvas blog-page">
         <div class="blog-index-content">

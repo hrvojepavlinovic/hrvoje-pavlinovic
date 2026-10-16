@@ -63,9 +63,22 @@ unchanged. Like, copy-link and share actions have visible text labels.
 Route-specific styles use versioned filenames so a deployment cannot pair new
 HTML with an older cached stylesheet.
 
-## Remaining routes
+## Shared navigation and sharing
 
-The existing system remains authoritative until the corresponding queued task.
-CV recommendations continue reading from the same canonical JSON. Authored blog
-text is preserved. Global navigation, accessibility and OG work have their own
-later QA steps.
+The mobile menu uses a native modal dialog for keyboard focus containment,
+Escape dismissal and focus return. It closes when switching to desktop width. A
+skip link leads to the main landmark; active route links are marked in SSR.
+Without JavaScript, mobile navigation remains available as ordinary links.
+Chrome buttons have 44px targets and focus indicators use the accessible darker
+orange in light mode. Theme initialization and switching also work when browser
+storage is unavailable.
+
+Versioned 1200×630 PNG social images share the approved dark canvas, Source Sans
+3 and warm orange. Main pages have distinct previews; project previews include
+their existing screenshots where available. Article-specific covers stay intact,
+with the new blog image replacing the old generic fallback. The generator lives
+in `scripts/generate-social-images.mjs`; it uses the existing portrait and
+product assets and the same OFL font. Image metadata is shared across routes.
+
+CV recommendations continue reading from the canonical JSON. Authored blog text
+is preserved.

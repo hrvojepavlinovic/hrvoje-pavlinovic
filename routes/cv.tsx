@@ -1,3 +1,4 @@
+import SocialImage, { socialImageUrl } from "../components/SocialImage.tsx";
 import { Head } from "$fresh/runtime.ts";
 import CVPage from "../islands/CVPage.tsx";
 
@@ -37,10 +38,7 @@ export default function CV() {
           property="og:description"
           content="Professional experience and projects by Hrvoje Pavlinovic, focused on backend systems, commerce workflows, and reliable delivery."
         />
-        <meta
-          property="og:image"
-          content="https://hrvoje.pavlinovic.com/blog.png"
-        />
+
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
 
         {/* Social preview meta tags */}
@@ -53,9 +51,10 @@ export default function CV() {
           name="twitter:description"
           content="Professional experience and projects by Hrvoje Pavlinovic, focused on backend systems, commerce workflows, and reliable delivery."
         />
-        <meta
-          name="twitter:image"
-          content="https://hrvoje.pavlinovic.com/blog.png"
+
+        <SocialImage
+          src={socialImageUrl("cv")}
+          alt="Hrvoje Pavlinovic — Experience and CV"
         />
       </Head>
 

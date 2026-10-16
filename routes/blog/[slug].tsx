@@ -1,3 +1,4 @@
+import SocialImage, { socialImageUrl } from "../../components/SocialImage.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { BlogArticle } from "../../types/blog.ts";
@@ -62,8 +63,12 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
   const { article } = data;
   const canonicalUrl = `https://hrvoje.pavlinovic.com/blog/${article.slug}`;
   const markdownUrl = `${canonicalUrl}.md`;
-  const absoluteImageUrl = article.seo.image ||
-    "https://hrvoje.pavlinovic.com/blog.png";
+  const hasArticleImage = Boolean(
+    article.seo.image && !article.seo.image.endsWith("/blog.png"),
+  );
+  const absoluteImageUrl = hasArticleImage
+    ? article.seo.image
+    : socialImageUrl("blog");
   const pageTitle = article.seo.title.includes("Hrvoje Pavlinovic")
     ? article.seo.title
     : `${article.seo.title} \u2014 Hrvoje Pavlinovic`;
@@ -89,8 +94,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={article.seo.description} />
-        <meta property="og:image" content={absoluteImageUrl} />
-        <meta property="og:image:alt" content={article.title} />
+
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
         <meta property="article:published_time" content={article.createdAt} />
@@ -99,7 +103,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
         <meta name="twitter:creator" content={article.seo.twitterCreator} />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={article.seo.description} />
-        <meta name="twitter:image" content={absoluteImageUrl} />
+
         <meta name="twitter:url" content={canonicalUrl} />
         <script
           type="application/ld+json"
@@ -127,6 +131,11 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
               keywords: article.seo.keywords.join(", "),
             }),
           }}
+        />
+        <SocialImage
+          src={absoluteImageUrl}
+          alt={article.title}
+          standard={!hasArticleImage}
         />
       </Head>
 

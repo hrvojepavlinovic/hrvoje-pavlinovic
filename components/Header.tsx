@@ -6,14 +6,18 @@ interface NavLinkProps {
   href: string;
   children: string;
   external?: boolean;
+  pathname: string;
 }
 
-function NavLink({ href, children, external = false }: NavLinkProps) {
+function NavLink({ href, children, external = false, pathname }: NavLinkProps) {
   return (
     <a
       href={href}
       {...(external && { target: "_blank", rel: "noopener noreferrer" })}
       {...(!external && { "data-internal": "true" })}
+      aria-current={pathname === href || pathname.startsWith(`${href}/`)
+        ? "page"
+        : undefined}
       data-nav-link="true"
       class="site-nav-link"
     >
@@ -22,7 +26,7 @@ function NavLink({ href, children, external = false }: NavLinkProps) {
   );
 }
 
-export default function Header() {
+export default function Header({ pathname }: { pathname: string }) {
   const handleMenuClick = () => {
     trackEvent({
       type: "click",
@@ -33,7 +37,7 @@ export default function Header() {
 
   return (
     <header class="site-header">
-      <nav class="site-nav-shell flex items-center justify-between">
+      <div class="site-nav-shell flex items-center justify-between">
         <a
           href="/"
           class="site-brand"
@@ -41,18 +45,18 @@ export default function Header() {
           onClick={handleMenuClick}
         >
           <span>
-            hrvoje.pavlinovic
+            hrvoje.<wbr />pavlinovic
           </span>
         </a>
 
         {/* Desktop Navigation */}
         <div class="hidden items-center gap-1 md:flex">
-          <div class="flex items-center gap-1">
-            <NavLink href="/about">about</NavLink>
-            <NavLink href="/cv">cv</NavLink>
-            <NavLink href="/projects">projects</NavLink>
-            <NavLink href="/blog">blog</NavLink>
-          </div>
+          <nav aria-label="Main navigation" class="flex items-center gap-1">
+            <NavLink pathname={pathname} href="/about">about</NavLink>
+            <NavLink pathname={pathname} href="/cv">cv</NavLink>
+            <NavLink pathname={pathname} href="/projects">projects</NavLink>
+            <NavLink pathname={pathname} href="/blog">blog</NavLink>
+          </nav>
 
           {/* Theme toggle */}
           <div class="ml-1 flex items-center pl-1">
@@ -61,11 +65,24 @@ export default function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        <div class="flex items-center gap-2 md:hidden">
+        <div class="js-nav-controls flex items-center gap-2 md:hidden">
           <ThemeToggle />
-          <MobileMenu />
+          <MobileMenu pathname={pathname} />
         </div>
-      </nav>
+      </div>
+      <noscript>
+        <style>{`.js-nav-controls, .theme-toggle { display: none; }`}</style>
+        <nav aria-label="Main navigation" class="no-script-navigation">
+          {["about", "cv", "projects", "blog"].map((name) => (
+            <a
+              href={`/${name}`}
+              aria-current={pathname === `/${name}` ? "page" : undefined}
+            >
+              {name}
+            </a>
+          ))}
+        </nav>
+      </noscript>
     </header>
   );
 }

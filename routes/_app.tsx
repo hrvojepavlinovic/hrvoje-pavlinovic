@@ -1,3 +1,4 @@
+import SocialImage, { socialImageUrl } from "../components/SocialImage.tsx";
 import { type PageProps } from "$fresh/server.ts";
 import Header from "../components/Header.tsx";
 import Footer from "../islands/Footer.tsx";
@@ -5,7 +6,7 @@ import MotionEffects from "../islands/MotionEffects.tsx";
 
 const SITE_TITLE = "Hrvoje Pavlinovic";
 const SITE_URL = "https://hrvoje.pavlinovic.com";
-const STYLESHEET_URL = "/styles.css?v=20260804-home-usage";
+const STYLESHEET_URL = "/styles.css?v=20261016-final";
 
 const deriveDefaultTitle = (pathname: string) => {
   if (pathname === "/" || pathname === "") return SITE_TITLE;
@@ -52,12 +53,11 @@ export default function App({ Component, url }: PageProps) {
         <script>
           {`
             (function() {
-              const savedTheme = localStorage.getItem('theme');
-              if (savedTheme === 'light') {
-                document.documentElement.classList.remove('dark');
-              } else {
-                document.documentElement.classList.add('dark');
-              }
+              let savedTheme;
+              try { savedTheme = localStorage.getItem('theme'); } catch (_) {}
+              const dark = savedTheme === 'dark' ? true : savedTheme === 'light' ? false :
+                matchMedia('(prefers-color-scheme: dark)').matches;
+              document.documentElement.classList.toggle('dark', dark);
             })();
           `}
         </script>
@@ -94,13 +94,6 @@ export default function App({ Component, url }: PageProps) {
               property="og:description"
               content="Senior backend engineer building reliable systems for real businesses."
             />
-            <meta
-              property="og:image"
-              content="https://hrvoje.pavlinovic.com/blog.png"
-            />
-            <meta property="og:image:width" content="1200" />
-            <meta property="og:image:height" content="630" />
-            <meta property="og:image:alt" content="Hrvoje Pavlinovic" />
 
             {/* Twitter Card Meta Tags */}
             <meta name="twitter:card" content="summary_large_image" />
@@ -111,12 +104,12 @@ export default function App({ Component, url }: PageProps) {
               name="twitter:description"
               content="Senior backend engineer building reliable systems for real businesses."
             />
-            <meta
-              name="twitter:image"
-              content="https://hrvoje.pavlinovic.com/blog.png"
-            />
-            <meta name="twitter:image:alt" content="Hrvoje Pavlinovic" />
+
             <meta name="twitter:url" content={canonicalUrl} />
+            <SocialImage
+              src={socialImageUrl("home")}
+              alt="Hrvoje Pavlinovic — Senior Backend & Product Engineer"
+            />
           </>
         )}
 
@@ -152,8 +145,9 @@ export default function App({ Component, url }: PageProps) {
         )}
       </head>
       <body class="min-h-screen">
-        <Header />
-        <main class="w-full">
+        <a class="skip-link" href="#main-content">Skip to content</a>
+        <Header pathname={url.pathname} />
+        <main id="main-content" tabIndex={-1} class="w-full">
           <Component />
         </main>
         <Footer />

@@ -1,3 +1,4 @@
+import SocialImage, { socialImageUrl } from "../../components/SocialImage.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { Project, ProjectsData, projectStatus } from "../../types/projects.ts";
@@ -25,7 +26,7 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
   const study = project.caseStudy;
   const title = `${project.name} — Hrvoje Pavlinovic`;
   const canonicalUrl = `${SITE_URL}/projects/${project.id}`;
-  const imageUrl = `${SITE_URL}${project.screenshot?.src ?? "/blog.png"}`;
+  const imageUrl = socialImageUrl(`project-${project.id}`);
   const isArchived = project.status === "sunsetted";
 
   return (
@@ -48,39 +49,18 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={project.description} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={imageUrl} />
-        <meta
-          property="og:image:alt"
-          content={project.screenshot?.alt ?? "Hrvoje Pavlinovic"}
-        />
-        <meta
-          property="og:image:type"
-          content={project.screenshot ? "image/webp" : "image/png"}
-        />
-        {project.screenshot && (
-          <>
-            <meta
-              property="og:image:width"
-              content={String(project.screenshot.width)}
-            />
-            <meta
-              property="og:image:height"
-              content={String(project.screenshot.height)}
-            />
-          </>
-        )}
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@0xhp10" />
         <meta name="twitter:creator" content="@0xhp10" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={project.description} />
-        <meta name="twitter:image" content={imageUrl} />
-        <meta
-          name="twitter:image:alt"
-          content={project.screenshot?.alt ?? "Hrvoje Pavlinovic"}
-        />
+
         <meta name="twitter:url" content={canonicalUrl} />
+        <SocialImage
+          src={imageUrl}
+          alt={`${project.name} — a project by Hrvoje Pavlinovic`}
+        />
       </Head>
       <div class="site-canvas projects-profile">
         <article class="projects-content project-case">

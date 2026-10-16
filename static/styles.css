@@ -15,6 +15,7 @@
   --line-strong: rgba(20, 23, 22, 0.22);
   --accent: #f47f20;
   --accent-soft: rgba(244, 127, 32, 0.12);
+  --focus-ring: #9d4310;
   --signal: #19a974;
   --shadow: 0 18px 50px rgba(25, 31, 28, 0.08);
   --font-mono:
@@ -40,6 +41,7 @@
   --line-strong: rgba(243, 245, 243, 0.22);
   --accent: #ff9847;
   --accent-soft: rgba(255, 152, 71, 0.12);
+  --focus-ring: #ffae6e;
   --signal: #55d6a5;
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
 }
@@ -77,10 +79,26 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--accent);
+:is(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--focus-ring);
   outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--canvas);
+  color: var(--ink);
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: none;
+}
+#main-content {
+  scroll-margin-top: 5rem;
 }
 
 .motion-runtime {
@@ -123,6 +141,8 @@ button:focus-visible {
 }
 
 .site-nav-shell {
+  gap: 0.5rem;
+  flex-wrap: wrap;
   width: min(calc(100% - 2rem), 72rem);
   min-height: 3.5rem;
   margin-inline: auto;
@@ -141,6 +161,8 @@ button:focus-visible {
 }
 
 .site-brand {
+  min-width: 0;
+  flex: 1 1 auto;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -167,11 +189,21 @@ button:focus-visible {
 .site-brand:hover {
   color: var(--accent);
 }
+.site-brand span {
+  overflow-wrap: normal;
+}
+.js-nav-controls {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.site-brand::before {
+  flex-shrink: 0;
+}
 
 .site-nav-link {
   position: relative;
   display: inline-flex;
-  min-height: 2.5rem;
+  min-height: 2.75rem;
   align-items: center;
   justify-content: center;
   padding-inline: 0.8rem;
@@ -201,8 +233,9 @@ button:focus-visible {
 
 .chrome-button {
   display: inline-flex;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--line);
@@ -223,13 +256,60 @@ button:focus-visible {
 }
 
 .mobile-menu-panel {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
   background: var(--canvas);
+  color: var(--ink);
+}
+.mobile-menu-panel::backdrop {
+  background: var(--canvas);
+}
+.mobile-menu-content {
+  width: min(100%, 36rem);
+  min-height: 100%;
+  margin-inline: auto;
+  padding: max(1rem, env(safe-area-inset-top)) 1.5rem
+    max(2rem, env(safe-area-inset-bottom));
+}
+.mobile-menu-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.mobile-menu-heading h2 {
+  font-size: 1rem;
+}
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  padding-block: 3rem;
+}
+.no-script-navigation {
+  display: none;
 }
 
 .mobile-nav-link {
+  display: block;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--line);
   color: var(--ink-muted);
   font-family: var(--font-mono);
+  font-size: 1.5rem;
   transition: color 180ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-nav-link[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--focus-ring);
+  text-underline-offset: 0.25em;
 }
 
 .mobile-nav-link:hover {
@@ -537,6 +617,20 @@ body .uppercase {
 }
 
 @media (max-width: 767px) {
+  .no-script-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--canvas);
+    pointer-events: auto;
+  }
+  .no-script-navigation a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
   .site-nav-shell {
     width: calc(100% - 1rem);
     background: var(--canvas);

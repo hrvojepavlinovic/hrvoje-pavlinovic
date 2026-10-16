@@ -1,3 +1,4 @@
+import SocialImage, { socialImageUrl } from "../components/SocialImage.tsx";
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import ProjectsPage from "../components/ProjectsPage.tsx";
@@ -61,10 +62,7 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
           property="og:description"
           content="A small selection of products and side projects by Hrvoje Pavlinovic, led by PLAYGRND, Memoato, and PLAYGRND Draft."
         />
-        <meta
-          property="og:image"
-          content="https://hrvoje.pavlinovic.com/blog.png"
-        />
+
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
 
         {/* Twitter Card meta tags */}
@@ -77,9 +75,10 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
           name="twitter:description"
           content="A small selection of products and side projects by Hrvoje Pavlinovic, led by PLAYGRND, Memoato, and PLAYGRND Draft."
         />
-        <meta
-          name="twitter:image"
-          content="https://hrvoje.pavlinovic.com/blog.png"
+
+        <SocialImage
+          src={socialImageUrl("projects")}
+          alt="Products by Hrvoje Pavlinovic"
         />
       </Head>
 
