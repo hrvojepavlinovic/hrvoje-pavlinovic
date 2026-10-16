@@ -1,5 +1,14 @@
 const WORDS_PER_MINUTE = 200;
 
+export function formatBlogDate(date: string): string {
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(date));
+}
+
 interface MarkdownArticle {
   title: string;
   author: string;

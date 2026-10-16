@@ -62,30 +62,37 @@ export default function SocialActions(
     globalThis.open(
       `https://x.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}&via=${via}`,
       "_blank",
+      "noopener,noreferrer",
     );
   };
 
   return (
-    <div class="flex items-center gap-6">
+    <div class="blog-social-actions">
       <button
         type="button"
         onClick={handleLike}
-        class="flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-btc-orange dark:hover:text-btc-orange"
+        class="blog-social-action"
       >
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <svg
+          aria-hidden="true"
+          class="w-6 h-6"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
         </svg>
-        <span>{likes.value}</span>
+        <span>Like · {likes.value}</span>
       </button>
 
       <button
         type="button"
         onClick={handleCopyLink}
-        class="flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-btc-orange dark:hover:text-btc-orange"
+        class="blog-social-action"
         title="Copy link"
       >
-        {showCopied.value ? <span class="text-btc-orange">Copied!</span> : (
+        {showCopied.value ? <span role="status">Copied!</span> : (
           <svg
+            aria-hidden="true"
             class="w-5 h-5"
             fill="none"
             stroke="currentColor"
@@ -99,17 +106,24 @@ export default function SocialActions(
             />
           </svg>
         )}
+        {!showCopied.value && <span>Copy link</span>}
       </button>
 
       <button
         type="button"
         onClick={handleShareToX}
-        class="flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-btc-orange dark:hover:text-btc-orange"
+        class="blog-social-action"
         title="Share on X"
       >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <svg
+          aria-hidden="true"
+          class="w-5 h-5"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
+        <span>Share on X</span>
       </button>
     </div>
   );

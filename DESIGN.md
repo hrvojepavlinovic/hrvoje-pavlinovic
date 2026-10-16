@@ -46,6 +46,21 @@ visible in full, with attribution and source links. Regular and ATS PDF
 downloads are directly available; both still use the canonical CV JSON and
 existing generators.
 
+## Blog
+
+The blog follows the same Source Sans 3, neutral surfaces and orange accent.
+Three existing featured notes lead an open layout; the remaining notes use
+chronological rows with absolute dates. Native GET search covers titles,
+descriptions and tags, with a clear empty state and no JavaScript dependency.
+
+Articles use a bounded reading measure, proportional body text, visible list
+markers and quieter metadata. Code and wide tables scroll within their own
+containers on mobile. All authored HTML and existing Markdown endpoints remain
+unchanged. Like, copy-link and share actions have visible text labels.
+
+Route-specific styles use versioned filenames so a deployment cannot pair new
+HTML with an older cached stylesheet.
+
 ## Remaining routes
 
 The existing system remains authoritative until the corresponding queued task.

@@ -1,7 +1,7 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { BlogArticle } from "../../types/blog.ts";
-import { calculateReadingTime, formatTimeAgo } from "../../utils/blog.ts";
+import { calculateReadingTime, formatBlogDate } from "../../utils/blog.ts";
 import blogData from "../../data/blog.json" with { type: "json" };
 import SocialActions from "../../islands/SocialActions.tsx";
 import { isLikelyBot } from "../../utils/kv.ts";
@@ -10,7 +10,6 @@ import { getValue, incrementValue } from "../../utils/store.ts";
 interface BlogPostData {
   article: BlogArticle & {
     readingTime: number;
-    timeAgo: string;
     views: number;
     likes: number;
     author: string;
@@ -52,7 +51,6 @@ export const handler: Handlers<BlogPostData> = {
         views: updatedViews,
         likes: currentLikes,
         readingTime: calculateReadingTime(article.fullText),
-        timeAgo: formatTimeAgo(article.createdAt),
         author: article.author || "Unknown",
         tags: article.tags || [],
       },
@@ -74,6 +72,14 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
     <>
       <Head>
         <title>{pageTitle}</title>
+        <link rel="stylesheet" href="/blog-20261016.css" />
+        <link
+          rel="preload"
+          href="/fonts/source-sans-3-latin-wght-normal.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <meta name="description" content={article.seo.description} />
         <meta name="keywords" content={article.seo.keywords.join(", ")} />
         <meta name="author" content={article.seo.author} />
@@ -124,68 +130,38 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
         />
       </Head>
 
-      <div class="site-canvas">
-        <section class="mx-auto max-w-3xl space-y-10 px-6 pb-24 pt-32 md:pb-32 md:pt-40">
-          <a
-            href="/blog"
-            class="inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-200"
-          >
-            ← Back to essays
-          </a>
-
-          <header class="space-y-4" data-reveal>
-            <div class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-              <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
-                {article.timeAgo}
-              </span>
-              <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
-                {article.readingTime} min read
-              </span>
-              <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
-                {article.views} views
-              </span>
-              <a
-                href={`/blog/${article.slug}.md`}
-                class="inline-flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1 text-orange-800 transition-colors hover:bg-orange-200 dark:bg-orange-950 dark:text-orange-200 dark:hover:bg-orange-900"
-              >
-                Export Markdown
-              </a>
+      <div class="site-canvas blog-page">
+        <article class="blog-reading-content">
+          <header class="blog-post-intro">
+            <a href="/blog" class="blog-back">Back to field notes</a>
+            <h1>{article.title}</h1>
+            <div class="blog-meta">
+              <span>By {article.author}</span>
+              <time dateTime={article.createdAt}>
+                {formatBlogDate(article.createdAt)}
+              </time>
+              <span>{article.readingTime} min read</span>
             </div>
-            <h1 class="text-[32px] font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-[42px]">
-              {article.title}
-            </h1>
-            <p class="text-sm text-gray-600 dark:text-gray-400">
-              by {article.author}
-            </p>
             {article.tags.length > 0 && (
-              <div class="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-500">
-                {article.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    class="tag-chip inline-flex items-center px-2.5 py-1"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <p class="blog-post-tags">{article.tags.join(" · ")}</p>
             )}
+            <a class="blog-text-link blog-markdown" href={markdownUrl}>
+              Download Markdown
+            </a>
           </header>
-
-          <article class="space-y-8 text-base leading-relaxed text-gray-700 dark:text-gray-300">
-            <div
-              class="blog-content prose prose-base dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-orange-600 dark:prose-a:text-orange-300 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 max-w-none"
-              dangerouslySetInnerHTML={{ __html: article.fullText }}
-            />
-          </article>
-
-          <footer class="space-y-6 border-t border-gray-200 pt-6 dark:border-gray-800">
+          <div
+            class="blog-content"
+            dangerouslySetInnerHTML={{ __html: article.fullText }}
+          />
+          <footer class="blog-post-footer">
             <SocialActions
               slug={article.slug}
               initialLikes={article.likes}
               seo={article.seo}
             />
+            <a class="blog-text-link" href="/blog">All field notes</a>
           </footer>
-        </section>
+        </article>
       </div>
     </>
   );

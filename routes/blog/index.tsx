@@ -1,19 +1,12 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { BlogArticle } from "../../types/blog.ts";
-import { calculateReadingTime, formatTimeAgo } from "../../utils/blog.ts";
+import { calculateReadingTime, formatBlogDate } from "../../utils/blog.ts";
 import blogData from "../../data/blog.json" with { type: "json" };
-import { getValue } from "../../utils/store.ts";
 
 interface BlogPageData {
-  articles: (BlogArticle & {
-    readingTime: number;
-    timeAgo: string;
-    views: number;
-    likes: number;
-    author: string;
-    tags: string[];
-  })[];
+  articles: (BlogArticle & { readingTime: number })[];
+  query: string;
 }
 
 const FEATURED_SLUGS = [
@@ -30,96 +23,63 @@ const ARCHIVED_INDEX_SLUGS = new Set([
 ]);
 
 export const handler: Handlers<BlogPageData> = {
-  async GET(_req, ctx) {
-    const sortedArticles = (blogData.articles as BlogArticle[])
-      .filter((article) => !ARCHIVED_INDEX_SLUGS.has(article.slug))
-      .sort((a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
-
-    const articles = await Promise.all(
-      sortedArticles.map(async (article) => {
-        const [viewsRes, likesRes] = await Promise.all([
-          getValue<number>([`blog:views:${article.slug}`]),
-          getValue<number>([`blog:likes:${article.slug}`]),
-        ]);
-
-        return {
-          ...article,
-          views: viewsRes || 0,
-          likes: likesRes || 0,
-          readingTime: calculateReadingTime(article.fullText),
-          timeAgo: formatTimeAgo(article.createdAt),
-          author: article.author || "Unknown",
-          tags: article.tags || [],
-        };
-      }),
+  GET(req, ctx) {
+    const query = (new URL(req.url).searchParams.get("q") ?? "").trim().slice(
+      0,
+      120,
     );
-
-    return ctx.render({ articles });
+    const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+    const articles = (blogData.articles as BlogArticle[])
+      .filter((article) => !ARCHIVED_INDEX_SLUGS.has(article.slug))
+      .filter((article) => {
+        const searchable = [
+          article.title,
+          article.shortDescription,
+          ...(article.tags ?? []),
+        ].join(" ").toLowerCase();
+        return terms.every((term) => searchable.includes(term));
+      })
+      .toSorted((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+      .map((article) => ({
+        ...article,
+        readingTime: calculateReadingTime(article.fullText),
+      }));
+    return ctx.render({ articles, query });
   },
 };
 
 export default function BlogPage({ data }: PageProps<BlogPageData>) {
   const canonicalUrl = "https://hrvoje.pavlinovic.com/blog";
-  const title = "Blog \u2014 Hrvoje Pavlinovic";
+  const title = "Blog — Hrvoje Pavlinovic";
   const description =
     "Notes on backend engineering, operational tooling, self-hosting, product work, and building small software systems.";
   const imageUrl = "https://hrvoje.pavlinovic.com/blog.png";
-  const keywords =
-    "Blog, Software Engineering, Backend Engineering, Operational Tooling, Self Hosting, Product Engineering, Hrvoje";
-  const author = "Hrvoje Pavlinovic";
-  const featuredArticles = FEATURED_SLUGS.map((slug) =>
-    data.articles.find((article) => article.slug === slug)
-  ).filter((article): article is BlogPageData["articles"][number] =>
-    Boolean(article)
-  );
-  const latestArticles = data.articles.filter((article) =>
-    !FEATURED_SLUGS.includes(article.slug)
-  );
-
-  const articleCard = (
-    article: BlogPageData["articles"][number],
-    featured = false,
-  ) => (
-    <article
-      key={article.id}
-      class={`surface-card ${featured ? "accent-card p-6" : "p-5"}`}
-      data-tilt
-      data-reveal
-    >
-      <a href={`/blog/${article.slug}`} class="block space-y-4">
-        <header class="space-y-2">
-          <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">
-            <span class="text-orange-700 dark:text-orange-300">
-              {article.tags[0] ?? "Note"}
-            </span>
-            <span>{article.timeAgo}</span>
-            <span>{article.readingTime} min read</span>
-          </div>
-          <h2
-            class={`${
-              featured ? "text-xl" : "text-lg"
-            } font-semibold text-gray-900 dark:text-gray-100`}
-          >
-            {article.title}
-          </h2>
-        </header>
-        <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-          {article.shortDescription}
-        </p>
-      </a>
-    </article>
-  );
+  const featured = data.query ? [] : FEATURED_SLUGS.flatMap((slug) => {
+    const article = data.articles.find((a) => a.slug === slug);
+    return article ? [article] : [];
+  });
+  const notes = data.query
+    ? data.articles
+    : data.articles.filter((a) => !FEATURED_SLUGS.includes(a.slug));
 
   return (
     <>
       <Head>
         <title>{title}</title>
+        <link rel="stylesheet" href="/blog-20261016.css" />
+        <link
+          rel="preload"
+          href="/fonts/source-sans-3-latin-wght-normal.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <meta name="description" content={description} />
-        <meta name="keywords" content={keywords} />
-        <meta name="author" content={author} />
-        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Hrvoje Pavlinovic" />
+        <meta
+          name="robots"
+          content={data.query ? "noindex, follow" : "index, follow"}
+        />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
@@ -135,40 +95,102 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
         <meta name="twitter:image" content={imageUrl} />
         <meta name="twitter:url" content={canonicalUrl} />
       </Head>
-
-      <div class="site-canvas">
-        <main class="mx-auto max-w-5xl px-6 pb-24 pt-32 md:pb-28 md:pt-40">
-          <header class="page-intro" data-reveal>
-            <p class="eyebrow">
-              Field notes
-            </p>
-            <h1 class="display-title mt-4">
-              Systems, products, and the life around the work.
-            </h1>
-            <p class="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400 md:text-base">
+      <div class="site-canvas blog-page">
+        <div class="blog-index-content">
+          <header class="blog-index-intro">
+            <h1>Field notes.</h1>
+            <p>
               Practical notes from backend engineering and building products,
               plus occasional writing about business, family, and ambition.
             </p>
+            <form class="blog-search" method="get" action="/blog" role="search">
+              <label for="note-search">Find a note</label>
+              <div class="blog-search-controls">
+                <input
+                  id="note-search"
+                  name="q"
+                  type="search"
+                  value={data.query}
+                  maxLength={120}
+                  placeholder="Search titles, topics or descriptions"
+                />
+                <button type="submit">Search</button>
+                {data.query && (
+                  <a class="blog-text-link" href="/blog">Clear search</a>
+                )}
+              </div>
+            </form>
           </header>
-
-          <section class="mt-14">
-            <h2 class="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400">
-              Start here
-            </h2>
-            <div class="mt-4 grid gap-4 md:grid-cols-3">
-              {featuredArticles.map((article) => articleCard(article, true))}
+          {featured.length > 0 && (
+            <section
+              class="blog-index-section"
+              aria-labelledby="featured-notes-title"
+            >
+              <h2 id="featured-notes-title">Start here.</h2>
+              <div class="blog-featured">
+                {featured.map((article) => (
+                  <article key={article.slug}>
+                    <h3>
+                      <a href={`/blog/${article.slug}`}>{article.title}</a>
+                    </h3>
+                    <p>{article.shortDescription}</p>
+                    <div class="blog-meta">
+                      <time dateTime={article.createdAt}>
+                        {formatBlogDate(article.createdAt)}
+                      </time>
+                      <span>{article.readingTime} min read</span>
+                      <span>{article.tags?.[0] ?? "Note"}</span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+          <section
+            id="notes"
+            class="blog-index-section blog-all-notes"
+            aria-labelledby="notes-title"
+          >
+            <div class="blog-section-heading">
+              <h2 id="notes-title">
+                {data.query ? "Search results." : "More notes."}
+              </h2>
+              <p>
+                {notes.length} {notes.length === 1 ? "note" : "notes"}
+                {data.query ? ` for “${data.query}”` : ""}
+              </p>
             </div>
+            {notes.length > 0
+              ? (
+                <div>
+                  {notes.map((article) => (
+                    <article key={article.slug} class="blog-note-row">
+                      <div class="blog-note-date">
+                        <time dateTime={article.createdAt}>
+                          {formatBlogDate(article.createdAt)}
+                        </time>
+                        <span>{article.readingTime} min read</span>
+                      </div>
+                      <div>
+                        <h3>
+                          <a href={`/blog/${article.slug}`}>{article.title}</a>
+                        </h3>
+                        <p>{article.shortDescription}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              )
+              : (
+                <div class="blog-empty">
+                  <p>
+                    No notes found. Try a different title, topic or keyword.
+                  </p>
+                  <a class="blog-text-link" href="/blog">Browse all notes</a>
+                </div>
+              )}
           </section>
-
-          <section class="mt-14">
-            <h2 class="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400">
-              Latest notes
-            </h2>
-            <div class="mt-4 grid gap-4 md:grid-cols-2">
-              {latestArticles.map((article) => articleCard(article))}
-            </div>
-          </section>
-        </main>
+        </div>
       </div>
     </>
   );
