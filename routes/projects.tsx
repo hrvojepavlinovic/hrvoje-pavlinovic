@@ -2,22 +2,7 @@ import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import ProjectsPage from "../components/ProjectsPage.tsx";
 
-interface Project {
-  id: string;
-  name: string;
-  url?: string;
-  description: string;
-  highlights?: string[];
-  technologies?: string[];
-  status: "early" | "development" | "live" | "sunsetted";
-  featured: boolean;
-  accent?: string;
-}
-
-interface ProjectsData {
-  description: string;
-  projects: Project[];
-}
+import { ProjectsData } from "../types/projects.ts";
 
 export const handler: Handlers<ProjectsData> = {
   async GET(_, ctx) {
@@ -41,7 +26,15 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
   return (
     <>
       <Head>
-        <title>Projects &mdash; Hrvoje Pavlinovic</title>
+        <title>Projects — Hrvoje Pavlinovic</title>
+        <link rel="stylesheet" href="/projects-20261016.css" />
+        <link
+          rel="preload"
+          href="/fonts/source-sans-3-latin-wght-normal.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <meta
           name="description"
           content="A small selection of products and side projects by Hrvoje Pavlinovic, led by PLAYGRND, Memoato, and PLAYGRND Draft."
@@ -62,7 +55,7 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         />
         <meta
           property="og:title"
-          content="Projects &mdash; Hrvoje Pavlinovic"
+          content="Projects — Hrvoje Pavlinovic"
         />
         <meta
           property="og:description"
@@ -78,7 +71,7 @@ export default function Projects({ data }: PageProps<ProjectsData>) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Projects &mdash; Hrvoje Pavlinovic"
+          content="Projects — Hrvoje Pavlinovic"
         />
         <meta
           name="twitter:description"

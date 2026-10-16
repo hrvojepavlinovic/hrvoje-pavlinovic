@@ -19,6 +19,19 @@ extension of the incumbent site, not a replacement of its brand.
 - Typography and spacing must work with the real quotations at mobile widths,
   without horizontal overflow, hidden text or a dependency on entrance effects.
 
+## Projects direction
+
+- Active products use open rows with a short introduction, personal
+  contribution, technical stack and current screenshots. Desktop keeps copy left
+  and image right; mobile stacks the image above the copy.
+- HILLS Lab is presented as the four-person studio, separately from products.
+  Earlier experiments are explicitly archived, without a live-site invitation.
+- Case studies share the homepage's Source Sans 3 and orange accent. Product
+  workflows, contribution, architecture and engineering choices use open
+  sections rather than card grids. Each product has its own workflow heading.
+- Screenshots have explicit dimensions and descriptive alternatives. Content and
+  navigation remain usable in server-rendered HTML without entrance effects.
+
 ## Other routes
 
 The existing system remains authoritative until the corresponding queued task.

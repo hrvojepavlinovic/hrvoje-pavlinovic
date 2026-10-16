@@ -1,21 +1,6 @@
 import { HandlerContext, Handlers } from "$fresh/server.ts";
 
-interface Project {
-  id: string;
-  name: string;
-  url?: string;
-  description: string;
-  highlights?: string[];
-  technologies?: string[];
-  status: "early" | "development" | "live" | "sunsetted";
-  featured: boolean;
-  accent?: string;
-}
-
-interface ProjectsData {
-  description: string;
-  projects: Project[];
-}
+import { ProjectsData } from "../../types/projects.ts";
 
 export const handler: Handlers = {
   async GET(_req: Request, _ctx: HandlerContext) {

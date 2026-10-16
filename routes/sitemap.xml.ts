@@ -4,7 +4,7 @@ import projectsData from "../data/projects.json" with { type: "json" };
 import { BlogArticle } from "../types/blog.ts";
 
 const SITE_URL = "https://hrvoje.pavlinovic.com";
-const PROJECTS_LASTMOD = "2026-06-27";
+const PROJECTS_LASTMOD = "2026-10-16";
 
 type SitemapEntry = {
   loc: string;
