@@ -66,7 +66,7 @@ export default function BlogPage({ data }: PageProps<BlogPageData>) {
     <>
       <Head>
         <title>{title}</title>
-        <link rel="stylesheet" href="/blog-20261016.css" />
+        <link rel="stylesheet" href="/blog-20261016-v2.css" />
         <link
           rel="preload"
           href="/fonts/source-sans-3-latin-wght-normal.woff2"

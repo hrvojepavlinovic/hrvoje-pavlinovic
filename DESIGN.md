@@ -52,6 +52,8 @@ The blog follows the same Source Sans 3, neutral surfaces and orange accent.
 Three existing featured notes lead an open layout; the remaining notes use
 chronological rows with absolute dates. Native GET search covers titles,
 descriptions and tags, with a clear empty state and no JavaScript dependency.
+Section headings use small accent-colored uppercase text to distinguish them
+from article titles. Article metadata includes the existing total view count.
 
 Articles use a bounded reading measure, proportional body text, visible list
 markers and quieter metadata. Code and wide tables scroll within their own

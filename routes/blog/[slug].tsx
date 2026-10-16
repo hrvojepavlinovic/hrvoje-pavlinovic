@@ -72,7 +72,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
     <>
       <Head>
         <title>{pageTitle}</title>
-        <link rel="stylesheet" href="/blog-20261016.css" />
+        <link rel="stylesheet" href="/blog-20261016-v2.css" />
         <link
           rel="preload"
           href="/fonts/source-sans-3-latin-wght-normal.woff2"
@@ -141,6 +141,10 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
                 {formatBlogDate(article.createdAt)}
               </time>
               <span>{article.readingTime} min read</span>
+              <span>
+                {article.views.toLocaleString("en-GB")}{" "}
+                {article.views === 1 ? "view" : "views"}
+              </span>
             </div>
             {article.tags.length > 0 && (
               <p class="blog-post-tags">{article.tags.join(" · ")}</p>
