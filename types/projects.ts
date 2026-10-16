@@ -21,6 +21,11 @@ export interface ProjectCaseStudy {
   role: string;
   period: string;
   stage: string;
+  founderWork?: {
+    title: string;
+    intro: string;
+    areas: { title: string; text: string }[];
+  };
   challenge: string;
   productLoop: string[];
   loopTitle?: string;
@@ -28,6 +33,7 @@ export interface ProjectCaseStudy {
   decisions: CaseStudyItem[];
   delivered: string[];
   next: string;
+  nextTitle?: string;
   related: { label: string; href: string }[];
 }
 

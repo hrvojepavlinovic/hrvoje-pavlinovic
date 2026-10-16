@@ -158,6 +158,23 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
           {study
             ? (
               <>
+                {study.founderWork && (
+                  <section
+                    class="project-section"
+                    aria-labelledby="case-founder"
+                  >
+                    <h2 id="case-founder">{study.founderWork.title}</h2>
+                    <p class="project-case-lead">{study.founderWork.intro}</p>
+                    <div class="project-decisions">
+                      {study.founderWork.areas.map((area) => (
+                        <section key={area.title}>
+                          <h3>{area.title}</h3>
+                          <p>{area.text}</p>
+                        </section>
+                      ))}
+                    </div>
+                  </section>
+                )}
                 <section
                   class="project-section project-case-split"
                   aria-labelledby="case-problem"
@@ -216,7 +233,9 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
                   class="project-section project-case-split"
                   aria-labelledby="case-next"
                 >
-                  <h2 id="case-next">What comes next.</h2>
+                  <h2 id="case-next">
+                    {study.nextTitle ?? "What comes next."}
+                  </h2>
                   <div>
                     <p>{study.next}</p>
                     <div class="project-related">

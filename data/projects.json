@@ -9,9 +9,9 @@
       "image": "/projects/playgrnd-mark.png",
       "imageAlt": "PLAYGRND brand mark",
       "highlights": [
-        "League and tournament management, match schedules and results",
-        "Player profiles, season statistics, following and a community feed",
-        "WhatsApp sign-in, profile claims and reviewed changes to official records"
+        "Competition management, player profiles, community features and pick-up games",
+        "Automated social graphics and publishing workflows built around real football data",
+        "Direct organiser relationships, user support and local community building"
       ],
       "technologies": [
         "Go",
@@ -26,16 +26,16 @@
       "accent": "orange",
       "caseStudy": {
         "eyebrow": "Founder-built product case study",
-        "intro": "PLAYGRND brings competition management, player profiles, match results and a football community into one product. I work with the four-person HILLS Lab team on the product, backend, data and production systems.",
-        "role": "Founder and hands-on engineer, HILLS Lab team",
+        "intro": "PLAYGRND brings playing, organising and following local football into one product. I build the software and the business around it, from organiser relationships and user support to social content and financial planning.",
+        "role": "Founder · product, engineering and operations",
         "period": "2025 - Present",
         "stage": "Live product, active development",
         "challenge": "Local organisers, players and supporters often rely on separate league sites, messages and spreadsheets. PLAYGRND connects running competitions, arranging games and following the people involved, while keeping official records traceable and changes under the right permissions.",
         "productLoop": [
-          "Organisers manage competitions, teams, schedules, match sheets and results.",
-          "Players keep a profile and statistics across teams and seasons, claim their record and arrange games.",
-          "The community follows teams and players, discusses matches and shares activity.",
-          "Imports, corrections and organiser actions go through source, identity and permission checks."
+          "Organisers run leagues and tournaments, manage teams, schedules, match sheets and results.",
+          "Players build a football identity across teams and seasons, claim their profiles and keep their statistics.",
+          "Regular groups organise pick-up games, collect availability and find players for open spots.",
+          "The community follows people and competitions, discusses matches and shares activity. Social Studio turns the same football data into shareable content."
         ],
         "architecture": [
           {
@@ -65,8 +65,8 @@
         ],
         "decisions": [
           {
-            "title": "Trust before creation",
-            "text": "The product starts from explainable imported history. New write surfaces are added only when they close a real claim, correction, or organizer loop."
+            "title": "One football graph, several useful journeys",
+            "text": "Competitions bring players in; profiles, community activity and pick-up games give them reasons to return. Shared identities and match data connect those journeys instead of creating separate products."
           },
           {
             "title": "SSR-first public reads",
@@ -77,18 +77,26 @@
             "text": "Finished-season standings, scorers, and player statistics can be rebuilt transactionally from source records instead of becoming cache-shaped truth."
           },
           {
-            "title": "WhatsApp as a user channel",
-            "text": "Login and claims meet local users in a familiar channel, while raw webhook storage, credentials, admin actions, and official record changes stay deliberately constrained."
+            "title": "Automation with human ownership",
+            "text": "AI and automation help with development, data intake, content and operations. Identity decisions, official changes and publication still need clear permissions, review and someone responsible for the result."
           }
         ],
         "delivered": [
-          "Product and backend work spanning public competition pages, player profiles and community features",
-          "A private Go API with PostgreSQL source records, recomputable season aggregates and Redis read snapshots",
-          "WhatsApp sign-in and profile-claim flows with identity checks and review before official changes",
-          "Deployment, health checks, backups, recompute tooling and rollback documentation"
+          "Competition tools, player profiles, community features and recurring pick-up game workflows",
+          "Social Studio graphics and social publishing workflows built on canonical competition data",
+          "WhatsApp sign-in, profile claims and reviewed changes to official records",
+          "A Go/PostgreSQL backend, Redis read snapshots and production tooling for releases, health checks and backups"
         ],
-        "next": "Continue improving the organiser and player journeys from real competition use, with permissioned changes and reliable public reads.",
+        "next": "I have a BALLR camera and have started testing match recording and live-streaming workflows. The next step is connecting that coverage to PLAYGRND: match recordings, personal highlights and, further ahead, live score-and-scorer overlays. Video is at the camera-testing stage; these product features are planned.",
         "related": [
+          {
+            "label": "The product pitch",
+            "href": "https://pitch.playgrnd.app/en"
+          },
+          {
+            "label": "The investor pitch",
+            "href": "https://pitch.playgrnd.app/en/investor"
+          },
           {
             "label": "Why WhatsApp fits PLAYGRND claims",
             "href": "/blog/playgrnd-whatsapp-auth-login-claims"
@@ -98,11 +106,34 @@
             "href": "/blog/playgrnd-cache-query-optimization"
           }
         ],
-        "loopTitle": "Playing, organising and following football."
+        "loopTitle": "Playing, organising and following football.",
+        "founderWork": {
+          "title": "One founder, AI-enabled.",
+          "intro": "I use AI across research, design, development, content and operations. It lets me take on a broad range of startup work while staying hands-on with the people who use the product. I also run HILLS Lab, a four-person engineering studio.",
+          "areas": [
+            {
+              "title": "On the ground",
+              "text": "Talking with players and organisers, attending local events and building relationships are part of the job. Those conversations shape the product and help grow a local football community."
+            },
+            {
+              "title": "Organisers and user support",
+              "text": "I help organisers get started, bring in competition archives, set up their workflows and resolve day-to-day questions and issues. Support feeds directly into what I build next."
+            },
+            {
+              "title": "Social content and distribution",
+              "text": "I automate the creation of branded schedule, result, table and player-stat graphics in Social Studio. Publishing workflows take that content through review and out to the community on social channels."
+            },
+            {
+              "title": "Business and investor preparation",
+              "text": "I build budgets, cash-flow and runway scenarios, explore revenue models and plan funding needs. I also prepare the product and investor pitches, financial plans and supporting material."
+            }
+          ]
+        },
+        "nextTitle": "Next: video and matchday coverage."
       },
       "statusLabel": "Live · active development",
       "kind": "product",
-      "contribution": "Founder and hands-on engineer, working with the four-person HILLS Lab team across product, the Go API, data and production operations.",
+      "contribution": "Founder of PLAYGRND and HILLS Lab. I combine hands-on engineering with product direction, local community work, user support, growth and financial planning, using AI throughout the workflow.",
       "screenshot": {
         "src": "/projects/playgrnd-20261016.webp",
         "alt": "PLAYGRND homepage with competitions, the community feed and player statistics",
