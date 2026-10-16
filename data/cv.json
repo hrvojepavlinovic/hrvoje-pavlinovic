@@ -255,7 +255,13 @@
         "Helped improve performance and maintainability by moving selected tooling from Groovy/Grails toward Node.js.",
         "Created a framework-agnostic schema language for testing tools and presented the approach to SoftBank stakeholders."
       ],
-      "technologies": ["Node.js", "Symfony", "PHP", "Python", "MySQL"],
+      "technologies": [
+        "Node.js",
+        "Symfony",
+        "PHP",
+        "Python",
+        "MySQL"
+      ],
       "isHighlight": true
     },
     {
@@ -286,12 +292,11 @@
       "isHighlight": true
     }
   ],
-
   "personalProjects": [
     {
       "name": "PLAYGRND",
       "url": "https://playgrnd.app",
-      "description": "Public amateur football record platform with SSR league pages, player/team profiles, search, claims, WhatsApp magic-link onboarding, admin review flows, and recomputable Postgres/Redis aggregate pipelines.",
+      "description": "Local football platform connecting competition management, player profiles, community features and pick-up games, with Social Studio content tools and WhatsApp onboarding.",
       "technologies": [
         "Go",
         "Postgres",
@@ -305,25 +310,47 @@
       "name": "Memoato",
       "url": "https://memoato.com",
       "description": "Personal memory and life tracking platform with natural-language capture, automated categorization, searchable history, and insight dashboards.",
-      "technologies": ["Wasp", "Postgres", "Redis", "AI", "Stripe"]
+      "technologies": [
+        "Wasp",
+        "Postgres",
+        "Redis",
+        "AI",
+        "Stripe"
+      ]
     },
     {
       "name": "PLAYGRND Draft",
       "url": "https://draft.playgrnd.app",
       "description": "Fast football draft game where users spin iconic national-team tournament squads, build a World XI, simulate a tournament, and share the result.",
-      "technologies": ["Next.js", "TypeScript", "Postgres", "Hetzner"]
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Postgres",
+        "Hetzner"
+      ]
     },
     {
       "name": "Personal Website",
       "url": "https://hrvoje.pavlinovic.com",
       "description": "Personal publishing and project hub with blog posts, lightweight traffic stats, Memoato profile integration, public project notes, and self-hosted Fresh/Deno delivery.",
-      "technologies": ["Deno", "Fresh", "KV", "Analytics", "Memoato"]
+      "technologies": [
+        "Deno",
+        "Fresh",
+        "KV",
+        "Analytics",
+        "Memoato"
+      ]
     },
     {
       "name": "HILLS Lab",
       "url": "https://hills-lab.hr",
-      "description": "Founder-led engineering studio for domain-heavy backend systems, product delivery, operational infrastructure, and carefully scoped AI-assisted workflows.",
-      "technologies": ["Backend", "Product", "Infrastructure", "AI Workflows"]
+      "description": "The four-person engineering studio I founded in Split, building products and helping software teams with backends, delivery and production operations.",
+      "technologies": [
+        "Backend",
+        "Product",
+        "Infrastructure",
+        "AI Workflows"
+      ]
     }
   ],
   "_disabledPersonalProjects": [
@@ -341,7 +368,6 @@
       "note": "Temporarily hidden from the public CV, regular PDF, ATS PDF, and tailored NLC materials. Bring this back when there is a more tangible shipped artifact or evidence to point to."
     }
   ],
-
   "references": [
     {
       "company": "Ericsson Nikola Tesla",
@@ -392,7 +418,6 @@
       "quote": "I have been personally messaged various times about the quality and speed of Hrvoje's work across several projects. Everyone is happy having him onboard."
     }
   ],
-
   "education": [
     {
       "degree": "Master's Degree, Computer Science",

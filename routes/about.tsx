@@ -35,11 +35,19 @@ export default function About({ data }: PageProps<AboutRouteData>) {
   return (
     <>
       <Head>
+        <link rel="stylesheet" href="/profile-20261016.css" />
+        <link
+          rel="preload"
+          href="/fonts/source-sans-3-latin-wght-normal.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         {/* Primary Meta Tags */}
-        <title>About &mdash; Hrvoje Pavlinovic</title>
+        <title>About — Hrvoje Pavlinovic</title>
         <meta
           name="title"
-          content="About &mdash; Hrvoje Pavlinovic"
+          content="About — Hrvoje Pavlinovic"
         />
         <meta
           name="description"
@@ -58,7 +66,7 @@ export default function About({ data }: PageProps<AboutRouteData>) {
         <meta property="og:url" content="https://hrvoje.pavlinovic.com/about" />
         <meta
           property="og:title"
-          content="About &mdash; Hrvoje Pavlinovic"
+          content="About — Hrvoje Pavlinovic"
         />
         <meta
           property="og:description"
@@ -79,7 +87,7 @@ export default function About({ data }: PageProps<AboutRouteData>) {
         <meta name="twitter:creator" content="@0xhp10" />
         <meta
           name="twitter:title"
-          content="About &mdash; Hrvoje Pavlinovic"
+          content="About — Hrvoje Pavlinovic"
         />
         <meta
           name="twitter:description"
@@ -109,7 +117,7 @@ export default function About({ data }: PageProps<AboutRouteData>) {
               "url": "https://hrvoje.pavlinovic.com",
               "sameAs": [
                 "https://twitter.com/0xhp10",
-                "https://github.com/hrvoje-pavlinovic",
+                "https://github.com/hrvojepavlinovic",
                 "https://linkedin.com/in/hpavlino",
               ],
               "jobTitle": "Software Engineer",

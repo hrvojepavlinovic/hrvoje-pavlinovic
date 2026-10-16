@@ -2,106 +2,92 @@
   "pageTitle": "About me",
   "intro": {
     "heading": "Building reliable backend systems for complex products",
-    "summary": "I specialize in making complex software workflows understandable, operable, and dependable.",
+    "summary": "I’m Hrvoje, an engineer and founder in Split, Croatia.",
     "paragraphs": [
-      "With over 13 years of experience across automotive, health care, media, commerce, and startup infrastructure, I focus on stability, scale, and systems that teams can trust.",
-      "Currently, I work on backend infrastructure at Tilt, keeping livestream auctions, payments, and fulfillment fast and reliable.",
-      "I use modern AI tooling every day, but my deeper focus is still engineering judgment: clear context, scoped access, source-backed decisions, and production changes that remain reviewable.",
-      "Outside of the terminal, my life revolves around family, health, and sound money. I am a proud father of two, an active fitness enthusiast (football, padel, gym, cycling), and a firm believer that Bitcoin can change the world for the better.",
-      "I remain curious and focused on the future. My current goals are building useful products, growing HILLS Lab, and publishing practical field notes from real software work."
+      "I’ve spent more than 13 years building software across automotive, healthcare, media and commerce. I like getting close to a problem, understanding the people around it and seeing the work through to production.",
+      "These days I work on Tilt’s backend and build my own products through HILLS Lab. I use AI every day for research, implementation and operations, with the same responsibility for the result."
     ]
   },
   "work": {
-    "heading": "How I help teams ship complex systems",
-    "description": "My sweet spot is taking messy engineering workflows and shaping the architecture, context, and delivery habits that make teams more reliable under real product pressure.",
+    "heading": "Work, today.",
+    "description": "At Tilt, I work on the backend behind livestream commerce: auctions, payments, shipping and the systems connecting them.",
     "capabilityAreas": [
       {
-        "title": "Reliable production systems",
-        "intro": "Design backend and operational flows that stay understandable under real business pressure.",
-        "points": [
-          "Work on revenue-critical services at Tilt where latency, reliability, and delivery discipline matter.",
-          "Scaled ad-tech pipelines past 1.7B impressions by tightening ingestion, batching, and observability."
-        ]
+        "title": "Understand the problem first",
+        "intro": "Read the code, talk with the team and make the scope clear before committing to a solution.",
+        "points": []
       },
       {
-        "title": "Context and tooling with guardrails",
-        "intro": "Blend tool access, provenance, documentation, and production rules so faster workflows stay reviewable.",
-        "points": [
-          "Map context across GitHub, Linear/Jira, Slack, Sentry, docs, and production runbooks.",
-          "Keep permissions scoped, production actions explicit, and stale context visible."
-        ]
+        "title": "Stay with the change",
+        "intro": "Design, implementation, debugging and release are connected. I care about how the system behaves after it ships.",
+        "points": []
       },
       {
-        "title": "Tool-agnostic implementation",
-        "intro": "Build systems that keep working as teams move between current and future tooling.",
-        "points": [
-          "Translate business pressure into scoped delivery cycles and crisp technical trade-offs.",
-          "Keep the durable asset in the system design, not in one vendor's feature set."
-        ]
+        "title": "Leave useful context",
+        "intro": "Explain the decisions, document the awkward parts and help the next person pick up the work.",
+        "points": []
       }
     ],
     "highlightedWork": [
       {
-        "name": "Tilt",
-        "summary": "Scaling the backend powering Tilt's interactive commerce—from livestream auctions to payments and personalization—while shaping API design, reliability, and engineering rituals.",
-        "href": "https://tilt.app",
-        "status": "Current role",
-        "trackingTarget": "tilt"
+        "name": "HILLS Lab",
+        "summary": "The four-person engineering studio I founded. We build our own products and help other software teams with backend engineering and delivery.",
+        "href": "https://hills-lab.hr",
+        "trackingTarget": "hills-lab"
       },
       {
-        "name": "ReneVerse",
-        "summary": "Architected event-driven infrastructure for gaming ad engagement, partner integrations, and data-heavy product workflows.",
-        "href": "https://reneverse.io",
-        "status": "Recent engagement",
-        "trackingTarget": "reneverse"
+        "name": "PLAYGRND",
+        "summary": "A home for local football. Alongside engineering, I work with organisers and players, support users and build the community around the product.",
+        "href": "https://playgrnd.app",
+        "trackingTarget": "playgrnd"
       }
     ]
   },
   "journey": {
-    "heading": "Trajectory",
+    "heading": "How I got here.",
     "summary": "From on-site enterprise delivery to remote founder partnerships, the through-line has been building systems people can trust.",
     "stops": [
       {
         "period": "2013 → 2016",
-        "headline": "Foundation in shipping",
-        "summary": "Clocked over 3,000 hours of hands-on development while finishing my computer science degree—shipping early-stage web and mobile products, learning production discipline, and keeping commitments to real users."
+        "headline": "Learning by shipping",
+        "summary": "Freelance web and mobile work alongside my computer science studies at FESB. More than 3,000 hours of real projects before graduating."
       },
       {
-        "period": "2016 → 2021",
-        "headline": "Enterprise and automotive craft",
-        "summary": "Engineering roles with Ericsson, Profico, and Rimac. Led distributed systems work, integrated legacy platforms, and introduced safer delivery practices across automotive and telco teams."
+        "period": "2015 → 2021",
+        "headline": "Enterprise, product teams and cars",
+        "summary": "Ericsson, Profico and Rimac: internal tools, client products, distributed services, vehicle telemetry and over-the-air updates."
       },
       {
         "period": "2021 → today",
-        "headline": "Remote partner to founders",
-        "summary": "Embedded with Povio, ReneVerse, CryptoToday, and Tilt. Reinforced event-driven pipelines, shipped domain-heavy backend work, and now work on Tilt's interactive commerce backend."
+        "headline": "Remote teams and my own products",
+        "summary": "Healthcare work through Povio, gaming infrastructure at ReneVerse, consulting for CryptoToday and now live commerce at Tilt. Alongside that, growing HILLS Lab and building PLAYGRND, Memoato and other products."
       }
     ]
   },
   "life": {
-    "heading": "Beyond the keyboard",
+    "heading": "Away from the keyboard.",
     "summary": "My life revolves around family, software, and fitness. Sound money keeps the long-term view honest.",
     "focusAreas": [
       {
-        "title": "Family first",
-        "description": "Two kids, school runs, and evening routines ground every decision. Work flexes around their milestones."
+        "title": "Family",
+        "description": "I’m a father of two. School runs, evening routines and time together are a big part of life outside work."
       },
       {
-        "title": "Movement as fuel",
-        "description": "Football, padel, gym, cycling, and short daily sessions keep the system balanced."
+        "title": "Football and movement",
+        "description": "Football, padel, the gym and cycling keep me moving. PLAYGRND also gets me out talking with players and organisers at local events."
       },
       {
-        "title": "Sound money",
-        "description": "Bitcoin is the highest signal macro trend I follow. I keep my personal and product decisions aligned with that reality."
+        "title": "The long view",
+        "description": "I follow Bitcoin and the idea of sound money. I’m interested in things that stay useful over time, in software and outside it."
       }
     ]
   },
   "principles": {
-    "heading": "Operating principles",
+    "heading": "What I value.",
     "items": [
-      "Build systems that disappear into the background and let people focus on their craft.",
-      "Make architecture decisions with the teammates who own the day-two reality.",
-      "Document, mentor, and leave every team with healthier defaults than I found."
+      "Make the system understandable for the people who use and maintain it.",
+      "Work with the people who will live with the result.",
+      "Share what I learn through mentoring, documentation and field notes."
     ]
   },
   "training": {

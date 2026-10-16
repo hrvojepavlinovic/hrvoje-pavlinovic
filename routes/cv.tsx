@@ -5,7 +5,15 @@ export default function CV() {
   return (
     <>
       <Head>
-        <title>CV &mdash; Hrvoje Pavlinovic</title>
+        <link rel="stylesheet" href="/profile-20261016.css" />
+        <link
+          rel="preload"
+          href="/fonts/source-sans-3-latin-wght-normal.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <title>CV — Hrvoje Pavlinovic</title>
         <meta
           name="description"
           content="Professional experience and projects by Hrvoje Pavlinovic, a senior backend engineer focused on commerce systems, payments, logistics, AWS infrastructure, and reliable delivery."
@@ -23,7 +31,7 @@ export default function CV() {
         <meta property="og:url" content="https://hrvoje.pavlinovic.com/cv" />
         <meta
           property="og:title"
-          content="CV &mdash; Hrvoje Pavlinovic"
+          content="CV — Hrvoje Pavlinovic"
         />
         <meta
           property="og:description"
@@ -39,7 +47,7 @@ export default function CV() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="CV &mdash; Hrvoje Pavlinovic"
+          content="CV — Hrvoje Pavlinovic"
         />
         <meta
           name="twitter:description"

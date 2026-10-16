@@ -1,400 +1,233 @@
 import { trackEvent } from "../utils/track.ts";
 import { AboutData } from "../types/about.ts";
 import { MemoatoPublicStats } from "../utils/memoatoStats.ts";
+import ProjectArrow from "../components/ProjectArrow.tsx";
 
 interface AboutPageProps {
   data: AboutData;
   memoatoStats?: MemoatoPublicStats | null;
 }
 
+function tracked(target: string) {
+  trackEvent({ type: "click", clickType: "link", target });
+}
+
 export default function AboutPage({ data, memoatoStats }: AboutPageProps) {
-  const allCategories = memoatoStats?.categories ?? [];
   const categories = ["weight", "push-ups", "pull-ups"].flatMap((slug) => {
-    const category = allCategories.find((item) => item.slug === slug);
+    const category = memoatoStats?.categories.find((item) =>
+      item.slug === slug
+    );
     return category ? [category] : [];
   });
-  const integerFormatter = new Intl.NumberFormat("en-US");
-  const decimalFormatter = new Intl.NumberFormat("en-US", {
-    maximumFractionDigits: 2,
-  });
-  type StatPeriod = "today" | "week" | "month" | "year";
-  const statPeriods: Array<{ key: StatPeriod; label: string }> = [
+  const periods = [
     { key: "today", label: "Today" },
     { key: "week", label: "Week" },
     { key: "month", label: "Month" },
     { key: "year", label: "Year" },
-  ];
-  const statPeriodLabels: Record<StatPeriod, string> = {
-    today: "Today",
-    week: "This week",
-    month: "This month",
-    year: "This year",
-  };
-
-  const formatValue = (value: number | null, unit: string | null) => {
-    if (value == null) return "–";
-    const formatted = unit === "kg"
-      ? decimalFormatter.format(value)
-      : integerFormatter.format(value);
-    return unit ? `${formatted} ${unit}` : formatted;
-  };
-
+  ] as const;
+  const formatter = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 2,
+  });
+  const dateFormatter = new Intl.DateTimeFormat("en-GB", {
+    dateStyle: "medium",
+    timeZone: "Europe/Zagreb",
+  });
   return (
-    <div class="site-canvas">
-      <section
-        class="mx-auto max-w-4xl space-y-6 px-6 pb-16 pt-32 md:pt-40"
-        data-reveal
-      >
-        <p class="eyebrow">
-          {data.pageTitle}
-        </p>
-        <h1 class="display-title">
-          {data.intro.heading}
-        </h1>
-        <p class="text-base font-semibold text-gray-700 dark:text-gray-200 md:text-lg">
-          Peak productivity: Family · Software · Fitness
-        </p>
-        <p class="text-sm text-gray-600 dark:text-gray-300 md:text-base">
-          {data.intro.summary}
-        </p>
-        <div class="space-y-4 text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-[17px] md:leading-loose">
-          {data.intro.paragraphs.map((paragraph, index) => (
-            <p key={`intro-paragraph-${index}`}>{paragraph}</p>
-          ))}
-        </div>
-      </section>
-
-      {categories.length > 0 && (
-        <section class="section-band">
-          <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-8">
-            <div class="space-y-3">
-              <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                Live stats
-              </h2>
+    <div class="site-canvas profile-page about-page">
+      <div class="profile-content">
+        <header class="profile-intro about-intro">
+          <div>
+            <h1>{data.pageTitle}.</h1>
+            <p class="profile-lead">{data.intro.summary}</p>
+            <div class="profile-prose">
+              {data.intro.paragraphs.map((p) => <p key={p}>{p}</p>)}
             </div>
-
-            <div class="grid gap-6 md:grid-cols-3">
-              {categories.map((category) => {
-                const primary = category.year == null
-                  ? null
-                  : { period: "year" as const, value: category.year };
-                const primaryLabel = category.slug === "weight"
-                  ? "Latest log"
-                  : primary
-                  ? statPeriodLabels[primary.period]
-                  : "No recent data";
-                const cardContent = (
-                  <>
-                    <div class="space-y-2">
-                      <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                        {category.title}
-                      </p>
-                      <p class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-                        {primary
-                          ? formatValue(primary.value, category.unit)
-                          : "–"}
-                      </p>
-                      <p class="text-xs text-gray-500 dark:text-gray-500">
-                        {primaryLabel}
-                      </p>
-                    </div>
-
-                    <dl class="divide-y divide-gray-100 text-sm dark:divide-gray-800">
-                      {statPeriods.map((period) => (
-                        <div
-                          key={`${category.slug}-${period.key}`}
-                          class="flex items-center justify-between py-2 first:pt-0 last:pb-0"
-                        >
-                          <dt class="text-gray-500 dark:text-gray-400">
-                            {period.label}
-                          </dt>
-                          <dd class="font-medium text-gray-900 dark:text-gray-100">
-                            {formatValue(category[period.key], category.unit)}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </>
-                );
-
-                if (category.url) {
-                  return (
-                    <a
-                      key={category.slug}
-                      href={category.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="surface-card space-y-4 p-6"
-                      data-tilt
-                      data-reveal
-                      onClick={() =>
-                        trackEvent({
-                          type: "click",
-                          clickType: "link",
-                          target: `memoato-category-${category.slug}`,
-                        })}
-                    >
-                      {cardContent}
-                    </a>
-                  );
-                }
-
-                return (
-                  <div
-                    key={category.slug}
-                    class="surface-card space-y-4 p-6"
-                    data-reveal
-                  >
-                    {cardContent}
-                  </div>
-                );
-              })}
-            </div>
-
-            <div class="mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-0 text-center text-xs text-gray-500 dark:text-gray-500 sm:flex-row sm:gap-2">
-              <p>
-                Live stats from{" "}
-                <a
-                  href="https://memoato.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
-                  onClick={() =>
-                    trackEvent({
-                      type: "click",
-                      clickType: "link",
-                      target: "memoato-stats",
-                    })}
-                >
-                  memoato.com
-                </a>
-              </p>
-              <span class="hidden sm:inline" aria-hidden="true">·</span>
+            <div class="profile-actions">
               <a
-                href="https://app.memoato.com/u/0xhp10"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-orange-500 dark:text-gray-200 dark:decoration-gray-700"
-                onClick={() =>
-                  trackEvent({
-                    type: "click",
-                    clickType: "link",
-                    target: "memoato-profile-stats",
-                  })}
+                href="/cv"
+                class="profile-primary"
+                onClick={() => tracked("cv-from-about")}
               >
-                View all stats.
+                My experience<ProjectArrow />
               </a>
-            </div>
-          </div>
-        </section>
-      )}
-
-      <section class="section-band">
-        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
-          <div class="space-y-3">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              {data.work.heading}
-            </h2>
-            <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
-              {data.work.description}
-            </p>
-          </div>
-
-          <div class="grid gap-6 md:grid-cols-3">
-            {data.work.capabilityAreas.map((area) => (
-              <div
-                key={area.title}
-                class="surface-card group flex h-full flex-col gap-4 p-6"
-                data-tilt
-                data-reveal
-              >
-                <div class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-orange-500">
-                  <span class="h-1.5 w-1.5 rounded-full bg-orange-400" />
-                  {area.title}
-                </div>
-                <p class="text-sm text-gray-600 transition-colors group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-gray-100">
-                  {area.intro}
-                </p>
-                <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-400">
-                  {area.points.map((point, pointIndex) => (
-                    <li
-                      key={`${area.title}-${pointIndex}`}
-                      class="flex items-start gap-3"
-                    >
-                      <span class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300 transition-colors group-hover:bg-orange-400" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div class="space-y-4">
-            <div class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                Recent partnerships
-              </h3>
               <a
                 href="/projects"
-                class="group inline-flex items-center gap-2 text-sm font-medium text-gray-600 transition-all hover:text-orange-500 dark:text-gray-300"
-                onClick={() =>
-                  trackEvent({
-                    type: "click",
-                    clickType: "link",
-                    target: "projects-from-about",
-                  })}
+                class="profile-link"
+                onClick={() => tracked("projects-from-about")}
               >
-                See more work
-                <svg
-                  class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M5 12h14" />
-                  <path d="M13 6l6 6-6 6" />
-                </svg>
+                What I’m building<ProjectArrow />
               </a>
             </div>
-
-            <div class="grid gap-6 md:grid-cols-2">
+          </div>
+          <img
+            class="about-portrait"
+            src="/pfptbs.png"
+            alt="Hrvoje Pavlinovic"
+            width="512"
+            height="512"
+            loading="eager"
+          />
+        </header>
+        <section
+          class="profile-section profile-split"
+          aria-labelledby="about-work-title"
+        >
+          <h2 id="about-work-title">{data.work.heading}</h2>
+          <div>
+            <p class="profile-section-lead">{data.work.description}</p>
+            <div class="about-current-work">
               {data.work.highlightedWork.map((work) => (
-                <a
-                  key={work.name}
-                  href={work.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="surface-card group flex h-full flex-col justify-between p-6"
-                  data-tilt
-                  data-reveal
-                  onClick={() =>
-                    trackEvent({
-                      type: "click",
-                      clickType: "link",
-                      target: work.trackingTarget ?? work.name.toLowerCase(),
-                    })}
-                >
-                  <div class="space-y-3">
-                    <div class="flex items-center justify-between gap-4">
-                      <h4 class="text-base font-semibold text-gray-900 dark:text-gray-100">
-                        {work.name}
-                      </h4>
-                      {work.status && (
-                        <span class="rounded-full border border-orange-200 px-2 py-0.5 text-xs font-medium uppercase tracking-wide text-orange-500 dark:border-orange-900/60">
-                          {work.status}
-                        </span>
-                      )}
-                    </div>
-                    <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-                      {work.summary}
-                    </p>
-                  </div>
-                  <span class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-gray-600 transition-colors group-hover:text-orange-500 dark:text-gray-300">
-                    Visit
-                    <svg
-                      class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                <article key={work.name}>
+                  <h3>
+                    <a
+                      href={work.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() =>
+                        tracked(work.trackingTarget ?? work.name.toLowerCase())}
                     >
-                      <path d="M5 12h14" />
-                      <path d="M13 6l6 6-6 6" />
-                    </svg>
-                  </span>
-                </a>
+                      {work.name}
+                      <ProjectArrow diagonal />
+                    </a>
+                  </h3>
+                  <p>{work.summary}</p>
+                </article>
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="section-band">
-        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-8">
-          <div class="space-y-3">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              {data.journey.heading}
-            </h2>
-            <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
-              {data.journey.summary}
-            </p>
-          </div>
-
-          <div class="space-y-6">
+        </section>
+        <section
+          class="profile-section profile-split"
+          aria-labelledby="about-approach-title"
+        >
+          <h2 id="about-approach-title">How I work.</h2>
+          <dl class="about-approach">
+            {data.work.capabilityAreas.map((area) => (
+              <div key={area.title}>
+                <dt>{area.title}</dt>
+                <dd>{area.intro}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+        <section
+          class="profile-section profile-split"
+          aria-labelledby="about-journey-title"
+        >
+          <h2 id="about-journey-title">{data.journey.heading}</h2>
+          <div class="about-journey">
             {data.journey.stops.map((stop) => (
-              <div
-                key={stop.period}
-                class="surface-card p-6"
-                data-tilt
-                data-reveal
-              >
-                <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                  {stop.period}
-                </p>
-                <h3 class="mt-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
-                  {stop.headline}
-                </h3>
-                <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-                  {stop.summary}
-                </p>
-              </div>
+              <article key={stop.period}>
+                <p class="profile-period">{stop.period}</p>
+                <h3>{stop.headline}</h3>
+                <p>{stop.summary}</p>
+              </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section class="section-band">
-        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
-          <div class="space-y-3">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              {data.life.heading}
-            </h2>
-            <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
-              {data.life.summary}
-            </p>
-          </div>
-
-          <div class="grid gap-6 md:grid-cols-3">
-            {data.life.focusAreas.map((area) => (
-              <div
-                key={area.title}
-                class="surface-card flex h-full flex-col gap-3 p-6"
-                data-reveal
-              >
-                <div class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-orange-500">
-                  <span class="h-1.5 w-1.5 rounded-full bg-orange-400" />
-                  {area.title}
+        </section>
+        <section
+          class="profile-section profile-split"
+          aria-labelledby="about-life-title"
+        >
+          <h2 id="about-life-title">{data.life.heading}</h2>
+          <div>
+            <div class="about-life">
+              {data.life.focusAreas.map((area) => (
+                <article key={area.title}>
+                  <h3>{area.title}</h3>
+                  <p>{area.description}</p>
+                </article>
+              ))}
+            </div>
+            <details class="about-stats">
+              <summary>Personal stats from Memoato</summary>
+              {categories.length > 0 && (
+                <div class="about-stats-scroll">
+                  <table>
+                    <caption>Public activity logs by period</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Log</th>
+                        {periods.map((p) => (
+                          <th scope="col" key={p.key}>{p.label}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {categories.map((category) => (
+                        <tr key={category.slug}>
+                          <th scope="row">
+                            {category.url
+                              ? (
+                                <a
+                                  href={category.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={() =>
+                                    tracked(
+                                      `memoato-category-${category.slug}`,
+                                    )}
+                                >
+                                  {category.title}
+                                </a>
+                              )
+                              : category.title}
+                          </th>
+                          {periods.map((p) => (
+                            <td key={p.key}>
+                              {category[p.key] == null
+                                ? "–"
+                                : `${formatter.format(category[p.key]!)}${
+                                  category.unit ? ` ${category.unit}` : ""
+                                }`}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                  {area.description}
+              )}
+              {memoatoStats?.generatedAt && (
+                <p class="profile-small">
+                  Data retrieved{" "}
+                  {dateFormatter.format(new Date(memoatoStats.generatedAt))}.
+                  Weight shows the latest log in each period; exercise values
+                  are period totals.
                 </p>
-              </div>
-            ))}
+              )}
+              <a
+                class="profile-link"
+                href="https://app.memoato.com/u/0xhp10"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => tracked("memoato-profile-stats")}
+              >
+                View public profile<ProjectArrow diagonal />
+              </a>
+            </details>
           </div>
-        </div>
-      </section>
-
-      <section class="section-band">
-        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-6">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-            {data.principles.heading}
-          </h2>
-          <ul class="space-y-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300 md:text-base md:leading-relaxed">
-            {data.principles.items.map((principle, index) => (
-              <li key={`principle-${index}`} class="flex items-start gap-3">
-                <span class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-orange-400" />
-                <span>{principle}</span>
-              </li>
-            ))}
+        </section>
+        <section
+          class="profile-section profile-split"
+          aria-labelledby="about-principles-title"
+        >
+          <h2 id="about-principles-title">{data.principles.heading}</h2>
+          <ul class="profile-bullets">
+            {data.principles.items.map((p) => <li key={p}>{p}</li>)}
           </ul>
-        </div>
-      </section>
+        </section>
+        <footer class="profile-close">
+          <p>More from the work itself.</p>
+          <a
+            href="/blog"
+            class="profile-link"
+            onClick={() => tracked("writing-from-about")}
+          >
+            Read my field notes<ProjectArrow />
+          </a>
+        </footer>
+      </div>
     </div>
   );
 }

@@ -1,422 +1,230 @@
 import cvData from "../data/cv.json" with { type: "json" };
 import type { CVData } from "../types/cv.ts";
+import ProjectArrow from "../components/ProjectArrow.tsx";
 
-const typedCvData = cvData as unknown as CVData;
-
-function ExternalLinkIcon() {
-  return (
-    <svg
-      class="h-3.5 w-3.5 flex-shrink-0"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M7 17 17 7" />
-      <path d="M9 7h8v8" />
-    </svg>
-  );
-}
+const cv = cvData as unknown as CVData;
 
 export default function CVPage() {
   const {
     hero,
     profile,
     professionalSummary,
-    skills,
     experience,
+    skills,
     personalProjects,
-    references,
     education,
-  } = typedCvData;
-
-  const techStackEntries = Object.entries(skills.techStack);
-
+    references,
+  } = cv;
   return (
-    <div class="site-canvas">
-      <section class="mx-auto max-w-5xl px-6 pb-24 pt-32 md:pb-32 md:pt-40">
-        <div class="space-y-10" data-reveal>
-          <div class="flex items-center gap-4 md:gap-5">
+    <div class="site-canvas profile-page cv-page">
+      <div class="profile-content">
+        <header class="profile-intro">
+          <div class="cv-identity">
             <img
               src={profile.photo}
               alt={profile.name}
-              class="h-12 w-12 rounded-md object-cover md:h-[52px] md:w-[52px]"
+              width="88"
+              height="88"
               loading="eager"
             />
             <div>
-              <h1 class="display-title">
-                {hero.title}
-              </h1>
-              <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">
-                {profile.name} · {profile.title} · {profile.location}
-              </p>
+              <h1>{hero.title}.</h1>
+              <p class="profile-identity">{profile.name} · {profile.title}</p>
+              <p class="profile-muted">{profile.location}</p>
             </div>
           </div>
-
-          <p class="max-w-3xl text-base text-gray-600 dark:text-gray-300 md:text-[17px] md:leading-loose">
-            {hero.subtitle}
-          </p>
-
-          <div class="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-300">
-            {profile.stats.map((stat) => (
-              <span
-                key={stat.label}
-                class="tag-chip inline-flex items-center gap-2 px-3.5 py-1.5"
-              >
-                <span class="text-gray-900 dark:text-gray-100">
-                  {stat.value}
-                </span>
-                <span class="text-gray-500 dark:text-gray-400">
-                  {stat.label}
-                </span>
-              </span>
-            ))}
-          </div>
-
-          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-            <a
-              href="/cv/pdf"
-              target="_blank"
-              class="action-button group"
-            >
-              Download PDF
-              <svg
-                class="h-4 w-4 transition-transform"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M12 5v14" />
-                <path d="M19 12l-7 7-7-7" />
-              </svg>
+          <p class="profile-lead">{hero.subtitle}.</p>
+          <div class="profile-actions">
+            <a class="profile-primary" href="/cv/pdf">
+              Download PDF<ProjectArrow />
             </a>
-            <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-              <a
-                href={`mailto:${profile.email}`}
-                class="transition-colors hover:text-orange-500"
-              >
-                {profile.email}
-              </a>
-              <span>•</span>
-              <a
-                href={profile.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="transition-colors hover:text-orange-500"
-              >
-                {profile.website}
-              </a>
-            </div>
+            <a class="profile-link" href="/cv/ats">
+              ATS PDF<ProjectArrow />
+            </a>
+            <a class="profile-link" href={`mailto:${profile.email}`}>
+              {profile.email}
+            </a>
           </div>
-        </div>
-      </section>
-
-      <section class="section-band">
-        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-6">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-            Professional summary
-          </h2>
-          <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-            {professionalSummary.description}
-          </p>
-        </div>
-      </section>
-
-      <section class="section-band">
-        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
-          <div class="space-y-3">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              Skills snapshot
-            </h2>
-            <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-              Core expertise and the toolkits I reach for most often.
-            </p>
-          </div>
-
-          <div class="space-y-6">
-            <div class="surface-card p-6" data-reveal>
-              <h3 class="text-sm font-semibold uppercase tracking-wide text-orange-500">
-                Core expertise
-              </h3>
-              <ul class="mt-4 grid gap-3 text-sm text-gray-600 dark:text-gray-400 sm:grid-cols-2">
-                {skills.coreExpertise.map((item) => (
-                  <li key={item} class="flex items-start gap-3">
-                    <span
-                      class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300"
-                      style={{ marginTop: "0.55em" }}
-                    />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div class="surface-card p-6" data-reveal>
-              <h3 class="text-sm font-semibold uppercase tracking-wide text-orange-500">
-                Tech stack highlights
-              </h3>
-              <div class="mt-4 flex flex-wrap gap-4">
-                {techStackEntries.map(([group, items]) => (
-                  <div key={group} class="min-w-[220px] flex-1 space-y-2">
-                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-500">
-                      {group}
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                      {items.map((tech) => (
-                        <span
-                          key={tech}
-                          class="tag-chip inline-flex items-center px-2.5 py-1 text-xs"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+          <dl class="cv-facts">
+            {profile.stats.map((stat) => (
+              <div key={stat.label}>
+                <dt>{stat.label}</dt>
+                <dd>{stat.value}</dd>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-band">
-        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
-          <div class="space-y-3">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              Experience
-            </h2>
-            <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-              Recent roles and the impact behind them.
-            </p>
-          </div>
-
-          <div class="space-y-6">
+            ))}
+          </dl>
+          <details class="cv-summary">
+            <summary>Professional summary</summary>
+            <p>{professionalSummary.description}</p>
+          </details>
+          <nav class="profile-jump-links" aria-label="On this page">
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#personal-projects">Projects</a>
+            <a href="#education">Education</a>
+            <a href="#references">References</a>
+          </nav>
+        </header>
+        <section
+          id="experience"
+          class="profile-section"
+          aria-labelledby="experience-title"
+        >
+          <h2 id="experience-title">Experience.</h2>
+          <div class="cv-roles">
             {experience.map((role) => (
-              <article
-                key={`${role.company}-${role.period}`}
-                class="surface-card group cursor-default p-6"
-                data-tilt
-                data-reveal
-              >
-                <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-                  <div>
-                    <h3 class="text-base font-semibold text-gray-900 dark:text-gray-100">
-                      {role.title}
-                    </h3>
-                    <div class="text-sm text-gray-600 dark:text-gray-400">
-                      {role.companyUrl
-                        ? (
-                          <a
-                            href={role.companyUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="transition-colors hover:text-orange-500"
-                          >
-                            {role.company}
-                          </a>
-                        )
-                        : (
-                          role.company
-                        )}
-                    </div>
-                  </div>
-                  <span class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-500">
-                    {role.period}
-                  </span>
+              <article key={`${role.company}-${role.period}`} class="cv-role">
+                <p class="profile-period">{role.period}</p>
+                <div>
+                  <h3>
+                    {role.companyUrl
+                      ? (
+                        <a
+                          href={role.companyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {role.company}
+                        </a>
+                      )
+                      : role.company}
+                  </h3>
+                  <p class="cv-role-title">{role.title}</p>
+                  <ul class="profile-bullets">
+                    {role.achievements.map((item) => <li key={item}>{item}
+                    </li>)}
+                  </ul>
+                  {role.technologies?.length
+                    ? (
+                      <p class="profile-stack">
+                        {role.technologies.join(" · ")}
+                      </p>
+                    )
+                    : null}
                 </div>
-
-                <ul class="mt-4 space-y-3 text-sm text-gray-600 dark:text-gray-400">
-                  {role.achievements.map((achievement) => (
-                    <li key={achievement} class="flex items-start gap-3">
-                      <span
-                        class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300 transition-colors group-hover:bg-orange-400"
-                        style={{ marginTop: "0.55em" }}
-                      />
-                      <span>{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {role.technologies && role.technologies.length > 0 && (
-                  <div class="mt-4 flex flex-wrap gap-2">
-                    {role.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        class="tag-chip inline-flex items-center px-2.5 py-1 text-xs"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section class="section-band">
-        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
-          <div class="space-y-3">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              Personal projects
-            </h2>
-            <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-              Selected products and experiments I have built outside client
-              engagements.
-            </p>
+        </section>
+        <section
+          id="skills"
+          class="profile-section profile-split"
+          aria-labelledby="skills-title"
+        >
+          <h2 id="skills-title">Skills.</h2>
+          <div>
+            <ul class="cv-expertise">
+              {skills.coreExpertise.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+            <dl class="profile-definition">
+              {Object.entries(skills.techStack).map(([group, items]) => (
+                <div key={group}>
+                  <dt>{group}</dt>
+                  <dd>{items.join(" · ")}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-
-          <div class="grid gap-6 md:grid-cols-2">
+        </section>
+        <section
+          id="personal-projects"
+          class="profile-section profile-split"
+          aria-labelledby="projects-title"
+        >
+          <div>
+            <h2 id="projects-title">My own work.</h2>
+            <a href="/projects" class="profile-link">
+              Project case studies<ProjectArrow />
+            </a>
+          </div>
+          <div class="cv-projects">
             {personalProjects.map((project) => (
-              <a
-                key={project.name}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="surface-card group p-6 text-left"
-                data-tilt
-                data-reveal
-              >
-                <div class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-orange-500">
-                  <span class="h-1.5 w-1.5 rounded-full bg-orange-400" />
-                  {project.name}
-                </div>
-                <p class="mt-3 text-sm text-gray-600 transition-colors group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-gray-100">
-                  {project.description}
-                </p>
-                <div class="mt-4 flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      class="tag-chip inline-flex items-center px-2.5 py-1 text-xs"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section class="section-band">
-        <div class="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10">
-          <div class="space-y-3">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              References
-            </h2>
-            <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-              Recommendations from engineering leaders and founders I have
-              worked with.
-            </p>
-          </div>
-
-          <div class="grid gap-6 md:grid-cols-2">
-            {references.map((reference) => (
-              <article
-                key={`${reference.company}-${reference.person}`}
-                class="surface-card group p-6"
-                data-tilt
-                data-reveal
-              >
-                <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-                  "{reference.quote}"
-                </p>
-                <div class="mt-7 border-t border-gray-100 pt-6 dark:border-gray-800">
-                  <div class="space-y-1">
-                    <div>
-                      <a
-                        href={reference.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 transition-colors hover:text-orange-500 dark:text-gray-100"
-                        aria-label={`${reference.person} on LinkedIn`}
-                      >
-                        <span>{reference.person}</span>
-                        <ExternalLinkIcon />
-                      </a>
-                    </div>
-                    <p class="text-xs leading-relaxed text-gray-500 dark:text-gray-500">
-                      {reference.title}
-                    </p>
-                    <div>
-                      <a
-                        href={reference.companyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-orange-500 transition-colors hover:text-orange-600"
-                        aria-label={`${reference.company} website`}
-                      >
-                        <span>{reference.company}</span>
-                        <ExternalLinkIcon />
-                      </a>
-                    </div>
-                  </div>
-                </div>
+              <article key={project.name}>
+                <h3>
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {project.name}
+                    <ProjectArrow diagonal />
+                  </a>
+                </h3>
+                <p>{project.description}</p>
+                <p class="profile-stack">{project.technologies.join(" · ")}</p>
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section class="section-band">
-        <div class="max-w-5xl mx-auto px-6 py-12 pb-24 md:py-16 md:pb-28 space-y-10">
-          <div class="space-y-3">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              Education
-            </h2>
-            <p class="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-              Formal studies that shaped my engineering foundation.
-            </p>
-          </div>
-
-          <div class="space-y-6">
+        </section>
+        <section
+          id="education"
+          class="profile-section profile-split"
+          aria-labelledby="education-title"
+        >
+          <h2 id="education-title">Education.</h2>
+          <div class="cv-education">
             {education.map((entry) => (
-              <div
-                key={entry.degree}
-                class="surface-card group p-6"
-                data-tilt
-                data-reveal
-              >
-                <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-                  <div>
-                    <h3 class="text-base font-semibold text-gray-900 dark:text-gray-100">
-                      {entry.degree}
-                    </h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">
-                      {entry.institution}
-                    </p>
-                  </div>
-                  <span class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-500">
-                    {entry.period}
-                  </span>
-                </div>
+              <article key={entry.degree}>
+                <p class="profile-period">{entry.period}</p>
+                <h3>{entry.degree}</h3>
+                <p>{entry.institution}</p>
                 {entry.details.length > 0 && (
-                  <ul class="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                  <ul class="profile-bullets">
                     {entry.details.map((detail) => (
-                      <li key={detail} class="flex items-start gap-3">
-                        <span
-                          class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-300"
-                          style={{ marginTop: "0.55em" }}
-                        />
-                        <span>{detail}</span>
-                      </li>
+                      <li key={detail}>{detail}</li>
                     ))}
                   </ul>
                 )}
-              </div>
+              </article>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+        <section
+          id="references"
+          class="profile-section"
+          aria-labelledby="references-title"
+        >
+          <h2 id="references-title">References.</h2>
+          <p class="profile-section-note">
+            In the words of people I’ve worked with.
+          </p>
+          <div class="cv-references">
+            {references.map((reference) => (
+              <figure key={`${reference.company}-${reference.person}`}>
+                <blockquote>
+                  <p>{reference.quote}</p>
+                </blockquote>
+                <figcaption>
+                  <a
+                    href={reference.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${reference.person} on LinkedIn`}
+                  >
+                    {reference.person}
+                    <ProjectArrow diagonal />
+                  </a>
+                  <p>{reference.title}</p>
+                  <a
+                    class="cv-reference-company"
+                    href={reference.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {reference.company}
+                  </a>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+        <footer class="profile-close">
+          <p>Have something in mind?</p>
+          <a class="profile-link" href={`mailto:${profile.email}`}>
+            Let’s talk<ProjectArrow />
+          </a>
+        </footer>
+      </div>
     </div>
   );
 }
