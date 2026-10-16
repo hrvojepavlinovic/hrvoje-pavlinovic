@@ -40,11 +40,11 @@ career sections, and everyday interests. Personal Memoato data is available in a
 native disclosure with its retrieval date, rather than leading the page.
 
 CV puts experience before skills. Roles use a date column and readable text,
-with plain technology lists instead of chips. The longer professional summary is
-an optional native disclosure. Every original recommendation remains visible in
-full, with attribution and source links. Regular and ATS PDF downloads are
-directly available; both still use the canonical CV JSON and existing
-generators.
+with plain technology lists instead of chips. The professional summary is always
+visible and uses the full content width. Every original recommendation remains
+visible in full, with attribution and source links. Regular and ATS PDF
+downloads are directly available; both still use the canonical CV JSON and
+existing generators.
 
 ## Remaining routes
 

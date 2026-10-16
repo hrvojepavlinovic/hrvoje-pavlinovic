@@ -53,10 +53,10 @@ export default function CVPage() {
               </div>
             ))}
           </dl>
-          <details class="cv-summary">
-            <summary>Professional summary</summary>
+          <section class="cv-summary" aria-labelledby="cv-summary-title">
+            <h2 id="cv-summary-title">Professional summary</h2>
             <p>{professionalSummary.description}</p>
-          </details>
+          </section>
           <nav class="profile-jump-links" aria-label="On this page">
             <a href="#experience">Experience</a>
             <a href="#skills">Skills</a>
