@@ -82,6 +82,8 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
               >
                 <img
                   src={project.screenshot.src}
+                  srcSet={project.screenshot.srcSet}
+                  sizes="(max-width: 740px) calc(100vw - 4rem), (max-width: 1152px) 52vw, 575px"
                   alt={project.screenshot.alt}
                   width={project.screenshot.width}
                   height={project.screenshot.height}

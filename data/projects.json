@@ -135,11 +135,12 @@
       "kind": "product",
       "contribution": "Founder of PLAYGRND and HILLS Lab. I combine hands-on engineering with product direction, local community work, user support, growth and financial planning, using AI throughout the workflow.",
       "screenshot": {
-        "src": "/projects/playgrnd-20261016.webp",
+        "src": "/projects/playgrnd-desktop-20261014-2880.webp",
         "alt": "PLAYGRND homepage with competitions, the community feed and player statistics",
-        "width": 1280,
-        "height": 800,
-        "caption": "The live public app brings competitions, player activity and statistics together."
+        "width": 2880,
+        "height": 1800,
+        "caption": "The live public app brings competitions, player activity and statistics together.",
+        "srcSet": "/projects/playgrnd-desktop-20261014-1440.webp 1440w, /projects/playgrnd-desktop-20261014-2880.webp 2880w"
       }
     },
     {

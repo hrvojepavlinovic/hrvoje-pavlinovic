@@ -119,6 +119,8 @@ export default function ProjectPage({ data: project }: PageProps<Project>) {
             <figure class="project-case-image">
               <img
                 src={project.screenshot.src}
+                srcSet={project.screenshot.srcSet}
+                sizes="(max-width: 1152px) calc(100vw - 4rem), 1024px"
                 alt={project.screenshot.alt}
                 width={project.screenshot.width}
                 height={project.screenshot.height}
