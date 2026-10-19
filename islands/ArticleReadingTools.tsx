@@ -4,6 +4,7 @@ import CopyButton from "../components/CopyButton.tsx";
 import ArticleShareControls from "../components/ArticleShareControls.tsx";
 import { articleUrl } from "../utils/articleSharing.ts";
 import {
+  activeArticleSection,
   articleReadingProgress,
   ArticleSection,
 } from "../utils/articleOutline.ts";
@@ -42,13 +43,17 @@ export default function ArticleReadingTools({ sections, title, slug }: Props) {
           offset,
         ),
       );
-      let current = "";
-      for (const heading of headings) {
-        if (heading && heading.getBoundingClientRect().top <= offset + 24) {
-          current = heading.id;
-        }
-      }
-      setActive(current);
+      setActive(activeArticleSection(
+        headings.flatMap((heading) =>
+          heading
+            ? [{ id: heading.id, top: heading.getBoundingClientRect().top }]
+            : []
+        ),
+        bounds.top,
+        bounds.bottom,
+        globalThis.innerHeight,
+        offset,
+      ));
     };
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -112,7 +117,7 @@ export default function ArticleReadingTools({ sections, title, slug }: Props) {
         </nav>
       )}
       <div class="article-rail-share">
-        <h2>Share this note</h2>
+        <h2>Share</h2>
         <ArticleShareControls
           title={title}
           url={articleUrl(slug)}

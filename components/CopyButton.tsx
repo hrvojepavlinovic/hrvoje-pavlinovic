@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from "preact/hooks";
+import ArticleActionIcon, { ArticleAction } from "./ArticleActionIcon.tsx";
 
 interface Props {
   text: string;
   label: string;
   iconOnly?: boolean;
   sourceUrl?: string;
+  icon?: ArticleAction;
 }
 
 export default function CopyButton(
-  { text, label, iconOnly, sourceUrl }: Props,
+  { text, label, iconOnly, sourceUrl, icon }: Props,
 ) {
   const [ready, setReady] = useState(false);
   const [state, setState] = useState<
@@ -75,31 +77,20 @@ export default function CopyButton(
           aria-label={iconOnly ? label : undefined}
           title={iconOnly ? label : undefined}
         >
-          {iconOnly
-            ? (
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d={state === "copied"
-                    ? "m5 12 4 4L19 6"
-                    : "M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-2 2m3 6a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l2-2"}
-                />
-              </svg>
-            )
-            : state === "loading"
-            ? "Loading…"
-            : state === "copied"
-            ? "Copied"
-            : label}
+          {(iconOnly || icon) && (
+            <ArticleActionIcon
+              action={state === "copied" ? "check" : icon ?? "link"}
+            />
+          )}
+          {!iconOnly && (
+            <span>
+              {state === "loading"
+                ? "Loading…"
+                : state === "copied"
+                ? "Copied"
+                : label}
+            </span>
+          )}
         </button>
       )}
       <span role="status" class="sr-only">

@@ -103,11 +103,11 @@ lighter muted text, retaining the existing light theme and orange identity.
 
 ## Sharing and article previews — 19 October 2026
 
-Sharing uses ordinary X, LinkedIn and email links. Desktop repeats these in the
-reading rail; mobile keeps the full controls below the article. Each contents
-entry offers a quiet copy-section-link action, visible on touch screens and on
-hover or keyboard focus for pointer users. Keep the approved mobile progress
-strip unchanged. No dropdowns or copied reference motifs.
+Sharing uses ordinary X, LinkedIn and email links. Desktop shows a single
+vertical action list with icons in the reading rail; mobile keeps its single
+action list below the article. Each contents entry offers an always-visible
+copy-section-link action. Keep the approved mobile progress strip unchanged. No
+dropdowns or copied reference motifs.
 
 Copy link and Copy Markdown enhance the static links after hydration. Markdown
 copies the complete existing export, starting the asynchronous clipboard write
@@ -121,3 +121,9 @@ their URLs, now with measured dimensions and MIME types. A new or retitled note
 uses the valid shared fallback until its title card is generated. Regenerate
 with `deno run -A scripts/generate-article-social-images.mjs` after publishing
 or retitling; generation checks the actual rendered width of every title line.
+
+Sharing QA refinement: do not repeat the desktop sharing block at the end of a
+note or place a second Markdown action in the header. The original Markdown
+endpoint and alternate metadata remain; a no-JavaScript export link is available
+inside sharing. At the article end the final contents entry becomes active even
+when a short closing section cannot reach the top reading line.

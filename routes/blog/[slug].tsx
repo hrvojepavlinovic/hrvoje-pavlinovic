@@ -76,7 +76,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
     <>
       <Head>
         <title>{pageTitle}</title>
-        <link rel="stylesheet" href="/blog-20261019-v3.css" />
+        <link rel="stylesheet" href="/blog-20261019-v4.css" />
         <link
           rel="preload"
           href="/fonts/source-sans-3-latin-wght-normal.woff2"
@@ -167,9 +167,6 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
             {article.tags.length > 0 && (
               <p class="blog-post-tags">{article.tags.join(" · ")}</p>
             )}
-            <a class="blog-text-link blog-markdown" href={markdownUrl}>
-              Download Markdown
-            </a>
           </header>
           <div class="blog-reading-layout">
             <aside class="article-tools-rail" aria-label="Reading tools">
