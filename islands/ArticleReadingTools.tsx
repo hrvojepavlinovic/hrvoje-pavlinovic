@@ -1,5 +1,8 @@
 import { useEffect, useState } from "preact/hooks";
 import { createPortal } from "preact/compat";
+import CopyButton from "../components/CopyButton.tsx";
+import ArticleShareControls from "../components/ArticleShareControls.tsx";
+import { articleUrl } from "../utils/articleSharing.ts";
 import {
   articleReadingProgress,
   ArticleSection,
@@ -7,9 +10,11 @@ import {
 
 interface Props {
   sections: ArticleSection[];
+  title: string;
+  slug: string;
 }
 
-export default function ArticleReadingTools({ sections }: Props) {
+export default function ArticleReadingTools({ sections, title, slug }: Props) {
   const [progress, setProgress] = useState<number | null>(null);
   const [active, setActive] = useState("");
   const [readingStarted, setReadingStarted] = useState(false);
@@ -75,6 +80,11 @@ export default function ArticleReadingTools({ sections }: Props) {
           >
             {section.title}
           </a>
+          <CopyButton
+            text={articleUrl(slug, section.id)}
+            label={`Copy link to ${section.title}`}
+            iconOnly
+          />
         </li>
       ))}
     </ol>
@@ -101,6 +111,14 @@ export default function ArticleReadingTools({ sections }: Props) {
           {links()}
         </nav>
       )}
+      <div class="article-rail-share">
+        <h2>Share this note</h2>
+        <ArticleShareControls
+          title={title}
+          url={articleUrl(slug)}
+          markdownPath={`/blog/${slug}.md`}
+        />
+      </div>
       {header && readingStarted && progress !== null && createPortal(
         <div class="article-mobile-progress">
           <div class="article-mobile-progress-label">

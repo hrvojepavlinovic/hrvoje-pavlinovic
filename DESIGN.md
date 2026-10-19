@@ -100,3 +100,24 @@ This strip lives in the header layer so it cannot be obscured by it. Mobile
 pages and navigation use the full viewport width without decorative side
 borders. The shared dark palette uses a cool charcoal canvas (#191d21) and
 lighter muted text, retaining the existing light theme and orange identity.
+
+## Sharing and article previews — 19 October 2026
+
+Sharing uses ordinary X, LinkedIn and email links. Desktop repeats these in the
+reading rail; mobile keeps the full controls below the article. Each contents
+entry offers a quiet copy-section-link action, visible on touch screens and on
+hover or keyboard focus for pointer users. Keep the approved mobile progress
+strip unchanged. No dropdowns or copied reference motifs.
+
+Copy link and Copy Markdown enhance the static links after hydration. Markdown
+copies the complete existing export, starting the asynchronous clipboard write
+inside the click for Safari. Clipboard rejection exposes selectable text; a
+failed Markdown fetch offers the existing export link and retry. Likes keep the
+existing endpoint and counts, with loading and error feedback.
+
+Generic article previews have original 1200×630 charcoal/orange title cards,
+content-hashed filenames and a generated manifest. Five authored covers retain
+their URLs, now with measured dimensions and MIME types. A new or retitled note
+uses the valid shared fallback until its title card is generated. Regenerate
+with `deno run -A scripts/generate-article-social-images.mjs` after publishing
+or retitling; generation checks the actual rendered width of every title line.
