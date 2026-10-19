@@ -1,7 +1,6 @@
 import { useEffect, useState } from "preact/hooks";
 import { createPortal } from "preact/compat";
 import CopyButton from "../components/CopyButton.tsx";
-import ArticleShareControls from "../components/ArticleShareControls.tsx";
 import { articleUrl } from "../utils/articleSharing.ts";
 import {
   activeArticleSection,
@@ -11,20 +10,21 @@ import {
 
 interface Props {
   sections: ArticleSection[];
-  title: string;
   slug: string;
 }
 
-export default function ArticleReadingTools({ sections, title, slug }: Props) {
+export default function ArticleReadingTools({ sections, slug }: Props) {
   const [progress, setProgress] = useState<number | null>(null);
   const [active, setActive] = useState("");
   const [readingStarted, setReadingStarted] = useState(false);
+  const [railFits, setRailFits] = useState(true);
   const [header, setHeader] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
     const body = document.getElementById("article-body");
     if (!body) return;
     const siteHeader = document.querySelector<HTMLElement>(".site-header");
+    const rail = document.querySelector<HTMLElement>(".article-tools-rail");
     setHeader(siteHeader);
     const headings = sections.map((section) =>
       document.getElementById(section.id)
@@ -34,6 +34,14 @@ export default function ArticleReadingTools({ sections, title, slug }: Props) {
       frame = 0;
       const offset = (siteHeader?.getBoundingClientRect().bottom ?? 80) + 32;
       const bounds = body.getBoundingClientRect();
+      if (rail) {
+        // Only pin a rail that fits in the actual space below the header.
+        // Long outlines, zoom and short windows keep the ordinary page scroll.
+        const fits = rail.scrollHeight <= globalThis.innerHeight - offset - 24;
+        rail.style.setProperty("--article-tools-top", `${offset}px`);
+        rail.dataset.sticky = String(fits);
+        setRailFits(fits);
+      }
       setReadingStarted(bounds.top <= offset);
       setProgress(
         articleReadingProgress(
@@ -61,6 +69,7 @@ export default function ArticleReadingTools({ sections, title, slug }: Props) {
     const observer = new ResizeObserver(schedule);
     observer.observe(body);
     if (siteHeader) observer.observe(siteHeader);
+    if (rail) observer.observe(rail);
     globalThis.addEventListener("scroll", schedule, { passive: true });
     globalThis.addEventListener("resize", schedule);
     update();
@@ -116,16 +125,12 @@ export default function ArticleReadingTools({ sections, title, slug }: Props) {
           {links()}
         </nav>
       )}
-      <div class="article-rail-share">
-        <h2>Share</h2>
-        <ArticleShareControls
-          title={title}
-          url={articleUrl(slug)}
-          markdownPath={`/blog/${slug}.md`}
-        />
-      </div>
       {header && readingStarted && progress !== null && createPortal(
-        <div class="article-mobile-progress">
+        <div
+          class={railFits
+            ? "article-mobile-progress"
+            : "article-mobile-progress article-mobile-progress--fallback"}
+        >
           <div class="article-mobile-progress-label">
             <span>Reading</span>
             <span>{progress}%</span>

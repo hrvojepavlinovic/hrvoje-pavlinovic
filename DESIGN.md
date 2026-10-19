@@ -140,3 +140,13 @@ Connections live in `data/related-articles.json` and should be reviewed when a
 note is published. Do not fill a new article with arbitrary recommendations or
 matches based only on broad AI tags. Archived meta posts remain accessible by
 direct URL but stay outside archive discovery and recommendations.
+
+## Reading rail on short windows — 19 October 2026
+
+Sharing now lives once below the article on every screen, keeping the approved
+vertical icon-and-label actions. The desktop rail contains only the outline and
+reading progress. It has no height cap or internal scrolling, including before
+hydration. Pin it only when its measured content fits below the actual header;
+resize, text zoom, copying fallbacks and longer outlines must recheck that fit.
+If it cannot fit, let it move with the page and show progress below the fixed
+header once reading starts. The mobile full-width flow remains unchanged.
