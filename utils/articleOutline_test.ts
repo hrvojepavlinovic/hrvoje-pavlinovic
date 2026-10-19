@@ -1,5 +1,6 @@
 import { assertEquals } from "$std/assert/mod.ts";
 import {
+  activeArticleSection,
   articleReadingProgress,
   buildArticleOutline,
 } from "./articleOutline.ts";
@@ -42,4 +43,16 @@ Deno.test("progress follows article bounds and clamps overscroll and short artic
   assertEquals(articleReadingProgress(1200, 400, 900, 100), 0);
   assertEquals(articleReadingProgress(200, 400, 900, 100), 100);
   assertEquals(articleReadingProgress(0, 0, 0, 100), 100);
+});
+
+Deno.test("active section reaches a short final section when the article end is visible", () => {
+  const headings = [{ id: "first", top: -500 }, { id: "last", top: 620 }];
+  assertEquals(activeArticleSection(headings, -600, 850, 900, 100), "last");
+  assertEquals(activeArticleSection(headings, -600, 1000, 900, 100), "first");
+  assertEquals(activeArticleSection(headings, 200, 850, 900, 100), "first");
+  assertEquals(
+    activeArticleSection([{ id: "intro", top: 300 }], 200, 850, 900, 100),
+    "",
+  );
+  assertEquals(activeArticleSection([], -600, 850, 900, 100), "");
 });

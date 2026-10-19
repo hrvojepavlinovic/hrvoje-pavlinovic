@@ -88,3 +88,19 @@ export function articleReadingProgress(
     Math.min(1, Math.max(0, (readingOffset - bodyTop) / travel)) * 100,
   );
 }
+
+/** Select the final section when the article ends before it can reach the reading line. */
+export function activeArticleSection(
+  headings: { id: string; top: number }[],
+  bodyTop: number,
+  bodyBottom: number,
+  viewportHeight: number,
+  readingOffset: number,
+): string {
+  if (bodyTop <= readingOffset && bodyBottom <= viewportHeight + 1) {
+    return headings.at(-1)?.id ?? "";
+  }
+  return headings.findLast((heading) => heading.top <= readingOffset + 24)
+    ?.id ??
+    "";
+}
