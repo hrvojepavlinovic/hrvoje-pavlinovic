@@ -1,4 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
+import { createPortal } from "preact/compat";
 import {
   articleReadingProgress,
   ArticleSection,
@@ -11,20 +12,23 @@ interface Props {
 export default function ArticleReadingTools({ sections }: Props) {
   const [progress, setProgress] = useState<number | null>(null);
   const [active, setActive] = useState("");
+  const [readingStarted, setReadingStarted] = useState(false);
+  const [header, setHeader] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
     const body = document.getElementById("article-body");
     if (!body) return;
+    const siteHeader = document.querySelector<HTMLElement>(".site-header");
+    setHeader(siteHeader);
     const headings = sections.map((section) =>
       document.getElementById(section.id)
     );
     let frame = 0;
     const update = () => {
       frame = 0;
-      const offset =
-        (document.querySelector(".site-header")?.getBoundingClientRect()
-          .bottom ?? 80) + 32;
+      const offset = (siteHeader?.getBoundingClientRect().bottom ?? 80) + 32;
       const bounds = body.getBoundingClientRect();
+      setReadingStarted(bounds.top <= offset);
       setProgress(
         articleReadingProgress(
           bounds.top,
@@ -46,6 +50,7 @@ export default function ArticleReadingTools({ sections }: Props) {
     };
     const observer = new ResizeObserver(schedule);
     observer.observe(body);
+    if (siteHeader) observer.observe(siteHeader);
     globalThis.addEventListener("scroll", schedule, { passive: true });
     globalThis.addEventListener("resize", schedule);
     update();
@@ -95,6 +100,20 @@ export default function ArticleReadingTools({ sections }: Props) {
           <h2>In this note</h2>
           {links()}
         </nav>
+      )}
+      {header && readingStarted && progress !== null && createPortal(
+        <div class="article-mobile-progress">
+          <div class="article-mobile-progress-label">
+            <span>Reading</span>
+            <span>{progress}%</span>
+          </div>
+          <progress
+            aria-label="Article reading progress"
+            value={progress}
+            max={100}
+          />
+        </div>,
+        header,
       )}
     </div>
   );

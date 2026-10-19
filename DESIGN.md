@@ -94,6 +94,9 @@ copying another author's visual motifs or typography.
 Stable h2/h3 anchors are added to rendered HTML only; the authored source and
 Markdown exports stay intact. Section links work without JavaScript. Reading
 progress appears only when measured in the browser, reaches completion when the
-article's end is visible, and uses a thin top line on mobile. The shared dark
-palette uses a cool charcoal canvas (#191d21) and lighter muted text, retaining
-the existing light theme and orange identity.
+article's end is visible, and, once the article body reaches the reading line,
+uses a fixed progress strip below mobile navigation with a visible percentage.
+This strip lives in the header layer so it cannot be obscured by it. Mobile
+pages and navigation use the full viewport width without decorative side
+borders. The shared dark palette uses a cool charcoal canvas (#191d21) and
+lighter muted text, retaining the existing light theme and orange identity.

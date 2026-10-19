@@ -632,14 +632,15 @@ body .uppercase {
     min-height: 2.75rem;
   }
   .site-nav-shell {
-    width: calc(100% - 1rem);
+    width: 100%;
+    border-inline: 0;
     background: var(--canvas);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
 
   .site-canvas::before {
-    width: calc(100% - 1rem);
+    display: none;
   }
 
   .site-hero {
