@@ -1,4 +1,5 @@
 import SocialImage from "../../components/SocialImage.tsx";
+import { relatedArticles } from "../../utils/articleDiscovery.ts";
 import { articleSocialImage } from "../../utils/articleSeo.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
@@ -65,6 +66,7 @@ export const handler: Handlers<BlogPostData> = {
 export default function BlogPost({ data }: PageProps<BlogPostData>) {
   const { article } = data;
   const outline = buildArticleOutline(article.fullText);
+  const related = relatedArticles(article.slug, blogData.articles);
   const canonicalUrl = `https://hrvoje.pavlinovic.com/blog/${article.slug}`;
   const markdownUrl = `${canonicalUrl}.md`;
   const image = articleSocialImage(article);
@@ -76,7 +78,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
     <>
       <Head>
         <title>{pageTitle}</title>
-        <link rel="stylesheet" href="/blog-20261019-v4.css" />
+        <link rel="stylesheet" href="/blog-20261019-v5.css" />
         <link
           rel="preload"
           href="/fonts/source-sans-3-latin-wght-normal.woff2"
@@ -165,7 +167,13 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
               </span>
             </div>
             {article.tags.length > 0 && (
-              <p class="blog-post-tags">{article.tags.join(" · ")}</p>
+              <ul class="blog-post-tags" aria-label="Article topics">
+                {article.tags.map((tag) => (
+                  <li key={tag}>
+                    <a href={`/blog?q=${encodeURIComponent(tag)}`}>{tag}</a>
+                  </li>
+                ))}
+              </ul>
             )}
           </header>
           <div class="blog-reading-layout">
@@ -190,6 +198,28 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
             />
             <a class="blog-text-link" href="/blog">All field notes</a>
           </footer>
+          {related.length > 0 && (
+            <section class="blog-related" aria-labelledby="related-notes-title">
+              <h2 id="related-notes-title">Keep reading.</h2>
+              <ul>
+                {related.map((note) => (
+                  <li key={note.slug}>
+                    <h3>
+                      <a href={`/blog/${note.slug}`}>{note.title}</a>
+                    </h3>
+                    <p class="blog-meta">
+                      <time dateTime={note.createdAt}>
+                        {formatBlogDate(note.createdAt)}
+                      </time>
+                      <span>
+                        {calculateReadingTime(note.fullText)} min read
+                      </span>
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </article>
       </div>
     </>
