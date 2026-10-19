@@ -35,6 +35,7 @@ import * as $sitemap_xml from "./routes/sitemap.xml.ts";
 import * as $webstats from "./routes/webstats.tsx";
 import * as $webstats_index from "./routes/webstats/index.tsx";
 import * as $AboutPage from "./islands/AboutPage.tsx";
+import * as $ArticleReadingTools from "./islands/ArticleReadingTools.tsx";
 import * as $CVPage from "./islands/CVPage.tsx";
 import * as $Footer from "./islands/Footer.tsx";
 import * as $HomePage from "./islands/HomePage.tsx";
@@ -84,6 +85,7 @@ const manifest = {
   },
   islands: {
     "./islands/AboutPage.tsx": $AboutPage,
+    "./islands/ArticleReadingTools.tsx": $ArticleReadingTools,
     "./islands/CVPage.tsx": $CVPage,
     "./islands/Footer.tsx": $Footer,
     "./islands/HomePage.tsx": $HomePage,

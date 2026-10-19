@@ -82,3 +82,18 @@ product assets and the same OFL font. Image metadata is shared across routes.
 
 CV recommendations continue reading from the canonical JSON. Authored blog text
 is preserved.
+
+## Article reading tools — 19 October 2026
+
+Articles have a sticky contents rail on the right at desktop widths. On smaller
+screens the same links remain openly visible before the article; avoid dropdowns
+and disclosure triangles for ordinary content. Use two columns only when width
+permits. The current section uses the existing orange and an underline, without
+copying another author's visual motifs or typography.
+
+Stable h2/h3 anchors are added to rendered HTML only; the authored source and
+Markdown exports stay intact. Section links work without JavaScript. Reading
+progress appears only when measured in the browser, reaches completion when the
+article's end is visible, and uses a thin top line on mobile. The shared dark
+palette uses a cool charcoal canvas (#191d21) and lighter muted text, retaining
+the existing light theme and orange identity.
