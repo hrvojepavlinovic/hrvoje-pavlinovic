@@ -3,6 +3,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { BlogArticle } from "../../types/blog.ts";
 import { calculateReadingTime, formatBlogDate } from "../../utils/blog.ts";
+import { ARCHIVED_INDEX_SLUGS } from "../../utils/articleDiscovery.ts";
 import blogData from "../../data/blog.json" with { type: "json" };
 
 interface BlogPageData {
@@ -15,13 +16,6 @@ const FEATURED_SLUGS = [
   "i-wanted-a-break-from-prompting-so-i-planted-some-trees",
   "reliable-context-for-ai-assisted-teams",
 ];
-
-const ARCHIVED_INDEX_SLUGS = new Set([
-  "build-log-ai-portfolio-session",
-  "behind-the-code-claude-sonnet-4-development-session",
-  "3am-thoughts-ai-gets-tired-humans-get-obsessed",
-  "building-modern-web-experience-fresh-ai",
-]);
 
 export const handler: Handlers<BlogPageData> = {
   GET(req, ctx) {

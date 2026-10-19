@@ -127,3 +127,16 @@ note or place a second Markdown action in the header. The original Markdown
 endpoint and alternate metadata remain; a no-JavaScript export link is available
 inside sharing. At the article end the final contents entry becomes active even
 when a short closing section cannot reach the top reading line.
+
+## Connections between notes — 19 October 2026
+
+Article topics link to the existing server-rendered archive search. After the
+article actions, up to two editorially selected notes appear as open title rows
+with publication dates and reading times. Keep these outside the measured
+article body so completion and the closing section remain accurate. The homepage
+already provides selected writing and a direct archive link; preserve it.
+
+Connections live in `data/related-articles.json` and should be reviewed when a
+note is published. Do not fill a new article with arbitrary recommendations or
+matches based only on broad AI tags. Archived meta posts remain accessible by
+direct URL but stay outside archive discovery and recommendations.
