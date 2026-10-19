@@ -6,7 +6,7 @@ import MotionEffects from "../islands/MotionEffects.tsx";
 
 const SITE_TITLE = "Hrvoje Pavlinovic";
 const SITE_URL = "https://hrvoje.pavlinovic.com";
-const STYLESHEET_URL = "/styles.css?v=20261016-final";
+const STYLESHEET_URL = "/styles.css?v=20261019-reading";
 
 const deriveDefaultTitle = (pathname: string) => {
   if (pathname === "/" || pathname === "") return SITE_TITLE;
@@ -121,7 +121,7 @@ export default function App({ Component, url }: PageProps) {
           href="/apple-touch-icon.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#191d21" />
 
         {/* Preload and Resource Hints */}
         <link rel="preload" href={STYLESHEET_URL} as="style" />

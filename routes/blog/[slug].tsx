@@ -5,6 +5,8 @@ import { BlogArticle } from "../../types/blog.ts";
 import { calculateReadingTime, formatBlogDate } from "../../utils/blog.ts";
 import blogData from "../../data/blog.json" with { type: "json" };
 import SocialActions from "../../islands/SocialActions.tsx";
+import ArticleReadingTools from "../../islands/ArticleReadingTools.tsx";
+import { buildArticleOutline } from "../../utils/articleOutline.ts";
 import { isLikelyBot } from "../../utils/kv.ts";
 import { getValue, incrementValue } from "../../utils/store.ts";
 
@@ -61,6 +63,7 @@ export const handler: Handlers<BlogPostData> = {
 
 export default function BlogPost({ data }: PageProps<BlogPostData>) {
   const { article } = data;
+  const outline = buildArticleOutline(article.fullText);
   const canonicalUrl = `https://hrvoje.pavlinovic.com/blog/${article.slug}`;
   const markdownUrl = `${canonicalUrl}.md`;
   const hasArticleImage = Boolean(
@@ -77,7 +80,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
     <>
       <Head>
         <title>{pageTitle}</title>
-        <link rel="stylesheet" href="/blog-20261016-v2.css" />
+        <link rel="stylesheet" href="/blog-20261019.css" />
         <link
           rel="preload"
           href="/fonts/source-sans-3-latin-wght-normal.woff2"
@@ -162,10 +165,16 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
               Download Markdown
             </a>
           </header>
-          <div
-            class="blog-content"
-            dangerouslySetInnerHTML={{ __html: article.fullText }}
-          />
+          <div class="blog-reading-layout">
+            <aside class="article-tools-rail" aria-label="Reading tools">
+              <ArticleReadingTools sections={outline.sections} />
+            </aside>
+            <div
+              id="article-body"
+              class="blog-content"
+              dangerouslySetInnerHTML={{ __html: outline.html }}
+            />
+          </div>
           <footer class="blog-post-footer">
             <SocialActions
               slug={article.slug}
