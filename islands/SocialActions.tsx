@@ -38,7 +38,7 @@ export default function SocialActions(
       aria-labelledby="article-share-heading"
     >
       <div class="article-sharing-heading">
-        <h2 id="article-share-heading" class="article-mobile-share-heading">
+        <h2 id="article-share-heading">
           Share
         </h2>
         <button
@@ -59,7 +59,7 @@ export default function SocialActions(
           <span>Like · {likes.value}</span>
         </button>
       </div>
-      <div class="article-mobile-share-controls">
+      <div>
         <ArticleShareControls
           title={title}
           url={articleUrl(slug)}

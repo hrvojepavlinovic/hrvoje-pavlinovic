@@ -78,7 +78,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
     <>
       <Head>
         <title>{pageTitle}</title>
-        <link rel="stylesheet" href="/blog-20261019-v5.css" />
+        <link rel="stylesheet" href="/blog-20261019-v6.css" />
         <link
           rel="preload"
           href="/fonts/source-sans-3-latin-wght-normal.woff2"
@@ -180,7 +180,6 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
             <aside class="article-tools-rail" aria-label="Reading tools">
               <ArticleReadingTools
                 sections={outline.sections}
-                title={article.title}
                 slug={article.slug}
               />
             </aside>
