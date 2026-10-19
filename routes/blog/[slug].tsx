@@ -1,4 +1,5 @@
-import SocialImage, { socialImageUrl } from "../../components/SocialImage.tsx";
+import SocialImage from "../../components/SocialImage.tsx";
+import { articleSocialImage } from "../../utils/articleSeo.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { BlogArticle } from "../../types/blog.ts";
@@ -66,12 +67,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
   const outline = buildArticleOutline(article.fullText);
   const canonicalUrl = `https://hrvoje.pavlinovic.com/blog/${article.slug}`;
   const markdownUrl = `${canonicalUrl}.md`;
-  const hasArticleImage = Boolean(
-    article.seo.image && !article.seo.image.endsWith("/blog.png"),
-  );
-  const absoluteImageUrl = hasArticleImage
-    ? article.seo.image
-    : socialImageUrl("blog");
+  const image = articleSocialImage(article);
   const pageTitle = article.seo.title.includes("Hrvoje Pavlinovic")
     ? article.seo.title
     : `${article.seo.title} \u2014 Hrvoje Pavlinovic`;
@@ -80,7 +76,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
     <>
       <Head>
         <title>{pageTitle}</title>
-        <link rel="stylesheet" href="/blog-20261019-v2.css" />
+        <link rel="stylesheet" href="/blog-20261019-v3.css" />
         <link
           rel="preload"
           href="/fonts/source-sans-3-latin-wght-normal.woff2"
@@ -101,6 +97,13 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="Hrvoje Pavlinovic" />
         <meta property="article:published_time" content={article.createdAt} />
+        <meta
+          property="article:author"
+          content="https://hrvoje.pavlinovic.com"
+        />
+        {article.tags.map((tag) => (
+          <meta property="article:tag" content={tag} key={tag} />
+        ))}
         <meta name="twitter:card" content={article.seo.twitterCard} />
         <meta name="twitter:site" content="@0xhp10" />
         <meta name="twitter:creator" content={article.seo.twitterCreator} />
@@ -116,7 +119,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
               "@type": "BlogPosting",
               headline: article.title,
               description: article.shortDescription,
-              image: absoluteImageUrl,
+              image: image.src,
               url: canonicalUrl,
               author: {
                 "@type": "Person",
@@ -136,9 +139,12 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
           }}
         />
         <SocialImage
-          src={absoluteImageUrl}
+          src={image.src}
           alt={article.title}
-          standard={!hasArticleImage}
+          standard={false}
+          width={image.width}
+          height={image.height}
+          mimeType={image.mimeType}
         />
       </Head>
 
@@ -167,7 +173,11 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
           </header>
           <div class="blog-reading-layout">
             <aside class="article-tools-rail" aria-label="Reading tools">
-              <ArticleReadingTools sections={outline.sections} />
+              <ArticleReadingTools
+                sections={outline.sections}
+                title={article.title}
+                slug={article.slug}
+              />
             </aside>
             <div
               id="article-body"
@@ -179,7 +189,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
             <SocialActions
               slug={article.slug}
               initialLikes={article.likes}
-              seo={article.seo}
+              title={article.title}
             />
             <a class="blog-text-link" href="/blog">All field notes</a>
           </footer>
