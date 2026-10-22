@@ -115,7 +115,7 @@ button {
 }
 
 .site-canvas::before {
-  position: fixed;
+  position: absolute;
   z-index: 0;
   inset-block: 0;
   left: 50%;

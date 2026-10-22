@@ -6,7 +6,7 @@ import MotionEffects from "../islands/MotionEffects.tsx";
 
 const SITE_TITLE = "Hrvoje Pavlinovic";
 const SITE_URL = "https://hrvoje.pavlinovic.com";
-const STYLESHEET_URL = "/styles.css?v=20261019-sharing";
+const STYLESHEET_URL = "/styles.css?v=20261022-footer-frame";
 
 const deriveDefaultTitle = (pathname: string) => {
   if (pathname === "/" || pathname === "") return SITE_TITLE;
@@ -126,7 +126,7 @@ export default function App({ Component, url }: PageProps) {
         {/* Preload and Resource Hints */}
         <link rel="preload" href={STYLESHEET_URL} as="style" />
         <link rel="stylesheet" href={STYLESHEET_URL} />
-        <link rel="stylesheet" href="/footer-20261022.css" />
+        <link rel="stylesheet" href="/footer-20261022-v2.css" />
 
         {/* Databuddy Analytics - Only in production */}
         {url.hostname !== "localhost" && (
