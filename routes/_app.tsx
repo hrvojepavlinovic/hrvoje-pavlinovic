@@ -126,6 +126,7 @@ export default function App({ Component, url }: PageProps) {
         {/* Preload and Resource Hints */}
         <link rel="preload" href={STYLESHEET_URL} as="style" />
         <link rel="stylesheet" href={STYLESHEET_URL} />
+        <link rel="stylesheet" href="/footer-20261022.css" />
 
         {/* Databuddy Analytics - Only in production */}
         {url.hostname !== "localhost" && (
