@@ -67,24 +67,6 @@ export default function Footer() {
   return (
     <footer class="site-footer">
       <div class="footer-inner">
-        <a class="footer-name" href="/">
-          Hrvoje Pavlinovic<span>.</span>
-        </a>
-
-        <nav class="footer-links" aria-label="Site information">
-          <a href="/webstats">Web stats</a>
-          <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer">
-            Source code <ExternalArrow />
-          </a>
-          <a
-            href="https://fresh.deno.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Built with Fresh <ExternalArrow />
-          </a>
-        </nav>
-
         <div class="footer-release">
           {release.value
             ? (
@@ -115,6 +97,20 @@ export default function Footer() {
               </a>
             )}
         </div>
+
+        <nav class="footer-links" aria-label="Site information">
+          <a href="/webstats">Web stats</a>
+          <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer">
+            Source code <ExternalArrow />
+          </a>
+          <a
+            href="https://fresh.deno.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Built with Fresh <ExternalArrow />
+          </a>
+        </nav>
       </div>
     </footer>
   );
