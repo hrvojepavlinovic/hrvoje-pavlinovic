@@ -1,0 +1,121 @@
+:is(.blog-content, .prose) .video-flow {
+  --flow-muted: var(--ink-muted, var(--muted));
+  color: var(--ink);
+  margin-block: 2rem 2.5rem;
+  scroll-margin-top: 7rem;
+}
+:is(.blog-content, .prose) .video-flow .video-flow-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+}
+:is(.blog-content, .prose) .video-flow .video-flow-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 1.25rem;
+  margin: 0;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 7rem;
+}
+:is(.blog-content, .prose)
+  .video-flow
+  .video-flow-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 0.96875rem;
+  top: 4.5rem;
+  bottom: 0;
+  border-left: 1px solid var(--line-strong);
+  pointer-events: none;
+}
+.video-flow .video-flow-number {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--flow-muted);
+  font-size: 0.9375rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.video-flow .video-flow-content {
+  min-width: 0;
+}
+.video-flow .video-flow-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  flex-wrap: wrap;
+}
+:is(.blog-content, .prose) .video-flow p.video-flow-title {
+  margin: 0;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.video-flow .video-flow-owner {
+  color: var(--flow-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+:is(.blog-content, .prose) .video-flow p.video-flow-body {
+  margin: 0.75rem 0 0;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+}
+:is(.blog-content, .prose) .video-flow p.video-flow-tools {
+  margin: 0.875rem 0 0;
+  color: var(--flow-muted);
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+:is(.blog-content, .prose) .video-flow p.video-flow-return {
+  margin: 1rem 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+:is(.blog-content, .prose) .video-flow .video-flow-return a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+.video-flow .video-flow-return a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+@media (max-width: 600px) {
+  :is(.blog-content, .prose) .video-flow .video-flow-step {
+    grid-template-columns: 1.75rem minmax(0, 1fr);
+    gap: 0.875rem;
+    padding-block: 1.5rem;
+  }
+  .video-flow .video-flow-number {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.875rem;
+  }
+  :is(.blog-content, .prose)
+    .video-flow
+    .video-flow-step:not(:last-child)::after {
+    left: 0.84375rem;
+    top: 3.875rem;
+  }
+  .video-flow .video-flow-heading {
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+  :is(.blog-content, .prose) .video-flow p.video-flow-title {
+    font-size: 1.125rem;
+  }
+}
