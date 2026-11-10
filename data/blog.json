@@ -1,6 +1,36 @@
 {
-  "lastId": 33,
+  "lastId": 34,
   "articles": [
+    {
+      "id": 34,
+      "title": "Building With AI and Staying Close to Users",
+      "slug": "building-with-ai-and-staying-close-to-users",
+      "author": "Hrvoje Pavlinovic",
+      "tags": [
+        "AI",
+        "Product Development",
+        "User Feedback",
+        "PLAYGRND"
+      ],
+      "shortDescription": "AI helps me turn a problem into a working change quickly. Building PLAYGRND keeps reminding me to spend time with the people doing the work, then check whether the change helps.",
+      "fullText": "<p>A recent PLAYGRND fix started with four photos sent through WhatsApp. The matches were already entered, and the photos had been attached correctly. The chat still sent four messages saying that AI processing was unavailable.</p>\n<p>From the sender's side, it looked as if something had failed. I wanted the sheets attached to the right matches, with a question only when the match was unclear. Once the job was done, the conversation could stop.</p>\n<p>The recorded work session for that change, including checks and deployment, took about nineteen minutes. The upload path and match records already existed. AI helped trace the behavior, change it and verify the result in a running product.</p>\n<p>That is a useful kind of speed. What interests me more is how I decide which nineteen-minute job to do next.</p>\n\n<h2>What I can do with a shorter development cycle</h2>\n<p>I use AI throughout development. It helps me find the relevant code, work through a change and investigate failures. A requirement can become something I can test while I still have the original problem in my head.</p>\n<p>I can also try a smaller version before committing to a larger feature. If a flow is awkward, I can change the wording or remove a step, deploy it and see whether it helps. That makes more ideas worth testing.</p>\n<p>It also means I can spend an afternoon implementing several ideas that all came from the same wrong assumption. The code may work exactly as requested. Someone still has to use it in the situation it was built for.</p>\n<p>For <a href=\"https://playgrnd.app\" target=\"_blank\" rel=\"noopener noreferrer\">PLAYGRND</a>, I have a useful advantage: I play football and record matches. I have reasons to be around the people and activities the software is supposed to support. I want that part of the work to grow along with my ability to ship.</p>\n\n<h2>The pitch gives the requirements some context</h2>\n<p>A match sheet makes sense as a database record. At the pitch, it is also a piece of paper someone has to fill in while a match is happening. The result might be entered before the photo arrives. Several sheets might arrive together after the evening's games.</p>\n<p>Those details affect what the software should do. If the result and lineups are already complete, attaching the photo should be a small, finished task. Asking someone to review the same information again adds work. Sending an AI error after the attachment succeeded creates a new problem for them to interpret.</p>\n<p>I need to understand what has already happened before the person opens PLAYGRND. Which information have they entered elsewhere? What are they trying to finish now? What would make them reach for WhatsApp instead of the screen I designed?</p>\n<p>Some of that comes from asking people. Some comes from looking at the sequence of messages and watching how the work gets done. A feature request becomes much easier to judge when I can place it inside that sequence.</p>\n\n<h2>Sometimes the useful change is smaller</h2>\n<p>The WhatsApp case could have become a project to make the AI explanation more elaborate. The behavior I wanted was simpler: attach the sheet when the match is known, look at recent matches in the same organization when it needs identifying, and ask a focused question if it remains unclear.</p>\n<p>The change added a check against the organization's last thirty matches before detailed processing. It also removed the unnecessary failure messages after a successful attachment. The four sheets were checked against their public match pages.</p>\n<p>Understanding the existing workflow gave the implementation a much narrower target. I could explain the relevant states to the coding assistant: completed match, existing result, attached photo, uncertain match. That was enough context to discuss what should happen in each case.</p>\n<p>I find AI useful in that discussion too. I can ask it to trace an assumption through the code, compare possible behaviors or look for a case I missed. Its suggestions get more useful when I can supply details from the actual work.</p>\n\n<h2>A deploy gives me something to bring back</h2>\n<p>After a change ships, I want to know whether the person can finish the task more easily. A successful test and a healthy production page are part of that check. The next time someone sends a sheet tells me something else: whether the interaction now makes sense without another explanation from me.</p>\n<p>The same distinction appears in the <a href=\"/blog/how-we-make-playgrnd-videos-ballr-follow-cam\" target=\"_blank\" rel=\"noopener noreferrer\">video pilot</a>. I can inspect an encoded file and confirm its dimensions, duration and audio. When I watch the match, I can judge whether the camera kept the pass and finish in view. A technically valid video can still be frustrating to watch.</p>\n<p>With product changes, I need a similar habit of returning to the actual task. Did I remove a repeated action? Is the record correct? Can the person finish without asking what the message means? Sometimes the next useful change will be a sentence or a default.</p>\n<p>Shipping frequently gives me more chances to learn this, provided I leave time to look. If I keep filling every available hour with implementation, I can accumulate features faster than I understand their effect.</p>\n\n<h2>How I want to use the time</h2>\n<p>I care about development speed because there is plenty I want to build. AI helps me turn an observation into a working change while the details are still fresh. It also makes it easier to revise that change after someone tries it.</p>\n<p>I want to use some of that saved time to talk to people and stay around the work. In PLAYGRND, that includes going to matches, understanding how organizers keep their records and seeing what happens when someone uses the product without me guiding them.</p>\n<p>There is a practical test I can keep coming back to: the next time this person does the same job, does the change help? That is a question I can take to the pitch, then bring back to the code.</p>\n",
+      "createdAt": "2026-11-10T14:13:53.876Z",
+      "seo": {
+        "title": "Building With AI and Staying Close to Users | Hrvoje Pavlinovic",
+        "description": "A PLAYGRND WhatsApp fix, nineteen minutes of development and the work of understanding what people need at the pitch.",
+        "keywords": [
+          "AI-assisted development",
+          "product development",
+          "user feedback",
+          "PLAYGRND",
+          "football software"
+        ],
+        "author": "Hrvoje Pavlinovic",
+        "image": "https://hrvoje.pavlinovic.com/blog.png",
+        "twitterCard": "summary_large_image",
+        "twitterCreator": "@0xHP10"
+      }
+    },
     {
       "id": 32,
       "title": "How We Make PLAYGRND Videos: Ballr, Follow Cam and Linked Goals",
