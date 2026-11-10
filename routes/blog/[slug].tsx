@@ -79,6 +79,9 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
       <Head>
         <title>{pageTitle}</title>
         <link rel="stylesheet" href="/blog-20261019-v6.css" />
+        {article.slug === "how-we-make-playgrnd-videos-ballr-follow-cam" && (
+          <link rel="stylesheet" href="/video-flow-20261110-v2.css" />
+        )}
         <link
           rel="preload"
           href="/fonts/source-sans-3-latin-wght-normal.woff2"
