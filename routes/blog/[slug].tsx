@@ -65,6 +65,10 @@ export const handler: Handlers<BlogPostData> = {
 
 export default function BlogPost({ data }: PageProps<BlogPostData>) {
   const { article } = data;
+  const hr = article.lang === "hr";
+  const translation = article.translationSlug
+    ? blogData.articles.find((note) => note.slug === article.translationSlug)
+    : undefined;
   const outline = buildArticleOutline(article.fullText);
   const related = relatedArticles(article.slug, blogData.articles);
   const canonicalUrl = `https://hrvoje.pavlinovic.com/blog/${article.slug}`;
@@ -91,6 +95,16 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
         <meta name="author" content={article.seo.author} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={canonicalUrl} />
+        {translation && (
+          <>
+            <link rel="alternate" hrefLang={article.lang} href={canonicalUrl} />
+            <link
+              rel="alternate"
+              hrefLang={translation.lang}
+              href={`https://hrvoje.pavlinovic.com/blog/${translation.slug}`}
+            />
+          </>
+        )}
         <link rel="alternate" type="text/markdown" href={markdownUrl} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={pageTitle} />
@@ -136,6 +150,7 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
                 },
               },
               datePublished: article.createdAt,
+              inLanguage: article.lang ?? "en",
               keywords: article.seo.keywords.join(", "),
             }),
           }}
@@ -151,19 +166,23 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
       </Head>
 
       <div class="site-canvas blog-page">
-        <article class="blog-reading-content">
+        <article class="blog-reading-content" lang={article.lang ?? "en"}>
           <header class="blog-post-intro">
-            <a href="/blog" class="blog-back">Back to field notes</a>
+            <a href="/blog" class="blog-back">
+              {hr ? "Natrag na članke" : "Back to field notes"}
+            </a>
             <h1>{article.title}</h1>
             <div class="blog-meta">
-              <span>By {article.author}</span>
+              <span>{hr ? "Autor:" : "By"} {article.author}</span>
               <time dateTime={article.createdAt}>
                 {formatBlogDate(article.createdAt)}
               </time>
-              <span>{article.readingTime} min read</span>
+              <span>
+                {article.readingTime} {hr ? "min čitanja" : "min read"}
+              </span>
               <span>
                 {article.views.toLocaleString("en-GB")}{" "}
-                {article.views === 1 ? "view" : "views"}
+                {hr ? "pregleda" : article.views === 1 ? "view" : "views"}
               </span>
             </div>
             {article.tags.length > 0 && (
@@ -195,7 +214,9 @@ export default function BlogPost({ data }: PageProps<BlogPostData>) {
               initialLikes={article.likes}
               title={article.title}
             />
-            <a class="blog-text-link" href="/blog">All field notes</a>
+            <a class="blog-text-link" href="/blog">
+              {hr ? "Svi članci" : "All field notes"}
+            </a>
           </footer>
           {related.length > 0 && (
             <section class="blog-related" aria-labelledby="related-notes-title">

@@ -3,6 +3,7 @@ import { type PageProps } from "$fresh/server.ts";
 import Header from "../components/Header.tsx";
 import Footer from "../islands/Footer.tsx";
 import MotionEffects from "../islands/MotionEffects.tsx";
+import { type BlogArticle } from "../types/blog.ts";
 
 const SITE_TITLE = "Hrvoje Pavlinovic";
 const SITE_URL = "https://hrvoje.pavlinovic.com";
@@ -31,7 +32,9 @@ const deriveCanonicalUrl = (pathname: string) => {
   return `${SITE_URL}${normalizedPath}`;
 };
 
-export default function App({ Component, url }: PageProps) {
+export default function App(
+  { Component, url, data }: PageProps<{ article?: BlogArticle }>,
+) {
   const canonicalUrl = deriveCanonicalUrl(url.pathname);
   const defaultTitle = deriveDefaultTitle(url.pathname);
 
@@ -47,7 +50,7 @@ export default function App({ Component, url }: PageProps) {
     url.pathname.startsWith("/branding/");
 
   return (
-    <html lang="en" class="dark">
+    <html lang={data?.article?.lang ?? "en"} class="dark">
       <head>
         {/* Immediate theme script - must be first */}
         <script>
