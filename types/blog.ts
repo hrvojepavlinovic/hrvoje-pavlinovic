@@ -10,8 +10,6 @@ interface SEO {
 
 export interface BlogArticle {
   id: number;
-  lang?: string;
-  translationSlug?: string;
   title: string;
   author: string;
   tags: string[];
